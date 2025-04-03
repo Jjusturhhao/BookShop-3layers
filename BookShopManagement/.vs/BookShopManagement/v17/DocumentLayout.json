@@ -1,0 +1,68 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layer\\BookShopManagement\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\ngoc han\\source\\repos\\bookshop-3layer\\bookshopmanagement\\presentationlayer\\checkout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\checkout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\ngoc han\\source\\repos\\bookshop-3layer\\bookshopmanagement\\presentationlayer\\staffinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\staffinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\ngoc han\\source\\repos\\bookshop-3layer\\bookshopmanagement\\presentationlayer\\bill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\bill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StaffInterface.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layer\\BookShopManagement\\PresentationLayer\\StaffInterface.cs",
+              "RelativeDocumentMoniker": "PresentationLayer\\StaffInterface.cs",
+              "ToolTip": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layer\\BookShopManagement\\PresentationLayer\\StaffInterface.cs [Design]",
+              "RelativeToolTip": "PresentationLayer\\StaffInterface.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T15:01:11.878Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Checkout.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layer\\BookShopManagement\\PresentationLayer\\Checkout.cs",
+              "RelativeDocumentMoniker": "PresentationLayer\\Checkout.cs",
+              "ToolTip": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layer\\BookShopManagement\\PresentationLayer\\Checkout.cs [Design]",
+              "RelativeToolTip": "PresentationLayer\\Checkout.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T15:01:02.118Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Bill.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layer\\BookShopManagement\\PresentationLayer\\Bill.cs",
+              "RelativeDocumentMoniker": "PresentationLayer\\Bill.cs",
+              "ToolTip": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layer\\BookShopManagement\\PresentationLayer\\Bill.cs [Design]",
+              "RelativeToolTip": "PresentationLayer\\Bill.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T14:57:50.74Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

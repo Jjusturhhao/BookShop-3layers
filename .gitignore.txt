@@ -1,0 +1,16 @@
+# Ignore build folders
+bin/
+obj/
+.vs/
+
+# Ignore user-specific files
+*.user
+*.suo
+
+# Ignore temporary files
+*.tmp
+*.log
+
+# Ignore compiled DLLs/EXEs
+*.exe
+*.dll

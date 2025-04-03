@@ -1,0 +1,7 @@
+C:\Users\NGOC HAN\source\repos\BookShop-3layer\BookShopManagement\bin\Debug\BusinessLayer.dll
+C:\Users\NGOC HAN\source\repos\BookShop-3layer\BookShopManagement\bin\Debug\BusinessLayer.pdb
+C:\Users\NGOC HAN\source\repos\BookShop-3layer\BookShopManagement\BusinessLayer\obj\Debug\BusinessLayer.csproj.AssemblyReference.cache
+C:\Users\NGOC HAN\source\repos\BookShop-3layer\BookShopManagement\BusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\NGOC HAN\source\repos\BookShop-3layer\BookShopManagement\BusinessLayer\obj\Debug\Business.EA331CBA.Up2Date
+C:\Users\NGOC HAN\source\repos\BookShop-3layer\BookShopManagement\BusinessLayer\obj\Debug\BusinessLayer.dll
+C:\Users\NGOC HAN\source\repos\BookShop-3layer\BookShopManagement\BusinessLayer\obj\Debug\BusinessLayer.pdb
