@@ -1,0 +1,6 @@
+C:\Users\NGOC HAN\source\repos\BookShop-3layer\BookShopManagement\bin\Debug\TransferObject.dll
+C:\Users\NGOC HAN\source\repos\BookShop-3layer\BookShopManagement\bin\Debug\TransferObject.pdb
+C:\Users\NGOC HAN\source\repos\BookShop-3layer\BookShopManagement\TransferObject\obj\Debug\TransferObject.csproj.AssemblyReference.cache
+C:\Users\NGOC HAN\source\repos\BookShop-3layer\BookShopManagement\TransferObject\obj\Debug\TransferObject.csproj.CoreCompileInputs.cache
+C:\Users\NGOC HAN\source\repos\BookShop-3layer\BookShopManagement\TransferObject\obj\Debug\TransferObject.dll
+C:\Users\NGOC HAN\source\repos\BookShop-3layer\BookShopManagement\TransferObject\obj\Debug\TransferObject.pdb
