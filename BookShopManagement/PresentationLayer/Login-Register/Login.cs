@@ -106,6 +106,16 @@ namespace PresentationLayer
             registerForm.ShowDialog(); // Mở form đăng ký
         }
 
-
+        private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkShowPassword.Checked)
+            {
+                txtPassword.PasswordChar = '\0';
+            }
+            else
+            {
+                txtPassword.PasswordChar = '●';
+            }
+        }
     }
 }
