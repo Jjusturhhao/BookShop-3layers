@@ -45,6 +45,15 @@ namespace PresentationLayer
         {
             dataGridViewBooks.Columns["Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridViewBooks.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            // Giảm kích thước các cột ID
+            dataGridViewBooks.Columns["StockID"].Width = 60;
+            dataGridViewBooks.Columns["BookID"].Width = 60;
+            dataGridViewBooks.Columns["CategoryID"].Width = 60;
+
+            // Tự động co giãn tên sách và tác giả để tối ưu không gian
+            dataGridViewBooks.Columns["BookName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewBooks.Columns["Author"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         private void btnStaffInterface_Click(object sender, EventArgs e)

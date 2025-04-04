@@ -58,11 +58,12 @@
             this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 59);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 74);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1194, 586);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1343, 732);
             this.tableLayoutPanel1.TabIndex = 28;
             // 
             // panel1
@@ -75,9 +76,10 @@
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.lbPrice);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(719, 3);
+            this.panel1.Location = new System.Drawing.Point(808, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(472, 580);
+            this.panel1.Size = new System.Drawing.Size(532, 724);
             this.panel1.TabIndex = 0;
             // 
             // btnBack
@@ -87,9 +89,10 @@
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnBack.Location = new System.Drawing.Point(255, 445);
+            this.btnBack.Location = new System.Drawing.Point(288, 555);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(224, 60);
+            this.btnBack.Size = new System.Drawing.Size(252, 75);
             this.btnBack.TabIndex = 28;
             this.btnBack.Text = "Tiếp tục mua";
             this.btnBack.UseVisualStyleBackColor = false;
@@ -100,9 +103,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbCategory.AutoSize = true;
             this.lbCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCategory.Location = new System.Drawing.Point(48, 253);
+            this.lbCategory.Location = new System.Drawing.Point(54, 316);
             this.lbCategory.Name = "lbCategory";
-            this.lbCategory.Size = new System.Drawing.Size(107, 29);
+            this.lbCategory.Size = new System.Drawing.Size(124, 32);
             this.lbCategory.TabIndex = 25;
             this.lbCategory.Text = "Thể loại:";
             // 
@@ -112,9 +115,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbName.AutoSize = true;
             this.lbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbName.Location = new System.Drawing.Point(47, 99);
+            this.lbName.Location = new System.Drawing.Point(53, 124);
             this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(138, 32);
+            this.lbName.Size = new System.Drawing.Size(160, 38);
             this.lbName.TabIndex = 22;
             this.lbName.Text = "Tên sách";
             // 
@@ -125,9 +128,10 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(-7, 366);
+            this.button2.Location = new System.Drawing.Point(-7, 457);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(486, 60);
+            this.button2.Size = new System.Drawing.Size(547, 75);
             this.button2.TabIndex = 27;
             this.button2.Text = "Mua ngay";
             this.button2.UseVisualStyleBackColor = false;
@@ -138,9 +142,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbAuthor.AutoSize = true;
             this.lbAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAuthor.Location = new System.Drawing.Point(48, 206);
+            this.lbAuthor.Location = new System.Drawing.Point(54, 258);
             this.lbAuthor.Name = "lbAuthor";
-            this.lbAuthor.Size = new System.Drawing.Size(99, 29);
+            this.lbAuthor.Size = new System.Drawing.Size(115, 32);
             this.lbAuthor.TabIndex = 23;
             this.lbAuthor.Text = "Tác giả:";
             // 
@@ -151,9 +155,10 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Red;
-            this.button1.Location = new System.Drawing.Point(-7, 445);
+            this.button1.Location = new System.Drawing.Point(-7, 555);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(233, 60);
+            this.button1.Size = new System.Drawing.Size(262, 75);
             this.button1.TabIndex = 26;
             this.button1.Text = "Thêm vào giỏ";
             this.button1.UseVisualStyleBackColor = false;
@@ -165,9 +170,9 @@
             this.lbPrice.AutoSize = true;
             this.lbPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbPrice.ForeColor = System.Drawing.Color.Red;
-            this.lbPrice.Location = new System.Drawing.Point(47, 307);
+            this.lbPrice.Location = new System.Drawing.Point(53, 384);
             this.lbPrice.Name = "lbPrice";
-            this.lbPrice.Size = new System.Drawing.Size(121, 32);
+            this.lbPrice.Size = new System.Drawing.Size(137, 38);
             this.lbPrice.TabIndex = 24;
             this.lbPrice.Text = "Giá tiền";
             // 
@@ -175,16 +180,18 @@
             // 
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Location = new System.Drawing.Point(3, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(710, 580);
+            this.panel2.Size = new System.Drawing.Size(799, 724);
             this.panel2.TabIndex = 1;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(52, 80);
+            this.pictureBox1.Location = new System.Drawing.Point(58, 100);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(608, 425);
+            this.pictureBox1.Size = new System.Drawing.Size(684, 531);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -195,9 +202,10 @@
             this.btnOrders.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnOrders.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOrders.ForeColor = System.Drawing.Color.Transparent;
-            this.btnOrders.Location = new System.Drawing.Point(665, 0);
+            this.btnOrders.Location = new System.Drawing.Point(748, 0);
+            this.btnOrders.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnOrders.Name = "btnOrders";
-            this.btnOrders.Size = new System.Drawing.Size(173, 59);
+            this.btnOrders.Size = new System.Drawing.Size(195, 74);
             this.btnOrders.TabIndex = 27;
             this.btnOrders.Text = "Đơn hàng";
             this.btnOrders.UseVisualStyleBackColor = false;
@@ -209,9 +217,10 @@
             this.btnCart.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCart.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCart.ForeColor = System.Drawing.Color.Transparent;
-            this.btnCart.Location = new System.Drawing.Point(844, 0);
+            this.btnCart.Location = new System.Drawing.Point(950, 0);
+            this.btnCart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCart.Name = "btnCart";
-            this.btnCart.Size = new System.Drawing.Size(160, 59);
+            this.btnCart.Size = new System.Drawing.Size(180, 74);
             this.btnCart.TabIndex = 26;
             this.btnCart.Text = "Giỏ hàng";
             this.btnCart.UseVisualStyleBackColor = false;
@@ -223,9 +232,10 @@
             this.btnAccount.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAccount.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAccount.ForeColor = System.Drawing.Color.Transparent;
-            this.btnAccount.Location = new System.Drawing.Point(1010, 0);
+            this.btnAccount.Location = new System.Drawing.Point(1136, 0);
+            this.btnAccount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAccount.Name = "btnAccount";
-            this.btnAccount.Size = new System.Drawing.Size(184, 59);
+            this.btnAccount.Size = new System.Drawing.Size(207, 74);
             this.btnAccount.TabIndex = 25;
             this.btnAccount.Text = "Tài khoản";
             this.btnAccount.UseVisualStyleBackColor = false;
@@ -237,8 +247,9 @@
             this.btnAll.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAll.ForeColor = System.Drawing.Color.Transparent;
             this.btnAll.Location = new System.Drawing.Point(3, 0);
+            this.btnAll.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAll.Name = "btnAll";
-            this.btnAll.Size = new System.Drawing.Size(125, 59);
+            this.btnAll.Size = new System.Drawing.Size(141, 74);
             this.btnAll.TabIndex = 24;
             this.btnAll.Text = "Tất cả";
             this.btnAll.UseVisualStyleBackColor = false;
@@ -249,20 +260,21 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1194, 59);
+            this.label1.Size = new System.Drawing.Size(1343, 74);
             this.label1.TabIndex = 23;
             // 
             // BookDetail
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1194, 645);
+            this.ClientSize = new System.Drawing.Size(1343, 806);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.btnOrders);
             this.Controls.Add(this.btnCart);
             this.Controls.Add(this.btnAccount);
             this.Controls.Add(this.btnAll);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "BookDetail";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

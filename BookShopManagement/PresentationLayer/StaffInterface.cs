@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -64,14 +66,28 @@ namespace PresentationLayer
                 };
 
                 string imageUrl = row["BookImage"].ToString();
-                pictureBox.Load(imageUrl);
+                try
+                {
+                    using (WebClient webClient = new WebClient())
+                    {
+                        byte[] imageBytes = webClient.DownloadData(imageUrl);
+                        using (MemoryStream ms = new MemoryStream(imageBytes))
+                        {
+                            pictureBox.Image = Image.FromStream(ms);
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    pictureBox.Image = Properties.Resources.bookdefault; // Load ảnh mặc định nếu có lỗi
+                }
                 //try
                 //{
                 //    pictureBox.Load(imageUrl);
                 //}
                 //catch (Exception)
                 //{
-                //    pictureBox.Image = Properties.Resources.default_image; // Ảnh mặc định nếu có lỗi
+                //    pictureBox.Image = Properties.Resources.bookdefault; // Ảnh mặc định nếu có lỗi
                 //}
 
                 Label lblName = new Label()
