@@ -1,10 +1,13 @@
-﻿using System;
+﻿using BusinessLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,32 +18,79 @@ namespace PresentationLayer
     {
         private int currentPage = 1;
         private int pageSize = 8;
-        SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=BookStoreManagement;Integrated Security=True;TrustServerCertificate=True");
+        private HomepageBL HomepageBL;
+        private string currentCategoryID = null;
 
         public Homepage()
         {
             InitializeComponent();
+            HomepageBL = new HomepageBL();
         }
 
         private void Homepage_Load(object sender, EventArgs e)
         {
-            LoadBooks(currentPage);
+            LoadButtons();
+            LoadBooks(currentPage, currentCategoryID);
         }
-        private DataTable GetBooks(int pageNumber, int pageSize)
+        private void LoadButtons()
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Book ORDER BY BookID OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY", con);
-            cmd.Parameters.AddWithValue("@Offset", (pageNumber - 1) * pageSize);
-            cmd.Parameters.AddWithValue("@PageSize", pageSize);
+            DataTable categories = HomepageBL.GetCategories();
 
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
+            Button btnAll = new Button()
+            {
+                Text = "Tất cả",
+                AutoSize = true,
+                Font = new Font("Arial", 13, FontStyle.Bold),
+                TextAlign = ContentAlignment.TopLeft,
+                BackColor = Color.Black,
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Popup
+            };
+            btnAll.Click += (s, e) =>
+            {
+                currentCategoryID = null;
+                currentPage = 1;
+                LoadBooks(currentPage, currentCategoryID);
+            };
+            
+            flowLayoutPanelButtons.Controls.Add(btnAll);
 
-            return dt;
+            foreach (DataRow row in categories.Rows)
+            {
+                Button btnCategory = new Button()
+                {
+                    Text = row["categoryName"].ToString(),
+                    AutoSize = true,
+                    Font =  new Font("Arial", 13, FontStyle.Bold),
+                    TextAlign = ContentAlignment.TopLeft,
+                    BackColor = Color.Black,
+                    ForeColor = Color.White,
+                    FlatStyle = FlatStyle.Popup
+                };
+
+                string categoryID = row["categoryID"].ToString();
+                btnCategory.Click += (s, e) =>
+                {
+                    currentCategoryID = categoryID;  // Cập nhật thể loại đã chọn
+                    currentPage = 1;  // Khi thay đổi thể loại, quay lại trang 1
+                    LoadBooks(currentPage, currentCategoryID);
+                };
+                flowLayoutPanelButtons.Controls.Add(btnCategory); 
+            }
         }
-        private void LoadBooks(int pageNumber)
+        
+        private void LoadBooks(int pageNumber, string categoryID)
         {
-            DataTable books = GetBooks(pageNumber, pageSize);
+            DataTable books;
+            if (string.IsNullOrEmpty(categoryID))  // Nếu categoryID là null hoặc empty thì lấy tất cả sách
+            {
+                books = HomepageBL.GetBooks(pageNumber, pageSize);
+            }
+            else  
+            {
+                books = HomepageBL.GetBooksByCategory(pageNumber, pageSize, categoryID);
+            }
+
             flowLayoutPanelBooks.Controls.Clear();
 
             int screenWidth = this.flowLayoutPanelBooks.Width;
@@ -67,15 +117,21 @@ namespace PresentationLayer
                 };
 
                 string imageUrl = row["BookImage"].ToString();
-                pictureBox.Load(imageUrl);
-                //try
-                //{
-                //    pictureBox.Load(imageUrl);
-                //}
-                //catch (Exception)
-                //{
-                //    pictureBox.Image = Properties.Resources.default_image; // Ảnh mặc định nếu có lỗi
-                //}
+                try
+                {
+                    using (WebClient webClient = new WebClient())
+                    {
+                        byte[] imageBytes = webClient.DownloadData(imageUrl);
+                        using (MemoryStream ms = new MemoryStream(imageBytes))
+                        {
+                            pictureBox.Image = Image.FromStream(ms);
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    pictureBox.Image = Properties.Resources.bookdefault; 
+                }
 
                 Label lblName = new Label()
                 {
@@ -129,20 +185,35 @@ namespace PresentationLayer
             }
 
             lbPage.Text = pageNumber.ToString();
-            int totalRecords = GetTotalRecords();
-            LoadPaginationControls(totalRecords);
+            int totalRecords = HomepageBL.GetTotalRecords(currentCategoryID);
+            int totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
+            LoadPaginationControls(totalRecords, totalPages);
         }
 
-        private void LoadPaginationControls(int totalRecords)
-        {
-            int totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
-
+        private void LoadPaginationControls(int totalRecords, int totalPages)
+        { 
+            if (currentPage >= totalPages)
+            {
+                btnNext.Enabled = false;
+            }
+            else
+            {
+                btnNext.Enabled = true;
+            }
+            if (currentPage == 1)
+            {
+                btnPrevious.Enabled = false;
+            }
+            else
+            {
+                btnPrevious.Enabled = true;
+            }
             btnPrevious.Click += (s, e) =>
             {
                 if (currentPage > 1)
                 {
                     currentPage--;
-                    LoadBooks(currentPage);
+                    LoadBooks(currentPage, currentCategoryID);
                 }
             };
 
@@ -151,18 +222,11 @@ namespace PresentationLayer
                 if (currentPage < totalPages)
                 {
                     currentPage++;
-                    LoadBooks(currentPage);
+                    LoadBooks(currentPage, currentCategoryID);
                 }
             };
         }
 
-        private int GetTotalRecords()
-        {
-            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Book", con);
-            con.Open();
-            int totalRecords = (int)cmd.ExecuteScalar();
-            con.Close();
-            return totalRecords;
-        }
+        
     }
 }

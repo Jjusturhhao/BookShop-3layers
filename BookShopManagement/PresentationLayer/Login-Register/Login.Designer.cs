@@ -38,9 +38,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnRegister = new System.Windows.Forms.Button();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.chkShowPassword = new System.Windows.Forms.CheckBox();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.chkShowPassword = new System.Windows.Forms.CheckBox();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox2)).BeginInit();
@@ -51,38 +51,38 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Verdana", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.LightSeaGreen;
-            this.label3.Location = new System.Drawing.Point(67, 35);
+            this.label3.Location = new System.Drawing.Point(60, 28);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(292, 48);
+            this.label3.Size = new System.Drawing.Size(249, 41);
             this.label3.TabIndex = 14;
             this.label3.Text = "ĐĂNG NHẬP";
             // 
             // txtUsername
             // 
             this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsername.Location = new System.Drawing.Point(43, 143);
+            this.txtUsername.Location = new System.Drawing.Point(38, 114);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(313, 32);
+            this.txtUsername.Size = new System.Drawing.Size(279, 28);
             this.txtUsername.TabIndex = 8;
             // 
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(43, 220);
+            this.txtPassword.Location = new System.Drawing.Point(38, 176);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(313, 32);
+            this.txtPassword.Size = new System.Drawing.Size(279, 28);
             this.txtPassword.TabIndex = 9;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Verdana", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(38, 192);
+            this.label2.Location = new System.Drawing.Point(34, 154);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 26);
+            this.label2.Size = new System.Drawing.Size(97, 23);
             this.label2.TabIndex = 12;
             this.label2.Text = "Mật khẩu";
             // 
@@ -91,10 +91,10 @@
             this.btnLogin.BackColor = System.Drawing.Color.LightSeaGreen;
             this.btnLogin.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnLogin.Location = new System.Drawing.Point(43, 316);
+            this.btnLogin.Location = new System.Drawing.Point(38, 253);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(313, 58);
+            this.btnLogin.Size = new System.Drawing.Size(278, 46);
             this.btnLogin.TabIndex = 10;
             this.btnLogin.Text = "Đăng nhập";
             this.btnLogin.UseVisualStyleBackColor = false;
@@ -104,9 +104,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Verdana", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(38, 115);
+            this.label1.Location = new System.Drawing.Point(34, 92);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(179, 26);
+            this.label1.Size = new System.Drawing.Size(153, 23);
             this.label1.TabIndex = 11;
             this.label1.Text = "Tên đăng nhập";
             // 
@@ -115,9 +115,9 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(56, 414);
+            this.label4.Location = new System.Drawing.Point(50, 331);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(291, 29);
+            this.label4.Size = new System.Drawing.Size(248, 25);
             this.label4.TabIndex = 15;
             this.label4.Text = "Bạn chưa có tài khoản?";
             // 
@@ -126,10 +126,10 @@
             this.btnRegister.BackColor = System.Drawing.Color.LightSeaGreen;
             this.btnRegister.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegister.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnRegister.Location = new System.Drawing.Point(43, 445);
+            this.btnRegister.Location = new System.Drawing.Point(38, 356);
             this.btnRegister.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(313, 59);
+            this.btnRegister.Size = new System.Drawing.Size(278, 47);
             this.btnRegister.TabIndex = 13;
             this.btnRegister.Text = "Đăng ký";
             this.btnRegister.UseVisualStyleBackColor = false;
@@ -150,18 +150,33 @@
             this.guna2Panel1.Controls.Add(this.label2);
             this.guna2Panel1.Controls.Add(this.btnLogin);
             this.guna2Panel1.Controls.Add(this.txtPassword);
-            this.guna2Panel1.Location = new System.Drawing.Point(303, 44);
+            this.guna2Panel1.Location = new System.Drawing.Point(269, 35);
+            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(405, 538);
+            this.guna2Panel1.Size = new System.Drawing.Size(360, 430);
             this.guna2Panel1.TabIndex = 19;
+            // 
+            // chkShowPassword
+            // 
+            this.chkShowPassword.AutoSize = true;
+            this.chkShowPassword.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkShowPassword.Location = new System.Drawing.Point(101, 206);
+            this.chkShowPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkShowPassword.Name = "chkShowPassword";
+            this.chkShowPassword.Size = new System.Drawing.Size(158, 24);
+            this.chkShowPassword.TabIndex = 16;
+            this.chkShowPassword.Text = "Hiện mật khẩu";
+            this.chkShowPassword.UseVisualStyleBackColor = true;
+            this.chkShowPassword.CheckedChanged += new System.EventHandler(this.chkShowPassword_CheckedChanged);
             // 
             // guna2PictureBox1
             // 
             this.guna2PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox1.Image")));
             this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.guna2PictureBox1.Location = new System.Drawing.Point(11, 10);
+            this.guna2PictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(276, 252);
+            this.guna2PictureBox1.Size = new System.Drawing.Size(245, 202);
             this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.guna2PictureBox1.TabIndex = 20;
             this.guna2PictureBox1.TabStop = false;
@@ -170,35 +185,23 @@
             // 
             this.guna2PictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox2.Image")));
             this.guna2PictureBox2.ImageRotate = 0F;
-            this.guna2PictureBox2.Location = new System.Drawing.Point(714, 360);
+            this.guna2PictureBox2.Location = new System.Drawing.Point(635, 288);
+            this.guna2PictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2PictureBox2.Name = "guna2PictureBox2";
-            this.guna2PictureBox2.Size = new System.Drawing.Size(252, 259);
+            this.guna2PictureBox2.Size = new System.Drawing.Size(224, 207);
             this.guna2PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.guna2PictureBox2.TabIndex = 21;
             this.guna2PictureBox2.TabStop = false;
             // 
-            // chkShowPassword
-            // 
-            this.chkShowPassword.AutoSize = true;
-            this.chkShowPassword.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkShowPassword.Location = new System.Drawing.Point(114, 257);
-            this.chkShowPassword.Name = "chkShowPassword";
-            this.chkShowPassword.Size = new System.Drawing.Size(187, 29);
-            this.chkShowPassword.TabIndex = 16;
-            this.chkShowPassword.Text = "Hiện mật khẩu";
-            this.chkShowPassword.UseVisualStyleBackColor = true;
-            this.chkShowPassword.CheckedChanged += new System.EventHandler(this.chkShowPassword_CheckedChanged);
-            // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1001, 625);
+            this.ClientSize = new System.Drawing.Size(890, 500);
             this.Controls.Add(this.guna2PictureBox2);
             this.Controls.Add(this.guna2PictureBox1);
             this.Controls.Add(this.guna2Panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Login";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

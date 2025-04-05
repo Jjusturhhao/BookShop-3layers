@@ -81,14 +81,7 @@ namespace PresentationLayer
                 {
                     pictureBox.Image = Properties.Resources.bookdefault; // Load ảnh mặc định nếu có lỗi
                 }
-                //try
-                //{
-                //    pictureBox.Load(imageUrl);
-                //}
-                //catch (Exception)
-                //{
-                //    pictureBox.Image = Properties.Resources.bookdefault; // Ảnh mặc định nếu có lỗi
-                //}
+                
 
                 Label lblName = new Label()
                 {

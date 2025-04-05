@@ -1,18 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layer\\BookShopManagement\\",
+  "WorkspaceRootPath": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\ngoc han\\source\\repos\\bookshop-3layer\\bookshopmanagement\\presentationlayer\\checkout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\checkout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{499CAC2D-A06F-47AF-B26E-84F870FF4D0E}|DataLayer\\DataLayer.csproj|c:\\users\\ngoc han\\source\\repos\\bookshop-3layers\\bookshopmanagement\\datalayer\\homepagedl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{499CAC2D-A06F-47AF-B26E-84F870FF4D0E}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\homepagedl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\ngoc han\\source\\repos\\bookshop-3layer\\bookshopmanagement\\presentationlayer\\staffinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\staffinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\presentationlayer\\homepage\\homepage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\homepage\\homepage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\ngoc han\\source\\repos\\bookshop-3layer\\bookshopmanagement\\presentationlayer\\bill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\bill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{806486B2-AE2B-4C5A-AAE6-D507E32FFD77}|BusinessLayer\\BusinessLayer.csproj|C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\businesslayer\\homepagebl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{806486B2-AE2B-4C5A-AAE6-D507E32FFD77}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\homepagebl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\presentationlayer\\homepage\\homepage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\homepage\\homepage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,43 +26,59 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "StaffInterface.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layer\\BookShopManagement\\PresentationLayer\\StaffInterface.cs",
-              "RelativeDocumentMoniker": "PresentationLayer\\StaffInterface.cs",
-              "ToolTip": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layer\\BookShopManagement\\PresentationLayer\\StaffInterface.cs [Design]",
-              "RelativeToolTip": "PresentationLayer\\StaffInterface.cs [Design]",
+              "DocumentIndex": 0,
+              "Title": "HomepageDL.cs",
+              "DocumentMoniker": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\DataLayer\\HomepageDL.cs",
+              "RelativeDocumentMoniker": "DataLayer\\HomepageDL.cs",
+              "ToolTip": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\DataLayer\\HomepageDL.cs",
+              "RelativeToolTip": "DataLayer\\HomepageDL.cs",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAjwG0AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T15:01:11.878Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-04-05T10:02:27.082Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Checkout.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layer\\BookShopManagement\\PresentationLayer\\Checkout.cs",
-              "RelativeDocumentMoniker": "PresentationLayer\\Checkout.cs",
-              "ToolTip": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layer\\BookShopManagement\\PresentationLayer\\Checkout.cs [Design]",
-              "RelativeToolTip": "PresentationLayer\\Checkout.cs [Design]",
+              "DocumentIndex": 1,
+              "Title": "Homepage.cs",
+              "DocumentMoniker": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\Homepage\\Homepage.cs",
+              "RelativeDocumentMoniker": "PresentationLayer\\Homepage\\Homepage.cs",
+              "ToolTip": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\Homepage\\Homepage.cs",
+              "RelativeToolTip": "PresentationLayer\\Homepage\\Homepage.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAQwD4AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T15:01:02.118Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-04-05T11:25:24.29Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Bill.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layer\\BookShopManagement\\PresentationLayer\\Bill.cs",
-              "RelativeDocumentMoniker": "PresentationLayer\\Bill.cs",
-              "ToolTip": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layer\\BookShopManagement\\PresentationLayer\\Bill.cs [Design]",
-              "RelativeToolTip": "PresentationLayer\\Bill.cs [Design]",
+              "Title": "HomepageBL.cs",
+              "DocumentMoniker": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\BusinessLayer\\HomepageBL.cs",
+              "RelativeDocumentMoniker": "BusinessLayer\\HomepageBL.cs",
+              "ToolTip": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\BusinessLayer\\HomepageBL.cs",
+              "RelativeToolTip": "BusinessLayer\\HomepageBL.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAA1wBQAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T14:57:50.74Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-04-05T10:08:14.697Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Homepage.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\Homepage\\Homepage.cs",
+              "RelativeDocumentMoniker": "PresentationLayer\\Homepage\\Homepage.cs",
+              "ToolTip": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\Homepage\\Homepage.cs [Design]",
+              "RelativeToolTip": "PresentationLayer\\Homepage\\Homepage.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T14:22:26.936Z"
             }
           ]
         }
