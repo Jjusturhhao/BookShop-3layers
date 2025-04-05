@@ -22,17 +22,17 @@ namespace PresentationLayer
 
             Login loginForm = new Login();
 
-            // ✅ Chỉ mở Login Form một lần
+            // Chỉ mở Login Form một lần
             if (loginForm.ShowDialog() == DialogResult.OK)
             {
                 string username = loginForm.GetUsername();
                 string password = loginForm.GetPassword();
 
-                // ✅ Sử dụng Business Layer để kiểm tra tài khoản
+                // Sử dụng Business Layer để kiểm tra tài khoản
                 LoginBL loginBL = new LoginBL();
                 string userRole = loginBL.GetUserRole(new Account(username, password));
 
-                // ✅ Điều hướng theo vai trò
+                // Điều hướng theo vai trò
                 Form nextForm = null;
                 if (userRole == "Admin")
                     nextForm = new StaffInterface();
@@ -43,7 +43,7 @@ namespace PresentationLayer
                 else
                     MessageBox.Show("Đăng nhập thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                // ✅ Nếu có form tiếp theo, chạy nó
+                // Nếu có form tiếp theo, chạy nó
                 if (nextForm != null)
                     Application.Run(nextForm);
             }

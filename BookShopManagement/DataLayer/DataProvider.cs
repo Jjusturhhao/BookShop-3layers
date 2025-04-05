@@ -68,6 +68,23 @@ namespace DataLayer
                 DisConnect();
             }
         }
+        public object MyExecuteScalar(SqlCommand cmd)
+        {
+            try
+            {
+                Connect();
+                cmd.Connection = cn;  
+                return cmd.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+        }
 
         public SqlDataReader MyExecuteReader(string sql, CommandType type)
         {

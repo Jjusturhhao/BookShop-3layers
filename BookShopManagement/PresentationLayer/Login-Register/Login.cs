@@ -1,5 +1,4 @@
-﻿using BusinessLayer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,7 +10,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLayer;
 using TransferObject;
-using System.Data.SqlClient;
 namespace PresentationLayer
 {
     public partial class Login : Form
