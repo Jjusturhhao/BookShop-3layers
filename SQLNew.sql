@@ -11,6 +11,7 @@ CREATE TABLE BookCategory (
     CategoryID VARCHAR(10) PRIMARY KEY,
     CategoryName NVARCHAR(100) NOT NULL
 );
+go
 
 INSERT INTO BookCategory (CategoryID, CategoryName) VALUES 
 	('CAT1', N'Tiểu thuyết'),
@@ -18,6 +19,7 @@ INSERT INTO BookCategory (CategoryID, CategoryName) VALUES
 	('CAT3', N'Kinh tế'),
 	('CAT4', N'Thiếu nhi'),
 	('CAT5', N'Tâm lý - Kỹ năng sống');
+go
 
 CREATE TABLE Book(
 		BookID VARCHAR(50) PRIMARY KEY,
@@ -27,6 +29,7 @@ CREATE TABLE Book(
 		Price INT NOT NULL,
 		BookImage NVARCHAR(255)
 );
+go
 
 INSERT INTO Book VALUES('BOOK1',N'Cây Cam Ngọt Của Tôi','CAT1',N'José Mauro de Vasconcelos', 80400, 'https://cdn1.fahasa.com/media/catalog/product/i/m/image_217480.jpg');
 INSERT INTO Book VALUES('BOOK2',N'25 Độ Âm','CAT1',N'Thảo Trang', 210000, 'https://cdn1.fahasa.com/media/catalog/product/b/_/b_a-1-25-_-_m_1.jpg');
@@ -43,17 +46,18 @@ INSERT INTO Book VALUES('BOOK12',N'Hoàng Tử Bé (Tái Bản 2022)','CAT4',N'A
 INSERT INTO Book VALUES('BOOK13',N'Con Đường Chẳng Mấy Ai Đi','CAT5',N'M. Scott Peck', 99000, 'https://cdn1.fahasa.com/media/catalog/product/9/7/9786044009674.jpg');
 INSERT INTO Book VALUES('BOOK14',N'Tư Duy Ngược','CAT5',N'Nguyễn Anh Dũng', 65330, 'https://cdn1.fahasa.com/media/catalog/product/9/7/9786043440287.jpg');
 INSERT INTO Book VALUES('BOOK15',N'Manifest - 7 Bước Để Thay Đổi Cuộc Đời Bạn Mãi Mãi','CAT5',N'Roxie Nafousi', 62300, 'https://cdn1.fahasa.com/media/catalog/product/b/_/b_a-tr_c-manifest_1.jpg');
-
+go
 SELECT * FROM Book
 
 CREATE TABLE Suppliers(
 		Supplier_ID VARCHAR (55)NOT NULL,
 		Supplier_name NVARCHAR(100) NOT NULL,
-		Supplier_City NVARCHAR(255),
+		Supplier_address NVARCHAR(255),
 		Supplier_email VARCHAR(55),
 		Supplier_phone VARCHAR(55) NOT NULL,
 		PRIMARY KEY (Supplier_ID)
 );
+go
 
 	INSERT INTO Suppliers VALUES('SUP1',N'AZ Việt Nam',N'Số 50 đường 5, TTF361 An Dương, P. Yên Phụ, Q. Tây Hồ, Tp. Hà Nội','bophanbanle@azbooks.vn','02437172838')
 	INSERT INTO Suppliers VALUES('SUP2',N'Phụ Nữ',N'39 P. Hàng Chuối, Phạm Đình Hổ, Hai Bà Trưng, Hà Nội','truyenthongvaprnxbpn@gmail.com','02439710717')
@@ -61,6 +65,7 @@ CREATE TABLE Suppliers(
 	INSERT INTO Suppliers VALUES('SUP4',N'Grantham Book Services',N'Trent Rd, Grantham NG31 7XQ, Vương quốc Anh','SN4@gmail.com','+44 1476 541000')
 	INSERT INTO Suppliers VALUES('SUP5',N'Nhã Nam',N'Số 59, Đỗ Quang, Trung Hoà, Cầu Giấy, Hà Nội.','info@nhanam.vn','02435146876')
 	INSERT INTO Suppliers VALUES('SUP6',N'Công ty cổ phần Sbooks',N'124 Đường số 2, KDC Vạn Phúc, P. Hiệp Bình Phước, TP. Thủ Đức, TP. Hồ Chí Minh','nhasachsbooks@gmail.com','0964234085')
+go	
 	SELECT * FROM Suppliers
 
 	
@@ -73,6 +78,7 @@ create table Stock(
 		ImportDate DATETIME DEFAULT GETDATE(),
 	    Quantity INT NOT NULL CHECK (Quantity >= 0)
 );
+go
 
 	INSERT INTO Stock VALUES('STK1','SUP1','BOOK1','CAT1',N'Cây Cam Ngọt Của Tôi','2025-03-12', 250);
 	INSERT INTO Stock VALUES('STK2','SUP1','BOOK2','CAT1',N'25 Độ Âm','2025-03-12', 200);
@@ -89,7 +95,7 @@ create table Stock(
 	INSERT INTO Stock VALUES('STK13','SUP5','BOOK13','CAT5',N'Con Đường Chẳng Mấy Ai Đi','2025-03-05', 1000);
 	INSERT INTO Stock VALUES('STK14','SUP1','BOOK14','CAT5',N'Tư Duy Ngược','2025-03-01', 800);
 	INSERT INTO Stock VALUES('STK15','SUP6','BOOK15','CAT5',N'Manifest - 7 Bước Để Thay Đổi Cuộc Đời Bạn Mãi Mãi','2025-03-01', 1000);
-
+go
 	SELECT * FROM Stock
 	ORDER BY CAST(SUBSTRING(StockID, 4, LEN(StockID)) AS INT);
 
@@ -104,13 +110,14 @@ create table Stock(
     PhoneNumber VARCHAR(50) NULL, -- Dùng chung cho Customer & Staff
     Role VARCHAR(30) CHECK (Role IN ('Customer', 'Staff', 'Admin')) NOT NULL DEFAULT 'Customer'
 );
+go
 
 -- Admin: Không cần nhập Address và PhoneNumber
 	INSERT INTO Users (User_ID, Name, Username, Password, Email, Role) 
 	VALUES 
 	('A1', N'Ngọc Hân', 'Lele', '123', 'lele@gmail.com', 'Admin'),
 	('A2',N'Hoàn Hảo', 'Hao', '123', 'hhao@gmail.com', 'Admin');
-
+go
 -- Manager, Customer: Cần nhập Address và PhoneNumber
 	INSERT INTO Users (User_ID, Name, Username, Password, Email, Address, PhoneNumber, Role) 
 	VALUES 
@@ -120,7 +127,7 @@ create table Stock(
 	('C1',N'Huệ Tin', 'Tin', '456', 'htk@gmail.com', N'Quận 7', '0987654321', 'Customer'),
 	('C2',N'Hân Hân', 'hhan', '456', 'hhan@gmail.com', N'Nhà Bè', '0987654322', 'Customer'),
 	('C3',N'Mỹ Diên', 'Dien', '456', 'mdien@gmail.com', N'Nhà Bè', '0987654323', 'Customer');
-
+go
 	SELECT * FROM Users
 
 CREATE TABLE Orders (
@@ -134,6 +141,7 @@ CREATE TABLE Orders (
     CONSTRAINT FK_Orders_Customer FOREIGN KEY (Customer_ID) REFERENCES Users(User_ID),
     CONSTRAINT FK_Orders_Employee FOREIGN KEY (Employee_ID) REFERENCES Users(User_ID)
 );
+go
 
 INSERT INTO Orders (Order_ID, Customer_ID, Employee_ID, Order_Date, Status) 
 VALUES 
@@ -142,7 +150,7 @@ VALUES
     ('ORD3', 'C3', 'S3', '2025-03-21', 'Đã hoàn thành'),
     ('ORD4', 'C1', 'S1', '2025-04-02', 'Đã hủy'),
     ('ORD5', 'C3', 'S3', '2025-04-01', 'Chờ xác nhận');
-
+go
 
 CREATE TABLE OrderDetails (
     OrderDetail_ID INT IDENTITY(1,1) PRIMARY KEY, 
@@ -155,7 +163,7 @@ CREATE TABLE OrderDetails (
     CONSTRAINT FK_OrderDetails_Order FOREIGN KEY (Order_ID) REFERENCES Orders(Order_ID),
     CONSTRAINT FK_OrderDetails_Stock FOREIGN KEY (StockID) REFERENCES Stock(StockID)
 );
-
+go
 
 INSERT INTO OrderDetails (Order_ID, StockID, Qty_sold, PriceAtOrderTime)
 VALUES ('ORD1', 'STK1', 2, 80400),  -- 2 cuốn "Cây Cam Ngọt Của Tôi"
@@ -166,7 +174,7 @@ VALUES ('ORD1', 'STK1', 2, 80400),  -- 2 cuốn "Cây Cam Ngọt Của Tôi"
 	   ('ORD3', 'STK14', 3, 65330),
 	   ('ORD4', 'STK8', 1, 71540),  
 	   ('ORD5', 'STK9', 1, 126750); 
-
+go
 SELECT * FROM OrderDetails
  
 SELECT O.Order_ID, O.Order_Date, OD.StockID, S.BookName, OD.Qty_sold
@@ -185,6 +193,7 @@ CREATE TABLE Bill_Generate (
     -- Khóa ngoại tham chiếu đến Orders
     CONSTRAINT FK_Bill_Order FOREIGN KEY (Order_ID) REFERENCES Orders(Order_ID)
 );
+go
 
 INSERT INTO Bill_Generate (Bill_ID, Order_ID, Total_Cost) 
 SELECT 
@@ -196,10 +205,10 @@ JOIN OrderDetails OD ON O.Order_ID = OD.Order_ID
 JOIN Stock S ON OD.StockID = S.StockID
 JOIN Book B ON S.BookID = B.BookID  -- Lấy giá từ bảng Book
 GROUP BY O.Order_ID;
-
+go
 SELECT * FROM Bill_Generate; 
 
-CREATE TABLE PAYMENTS (
+CREATE TABLE Payments (
     Payment_ID VARCHAR(50) PRIMARY KEY,
     Bill_ID VARCHAR(50) FOREIGN KEY REFERENCES Bill_Generate(Bill_ID),
     Customer_ID VARCHAR(30) FOREIGN KEY REFERENCES Users(User_ID),
@@ -208,21 +217,22 @@ CREATE TABLE PAYMENTS (
     Payment_Date DATE NULL,  -- NULL nếu chưa thanh toán
     Total_Cost INT NOT NULL CHECK (Total_Cost > 0)
 );
+go
 
 -- Tạo UNIQUE INDEX để tránh trùng Transaction_Code nhưng vẫn cho phép NULL
 CREATE UNIQUE INDEX UQ_Transaction_Code_Not_Null
 ON PAYMENTS(Transaction_Code)
 WHERE Transaction_Code IS NOT NULL;
+go
 
-
-INSERT INTO PAYMENTS (Payment_ID, Bill_ID, Customer_ID, Payment_Method, Transaction_Code, Payment_Date, Total_Cost)
+INSERT INTO Payments (Payment_ID, Bill_ID, Customer_ID, Payment_Method, Transaction_Code, Payment_Date, Total_Cost)
 VALUES
     ('PAY1', 'BILLORD1', 'C1', N'Thẻ ghi nợ', 'TXN_001', '2025-03-24', 257550),
     ('PAY2', 'BILLORD2', 'C2', N'Chuyển khoản ngân hàng', 'TXN_002', '2025-04-01', 486250),
     ('PAY3', 'BILLORD3', 'C3', N'Tiền mặt', NULL, '2025-03-25', 258290), -- Tiền mặt => NULL Transaction_Code
     ('PAY4', 'BILLORD4', 'C1', N'Tiền mặt', NULL, NULL, 71540), -- Chưa thanh toán => Payment_Date = NULL
 	('PAY5', 'BILLORD5', 'C3', N'Ví điện tử', 'TXN_005', '2025-04-01', 126750);
-
+go
 
 SELECT * FROM PAYMENTS;
 

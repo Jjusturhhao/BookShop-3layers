@@ -188,7 +188,7 @@ namespace PresentationLayer
 
         private void btnBookManage_Click(object sender, EventArgs e)
         {
-            BookManagement bookManagement = new BookManagement();
+            StockManagement bookManagement = new StockManagement();
             bookManagement.Show();
             this.Hide();
         }
@@ -201,6 +201,11 @@ namespace PresentationLayer
         private void btnAccout_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void StaffInterface_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

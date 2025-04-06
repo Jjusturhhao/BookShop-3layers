@@ -34,9 +34,15 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FontAwesome.Sharp, Version=6.6.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\bin\Debug\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
     <Reference Include="Guna.UI2, Version=2.0.4.7, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
       <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.7\lib\net472\Guna.UI2.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Deployment" />
@@ -45,14 +51,22 @@
     <Reference Include="System.Management" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddCategory.Designer.cs">
+      <DependentUpon>AddCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bill.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,11 +79,23 @@
     <Compile Include="BookDetail.Designer.cs">
       <DependentUpon>BookDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="BookManagement.cs">
+    <Compile Include="Homepage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BookManagement.Designer.cs">
-      <DependentUpon>BookManagement.cs</DependentUpon>
+    <Compile Include="Homepage.Designer.cs">
+      <DependentUpon>Homepage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StockManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockManagement.Designer.cs">
+      <DependentUpon>StockManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="Categories.cs">
       <SubType>Form</SubType>
@@ -94,12 +120,6 @@
     </Compile>
     <Compile Include="Employees.Designer.cs">
       <DependentUpon>Employees.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Homepage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Homepage.Designer.cs">
-      <DependentUpon>Homepage.cs</DependentUpon>
     </Compile>
     <Compile Include="Login-Register\Login.cs">
       <SubType>Form</SubType>
@@ -150,17 +170,83 @@
     <Compile Include="StaffInterface.Designer.cs">
       <DependentUpon>StaffInterface.cs</DependentUpon>
     </Compile>
-    <Compile Include="Stock.cs">
+    <Compile Include="Book.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Stock.Designer.cs">
-      <DependentUpon>Stock.cs</DependentUpon>
+    <Compile Include="Book.Designer.cs">
+      <DependentUpon>Book.cs</DependentUpon>
     </Compile>
     <Compile Include="Supplier.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Supplier.Designer.cs">
       <DependentUpon>Supplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCAccount.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCAccount.Designer.cs">
+      <DependentUpon>UCAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCBook.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCBook.Designer.cs">
+      <DependentUpon>UCBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCCart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCCart.Designer.cs">
+      <DependentUpon>UCCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCCheckout.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCCheckout.Designer.cs">
+      <DependentUpon>UCCheckout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCCusOrders.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCCusOrders.Designer.cs">
+      <DependentUpon>UCCusOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCHomepage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCHomepage.Designer.cs">
+      <DependentUpon>UCHomepage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCOrders.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCOrders.Designer.cs">
+      <DependentUpon>UCOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCStaffInterface.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCStaffInterface.Designer.cs">
+      <DependentUpon>UCStaffInterface.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCStock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCStock.Designer.cs">
+      <DependentUpon>UCStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCSupplier.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCSupplier.Designer.cs">
+      <DependentUpon>UCSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCWelcome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCWelcome.Designer.cs">
+      <DependentUpon>UCWelcome.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -174,14 +260,23 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AddCategory.resx">
+      <DependentUpon>AddCategory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Bill.resx">
       <DependentUpon>Bill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BookDetail.resx">
       <DependentUpon>BookDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BookManagement.resx">
-      <DependentUpon>BookManagement.cs</DependentUpon>
+    <EmbeddedResource Include="Homepage.resx">
+      <DependentUpon>Homepage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockManagement.resx">
+      <DependentUpon>StockManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Categories.resx">
       <DependentUpon>Categories.cs</DependentUpon>
@@ -194,9 +289,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Employees.resx">
       <DependentUpon>Employees.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Homepage.resx">
-      <DependentUpon>Homepage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login-Register\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -223,20 +315,49 @@
     <EmbeddedResource Include="StaffInterface.resx">
       <DependentUpon>StaffInterface.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Stock.resx">
-      <DependentUpon>Stock.cs</DependentUpon>
+    <EmbeddedResource Include="Book.resx">
+      <DependentUpon>Book.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Supplier.resx">
       <DependentUpon>Supplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCAccount.resx">
+      <DependentUpon>UCAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCBook.resx">
+      <DependentUpon>UCBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCCart.resx">
+      <DependentUpon>UCCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCCheckout.resx">
+      <DependentUpon>UCCheckout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCCusOrders.resx">
+      <DependentUpon>UCCusOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCHomepage.resx">
+      <DependentUpon>UCHomepage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCOrders.resx">
+      <DependentUpon>UCOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCStaffInterface.resx">
+      <DependentUpon>UCStaffInterface.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCStock.resx">
+      <DependentUpon>UCStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCSupplier.resx">
+      <DependentUpon>UCSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCWelcome.resx">
+      <DependentUpon>UCWelcome.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <None Include="Resources\book-4986.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\bookdefault.png" />

@@ -22,30 +22,30 @@ namespace PresentationLayer
 
             Login loginForm = new Login();
 
-            // ✅ Chỉ mở Login Form một lần
             if (loginForm.ShowDialog() == DialogResult.OK)
             {
                 string username = loginForm.GetUsername();
                 string password = loginForm.GetPassword();
 
-                // ✅ Sử dụng Business Layer để kiểm tra tài khoản
                 LoginBL loginBL = new LoginBL();
                 string userRole = loginBL.GetUserRole(new Account(username, password));
 
-                // ✅ Điều hướng theo vai trò
-                Form nextForm = null;
+                Form mainForm = null;
                 if (userRole == "Admin")
-                    nextForm = new StaffInterface();
+                    mainForm = new Main();
                 else if (userRole == "Staff")
-                    nextForm = new StaffInterface();
+                    mainForm = new Main();
                 else if (userRole == "Customer")
-                    nextForm = new Homepage();
+                    mainForm = new Homepage();
                 else
                     MessageBox.Show("Đăng nhập thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                // ✅ Nếu có form tiếp theo, chạy nó
-                if (nextForm != null)
-                    Application.Run(nextForm);
+                if (mainForm != null)
+                {
+                    // Đảm bảo form chính sẽ đóng hoàn toàn ứng dụng khi bị đóng
+                    mainForm.FormClosed += (s, args) => Application.Exit();
+                    Application.Run(mainForm);
+                }
             }
         }
     }

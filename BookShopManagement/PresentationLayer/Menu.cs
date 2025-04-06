@@ -30,7 +30,7 @@ namespace PresentationLayer
 
         private void btnStock_Click(object sender, EventArgs e)
         {
-            Stock f1 = new Stock();
+            Book f1 = new Book();
             f1.Show();
         }
 

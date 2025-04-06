@@ -42,13 +42,14 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtPhoneNumber = new System.Windows.Forms.TextBox();
+            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.SuspendLayout();
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.LightSeaGreen;
+            this.label5.ForeColor = System.Drawing.Color.Tomato;
             this.label5.Location = new System.Drawing.Point(236, 67);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(206, 46);
@@ -57,7 +58,7 @@
             // 
             // btnRegister
             // 
-            this.btnRegister.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnRegister.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegister.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnRegister.Location = new System.Drawing.Point(104, 504);
@@ -184,6 +185,16 @@
             this.txtPhoneNumber.Size = new System.Drawing.Size(248, 31);
             this.txtPhoneNumber.TabIndex = 23;
             // 
+            // guna2Panel1
+            // 
+            this.guna2Panel1.BorderColor = System.Drawing.Color.Black;
+            this.guna2Panel1.BorderRadius = 20;
+            this.guna2Panel1.BorderThickness = 3;
+            this.guna2Panel1.Location = new System.Drawing.Point(57, 45);
+            this.guna2Panel1.Name = "guna2Panel1";
+            this.guna2Panel1.Size = new System.Drawing.Size(520, 538);
+            this.guna2Panel1.TabIndex = 24;
+            // 
             // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -203,6 +214,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.guna2Panel1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Register";
             this.ShowInTaskbar = false;
@@ -229,5 +241,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtPhoneNumber;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
     }
 }

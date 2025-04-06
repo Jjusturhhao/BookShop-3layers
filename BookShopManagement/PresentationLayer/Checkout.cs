@@ -167,8 +167,8 @@ namespace PresentationLayer
 
         private void btnBookManage_Click(object sender, EventArgs e)
         {
-            BookManagement bookManagement = new BookManagement();
-            bookManagement.Show();
+            StockManagement stockManagement = new StockManagement();
+            stockManagement.Show();
             this.Hide();
         }
     }
