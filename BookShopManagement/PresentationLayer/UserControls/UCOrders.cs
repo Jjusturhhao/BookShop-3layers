@@ -6,10 +6,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace PresentationLayer.UserControls
 {
@@ -29,13 +31,18 @@ namespace PresentationLayer.UserControls
         {
             DataTable orders = orderBL.GetOrders();
             dgvOrders.DataSource = orders;
-            if (dgvOrders.Columns.Contains("Total_Cost"))
-            {
-                dgvOrders.Columns["Total_Cost"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                // Định dạng số có dấu phẩy 
-                dgvOrders.Columns["Total_Cost"].DefaultCellStyle.Format = "N0";
-            }
-            
+
+
+            // Tự động fit theo nội dung cho cột Total_Cost
+            dgvOrders.Columns["Total_Cost"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            // Các cột còn lại set lại width thủ công
+            dgvOrders.Columns["Order_ID"].Width = 100;
+            dgvOrders.Columns["Customer_Name"].Width = 130;
+            dgvOrders.Columns["Employee_ID"].Width = 110;
+            dgvOrders.Columns["Order_Date"].Width = 110;
+            dgvOrders.Columns["Status"].Width = 130;
+
         }
         private void ResetFormControls()
         {
@@ -100,6 +107,18 @@ namespace PresentationLayer.UserControls
             else
             {
                 MessageBox.Show("Vui lòng chọn đơn hàng để cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void dgvOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvOrders.Columns[e.ColumnIndex].Name == "Total_Cost" && e.Value != null)
+            {
+                if (int.TryParse(e.Value.ToString(), out int cost))
+                {
+                    e.Value = cost.ToString("N0");
+                    e.FormattingApplied = true;
+                }
             }
         }
     }

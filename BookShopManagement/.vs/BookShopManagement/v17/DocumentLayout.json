@@ -1,25 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\",
+  "WorkspaceRootPath": "D:\\LTCSDL\\BTL\\BookShop-3layers\\BookShopManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\ngoc han\\source\\repos\\bookshop-3layers\\bookshopmanagement\\presentationlayer\\usercontrols\\ucorders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\usercontrols\\ucorders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{806486B2-AE2B-4C5A-AAE6-D507E32FFD77}|BusinessLayer\\BusinessLayer.csproj|C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\businesslayer\\homepagebl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{806486B2-AE2B-4C5A-AAE6-D507E32FFD77}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\homepagebl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\presentationlayer\\usercontrols\\ucorders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|d:\\ltcsdl\\btl\\bookshop-3layers\\bookshopmanagement\\presentationlayer\\usercontrols\\ucorders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\usercontrols\\ucorders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{806486B2-AE2B-4C5A-AAE6-D507E32FFD77}|BusinessLayer\\BusinessLayer.csproj|C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\businesslayer\\orderbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{806486B2-AE2B-4C5A-AAE6-D507E32FFD77}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\orderbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|D:\\LTCSDL\\BTL\\BookShop-3layers\\BookShopManagement\\presentationlayer\\usercontrols\\ucorders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\usercontrols\\ucorders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{499CAC2D-A06F-47AF-B26E-84F870FF4D0E}|DataLayer\\DataLayer.csproj|C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\datalayer\\orderdl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{499CAC2D-A06F-47AF-B26E-84F870FF4D0E}|DataLayer\\DataLayer.csproj|D:\\LTCSDL\\BTL\\BookShop-3layers\\BookShopManagement\\datalayer\\orderdl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{499CAC2D-A06F-47AF-B26E-84F870FF4D0E}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\orderdl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -30,71 +22,44 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "OrderDL.cs",
+              "DocumentMoniker": "D:\\LTCSDL\\BTL\\BookShop-3layers\\BookShopManagement\\DataLayer\\OrderDL.cs",
+              "RelativeDocumentMoniker": "DataLayer\\OrderDL.cs",
+              "ToolTip": "D:\\LTCSDL\\BTL\\BookShop-3layers\\BookShopManagement\\DataLayer\\OrderDL.cs",
+              "RelativeToolTip": "DataLayer\\OrderDL.cs",
+              "ViewState": "AQIAACIAAAAAAAAAAAAQwCwAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T15:20:57.379Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "UCOrders.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCOrders.cs",
+              "DocumentMoniker": "D:\\LTCSDL\\BTL\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCOrders.cs",
               "RelativeDocumentMoniker": "PresentationLayer\\UserControls\\UCOrders.cs",
-              "ToolTip": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCOrders.cs [Design]",
+              "ToolTip": "D:\\LTCSDL\\BTL\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCOrders.cs [Design]",
               "RelativeToolTip": "PresentationLayer\\UserControls\\UCOrders.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-08T09:19:04.869Z",
               "EditorCaption": " [Design]"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "HomepageBL.cs",
-              "DocumentMoniker": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\BusinessLayer\\HomepageBL.cs",
-              "RelativeDocumentMoniker": "BusinessLayer\\HomepageBL.cs",
-              "ToolTip": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\BusinessLayer\\HomepageBL.cs",
-              "RelativeToolTip": "BusinessLayer\\HomepageBL.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T10:57:48.298Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "OrderBL.cs",
-              "DocumentMoniker": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\BusinessLayer\\OrderBL.cs",
-              "RelativeDocumentMoniker": "BusinessLayer\\OrderBL.cs",
-              "ToolTip": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\BusinessLayer\\OrderBL.cs",
-              "RelativeToolTip": "BusinessLayer\\OrderBL.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAqwBcAAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T09:53:15.274Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "OrderDL.cs",
-              "DocumentMoniker": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\DataLayer\\OrderDL.cs",
-              "RelativeDocumentMoniker": "DataLayer\\OrderDL.cs",
-              "ToolTip": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\DataLayer\\OrderDL.cs",
-              "RelativeToolTip": "DataLayer\\OrderDL.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAwCgAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T09:52:44.436Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "UCOrders.cs",
-              "DocumentMoniker": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCOrders.cs",
+              "DocumentMoniker": "D:\\LTCSDL\\BTL\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCOrders.cs",
               "RelativeDocumentMoniker": "PresentationLayer\\UserControls\\UCOrders.cs",
-              "ToolTip": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCOrders.cs",
+              "ToolTip": "D:\\LTCSDL\\BTL\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCOrders.cs",
               "RelativeToolTip": "PresentationLayer\\UserControls\\UCOrders.cs",
-              "ViewState": "AgIAAFAAAAAAAAAAAAAAAF4AAAAkAAAAAAAAAA==",
+              "ViewState": "AQIAADAAAAAAAAAAAAAmwFoAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T09:21:03.985Z"
+              "WhenOpened": "2025-04-08T09:21:03.985Z",
+              "EditorCaption": ""
             }
           ]
         }

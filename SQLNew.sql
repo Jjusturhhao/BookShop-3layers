@@ -135,7 +135,7 @@ CREATE TABLE Orders (
     Customer_ID VARCHAR(30) NOT NULL, 
     Employee_ID VARCHAR(30) NOT NULL, 
     Order_Date DATETIME NOT NULL DEFAULT GETDATE(), 
-	Status NVARCHAR(20) DEFAULT 'Pending' CHECK (Status IN (N'Chờ xác nhận', N'Đã giao', N'Đã hoàn thành', N'Đã hủy'))
+	Status NVARCHAR(20) DEFAULT 'Pending' CHECK (Status IN (N'Chờ xác nhận', N'Đã giao', N'Đã hoàn thành', N'Đã hủy')),
 
     -- Thiết lập khóa ngoại
     CONSTRAINT FK_Orders_Customer FOREIGN KEY (Customer_ID) REFERENCES Users(User_ID),
@@ -235,6 +235,7 @@ VALUES
 go
 
 SELECT * FROM PAYMENTS;
+go
 
 --TRIGGER
 CREATE TRIGGER trg_UpdateOrderStatus

@@ -5,3 +5,10 @@ C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\BusinessLayer
 C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\BusinessLayer\obj\Debug\Business.EA331CBA.Up2Date
 C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\BusinessLayer\obj\Debug\BusinessLayer.dll
 C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\BusinessLayer\obj\Debug\BusinessLayer.pdb
+D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\bin\Debug\BusinessLayer.dll
+D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\bin\Debug\BusinessLayer.pdb
+D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\BusinessLayer\obj\Debug\BusinessLayer.csproj.AssemblyReference.cache
+D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\BusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCompileInputs.cache
+D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\BusinessLayer\obj\Debug\Business.EA331CBA.Up2Date
+D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\BusinessLayer\obj\Debug\BusinessLayer.dll
+D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\BusinessLayer\obj\Debug\BusinessLayer.pdb
