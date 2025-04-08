@@ -1,13 +1,7 @@
-C:\Users\NGOC HAN\source\repos\BookShop-3layer\BookShopManagement\bin\Debug\TransferObject.dll
-C:\Users\NGOC HAN\source\repos\BookShop-3layer\BookShopManagement\bin\Debug\TransferObject.pdb
-C:\Users\NGOC HAN\source\repos\BookShop-3layer\BookShopManagement\TransferObject\obj\Debug\TransferObject.csproj.AssemblyReference.cache
-C:\Users\NGOC HAN\source\repos\BookShop-3layer\BookShopManagement\TransferObject\obj\Debug\TransferObject.csproj.CoreCompileInputs.cache
-C:\Users\NGOC HAN\source\repos\BookShop-3layer\BookShopManagement\TransferObject\obj\Debug\TransferObject.dll
-C:\Users\NGOC HAN\source\repos\BookShop-3layer\BookShopManagement\TransferObject\obj\Debug\TransferObject.pdb
-D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\bin\Debug\TransferObject.dll
-D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\bin\Debug\TransferObject.pdb
-D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\TransferObject\obj\Debug\TransferObject.csproj.AssemblyReference.cache
-D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\TransferObject\obj\Debug\TransferObject.csproj.CoreCompileInputs.cache
-D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\TransferObject\obj\Debug\Transfer.F5B4361A.Up2Date
-D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\TransferObject\obj\Debug\TransferObject.dll
-D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\TransferObject\obj\Debug\TransferObject.pdb
+C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\bin\Debug\TransferObject.dll
+C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\bin\Debug\TransferObject.pdb
+C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\TransferObject\obj\Debug\TransferObject.csproj.AssemblyReference.cache
+C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\TransferObject\obj\Debug\TransferObject.csproj.CoreCompileInputs.cache
+C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\TransferObject\obj\Debug\Transfer.F5B4361A.Up2Date
+C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\TransferObject\obj\Debug\TransferObject.dll
+C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\TransferObject\obj\Debug\TransferObject.pdb
