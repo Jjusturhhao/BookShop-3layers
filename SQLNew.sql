@@ -135,7 +135,7 @@ CREATE TABLE Orders (
     Customer_ID VARCHAR(30) NOT NULL, 
     Employee_ID VARCHAR(30) NOT NULL, 
     Order_Date DATETIME NOT NULL DEFAULT GETDATE(), 
-	Status NVARCHAR(20) DEFAULT 'Pending' CHECK (Status IN ('Chờ xác nhận', 'Đã giao', 'Đã hoàn thành', 'Đã hủy'))
+	Status NVARCHAR(20) DEFAULT 'Pending' CHECK (Status IN (N'Chờ xác nhận', N'Đã giao', N'Đã hoàn thành', N'Đã hủy'))
 
     -- Thiết lập khóa ngoại
     CONSTRAINT FK_Orders_Customer FOREIGN KEY (Customer_ID) REFERENCES Users(User_ID),
@@ -145,11 +145,11 @@ go
 
 INSERT INTO Orders (Order_ID, Customer_ID, Employee_ID, Order_Date, Status) 
 VALUES 
-    ('ORD1', 'C1', 'S1', '2025-03-24', 'Đã giao'),
-    ('ORD2', 'C2', 'S2', '2025-04-01', 'Chờ xác nhận'),
-    ('ORD3', 'C3', 'S3', '2025-03-21', 'Đã hoàn thành'),
-    ('ORD4', 'C1', 'S1', '2025-04-02', 'Đã hủy'),
-    ('ORD5', 'C3', 'S3', '2025-04-01', 'Chờ xác nhận');
+    ('ORD1', 'C1', 'S1', '2025-03-24', N'Đã giao'),
+    ('ORD2', 'C2', 'S2', '2025-04-01', N'Chờ xác nhận'),
+    ('ORD3', 'C3', 'S3', '2025-03-21', N'Đã hoàn thành'),
+    ('ORD4', 'C1', 'S1', '2025-04-02', N'Đã hủy'),
+    ('ORD5', 'C3', 'S3', '2025-04-01', N'Chờ xác nhận');
 go
 
 CREATE TABLE OrderDetails (
@@ -235,4 +235,44 @@ VALUES
 go
 
 SELECT * FROM PAYMENTS;
+
+--TRIGGER
+CREATE TRIGGER trg_UpdateOrderStatus
+ON Orders
+FOR UPDATE
+AS
+BEGIN
+	IF UPDATE(Status)
+	BEGIN
+		DECLARE @OldStatus NVARCHAR(20), @NewStatus NVARCHAR(20), @Order_ID VARCHAR(55);
+
+		SELECT TOP 1 
+			@OldStatus = d.Status,
+			@NewStatus = i.Status,
+			@Order_ID = i.Order_ID
+		FROM inserted i
+		JOIN deleted d ON i.Order_ID = d.Order_ID;
+
+		IF @OldStatus = N'Chờ xác nhận' AND @NewStatus NOT IN (N'Đã giao', N'Đã hoàn thành', N'Đã hủy')
+		BEGIN
+			RAISERROR(N'Trạng thái không hợp lệ! Không thể chuyển từ "Chờ xác nhận" sang "%s".', 16, 1, @NewStatus)
+			ROLLBACK TRANSACTION;
+			RETURN;
+		END
+
+		IF @OldStatus = N'Đã giao' AND @NewStatus NOT IN (N'Đã hoàn thành', N'Đã hủy')
+		BEGIN
+			RAISERROR(N'Trạng thái không hợp lệ! Không thể chuyển từ "Đã giao" sang "%s".', 16, 1, @NewStatus)
+			ROLLBACK TRANSACTION;
+			RETURN;
+		END
+
+		IF @OldStatus IN (N'Đã hoàn thành', N'Đã hủy') AND @NewStatus <> @OldStatus
+		BEGIN
+			RAISERROR(N'Không thể thay đổi trạng thái đã hoàn thành hoặc đã hủy!', 16, 1)
+			ROLLBACK TRANSACTION;
+			RETURN;
+		END
+	END
+END
 
