@@ -24,8 +24,7 @@ namespace PresentationLayer
 
         private void btnSupplier_Click(object sender, EventArgs e)
         {
-            Supplier s1 = new Supplier();
-            s1.Show();
+            
         }
 
         private void btnStock_Click(object sender, EventArgs e)
