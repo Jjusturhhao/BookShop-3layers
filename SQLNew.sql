@@ -1,4 +1,4 @@
-﻿IF DB_ID('BookStoreManagement') IS NULL 
+IF DB_ID('BookStoreManagement') IS NULL 
 	CREATE DATABASE BookStoreManagement
 GO
 
@@ -276,4 +276,3 @@ BEGIN
 		END
 	END
 END
-
