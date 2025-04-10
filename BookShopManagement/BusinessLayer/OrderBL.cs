@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TransferObject;
 
 namespace BusinessLayer
 {
@@ -15,13 +17,27 @@ namespace BusinessLayer
         {
             OrderDL = new OrderDL();
         }
-        public DataTable GetOrders()
+        public List<Order> GetOrders()
         {
-            return OrderDL.GetOrders();
+            try
+            {
+                return (OrderDL.GetOrders());
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
         }
         public void UpdateOrder(string orderID, string newStatus)
         {
-            OrderDL.UpdateOrderStatus(orderID, newStatus);
+            try
+            {
+                OrderDL.UpdateOrderStatus(orderID, newStatus);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
         }
     }
 }
