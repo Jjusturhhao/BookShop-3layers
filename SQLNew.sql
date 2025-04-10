@@ -276,3 +276,15 @@ BEGIN
 		END
 	END
 END
+
+
+--STORED PROCEDURE
+CREATE PROC GetStockQuantity
+	@BookID VARCHAR(50)
+AS
+	SELECT Quantity
+	FROM Stock
+	WHERE BookID = @BookID
+GO
+
+

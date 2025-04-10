@@ -21,7 +21,6 @@ C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\PresentationL
 C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.ReturnedOrders.resources
 C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.StaffInterface.resources
 C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.Book.resources
-C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.Supplier.resources
 C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.UserControls.UCAccount.resources
 C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.UserControls.UCBook.resources
 C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.UserControls.UCCart.resources

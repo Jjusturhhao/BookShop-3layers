@@ -7,27 +7,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TransferObject;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DataLayer
 {
     public class OrderDL : DataProvider
     {
-        public DataTable GetOrders()
+        public List<Order> GetOrders()
         {
-            DataTable dt = new DataTable();
-            try
-            {
-                Connect();
-
-                string sql = "SELECT o.Order_ID, u.Name AS Customer_Name, o.Employee_ID, o.Order_Date, o.Status, b.Total_Cost AS Total_Cost " +
+            string sql = "SELECT o.Order_ID, u.Name AS Customer_Name, o.Employee_ID, o.Order_Date, o.Status, b.Total_Cost AS Total_Cost " +
                 "FROM Orders o " +
                 "LEFT JOIN Users u ON o.Customer_ID = u.User_ID " +
                 "LEFT JOIN Bill_Generate b ON o.Order_ID = b.Order_ID ";
-                SqlCommand cmd = new SqlCommand(sql, cn);
+            
+            List<Order> orders = new List<Order>();
 
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
+            try
+            {
+                Connect();
+                SqlDataReader reader = MyExecuteReader(sql, CommandType.Text);
+                while (reader.Read())
+                {
+                    string orderId = reader["Order_ID"].ToString();
+                    string cusName = reader["Customer_Name"].ToString();
+                    string empId = reader["Employee_ID"].ToString();
+                    DateTime orderDate = Convert.ToDateTime(reader["Order_Date"]);
+                    string status = reader["Status"].ToString();
+                    int totalCost = Convert.ToInt32(reader["Total_Cost"]);
+
+                    Order order = new Order(orderId, cusName, empId, orderDate, status, totalCost);
+                    orders.Add(order);
+                }
+                reader.Close();
+                return orders;
             }
+
             catch (Exception ex)
             {
                 throw ex;
@@ -36,8 +51,6 @@ namespace DataLayer
             {
                 DisConnect();
             }
-
-            return dt;
         }
         public void UpdateOrderStatus(string orderID, string newStatus)
         {
