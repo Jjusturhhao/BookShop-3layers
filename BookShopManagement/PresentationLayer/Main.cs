@@ -61,9 +61,9 @@ namespace PresentationLayer
             ShowUserControl(new UCOrders());
         }
 
-        private void btnAccount_Click(object sender, EventArgs e)
+        private void btnInfo_Click(object sender, EventArgs e)
         {
-            ShowUserControl(new UCAccount());
+            ShowUserControl(new UCInfo());
         }
 
         private void btnSupplier_Click(object sender, EventArgs e)

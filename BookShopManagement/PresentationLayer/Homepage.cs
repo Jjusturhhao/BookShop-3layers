@@ -12,8 +12,8 @@ namespace PresentationLayer
         private HomepageBL homepageBL;
         private UCHomepage ucHomepage;
         private UCCart ucCart;
-        private UCCusOrders ucCusOrders;    // Thêm biến cho UCOrders
-        private UCAccount ucAccount;  // Thêm biến cho UCAccount
+        private UCCusOrders ucCusOrders;   
+        private UCInfo ucInfo; 
         private ContextMenuStrip accountMenu;
 
         public Homepage()
@@ -34,20 +34,20 @@ namespace PresentationLayer
             ucCusOrders = new UCCusOrders();
             ucCusOrders.Dock = DockStyle.Fill;
 
-            ucAccount = new UCAccount();
-            ucAccount.Dock = DockStyle.Fill;
+            ucInfo = new UCInfo();
+            ucInfo.Dock = DockStyle.Fill;
 
             // Thêm tất cả UserControl vào panelContainer
             panelContainer.Controls.Add(ucHomepage);
             panelContainer.Controls.Add(ucCart);
             panelContainer.Controls.Add(ucCusOrders);
-            panelContainer.Controls.Add(ucAccount);
+            panelContainer.Controls.Add(ucInfo);
 
             // Hiển thị trang chủ mặc định và ẩn các UC khác
             ucHomepage.Visible = false; ;
             ucCart.Visible = false;
             ucCusOrders.Visible = false;
-            ucAccount.Visible = false;
+            ucInfo.Visible = false;
 
             // Đảm bảo picBanner hiển thị trên cùng ban đầu
             if (picBanner != null)
@@ -123,7 +123,7 @@ namespace PresentationLayer
             ucHomepage.Visible = true;
             ucCart.Visible = false;
             ucCusOrders.Visible = false;
-            ucAccount.Visible = false;
+            ucInfo.Visible = false;
             ucHomepage.BringToFront();
         }
 
@@ -133,7 +133,7 @@ namespace PresentationLayer
             ucHomepage.Visible = false;
             ucCart.Visible = false;
             ucCusOrders.Visible = false;
-            ucAccount.Visible = false;
+            ucInfo.Visible = false;
 
             // Ẩn banner khi hiển thị các UC khác
             if (picBanner != null)
@@ -167,8 +167,8 @@ namespace PresentationLayer
             itemProfile.Click += (s, e) =>
             {
                 HideAllUserControls();
-                ucAccount.Visible = true;
-                ucAccount.BringToFront();
+                ucInfo.Visible = true;
+                ucInfo.BringToFront();
             };
 
             itemLogout.Click += (s, e) =>
