@@ -35,19 +35,7 @@ namespace DataLayer
 
             return dt;
         }
-        public int GetTotalRecords()
-        {
-            try
-            {
-                string sql = "SELECT COUNT(*) FROM Book";
-                object result = MyExecuteScalar(sql, CommandType.Text);
-                return Convert.ToInt32(result);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        
         public int GetQuantity(string bookID)
         {
             

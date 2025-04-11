@@ -31,6 +31,7 @@ namespace PresentationLayer.UserControls
         {
             LoadBooks();
             LoadDetails();
+            dgvBooks.CellClick += dgvBooks_CellClick; // Xử lý sự kiện nhấp chuột vào dòng sách
         }
         private void btnCustomer_Click(object sender, EventArgs e)
         {
@@ -39,12 +40,16 @@ namespace PresentationLayer.UserControls
         
         private void LoadBooks()
         {
+            dgvBooks.Columns.Clear();
+            dgvBooks.Rows.Clear();
+            dgvBooks.AutoGenerateColumns = false;
+
+            dgvBooks.Columns.Add("BookID", "Mã sách");
+            dgvBooks.Columns.Add("BookName", "Tên sách");
+            dgvBooks.Columns.Add("Price", "Đơn giá");
+            dgvBooks.Columns.Add("Quantity", "Số lượng tồn");
+
             DataTable books = CheckoutBL.GetBooks();
-
-            flowLayoutPanelBooks.Controls.Clear();
-
-            int panelWidth = this.flowLayoutPanelBooks.Width / 3 - 10;
-            int panelHeight = this.flowLayoutPanelBooks.Height / 2 - 10;
 
             foreach (DataRow row in books.Rows)
             {
@@ -52,94 +57,32 @@ namespace PresentationLayer.UserControls
                 string bookName = row["BookName"].ToString();
                 int price = Convert.ToInt32(row["Price"]);
                 int quantity = CheckoutBL.GetQuantity(bookID);
-                string imageUrl = row["BookImage"].ToString();
 
-                Panel panel = new Panel()
-                {
-                    Width = panelWidth,
-                    Height = panelHeight,
-                    Margin = new Padding(10),
-                    BorderStyle = BorderStyle.None
-                };
-
-                PictureBox pictureBox = new PictureBox()
-                {
-                    Width = panelWidth - 10,
-                    Height = panelHeight - 80,
-                    SizeMode = PictureBoxSizeMode.Zoom,
-                    Cursor = Cursors.Hand
-                };
-
-                pictureBox.Load(imageUrl);
-
-                Label lblName = new Label()
-                {
-                    Text = row["BookName"].ToString(),
-                    AutoSize = false,
-                    Width = panelWidth - 10,
-                    Height = 20,
-                    Font = new Font("Arial", 10, FontStyle.Regular),
-                    TextAlign = ContentAlignment.TopLeft
-
-                };
-
-                Label lblPrice = new Label()
-                {
-                    Text = Convert.ToDecimal(row["Price"]).ToString("#,##0") + " đ",
-                    AutoSize = false,
-                    Width = panelWidth - 10,
-                    Font = new Font("Arial", 10, FontStyle.Bold),
-                    ForeColor = Color.DarkRed,
-                    TextAlign = ContentAlignment.MiddleLeft
-                };
-
-                Label lblQuantity = new Label()
-                {
-                    Text = $"Số lượng tồn: {quantity}",
-                    AutoSize = false,
-                    Width = panelWidth - 10,
-                    Font = new Font("Arial", 10, FontStyle.Regular),
-                    TextAlign = ContentAlignment.MiddleLeft
-                };
-
-                pictureBox.Click += (s, e) =>
-                {
-                    // Khoanh lại sách đã chọn
-                    HighlightSelectedBook(panel, pictureBox, bookID, bookName, price);
-                };
-
-                panel.Controls.Add(pictureBox);
-                panel.Controls.Add(lblName);
-                panel.Controls.Add(lblPrice);
-                panel.Controls.Add(lblQuantity);
-
-                pictureBox.Location = new Point(10, 0);
-                lblName.Location = new Point(10, pictureBox.Bottom + 5);
-                lblPrice.Location = new Point(10, lblName.Bottom);
-                lblQuantity.Location = new Point(10, lblPrice.Bottom);
-
-                flowLayoutPanelBooks.Controls.Add(panel);
+                dgvBooks.Rows.Add(bookID, bookName, price.ToString(), quantity);
             }
+
+            dgvBooks.Columns["BookName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvBooks.Columns["Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvBooks.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
         }
-        private void HighlightSelectedBook(Panel panel, PictureBox pictureBox, string bookID, string bookName, int price)
+
+
+        private void dgvBooks_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Nếu đã có sách được chọn, bỏ khoanh sách đó
-            if (selectedPanel != null)
+            if (e.RowIndex >= 0) // Đảm bảo chỉ xử lý khi nhấp vào một dòng hợp lệ
             {
-                selectedPanel.BorderStyle = BorderStyle.None;
+                // Lưu thông tin sách được chọn
+                selectedBookID = dgvBooks.Rows[e.RowIndex].Cells["BookID"].Value.ToString();
+                selectedBookName = dgvBooks.Rows[e.RowIndex].Cells["BookName"].Value.ToString();
+                selectedPrice = Convert.ToInt32(dgvBooks.Rows[e.RowIndex].Cells["Price"].Value.ToString().Replace(",", ""));
+
+                // Debug kiểm tra
+                Console.WriteLine($"Đã chọn sách: {selectedBookName}");
+
+                // Cập nhật số lượng tồn vào NumericUpDown
+                UpdateQuantitySelector(selectedBookID);
             }
-
-            // Cập nhật sách đã chọn
-            selectedPanel = panel;
-            selectedBookID = bookID;
-            selectedBookName = bookName;
-            selectedPrice = price;
-
-            // Thêm viền cho panel và pictureBox để khoanh lại sách đã chọn
-            selectedPanel.BorderStyle = BorderStyle.FixedSingle; // Thêm viền cho panel
-
-            // Nếu có NumericUpDown, bạn có thể tự động cập nhật số lượng theo sách đã chọn
-            UpdateQuantitySelector(bookID);
         }
 
         private void UpdateQuantitySelector(string bookID)
@@ -152,11 +95,13 @@ namespace PresentationLayer.UserControls
 
         private void LoadDetails()
         {
-            //dgvDetails.Columns.Clear(); 
+            dgvDetails.Columns.Clear(); 
             dgvDetails.Columns.Add("Tên sách", "Tên sách");
             dgvDetails.Columns.Add("Số lượng", "Số lượng");
             dgvDetails.Columns.Add("Đơn giá", "Đơn giá");
             dgvDetails.Columns.Add("Thành tiền", "Thành tiền");
+            dgvDetails.Columns["Đơn giá"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvDetails.Columns["Thành tiền"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         private void btnChoose_Click(object sender, EventArgs e)
@@ -223,6 +168,26 @@ namespace PresentationLayer.UserControls
             }
 
             txtTotalBill.Text = totalBill.ToString();
+        }
+
+        private void CalculateChange()
+        {
+            int totalBill = Convert.ToInt32(txtTotalBill.Text);
+            int totalPaid = Convert.ToInt32(txtTotalPaid.Text);
+
+            if (totalPaid < totalBill)
+            {
+                MessageBox.Show("Số tiền khách đưa chưa đủ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int change = totalPaid - totalBill;
+            txtChange.Text = change.ToString(); 
+        }
+
+        private void btnChange_Click(object sender, EventArgs e)
+        {
+            CalculateChange();
         }
     }
 }
