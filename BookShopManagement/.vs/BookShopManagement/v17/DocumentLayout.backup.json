@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\presentationlayer\\usercontrols\\uccheckout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\usercontrols\\uccheckout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\presentationlayer\\usercontrols\\uccheckout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\ngoc han\\source\\repos\\bookshop-3layers\\bookshopmanagement\\presentationlayer\\usercontrols\\uccheckout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\usercontrols\\uccheckout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{806486B2-AE2B-4C5A-AAE6-D507E32FFD77}|BusinessLayer\\BusinessLayer.csproj|C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\businesslayer\\checkoutbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{806486B2-AE2B-4C5A-AAE6-D507E32FFD77}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\checkoutbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|c:\\users\\ngoc han\\source\\repos\\bookshop-3layers\\bookshopmanagement\\presentationlayer\\usercontrols\\uccheckout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\usercontrols\\uccheckout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{499CAC2D-A06F-47AF-B26E-84F870FF4D0E}|DataLayer\\DataLayer.csproj|c:\\users\\ngoc han\\source\\repos\\bookshop-3layers\\bookshopmanagement\\datalayer\\checkoutdl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{499CAC2D-A06F-47AF-B26E-84F870FF4D0E}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\checkoutdl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{499CAC2D-A06F-47AF-B26E-84F870FF4D0E}|DataLayer\\DataLayer.csproj|C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\datalayer\\dataprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{499CAC2D-A06F-47AF-B26E-84F870FF4D0E}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\dataprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{806486B2-AE2B-4C5A-AAE6-D507E32FFD77}|BusinessLayer\\BusinessLayer.csproj|c:\\users\\ngoc han\\source\\repos\\bookshop-3layers\\bookshopmanagement\\businesslayer\\checkoutbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{806486B2-AE2B-4C5A-AAE6-D507E32FFD77}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\checkoutbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,52 +35,65 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "UCCheckout.cs",
+              "DocumentMoniker": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCCheckout.cs",
+              "RelativeDocumentMoniker": "PresentationLayer\\UserControls\\UCCheckout.cs",
+              "ToolTip": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCCheckout.cs",
+              "RelativeToolTip": "PresentationLayer\\UserControls\\UCCheckout.cs",
+              "ViewState": "AgIAAOwAAAAAAAAAAAAAAPkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T04:49:16.122Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "UCCheckout.cs [Design]",
               "DocumentMoniker": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCCheckout.cs",
               "RelativeDocumentMoniker": "PresentationLayer\\UserControls\\UCCheckout.cs",
               "ToolTip": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCCheckout.cs [Design]",
               "RelativeToolTip": "PresentationLayer\\UserControls\\UCCheckout.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T13:08:48.051Z",
+              "WhenOpened": "2025-04-11T04:45:44.016Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UCCheckout.cs",
-              "DocumentMoniker": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCCheckout.cs",
-              "RelativeDocumentMoniker": "PresentationLayer\\UserControls\\UCCheckout.cs",
-              "ToolTip": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCCheckout.cs",
-              "RelativeToolTip": "PresentationLayer\\UserControls\\UCCheckout.cs",
-              "ViewState": "AgIAAKkAAAAAAAAAAAAhwL0AAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T12:47:45.897Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "CheckoutBL.cs",
               "DocumentMoniker": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\BusinessLayer\\CheckoutBL.cs",
               "RelativeDocumentMoniker": "BusinessLayer\\CheckoutBL.cs",
               "ToolTip": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\BusinessLayer\\CheckoutBL.cs",
               "RelativeToolTip": "BusinessLayer\\CheckoutBL.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBcAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T12:52:36.692Z",
+              "WhenOpened": "2025-04-11T04:45:22.575Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "CheckoutDL.cs",
               "DocumentMoniker": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\DataLayer\\CheckoutDL.cs",
               "RelativeDocumentMoniker": "DataLayer\\CheckoutDL.cs",
               "ToolTip": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\DataLayer\\CheckoutDL.cs",
               "RelativeToolTip": "DataLayer\\CheckoutDL.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABCAAAAAAAAAA==",
+              "ViewState": "AgIAACMAAAAAAAAAAAAAACcAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T12:50:08.2Z",
+              "WhenOpened": "2025-04-11T04:47:10.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DataProvider.cs",
+              "DocumentMoniker": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\DataLayer\\DataProvider.cs",
+              "RelativeDocumentMoniker": "DataLayer\\DataProvider.cs",
+              "ToolTip": "C:\\Users\\NGOC HAN\\source\\repos\\BookShop-3layers\\BookShopManagement\\DataLayer\\DataProvider.cs",
+              "RelativeToolTip": "DataLayer\\DataProvider.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAuwHoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T02:41:06.604Z",
               "EditorCaption": ""
             }
           ]

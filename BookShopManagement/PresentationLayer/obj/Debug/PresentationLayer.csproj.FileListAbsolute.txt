@@ -21,7 +21,6 @@ C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\PresentationL
 C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.ReturnedOrders.resources
 C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.StaffInterface.resources
 C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.Book.resources
-C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.UserControls.UCAccount.resources
 C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.UserControls.UCBook.resources
 C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.UserControls.UCCart.resources
 C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.UserControls.UCCheckout.resources
@@ -76,3 +75,4 @@ D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\Pr
 D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.exe
 D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.pdb
 D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.UserControls.UCInfo.resources
+C:\Users\NGOC HAN\Source\Repos\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.UserControls.UCInfo.resources

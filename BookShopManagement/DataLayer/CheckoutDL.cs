@@ -35,7 +35,34 @@ namespace DataLayer
 
             return dt;
         }
-        
+        public DataTable GetBooksByName(string kw)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                Connect();
+
+                string sql = "SELECT * " +
+                    "FROM Book " +
+                    "WHERE BookName LIKE @kw " +
+                    "ORDER BY BookID ";
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                cmd.Parameters.AddWithValue("@kw", "%" + kw + "%");
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+
+            return dt;
+        }
         public int GetQuantity(string bookID)
         {
             

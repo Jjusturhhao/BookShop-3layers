@@ -31,6 +31,7 @@
             this.lbHello = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelLoadBook = new System.Windows.Forms.Panel();
+            this.dgvBooks = new System.Windows.Forms.DataGridView();
             this.panel = new System.Windows.Forms.Panel();
             this.btnChoose = new System.Windows.Forms.Button();
             this.numericUpDownQuantity = new System.Windows.Forms.NumericUpDown();
@@ -39,6 +40,7 @@
             this.panelOrderDetail = new System.Windows.Forms.Panel();
             this.dgvDetails = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnChange = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnGenerateBill = new System.Windows.Forms.Button();
             this.txtChange = new System.Windows.Forms.TextBox();
@@ -55,18 +57,17 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panelSort = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.btnApply = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbxCategories = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNameSearch = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.dgvBooks = new System.Windows.Forms.DataGridView();
-            this.btnChange = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelLoadBook.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).BeginInit();
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantity)).BeginInit();
             this.panelOrderDetail.SuspendLayout();
@@ -74,7 +75,6 @@
             this.panel3.SuspendLayout();
             this.panelCusInfo.SuspendLayout();
             this.panelSort.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).BeginInit();
             this.SuspendLayout();
             // 
             // lbHello
@@ -121,6 +121,17 @@
             this.panelLoadBook.Name = "panelLoadBook";
             this.panelLoadBook.Size = new System.Drawing.Size(716, 679);
             this.panelLoadBook.TabIndex = 4;
+            // 
+            // dgvBooks
+            // 
+            this.dgvBooks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBooks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvBooks.Location = new System.Drawing.Point(0, 35);
+            this.dgvBooks.Name = "dgvBooks";
+            this.dgvBooks.RowHeadersWidth = 51;
+            this.dgvBooks.RowTemplate.Height = 24;
+            this.dgvBooks.Size = new System.Drawing.Size(712, 581);
+            this.dgvBooks.TabIndex = 7;
             // 
             // panel
             // 
@@ -226,6 +237,21 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(619, 175);
             this.panel3.TabIndex = 4;
+            // 
+            // btnChange
+            // 
+            this.btnChange.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnChange.BackColor = System.Drawing.Color.Lime;
+            this.btnChange.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChange.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnChange.Location = new System.Drawing.Point(517, 50);
+            this.btnChange.Name = "btnChange";
+            this.btnChange.Size = new System.Drawing.Size(87, 30);
+            this.btnChange.TabIndex = 11;
+            this.btnChange.Text = "OK";
+            this.btnChange.UseVisualStyleBackColor = false;
+            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
             // 
             // btnCancel
             // 
@@ -403,12 +429,12 @@
             // panelSort
             // 
             this.panelSort.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelSort.Controls.Add(this.button2);
-            this.panelSort.Controls.Add(this.button3);
+            this.panelSort.Controls.Add(this.btnReset);
+            this.panelSort.Controls.Add(this.btnApply);
             this.panelSort.Controls.Add(this.btnSearch);
-            this.panelSort.Controls.Add(this.comboBox1);
+            this.panelSort.Controls.Add(this.cbxCategories);
             this.panelSort.Controls.Add(this.label9);
-            this.panelSort.Controls.Add(this.textBox1);
+            this.panelSort.Controls.Add(this.txtNameSearch);
             this.panelSort.Controls.Add(this.label8);
             this.panelSort.Controls.Add(this.label5);
             this.panelSort.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -417,33 +443,34 @@
             this.panelSort.Size = new System.Drawing.Size(716, 208);
             this.panelSort.TabIndex = 2;
             // 
-            // button2
+            // btnReset
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.BackColor = System.Drawing.Color.Tomato;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(524, 120);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(164, 34);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Làm mới";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReset.BackColor = System.Drawing.Color.Tomato;
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnReset.Location = new System.Drawing.Point(507, 120);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(164, 34);
+            this.btnReset.TabIndex = 10;
+            this.btnReset.Text = "Làm mới";
+            this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
-            // button3
+            // btnApply
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.BackColor = System.Drawing.Color.Tomato;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button3.Location = new System.Drawing.Point(330, 120);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(185, 34);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "Áp dụng";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnApply.BackColor = System.Drawing.Color.Tomato;
+            this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnApply.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnApply.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnApply.Location = new System.Drawing.Point(313, 120);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(185, 34);
+            this.btnApply.TabIndex = 9;
+            this.btnApply.Text = "Áp dụng";
+            this.btnApply.UseVisualStyleBackColor = false;
             // 
             // btnSearch
             // 
@@ -453,49 +480,50 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSearch.Location = new System.Drawing.Point(34, 120);
+            this.btnSearch.Location = new System.Drawing.Point(59, 120);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(236, 34);
             this.btnSearch.TabIndex = 8;
             this.btnSearch.Text = "Tìm kiếm";
             this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // comboBox1
+            // cbxCategories
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(330, 83);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(359, 31);
-            this.comboBox1.TabIndex = 7;
+            this.cbxCategories.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxCategories.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxCategories.FormattingEnabled = true;
+            this.cbxCategories.Location = new System.Drawing.Point(313, 83);
+            this.cbxCategories.Name = "cbxCategories";
+            this.cbxCategories.Size = new System.Drawing.Size(359, 31);
+            this.cbxCategories.TabIndex = 7;
             // 
             // label9
             // 
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(324, 53);
+            this.label9.Location = new System.Drawing.Point(307, 53);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(82, 25);
             this.label9.TabIndex = 6;
             this.label9.Text = "Thể loại";
             // 
-            // textBox1
+            // txtNameSearch
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtNameSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(34, 84);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(237, 30);
-            this.textBox1.TabIndex = 5;
+            this.txtNameSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNameSearch.Location = new System.Drawing.Point(59, 84);
+            this.txtNameSearch.Name = "txtNameSearch";
+            this.txtNameSearch.Size = new System.Drawing.Size(237, 30);
+            this.txtNameSearch.TabIndex = 5;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(29, 53);
+            this.label8.Location = new System.Drawing.Point(54, 53);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(94, 25);
             this.label8.TabIndex = 4;
@@ -514,32 +542,6 @@
             this.label5.Text = "BỘ LỌC";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // dgvBooks
-            // 
-            this.dgvBooks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBooks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvBooks.Location = new System.Drawing.Point(0, 35);
-            this.dgvBooks.Name = "dgvBooks";
-            this.dgvBooks.RowHeadersWidth = 51;
-            this.dgvBooks.RowTemplate.Height = 24;
-            this.dgvBooks.Size = new System.Drawing.Size(712, 581);
-            this.dgvBooks.TabIndex = 7;
-            // 
-            // btnChange
-            // 
-            this.btnChange.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnChange.BackColor = System.Drawing.Color.Lime;
-            this.btnChange.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChange.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnChange.Location = new System.Drawing.Point(517, 50);
-            this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(87, 30);
-            this.btnChange.TabIndex = 11;
-            this.btnChange.Text = "OK";
-            this.btnChange.UseVisualStyleBackColor = false;
-            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
-            // 
             // UCCheckout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -551,6 +553,7 @@
             this.Size = new System.Drawing.Size(1351, 991);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panelLoadBook.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).EndInit();
             this.panel.ResumeLayout(false);
             this.panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantity)).EndInit();
@@ -562,7 +565,6 @@
             this.panelCusInfo.PerformLayout();
             this.panelSort.ResumeLayout(false);
             this.panelSort.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -578,12 +580,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelSort;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnApply;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbxCategories;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNameSearch;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panelOrderDetail;

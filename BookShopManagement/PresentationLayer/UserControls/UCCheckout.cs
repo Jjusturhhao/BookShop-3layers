@@ -11,6 +11,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Guna.UI2.Native.WinApi;
 
 namespace PresentationLayer.UserControls
 {
@@ -29,6 +30,7 @@ namespace PresentationLayer.UserControls
         }
         public void UCCheckout_Load(object sender, EventArgs e)
         {
+            InitDgvBooks();
             LoadBooks();
             LoadDetails();
             dgvBooks.CellClick += dgvBooks_CellClick; // Xử lý sự kiện nhấp chuột vào dòng sách
@@ -37,17 +39,23 @@ namespace PresentationLayer.UserControls
         {
 
         }
-        
-        private void LoadBooks()
+        private void InitDgvBooks()
         {
-            dgvBooks.Columns.Clear();
-            dgvBooks.Rows.Clear();
-            dgvBooks.AutoGenerateColumns = false;
+            dgvBooks.Columns.Clear(); // Đảm bảo không bị lặp cột
 
             dgvBooks.Columns.Add("BookID", "Mã sách");
             dgvBooks.Columns.Add("BookName", "Tên sách");
             dgvBooks.Columns.Add("Price", "Đơn giá");
-            dgvBooks.Columns.Add("Quantity", "Số lượng tồn");
+            dgvBooks.Columns.Add("Quantity", "Tồn kho");
+
+            dgvBooks.Columns["BookName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvBooks.Columns["Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvBooks.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+        }
+
+        private void LoadBooks()
+        {
+            dgvBooks.Rows.Clear();
 
             DataTable books = CheckoutBL.GetBooks();
 
@@ -188,6 +196,58 @@ namespace PresentationLayer.UserControls
         private void btnChange_Click(object sender, EventArgs e)
         {
             CalculateChange();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            dgvBooks.Rows.Clear(); 
+
+            string keyword = txtNameSearch.Text.Trim();
+
+            if (string.IsNullOrEmpty(keyword))
+            {
+                MessageBox.Show("Vui lòng nhập tên sách cần tìm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                // Lấy kết quả tìm kiếm
+                DataTable result = CheckoutBL.GetBooksByName(keyword);
+
+                foreach (DataRow row in result.Rows)
+                {
+                    string bookID = row["BookID"].ToString();
+                    string bookName = row["BookName"].ToString();
+                    int price = Convert.ToInt32(row["Price"]);
+                    int quantity = CheckoutBL.GetQuantity(bookID);
+
+                    // Thêm từng dòng vào dgvBooks
+                    dgvBooks.Rows.Add(bookID, bookName, price.ToString(), quantity);
+                }
+
+                // Đảm bảo cột "Tên sách" tự động điều chỉnh kích thước
+                dgvBooks.Columns["BookName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                dgvBooks.Columns["Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dgvBooks.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                if (result.Rows.Count == 0)
+                {
+                    MessageBox.Show("Không tìm thấy sách nào phù hợp.", "Kết quả", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            LoadBooks();
+            txtNameSearch.Text = String.Empty;
+
         }
     }
 }
