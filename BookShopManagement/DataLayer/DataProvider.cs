@@ -101,5 +101,44 @@ namespace DataLayer
                 throw ex;
             }
         }
+
+        public int MyExecuteNonQuery(string sql, CommandType type)
+        {
+            try
+            {
+                Connect();
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                cmd.CommandType = type;
+                return cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+        }
+
+        public int MyExecuteNonQuery(SqlCommand cmd)
+        {
+            try
+            {
+                Connect();
+                cmd.Connection = cn;
+                return cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+        }
+
+
     }
 }

@@ -59,6 +59,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="DataProvider.cs" />
     <Compile Include="HomepageDL.cs" />
+    <Compile Include="InfoDL.cs" />
     <Compile Include="LoginDL.cs" />
     <Compile Include="OrderDL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

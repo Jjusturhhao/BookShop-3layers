@@ -16,7 +16,7 @@ namespace PresentationLayer
         private UCInfo ucInfo; 
         private ContextMenuStrip accountMenu;
 
-        public Homepage()
+        public Homepage(string username)
         {
             InitializeComponent();
             homepageBL = new HomepageBL();
@@ -34,7 +34,7 @@ namespace PresentationLayer
             ucCusOrders = new UCCusOrders();
             ucCusOrders.Dock = DockStyle.Fill;
 
-            ucInfo = new UCInfo();
+            ucInfo = new UCInfo(username);
             ucInfo.Dock = DockStyle.Fill;
 
             // Thêm tất cả UserControl vào panelContainer

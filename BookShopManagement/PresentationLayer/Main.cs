@@ -20,9 +20,12 @@ namespace PresentationLayer
         {
             get { return panelContainer; }
         }
-        public Main()
+
+        private string username;
+        public Main(string username)
         {
             InitializeComponent();
+            this.username = username;
             ShowUserControl(new UCWelcome());
         }
 
@@ -63,7 +66,7 @@ namespace PresentationLayer
 
         private void btnInfo_Click(object sender, EventArgs e)
         {
-            ShowUserControl(new UCInfo());
+            ShowUserControl(new UCInfo(username));
         }
 
         private void btnSupplier_Click(object sender, EventArgs e)

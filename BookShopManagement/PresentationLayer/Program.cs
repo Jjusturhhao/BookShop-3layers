@@ -32,11 +32,11 @@ namespace PresentationLayer
 
                 Form mainForm = null;
                 if (userRole == "Admin")
-                    mainForm = new Main();
+                    mainForm = new Main(username);
                 else if (userRole == "Staff")
-                    mainForm = new Main();
+                    mainForm = new Main(username);
                 else if (userRole == "Customer")
-                    mainForm = new Homepage();
+                    mainForm = new Homepage(username);
                 else
                     MessageBox.Show("Đăng nhập thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 

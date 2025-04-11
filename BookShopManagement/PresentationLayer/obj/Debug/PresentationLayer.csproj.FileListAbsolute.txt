@@ -60,7 +60,6 @@ D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\Pr
 D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.ReturnedOrders.resources
 D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.StaffInterface.resources
 D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.Book.resources
-D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.UserControls.UCAccount.resources
 D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.UserControls.UCBook.resources
 D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.UserControls.UCCart.resources
 D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.UserControls.UCCheckout.resources
@@ -76,3 +75,4 @@ D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\Pr
 D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\Presenta.9C561136.Up2Date
 D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.exe
 D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.pdb
+D:\LTCSDL\BTL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.UserControls.UCInfo.resources
