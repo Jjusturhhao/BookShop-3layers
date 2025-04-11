@@ -19,6 +19,10 @@ namespace BusinessLayer
         {
             return CheckoutDL.GetBooks();
         }
+        public DataTable GetBooksByName(string kw)
+        {
+            return CheckoutDL.GetBooksByName(kw);
+        }
         public int GetQuantity(string bookID)
         {
             return CheckoutDL.GetQuantity(bookID);
