@@ -12,8 +12,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLayer;
 using TransferObject;
-using static Guna.UI2.Native.WinApi;
 using PresentationLayer;
+using System.CodeDom.Compiler;
 
 
 namespace PresentationLayer.UserControls
@@ -58,22 +58,27 @@ namespace PresentationLayer.UserControls
             try
             {
                 dgvBook.DataSource = bookBL.GetBooks();
+
+                if (dgvBook.Columns.Contains("Bookimage"))
+                {
+                    DataGridViewImageColumn imgCol = (DataGridViewImageColumn)dgvBook.Columns["Bookimage"];
+                    imgCol.ImageLayout = DataGridViewImageCellLayout.Zoom;
+
+                    // Xử lý hiển thị hình ảnh an toàn
+                    dgvBook.CellFormatting += dgvBook_CellFormatting;
+                }
+
+                dgvBook.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            if (dgvBook.Columns.Contains("Bookimage"))
-            {
-                DataGridViewImageColumn imgCol = (DataGridViewImageColumn)dgvBook.Columns["Bookimage"];
-                imgCol.ImageLayout = DataGridViewImageCellLayout.Zoom;
-
-            }
-            dgvBook.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-          
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+
+        private void btnRefresh_Click(object sender, EventArgs e)
         {
 
             TransferObject.Book emptyBook = bookBL.GetEmptyBook();
@@ -101,6 +106,46 @@ namespace PresentationLayer.UserControls
             Supplier = cbxSupplier.SelectedItem?.ToString();  
             Price = txtPrice.Text;
 
+        }
+
+        private void dgvBook_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // Kiểm tra nếu là cột hình ảnh và giá trị không null
+            if (dgvBook.Columns[e.ColumnIndex].Name == "Bookimage" && e.Value != null)
+            {
+                try
+                {
+                    // Nếu e.Value là byte array
+                    if (e.Value is byte[] imageData)
+                    {
+                        if (imageData.Length > 0)
+                        {
+                            try
+                            {
+                                using (MemoryStream ms = new MemoryStream(imageData))
+                                {
+                                    // Kiểm tra tính hợp lệ của hình ảnh trước khi chuyển đổi
+                                    System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
+                                    e.Value = img;
+                                }
+                            }
+                            catch
+                            {
+                                // Nếu không thể tạo hình ảnh, hiển thị hình ảnh mặc định
+                                e.Value = Properties.Resources.bookdefault;
+                            }
+                        }
+                        else
+                        {
+                            e.Value = Properties.Resources.bookdefault;
+                        }
+                    }
+                }
+                catch
+                {
+                    e.Value = Properties.Resources.bookdefault;
+                }
+            }
         }
     }
 }

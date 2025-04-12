@@ -40,18 +40,17 @@
             this.lbCategory = new System.Windows.Forms.Label();
             this.lbBookName = new System.Windows.Forms.Label();
             this.lbBookID = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.btnUpdateBook = new System.Windows.Forms.Button();
             this.btnDeleteBook = new System.Windows.Forms.Button();
             this.btnEntryBook = new System.Windows.Forms.Button();
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.btnAddCategory = new System.Windows.Forms.Button();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.lbPrice = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnUpload = new System.Windows.Forms.Button();
             this.picBook = new Guna.UI2.WinForms.Guna2PictureBox();
             this.dgvBook = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -181,21 +180,21 @@
             this.lbBookID.TabIndex = 24;
             this.lbBookID.Text = "BookID";
             // 
-            // button1
+            // btnRefresh
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.BackColor = System.Drawing.Color.Tomato;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(474, 90);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(232, 52);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "Làm mới";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnRefresh.BackColor = System.Drawing.Color.Tomato;
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.ForeColor = System.Drawing.Color.White;
+            this.btnRefresh.Location = new System.Drawing.Point(474, 90);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(232, 52);
+            this.btnRefresh.TabIndex = 21;
+            this.btnRefresh.Text = "Làm mới";
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnUpdateBook
             // 
@@ -243,29 +242,13 @@
             this.btnEntryBook.UseVisualStyleBackColor = false;
             this.btnEntryBook.Click += new System.EventHandler(this.btnEntryBook_Click);
             // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(221, 630);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(289, 52);
-            this.btnRefresh.TabIndex = 20;
-            this.btnRefresh.Text = "Làm mới";
-            this.btnRefresh.UseVisualStyleBackColor = false;
-            // 
             // panel5
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.button1);
+            this.panel5.Controls.Add(this.btnRefresh);
             this.panel5.Controls.Add(this.btnUpdateBook);
             this.panel5.Controls.Add(this.btnDeleteBook);
             this.panel5.Controls.Add(this.btnEntryBook);
-            this.panel5.Controls.Add(this.btnRefresh);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel5.Location = new System.Drawing.Point(0, 688);
             this.panel5.Name = "panel5";
@@ -287,7 +270,7 @@
             this.panel6.Controls.Add(this.btnAddCategory);
             this.panel6.Controls.Add(this.txtPrice);
             this.panel6.Controls.Add(this.lbPrice);
-            this.panel6.Controls.Add(this.button2);
+            this.panel6.Controls.Add(this.btnUpload);
             this.panel6.Controls.Add(this.picBook);
             this.panel6.Controls.Add(this.cbxSupplier);
             this.panel6.Controls.Add(this.lbSupplier);
@@ -337,15 +320,15 @@
             this.lbPrice.TabIndex = 44;
             this.lbPrice.Text = "Giá";
             // 
-            // button2
+            // btnUpload
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(374, 221);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(171, 53);
-            this.button2.TabIndex = 43;
-            this.button2.Text = "Tải ảnh";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpload.Location = new System.Drawing.Point(374, 221);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(171, 53);
+            this.btnUpload.TabIndex = 43;
+            this.btnUpload.Text = "Tải ảnh";
+            this.btnUpload.UseVisualStyleBackColor = true;
             // 
             // picBook
             // 
@@ -385,6 +368,7 @@
             this.dgvBook.RowTemplate.Height = 24;
             this.dgvBook.Size = new System.Drawing.Size(1058, 841);
             this.dgvBook.TabIndex = 3;
+            this.dgvBook.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvBook_CellFormatting);
             this.dgvBook.Click += new System.EventHandler(this.dgvBook_Click);
             // 
             // panel3
@@ -508,11 +492,10 @@
         private System.Windows.Forms.Label lbCategory;
         private System.Windows.Forms.Label lbBookName;
         private System.Windows.Forms.Label lbBookID;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnUpdateBook;
         private System.Windows.Forms.Button btnDeleteBook;
         private System.Windows.Forms.Button btnEntryBook;
-        private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel6;
@@ -525,7 +508,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private Guna.UI2.WinForms.Guna2PictureBox picBook;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Label lbPrice;
         private System.Windows.Forms.Button btnAddCategory;

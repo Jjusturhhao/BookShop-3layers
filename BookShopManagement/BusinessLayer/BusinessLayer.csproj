@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BookBL.cs" />
+    <Compile Include="CheckoutBL.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="HomepageBL.cs" />
     <Compile Include="InfoBL.cs" />

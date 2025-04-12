@@ -11,8 +11,6 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Guna.UI2.Native.WinApi;
-
 namespace PresentationLayer.UserControls
 {
     public partial class UCCheckout : UserControl
