@@ -30,7 +30,7 @@ namespace DataLayer
                 {
                     while (reader.Read())
                     {
-                        string bookID = reader["BookID"].ToString();
+                        string bookid = reader["BookID"].ToString();
                         string bookName = reader["BookName"].ToString();
                         string categoryID = reader["CategoryID"].ToString();
                         string author = reader["Author"].ToString();
@@ -50,7 +50,7 @@ namespace DataLayer
                             }
                         }
 
-                        Book book = new Book(bookID, bookName, categoryID, author, price, imageBytes);
+                        Book book = new Book(bookid, bookName, categoryID, author, price, imageBytes);
                         books.Add(book);
                     }
                 }

@@ -118,3 +118,4 @@ D:\LTCSDL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\Presen
 D:\LTCSDL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\Presenta.9C561136.Up2Date
 D:\LTCSDL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.exe
 D:\LTCSDL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.pdb
+D:\LTCSDL\BookShop-3layers\BookShopManagement\PresentationLayer\obj\Debug\PresentationLayer.UserControls.UCGoods_Issue_Note.resources

@@ -212,6 +212,12 @@
     <Compile Include="UserControls\UCCusOrders.Designer.cs">
       <DependentUpon>UCCusOrders.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCGoods Issue Note.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCGoods Issue Note.Designer.cs">
+      <DependentUpon>UCGoods Issue Note.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCHomepage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -335,6 +341,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCCusOrders.resx">
       <DependentUpon>UCCusOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCGoods Issue Note.resx">
+      <DependentUpon>UCGoods Issue Note.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCHomepage.resx">
       <DependentUpon>UCHomepage.cs</DependentUpon>

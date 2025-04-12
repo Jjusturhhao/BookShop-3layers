@@ -215,5 +215,21 @@ namespace PresentationLayer.UserControls
             }
 
         }
+
+        private void AddForm (Form form)
+        {
+            form.TopLevel = false;
+            panel6.Controls.Clear();
+            panel6.Controls.Add(form);
+
+            form.Dock = DockStyle.Fill;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Show();
+        }
+
+        private void btnGIN_Click(object sender, EventArgs e)
+        {
+            AddForm(new UCGoods_Issue_Note());
+        }
     }
 }
