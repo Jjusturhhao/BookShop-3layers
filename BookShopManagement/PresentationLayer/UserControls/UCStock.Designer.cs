@@ -37,17 +37,22 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.dataGridViewStock = new System.Windows.Forms.DataGridView();
+            this.dgvStock = new System.Windows.Forms.DataGridView();
+            this.StockID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Supplier_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BookID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CategoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BookName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImportDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.cbxSupplier = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpk = new System.Windows.Forms.DateTimePicker();
             this.lbImportDate = new System.Windows.Forms.Label();
             this.txtStockID = new System.Windows.Forms.TextBox();
             this.lbStockID = new System.Windows.Forms.Label();
             this.lbSupplier = new System.Windows.Forms.Label();
-            this.txtAuthor = new System.Windows.Forms.TextBox();
-            this.lbAuthor = new System.Windows.Forms.Label();
             this.cbxCategory = new System.Windows.Forms.ComboBox();
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.txtBookName = new System.Windows.Forms.TextBox();
@@ -57,16 +62,16 @@
             this.lbBookName = new System.Windows.Forms.Label();
             this.lbBookID = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
             this.btnUpdateBook = new System.Windows.Forms.Button();
             this.btnDeleteBook = new System.Windows.Forms.Button();
-            this.btnEntryBook = new System.Windows.Forms.Button();
+            this.btnAddBook = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStock)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -103,7 +108,7 @@
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Rockwell", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.label1.Location = new System.Drawing.Point(118, 23);
             this.label1.Name = "label1";
@@ -138,6 +143,7 @@
             this.btnSearch.TabIndex = 17;
             this.btnSearch.Text = "Tìm kiếm";
             this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txtSearch
             // 
@@ -151,43 +157,128 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.dataGridViewStock);
+            this.panel3.Controls.Add(this.dgvStock);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 132);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(698, 840);
             this.panel3.TabIndex = 2;
             // 
-            // dataGridViewStock
+            // dgvStock
             // 
-            this.dataGridViewStock.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridViewStock.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridViewStock.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvStock.AllowUserToAddRows = false;
+            this.dgvStock.AllowUserToDeleteRows = false;
+            this.dgvStock.AllowUserToResizeColumns = false;
+            this.dgvStock.AllowUserToResizeRows = false;
+            this.dgvStock.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridViewStock.ColumnHeadersHeight = 29;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dgvStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStock.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.StockID,
+            this.Supplier_ID,
+            this.BookID,
+            this.CategoryID,
+            this.BookName,
+            this.ImportDate,
+            this.Quantity});
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewStock.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridViewStock.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewStock.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dataGridViewStock.Name = "dataGridViewStock";
-            this.dataGridViewStock.RowHeadersWidth = 51;
-            this.dataGridViewStock.RowTemplate.Height = 24;
-            this.dataGridViewStock.Size = new System.Drawing.Size(698, 840);
-            this.dataGridViewStock.TabIndex = 3;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStock.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvStock.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvStock.Location = new System.Drawing.Point(0, 0);
+            this.dgvStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvStock.Name = "dgvStock";
+            this.dgvStock.ReadOnly = true;
+            this.dgvStock.RowHeadersWidth = 51;
+            this.dgvStock.RowTemplate.Height = 24;
+            this.dgvStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvStock.Size = new System.Drawing.Size(698, 840);
+            this.dgvStock.TabIndex = 3;
+            this.dgvStock.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStock_CellClick);
+            // 
+            // StockID
+            // 
+            this.StockID.DataPropertyName = "StockID";
+            this.StockID.HeaderText = "Mã Kho";
+            this.StockID.MinimumWidth = 8;
+            this.StockID.Name = "StockID";
+            this.StockID.ReadOnly = true;
+            this.StockID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.StockID.Visible = false;
+            this.StockID.Width = 150;
+            // 
+            // Supplier_ID
+            // 
+            this.Supplier_ID.DataPropertyName = "Supplier_ID";
+            this.Supplier_ID.HeaderText = "Tên nhà cung cấp";
+            this.Supplier_ID.MinimumWidth = 8;
+            this.Supplier_ID.Name = "Supplier_ID";
+            this.Supplier_ID.ReadOnly = true;
+            this.Supplier_ID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Supplier_ID.Width = 200;
+            // 
+            // BookID
+            // 
+            this.BookID.DataPropertyName = "BookID";
+            this.BookID.HeaderText = "Mã Sách";
+            this.BookID.MinimumWidth = 8;
+            this.BookID.Name = "BookID";
+            this.BookID.ReadOnly = true;
+            this.BookID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.BookID.Visible = false;
+            this.BookID.Width = 150;
+            // 
+            // CategoryID
+            // 
+            this.CategoryID.DataPropertyName = "CategoryID";
+            this.CategoryID.HeaderText = "Thể loại";
+            this.CategoryID.MinimumWidth = 8;
+            this.CategoryID.Name = "CategoryID";
+            this.CategoryID.ReadOnly = true;
+            this.CategoryID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CategoryID.Width = 180;
+            // 
+            // BookName
+            // 
+            this.BookName.DataPropertyName = "BookName";
+            this.BookName.HeaderText = "Tên Sách";
+            this.BookName.MinimumWidth = 8;
+            this.BookName.Name = "BookName";
+            this.BookName.ReadOnly = true;
+            this.BookName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.BookName.Width = 350;
+            // 
+            // ImportDate
+            // 
+            this.ImportDate.DataPropertyName = "ImportDate";
+            this.ImportDate.HeaderText = "Ngày Nhập Kho";
+            this.ImportDate.MinimumWidth = 8;
+            this.ImportDate.Name = "ImportDate";
+            this.ImportDate.ReadOnly = true;
+            this.ImportDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ImportDate.Width = 170;
+            // 
+            // Quantity
+            // 
+            this.Quantity.DataPropertyName = "Quantity";
+            this.Quantity.HeaderText = "Số Lượng";
+            this.Quantity.MinimumWidth = 8;
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            this.Quantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Quantity.Width = 150;
             // 
             // panel4
             // 
@@ -203,13 +294,11 @@
             // 
             this.panel6.BackColor = System.Drawing.SystemColors.Control;
             this.panel6.Controls.Add(this.cbxSupplier);
-            this.panel6.Controls.Add(this.dateTimePicker1);
+            this.panel6.Controls.Add(this.dtpk);
             this.panel6.Controls.Add(this.lbImportDate);
             this.panel6.Controls.Add(this.txtStockID);
             this.panel6.Controls.Add(this.lbStockID);
             this.panel6.Controls.Add(this.lbSupplier);
-            this.panel6.Controls.Add(this.txtAuthor);
-            this.panel6.Controls.Add(this.lbAuthor);
             this.panel6.Controls.Add(this.cbxCategory);
             this.panel6.Controls.Add(this.txtQuantity);
             this.panel6.Controls.Add(this.txtBookName);
@@ -229,26 +318,26 @@
             this.cbxSupplier.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxSupplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxSupplier.FormattingEnabled = true;
-            this.cbxSupplier.Location = new System.Drawing.Point(282, 482);
+            this.cbxSupplier.Location = new System.Drawing.Point(282, 471);
             this.cbxSupplier.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbxSupplier.Name = "cbxSupplier";
             this.cbxSupplier.Size = new System.Drawing.Size(236, 40);
             this.cbxSupplier.TabIndex = 41;
             // 
-            // dateTimePicker1
+            // dtpk
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(282, 436);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(408, 39);
-            this.dateTimePicker1.TabIndex = 40;
+            this.dtpk.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpk.Location = new System.Drawing.Point(266, 362);
+            this.dtpk.Name = "dtpk";
+            this.dtpk.Size = new System.Drawing.Size(408, 39);
+            this.dtpk.TabIndex = 40;
             // 
             // lbImportDate
             // 
             this.lbImportDate.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbImportDate.AutoSize = true;
             this.lbImportDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbImportDate.Location = new System.Drawing.Point(78, 425);
+            this.lbImportDate.Location = new System.Drawing.Point(78, 379);
             this.lbImportDate.Name = "lbImportDate";
             this.lbImportDate.Size = new System.Drawing.Size(151, 32);
             this.lbImportDate.TabIndex = 38;
@@ -271,41 +360,20 @@
             this.lbStockID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStockID.Location = new System.Drawing.Point(78, 110);
             this.lbStockID.Name = "lbStockID";
-            this.lbStockID.Size = new System.Drawing.Size(112, 32);
+            this.lbStockID.Size = new System.Drawing.Size(106, 32);
             this.lbStockID.TabIndex = 36;
-            this.lbStockID.Text = "StockID";
+            this.lbStockID.Text = "Mã kho";
             // 
             // lbSupplier
             // 
             this.lbSupplier.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbSupplier.AutoSize = true;
             this.lbSupplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSupplier.Location = new System.Drawing.Point(78, 485);
+            this.lbSupplier.Location = new System.Drawing.Point(78, 471);
             this.lbSupplier.Name = "lbSupplier";
             this.lbSupplier.Size = new System.Drawing.Size(188, 32);
             this.lbSupplier.TabIndex = 34;
             this.lbSupplier.Text = "Nhà cung cấp";
-            // 
-            // txtAuthor
-            // 
-            this.txtAuthor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAuthor.Location = new System.Drawing.Point(282, 357);
-            this.txtAuthor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtAuthor.Name = "txtAuthor";
-            this.txtAuthor.Size = new System.Drawing.Size(236, 39);
-            this.txtAuthor.TabIndex = 33;
-            // 
-            // lbAuthor
-            // 
-            this.lbAuthor.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lbAuthor.AutoSize = true;
-            this.lbAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAuthor.Location = new System.Drawing.Point(78, 360);
-            this.lbAuthor.Name = "lbAuthor";
-            this.lbAuthor.Size = new System.Drawing.Size(107, 32);
-            this.lbAuthor.TabIndex = 32;
-            this.lbAuthor.Text = "Tác giả";
             // 
             // cbxCategory
             // 
@@ -388,17 +456,17 @@
             this.lbBookID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbBookID.Location = new System.Drawing.Point(78, 173);
             this.lbBookID.Name = "lbBookID";
-            this.lbBookID.Size = new System.Drawing.Size(106, 32);
+            this.lbBookID.Size = new System.Drawing.Size(120, 32);
             this.lbBookID.TabIndex = 24;
-            this.lbBookID.Text = "BookID";
+            this.lbBookID.Text = "Mã sách";
             // 
             // panel5
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.button1);
+            this.panel5.Controls.Add(this.btnReset);
             this.panel5.Controls.Add(this.btnUpdateBook);
             this.panel5.Controls.Add(this.btnDeleteBook);
-            this.panel5.Controls.Add(this.btnEntryBook);
+            this.panel5.Controls.Add(this.btnAddBook);
             this.panel5.Controls.Add(this.btnRefresh);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel5.Location = new System.Drawing.Point(0, 687);
@@ -406,20 +474,21 @@
             this.panel5.Size = new System.Drawing.Size(597, 153);
             this.panel5.TabIndex = 0;
             // 
-            // button1
+            // btnReset
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.BackColor = System.Drawing.Color.Tomato;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(319, 90);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(232, 52);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "Làm mới";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnReset.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnReset.BackColor = System.Drawing.Color.Tomato;
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.ForeColor = System.Drawing.Color.White;
+            this.btnReset.Location = new System.Drawing.Point(319, 90);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(232, 52);
+            this.btnReset.TabIndex = 21;
+            this.btnReset.Text = "Làm mới";
+            this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnUpdateBook
             // 
@@ -435,6 +504,7 @@
             this.btnUpdateBook.TabIndex = 19;
             this.btnUpdateBook.Text = "Cập nhật";
             this.btnUpdateBook.UseVisualStyleBackColor = false;
+            this.btnUpdateBook.Click += new System.EventHandler(this.btnUpdateBook_Click);
             // 
             // btnDeleteBook
             // 
@@ -450,21 +520,23 @@
             this.btnDeleteBook.TabIndex = 18;
             this.btnDeleteBook.Text = "Xóa sách";
             this.btnDeleteBook.UseVisualStyleBackColor = false;
+            this.btnDeleteBook.Click += new System.EventHandler(this.btnDeleteBook_Click);
             // 
-            // btnEntryBook
+            // btnAddBook
             // 
-            this.btnEntryBook.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnEntryBook.BackColor = System.Drawing.Color.Tomato;
-            this.btnEntryBook.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnEntryBook.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEntryBook.ForeColor = System.Drawing.Color.White;
-            this.btnEntryBook.Location = new System.Drawing.Point(319, 17);
-            this.btnEntryBook.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnEntryBook.Name = "btnEntryBook";
-            this.btnEntryBook.Size = new System.Drawing.Size(231, 54);
-            this.btnEntryBook.TabIndex = 17;
-            this.btnEntryBook.Text = "Thêm mới";
-            this.btnEntryBook.UseVisualStyleBackColor = false;
+            this.btnAddBook.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAddBook.BackColor = System.Drawing.Color.Tomato;
+            this.btnAddBook.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAddBook.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddBook.ForeColor = System.Drawing.Color.White;
+            this.btnAddBook.Location = new System.Drawing.Point(319, 17);
+            this.btnAddBook.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAddBook.Name = "btnAddBook";
+            this.btnAddBook.Size = new System.Drawing.Size(231, 54);
+            this.btnAddBook.TabIndex = 17;
+            this.btnAddBook.Text = "Thêm mới";
+            this.btnAddBook.UseVisualStyleBackColor = false;
+            this.btnAddBook.Click += new System.EventHandler(this.btnAddBook_Click);
             // 
             // btnRefresh
             // 
@@ -489,12 +561,13 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "UCStock";
             this.Size = new System.Drawing.Size(1307, 975);
+            this.Load += new System.EventHandler(this.UCStock_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStock)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
@@ -512,22 +585,20 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.DataGridView dataGridViewStock;
+        private System.Windows.Forms.DataGridView dgvStock;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnUpdateBook;
         private System.Windows.Forms.Button btnDeleteBook;
-        private System.Windows.Forms.Button btnEntryBook;
+        private System.Windows.Forms.Button btnAddBook;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpk;
         private System.Windows.Forms.Label lbImportDate;
         private System.Windows.Forms.TextBox txtStockID;
         private System.Windows.Forms.Label lbStockID;
         private System.Windows.Forms.Label lbSupplier;
-        private System.Windows.Forms.TextBox txtAuthor;
-        private System.Windows.Forms.Label lbAuthor;
         private System.Windows.Forms.ComboBox cbxCategory;
         private System.Windows.Forms.TextBox txtQuantity;
         private System.Windows.Forms.TextBox txtBookName;
@@ -537,5 +608,12 @@
         private System.Windows.Forms.Label lbBookName;
         private System.Windows.Forms.Label lbBookID;
         private System.Windows.Forms.ComboBox cbxSupplier;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StockID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Supplier_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BookID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CategoryID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BookName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ImportDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
     }
 }

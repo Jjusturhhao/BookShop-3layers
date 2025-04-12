@@ -1,18 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\LTCSDL\\BTL\\BookShop-3layers\\BookShopManagement\\",
+  "WorkspaceRootPath": "D:\\LTCSDL\\BookShop-3layers\\BookShopManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|d:\\ltcsdl\\btl\\bookshop-3layers\\bookshopmanagement\\presentationlayer\\usercontrols\\ucorders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\usercontrols\\ucorders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|D:\\LTCSDL\\BookShop-3layers\\BookShopManagement\\presentationlayer\\usercontrols\\ucstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\usercontrols\\ucstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|D:\\LTCSDL\\BTL\\BookShop-3layers\\BookShopManagement\\presentationlayer\\usercontrols\\ucorders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\usercontrols\\ucorders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|D:\\LTCSDL\\BookShop-3layers\\BookShopManagement\\presentationlayer\\usercontrols\\ucstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52981A0E-A156-4D97-BE18-4C89CE7A9BDA}|PresentationLayer\\PresentationLayer.csproj|solutionrelative:presentationlayer\\usercontrols\\ucstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{499CAC2D-A06F-47AF-B26E-84F870FF4D0E}|DataLayer\\DataLayer.csproj|D:\\LTCSDL\\BTL\\BookShop-3layers\\BookShopManagement\\datalayer\\orderdl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{499CAC2D-A06F-47AF-B26E-84F870FF4D0E}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\orderdl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{806486B2-AE2B-4C5A-AAE6-D507E32FFD77}|BusinessLayer\\BusinessLayer.csproj|d:\\ltcsdl\\bookshop-3layers\\bookshopmanagement\\businesslayer\\stockbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{806486B2-AE2B-4C5A-AAE6-D507E32FFD77}|BusinessLayer\\BusinessLayer.csproj|solutionrelative:businesslayer\\stockbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{499CAC2D-A06F-47AF-B26E-84F870FF4D0E}|DataLayer\\DataLayer.csproj|d:\\ltcsdl\\bookshop-3layers\\bookshopmanagement\\datalayer\\stockdl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{499CAC2D-A06F-47AF-B26E-84F870FF4D0E}|DataLayer\\DataLayer.csproj|solutionrelative:datalayer\\stockdl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,44 +26,60 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "OrderDL.cs",
-              "DocumentMoniker": "D:\\LTCSDL\\BTL\\BookShop-3layers\\BookShopManagement\\DataLayer\\OrderDL.cs",
-              "RelativeDocumentMoniker": "DataLayer\\OrderDL.cs",
-              "ToolTip": "D:\\LTCSDL\\BTL\\BookShop-3layers\\BookShopManagement\\DataLayer\\OrderDL.cs",
-              "RelativeToolTip": "DataLayer\\OrderDL.cs",
-              "ViewState": "AQIAACIAAAAAAAAAAAAQwCwAAAANAAAA",
+              "DocumentIndex": 1,
+              "Title": "UCStock.cs",
+              "DocumentMoniker": "D:\\LTCSDL\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCStock.cs",
+              "RelativeDocumentMoniker": "PresentationLayer\\UserControls\\UCStock.cs",
+              "ToolTip": "D:\\LTCSDL\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCStock.cs",
+              "RelativeToolTip": "PresentationLayer\\UserControls\\UCStock.cs",
+              "ViewState": "AgIAAMgAAAAAAAAAAAAuwM4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T15:20:57.379Z"
+              "WhenOpened": "2025-04-10T08:49:32.139Z",
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UCOrders.cs [Design]",
-              "DocumentMoniker": "D:\\LTCSDL\\BTL\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCOrders.cs",
-              "RelativeDocumentMoniker": "PresentationLayer\\UserControls\\UCOrders.cs",
-              "ToolTip": "D:\\LTCSDL\\BTL\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCOrders.cs [Design]",
-              "RelativeToolTip": "PresentationLayer\\UserControls\\UCOrders.cs [Design]",
+              "DocumentIndex": 3,
+              "Title": "StockDL.cs",
+              "DocumentMoniker": "D:\\LTCSDL\\BookShop-3layers\\BookShopManagement\\DataLayer\\StockDL.cs",
+              "RelativeDocumentMoniker": "DataLayer\\StockDL.cs",
+              "ToolTip": "D:\\LTCSDL\\BookShop-3layers\\BookShopManagement\\DataLayer\\StockDL.cs",
+              "RelativeToolTip": "DataLayer\\StockDL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T09:19:04.869Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-04-11T17:22:47.124Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "StockBL.cs",
+              "DocumentMoniker": "D:\\LTCSDL\\BookShop-3layers\\BookShopManagement\\BusinessLayer\\StockBL.cs",
+              "RelativeDocumentMoniker": "BusinessLayer\\StockBL.cs",
+              "ToolTip": "D:\\LTCSDL\\BookShop-3layers\\BookShopManagement\\BusinessLayer\\StockBL.cs",
+              "RelativeToolTip": "BusinessLayer\\StockBL.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAzwFkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-12T06:14:26.507Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UCOrders.cs",
-              "DocumentMoniker": "D:\\LTCSDL\\BTL\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCOrders.cs",
-              "RelativeDocumentMoniker": "PresentationLayer\\UserControls\\UCOrders.cs",
-              "ToolTip": "D:\\LTCSDL\\BTL\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCOrders.cs",
-              "RelativeToolTip": "PresentationLayer\\UserControls\\UCOrders.cs",
-              "ViewState": "AQIAADAAAAAAAAAAAAAmwFoAAAAJAAAA",
+              "Title": "UCStock.cs [Design]",
+              "DocumentMoniker": "D:\\LTCSDL\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCStock.cs",
+              "RelativeDocumentMoniker": "PresentationLayer\\UserControls\\UCStock.cs",
+              "ToolTip": "D:\\LTCSDL\\BookShop-3layers\\BookShopManagement\\PresentationLayer\\UserControls\\UCStock.cs [Design]",
+              "RelativeToolTip": "PresentationLayer\\UserControls\\UCStock.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T09:21:03.985Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-10T06:26:34.198Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }
