@@ -101,17 +101,29 @@ namespace DataLayer
                 throw ex;
             }
         }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 37b1c8cac08c8331ca154c9259dd089cebecfeea
         public int MyExecuteNonQuery(string sql, CommandType type)
         {
             try
             {
                 Connect();
+<<<<<<< HEAD
+                cmd = new SqlCommand(sql, cn);
+                cmd.CommandType = type;
+
+                return (cmd.ExecuteNonQuery());
+            }
+            catch (Exception ex)
+=======
                 SqlCommand cmd = new SqlCommand(sql, cn);
                 cmd.CommandType = type;
                 return cmd.ExecuteNonQuery();
             }
             catch (SqlException ex)
+>>>>>>> 37b1c8cac08c8331ca154c9259dd089cebecfeea
             {
                 throw ex;
             }
@@ -120,6 +132,8 @@ namespace DataLayer
                 DisConnect();
             }
         }
+<<<<<<< HEAD
+=======
 
         public int MyExecuteNonQuery(SqlCommand cmd)
         {
@@ -140,5 +154,6 @@ namespace DataLayer
         }
 
 
+>>>>>>> 37b1c8cac08c8331ca154c9259dd089cebecfeea
     }
 }

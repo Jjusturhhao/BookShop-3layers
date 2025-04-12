@@ -102,7 +102,6 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvOrders.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvOrders.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvOrders.Location = new System.Drawing.Point(3, 125);
             this.dgvOrders.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvOrders.Name = "dgvOrders";
@@ -163,7 +162,7 @@
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Rockwell", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.label1.Location = new System.Drawing.Point(119, 31);
             this.label1.Name = "label1";
