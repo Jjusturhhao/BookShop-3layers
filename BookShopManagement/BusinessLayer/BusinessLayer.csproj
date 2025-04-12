@@ -59,10 +59,12 @@
     <Compile Include="BookBL.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="HomepageBL.cs" />
+    <Compile Include="InfoBL.cs" />
     <Compile Include="LoginBL.cs" />
     <Compile Include="OrderBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StockBL.cs" />
+    <Compile Include="SupplierBL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj">

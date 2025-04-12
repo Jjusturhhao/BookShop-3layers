@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLayer;
 
 namespace PresentationLayer.UserControls
 {
@@ -16,5 +17,19 @@ namespace PresentationLayer.UserControls
         {
             InitializeComponent();
         }
+
+        private void UCSupplier_Load(object sender, EventArgs e)
+        {
+            dgvSupplier.DataSource = new SupplierBL().GetSuppliers();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+ 
+
+      
     }
 }

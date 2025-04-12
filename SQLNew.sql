@@ -1,4 +1,4 @@
-﻿IF DB_ID('BookStoreManagement') IS NULL 
+IF DB_ID('BookStoreManagement') IS NULL 
 	CREATE DATABASE BookStoreManagement
 GO
 
@@ -276,4 +276,15 @@ BEGIN
 		END
 	END
 END
+GO
+
+--STORED PROCEDURE
+CREATE PROC GetStockQuantity
+	@BookID VARCHAR(50)
+AS
+	SELECT Quantity
+	FROM Stock
+	WHERE BookID = @BookID
+GO
+
 

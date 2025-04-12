@@ -1,8 +1,6 @@
 ﻿using DataLayer;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,31 +8,33 @@ using TransferObject;
 
 namespace BusinessLayer
 {
-    public class OrderBL
+    public class InfoBL
     {
-        private OrderDL OrderDL;
-        public OrderBL()
+        private InfoDL infoDL;
+        public InfoBL()
         {
-            OrderDL = new OrderDL();
+            infoDL = new InfoDL();
         }
-        public List<Order> GetOrders()
+
+        public Info GetUserInfo(string username)
         {
             try
             {
-                return (OrderDL.GetOrders());
+                return infoDL.GetUserInfo(username);
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public void UpdateOrder(string orderID, string newStatus)
+
+        public bool UpdateUserInfo(Info updatedInfo)
         {
             try
             {
-                OrderDL.UpdateOrderStatus(orderID, newStatus);
+                return infoDL.UpdateUserInfo(updatedInfo);
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw ex;
             }

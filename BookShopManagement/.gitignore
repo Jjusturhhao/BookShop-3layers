@@ -1,0 +1,33 @@
+# Ignore Visual Studio user-specific files
+.vs/
+*.user
+*.suo
+
+# Build output
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
+# Backup & temporary files
+*.log
+*.tmp
+*.bak
+
+# Ignore debug database files
+*.mdb
+*.ldb
+
+# Ignore Rider IDE files (nếu có dùng)
+.idea/
+
+# Ignore NuGet packages
+packages/
+*.nupkg
+
+# Ignore ReSharper files
+_ReSharper*/
+
+# Ignore dtbcache files
+*.dtbcache.json

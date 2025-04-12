@@ -29,9 +29,7 @@ namespace PresentationLayer.UserControls
         }
         private void LoadOrders()
         {
-            DataTable orders = orderBL.GetOrders();
-            dgvOrders.DataSource = orders;
-
+            dgvOrders.DataSource = new OrderBL().GetOrders();
 
             // Tự động fit theo nội dung cho cột Total_Cost
             dgvOrders.Columns["Total_Cost"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
