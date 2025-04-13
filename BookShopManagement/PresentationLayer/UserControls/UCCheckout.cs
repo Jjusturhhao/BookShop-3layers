@@ -11,7 +11,11 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
+using TransferObject;
+
 namespace PresentationLayer.UserControls
+
 {
     public partial class UCCheckout : UserControl
     {
@@ -20,15 +24,19 @@ namespace PresentationLayer.UserControls
         private string selectedBookID = string.Empty; 
         private string selectedBookName = string.Empty; 
         private int selectedPrice = 0;
+
+
         public UCCheckout()
         {
             InitializeComponent();
             CheckoutBL = new CheckoutBL();
             Load += UCCheckout_Load;
+
         }
         public void UCCheckout_Load(object sender, EventArgs e)
         {
             InitDgvBooks();
+            LoadCategoriesToCBX();
             LoadBooks();
             LoadDetails();
             dgvBooks.CellClick += dgvBooks_CellClick; // Xử lý sự kiện nhấp chuột vào dòng sách
@@ -36,6 +44,16 @@ namespace PresentationLayer.UserControls
         private void btnCustomer_Click(object sender, EventArgs e)
         {
 
+        }
+        private void LoadCategoriesToCBX()
+        {
+            List<Category> categories = CheckoutBL.GetCategories();
+
+            // Đổ dữ liệu vào ComboBox
+            cbxCategories.DataSource = categories;
+            cbxCategories.DisplayMember = "CategoryName";  // Hiển thị tên danh mục trong ComboBox
+            cbxCategories.ValueMember = "CategoryID";
+            cbxCategories.SelectedIndex = -1;
         }
         private void InitDgvBooks()
         {
@@ -53,26 +71,39 @@ namespace PresentationLayer.UserControls
 
         private void LoadBooks()
         {
-            dgvBooks.Rows.Clear();
+            var books = CheckoutBL.GetBooks();
 
-            DataTable books = CheckoutBL.GetBooks();
-
-            foreach (DataRow row in books.Rows)
+            foreach (var book in books)
             {
-                string bookID = row["BookID"].ToString();
-                string bookName = row["BookName"].ToString();
-                int price = Convert.ToInt32(row["Price"]);
-                int quantity = CheckoutBL.GetQuantity(bookID);
-
-                dgvBooks.Rows.Add(bookID, bookName, price.ToString(), quantity);
+                dgvBooks.Rows.Add(book.Bookid, book.Bookname, book.Price, book.Quantity);
             }
 
             dgvBooks.Columns["BookName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgvBooks.Columns["Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvBooks.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
         }
+        private void LoadBooksByCate()
+        {
+            if (cbxCategories.SelectedIndex == -1)
+            {
+                MessageBox.Show("Vui lòng chọn danh mục!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            string categoryID = cbxCategories.SelectedValue.ToString();
+            var books = CheckoutBL.GetBooksByCategory(categoryID);
+
+            dgvBooks.Rows.Clear(); 
+
+            foreach (var book in books)
+            {
+                dgvBooks.Rows.Add(book.Bookid, book.Bookname, book.Price, book.Quantity);
+            }
+
+            dgvBooks.Columns["BookName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvBooks.Columns["Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvBooks.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+        }
 
         private void dgvBooks_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -123,40 +154,32 @@ namespace PresentationLayer.UserControls
             int unitPrice = selectedPrice;
             int totalPrice = unitPrice * quantity;
 
-            //bool bookExists = false;
+            bool bookExists = false;
 
-            //foreach (DataGridViewRow row in dgvDetails.Rows)
-            //{
-            //    if (row.Cells["Tên sách"].Value.ToString() == selectedBookName)
-            //    {
-            //        // Cập nhật số lượng và thành tiền6
-            //        int existingQuantity = Convert.ToInt32(row.Cells["Số lượng"].Value);
-            //        row.Cells["Số lượng"].Value = existingQuantity + quantity;
-            //        row.Cells["Thành tiền"].Value = (existingQuantity + quantity) * unitPrice;
-            //        bookExists = true;
-            //        break;
-            //    }
-            //}
+            foreach (DataGridViewRow dgvRow in dgvDetails.Rows)
+            {
+                if (dgvRow.Cells["Tên sách"].Value != null && dgvRow.Cells["Tên sách"].Value.ToString() == selectedBookName)
+                {
+                    // Cập nhật số lượng và thành tiền
+                    int existingQuantity = Convert.ToInt32(dgvRow.Cells["Số lượng"].Value);
+                    dgvRow.Cells["Số lượng"].Value = existingQuantity + quantity;
+                    dgvRow.Cells["Thành tiền"].Value = (existingQuantity + quantity) * unitPrice;
+                    bookExists = true;
+                    break;
+                }
+            }
 
-            //// Nếu sách chưa có, thêm mới dòng
-            //if (!bookExists)
-            //{
-            //    DataGridViewRow row = new DataGridViewRow();
-            //    row.Cells.Add(new DataGridViewTextBoxCell() { Value = selectedBookName });
-            //    row.Cells.Add(new DataGridViewTextBoxCell() { Value = quantity });
-            //    row.Cells.Add(new DataGridViewTextBoxCell() { Value = unitPrice.ToString("#,##0") });
-            //    row.Cells.Add(new DataGridViewTextBoxCell() { Value = totalPrice.ToString("#,##0") });
+            // Nếu sách chưa có, thêm mới dòng
+            if (!bookExists)
+            {
+                DataGridViewRow newRow = new DataGridViewRow();
+                newRow.Cells.Add(new DataGridViewTextBoxCell() { Value = selectedBookName });
+                newRow.Cells.Add(new DataGridViewTextBoxCell() { Value = quantity });
+                newRow.Cells.Add(new DataGridViewTextBoxCell() { Value = unitPrice });
+                newRow.Cells.Add(new DataGridViewTextBoxCell() { Value = totalPrice });
 
-            //    dgvDetails.Rows.Add(row);
-            //}
-
-            DataGridViewRow row = new DataGridViewRow();
-            row.Cells.Add(new DataGridViewTextBoxCell() { Value = selectedBookName });
-            row.Cells.Add(new DataGridViewTextBoxCell() { Value = quantity });
-            row.Cells.Add(new DataGridViewTextBoxCell() { Value = unitPrice.ToString() });
-            row.Cells.Add(new DataGridViewTextBoxCell() { Value = totalPrice.ToString() });
-
-            dgvDetails.Rows.Add(row);
+                dgvDetails.Rows.Add(newRow);
+            }
 
             UpdateTotalBill();
         }
@@ -179,6 +202,11 @@ namespace PresentationLayer.UserControls
         private void CalculateChange()
         {
             int totalBill = Convert.ToInt32(txtTotalBill.Text);
+            if (string.IsNullOrEmpty(txtTotalPaid.Text))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             int totalPaid = Convert.ToInt32(txtTotalPaid.Text);
 
             if (totalPaid < totalBill)
@@ -198,6 +226,8 @@ namespace PresentationLayer.UserControls
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            cbxCategories.SelectedIndex = -1;
+
             dgvBooks.Rows.Clear(); 
 
             string keyword = txtNameSearch.Text.Trim();
@@ -210,29 +240,16 @@ namespace PresentationLayer.UserControls
 
             try
             {
-                // Lấy kết quả tìm kiếm
-                DataTable result = CheckoutBL.GetBooksByName(keyword);
+                var books = CheckoutBL.GetBooksByName(keyword);
 
-                foreach (DataRow row in result.Rows)
+                foreach (var book in books)
                 {
-                    string bookID = row["BookID"].ToString();
-                    string bookName = row["BookName"].ToString();
-                    int price = Convert.ToInt32(row["Price"]);
-                    int quantity = CheckoutBL.GetQuantity(bookID);
-
-                    // Thêm từng dòng vào dgvBooks
-                    dgvBooks.Rows.Add(bookID, bookName, price.ToString(), quantity);
+                    dgvBooks.Rows.Add(book.Bookid, book.Bookname, book.Price, book.Quantity);
                 }
 
-                // Đảm bảo cột "Tên sách" tự động điều chỉnh kích thước
                 dgvBooks.Columns["BookName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 dgvBooks.Columns["Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dgvBooks.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
-                if (result.Rows.Count == 0)
-                {
-                    MessageBox.Show("Không tìm thấy sách nào phù hợp.", "Kết quả", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
             }
             catch (Exception ex)
             {
@@ -240,12 +257,37 @@ namespace PresentationLayer.UserControls
             }
         }
 
-
         private void btnReset_Click(object sender, EventArgs e)
         {
             LoadBooks();
             txtNameSearch.Text = String.Empty;
+            cbxCategories.SelectedIndex = -1;
+        }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            ResetFormDetail();
+        }
+
+        private void ResetFormDetail()
+        {
+            dgvDetails.Rows.Clear();
+
+            txtTotalBill.Text = null; 
+            txtTotalPaid.Text = null; 
+            txtChange.Text = null;
+            numericUpDownQuantity.Value = 1;
+        }
+
+        private void btnGenerateBill_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("MÌNH CHƯA CÓ LÀM: ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            txtNameSearch.Text = String.Empty;
+            LoadBooksByCate();
         }
     }
 }

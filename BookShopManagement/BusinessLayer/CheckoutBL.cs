@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TransferObject;
 
 namespace BusinessLayer
 {
@@ -15,13 +16,21 @@ namespace BusinessLayer
         {
             CheckoutDL = new CheckoutDL();
         }
-        public DataTable GetBooks()
+        public List<Book> GetBooks()
         {
             return CheckoutDL.GetBooks();
         }
-        public DataTable GetBooksByName(string kw)
+        public List<Book> GetBooksByName(string kw)
         {
             return CheckoutDL.GetBooksByName(kw);
+        }
+        public List<Book> GetBooksByCategory(string cate)
+        {
+            return CheckoutDL.GetBooksByCategory(cate);
+        }
+        public List<Category> GetCategories()
+        {
+            return CheckoutDL.LoadCategories();
         }
         public int GetQuantity(string bookID)
         {

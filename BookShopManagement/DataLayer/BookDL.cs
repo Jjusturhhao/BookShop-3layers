@@ -32,7 +32,7 @@ namespace DataLayer
                         string bookName = reader["BookName"].ToString();
                         string categoryID = reader["CategoryID"].ToString();
                         string author = reader["Author"].ToString();
-                        string price = reader["Price"].ToString();
+                        int price = Convert.ToInt32(reader["Price"]);
                         string bookImageUrl = reader["BookImage"].ToString();
 
                         byte[] imageBytes = null;
@@ -89,7 +89,7 @@ namespace DataLayer
 
         public Book GetEmptyBook()
         {
-            return new Book("", "", "", "", "", null);
+            return new Book("", "", "", "", 0, null);
         }
 
 
