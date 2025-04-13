@@ -247,7 +247,7 @@
             this.btnChange.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnChange.Location = new System.Drawing.Point(517, 50);
             this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(87, 30);
+            this.btnChange.Size = new System.Drawing.Size(87, 39);
             this.btnChange.TabIndex = 11;
             this.btnChange.Text = "OK";
             this.btnChange.UseVisualStyleBackColor = false;
@@ -260,12 +260,13 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCancel.Location = new System.Drawing.Point(339, 128);
+            this.btnCancel.Location = new System.Drawing.Point(304, 131);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(149, 34);
             this.btnCancel.TabIndex = 10;
             this.btnCancel.Text = "Hủy";
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnGenerateBill
             // 
@@ -274,12 +275,13 @@
             this.btnGenerateBill.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGenerateBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerateBill.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnGenerateBill.Location = new System.Drawing.Point(146, 128);
+            this.btnGenerateBill.Location = new System.Drawing.Point(111, 131);
             this.btnGenerateBill.Name = "btnGenerateBill";
             this.btnGenerateBill.Size = new System.Drawing.Size(175, 34);
             this.btnGenerateBill.TabIndex = 9;
             this.btnGenerateBill.Text = "Thanh toán";
             this.btnGenerateBill.UseVisualStyleBackColor = false;
+            this.btnGenerateBill.Click += new System.EventHandler(this.btnGenerateBill_Click);
             // 
             // txtChange
             // 
@@ -446,7 +448,7 @@
             // btnReset
             // 
             this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReset.BackColor = System.Drawing.Color.Tomato;
+            this.btnReset.BackColor = System.Drawing.Color.MediumTurquoise;
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReset.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -471,6 +473,7 @@
             this.btnApply.TabIndex = 9;
             this.btnApply.Text = "Áp dụng";
             this.btnApply.UseVisualStyleBackColor = false;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
             // btnSearch
             // 
@@ -513,8 +516,8 @@
             // 
             this.txtNameSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNameSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNameSearch.Location = new System.Drawing.Point(59, 84);
+            this.txtNameSearch.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNameSearch.Location = new System.Drawing.Point(58, 83);
             this.txtNameSearch.Name = "txtNameSearch";
             this.txtNameSearch.Size = new System.Drawing.Size(237, 30);
             this.txtNameSearch.TabIndex = 5;

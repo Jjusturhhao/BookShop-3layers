@@ -90,7 +90,7 @@ namespace PresentationLayer.UserControls
             cbxCategory.SelectedIndex = -1;
             txtAuthor.Text = emptyBook.Author;
             cbxSupplier.SelectedIndex = -1;
-            txtPrice.Text = emptyBook.Price;
+            txtPrice.Text = emptyBook.Price.ToString();
             picBook.Image = null;
 
             txtBookName.Focus();

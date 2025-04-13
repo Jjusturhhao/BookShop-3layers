@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,10 +13,11 @@ namespace TransferObject
         public string Bookname { get; set; }
         public string Categoryid { get; set; }
         public string Author { get; set; }
-        public string Price { get; set; }
+        public int Price { get; set; }
         public byte[] Bookimage { get; set; }
+        public int Quantity { get; set; }
 
-        public Book(string bookid, string bookname, string categoryid, string author, string price, byte[] bookimage)
+        public Book(string bookid, string bookname, string categoryid, string author, int price, byte[] bookimage)
         {
             Bookid = bookid;
             Bookname = bookname;
@@ -23,6 +25,14 @@ namespace TransferObject
             Author = author;
             Price = price;
             Bookimage = bookimage;
+        }
+
+        public Book(string bookID, string bookName, int price, int quantity)
+        {
+            Bookid = bookID;
+            Bookname = bookName;
+            Price = price; 
+            Quantity = quantity;
         }
     }
 }
