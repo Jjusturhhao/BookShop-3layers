@@ -24,12 +24,13 @@ namespace PresentationLayer
             // Lưu tham chiếu đến picBanner
             picBanner = this.picBanner;
 
-            // Khởi tạo tất cả UserControl một lần duy nhất
-            ucHomepage = new UCHomepage();
-            ucHomepage.Dock = DockStyle.Fill;
 
             ucCart = new UCCart();
             ucCart.Dock = DockStyle.Fill;
+
+            // Khởi tạo tất cả UserControl một lần duy nhất
+            ucHomepage = new UCHomepage(ucCart);
+            ucHomepage.Dock = DockStyle.Fill;
 
             ucCusOrders = new UCCusOrders();
             ucCusOrders.Dock = DockStyle.Fill;
@@ -147,6 +148,8 @@ namespace PresentationLayer
             HideAllUserControls();
             ucCart.Visible = true;
             ucCart.BringToFront();
+
+            ucCart.LoadCartItems();
         }
 
         private void btnOrder_Click(object sender, EventArgs e)

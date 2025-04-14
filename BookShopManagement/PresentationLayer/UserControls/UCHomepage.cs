@@ -5,6 +5,7 @@ using System.IO;
 using System.Net;
 using System.Windows.Forms;
 using BusinessLayer;
+using TransferObject;
 
 namespace PresentationLayer.UserControls
 {
@@ -14,11 +15,15 @@ namespace PresentationLayer.UserControls
         private int pageSize = 8;
         private HomepageBL homepageBL;
         private string currentCategoryID = null;
+        private UCCart ucCart;
+        private CartBL cartBL;
 
-        public UCHomepage()
+        public UCHomepage(UCCart cart)
         {
             InitializeComponent();
             homepageBL = new HomepageBL();
+            cartBL = new CartBL();
+            ucCart = cart;
             Load += UCHomepage_Load;
         }
 
@@ -104,6 +109,24 @@ namespace PresentationLayer.UserControls
                     ForeColor = Color.White,
                     FlatStyle = FlatStyle.Flat
                 };
+                btnBuy.Click += (s, e) =>
+                {
+                    string bookID = row["BookID"].ToString();
+                    
+                    cartBL.AddToCart(bookID);
+
+                    if (ucCart == null)
+                    {
+                        MessageBox.Show("Giỏ hàng chưa được truyền từ Homepage.");
+                    }
+                    else
+                    {
+                        ucCart.LoadCartItems();
+                    }
+
+
+                    MessageBox.Show("Sản phẩm đã được thêm vào giỏ hàng của bạn!");
+                };
 
                 pictureBox.Click += (s, e) =>
                 {
@@ -152,6 +175,10 @@ namespace PresentationLayer.UserControls
                     LoadBooks(currentPage, currentCategoryID);
                 }
             };
+        }
+        private void AddToCart(string BookID)
+        {
+
         }
     }
 }

@@ -65,6 +65,9 @@
             this.txtNameSearch = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.rdByCash = new System.Windows.Forms.RadioButton();
+            this.rdByTransfer = new System.Windows.Forms.RadioButton();
+            this.rdByMomo = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelLoadBook.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).BeginInit();
@@ -105,8 +108,8 @@
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.80952F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 76.19048F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.02225F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 79.97775F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1351, 899);
             this.tableLayoutPanel1.TabIndex = 63;
             // 
@@ -117,9 +120,9 @@
             this.panelLoadBook.Controls.Add(this.panel);
             this.panelLoadBook.Controls.Add(this.label7);
             this.panelLoadBook.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelLoadBook.Location = new System.Drawing.Point(632, 217);
+            this.panelLoadBook.Location = new System.Drawing.Point(632, 183);
             this.panelLoadBook.Name = "panelLoadBook";
-            this.panelLoadBook.Size = new System.Drawing.Size(716, 679);
+            this.panelLoadBook.Size = new System.Drawing.Size(716, 713);
             this.panelLoadBook.TabIndex = 4;
             // 
             // dgvBooks
@@ -130,7 +133,7 @@
             this.dgvBooks.Name = "dgvBooks";
             this.dgvBooks.RowHeadersWidth = 51;
             this.dgvBooks.RowTemplate.Height = 24;
-            this.dgvBooks.Size = new System.Drawing.Size(712, 581);
+            this.dgvBooks.Size = new System.Drawing.Size(712, 615);
             this.dgvBooks.TabIndex = 7;
             // 
             // panel
@@ -139,7 +142,7 @@
             this.panel.Controls.Add(this.numericUpDownQuantity);
             this.panel.Controls.Add(this.label2);
             this.panel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel.Location = new System.Drawing.Point(0, 616);
+            this.panel.Location = new System.Drawing.Point(0, 650);
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(712, 59);
             this.panel.TabIndex = 6;
@@ -149,7 +152,7 @@
             this.btnChoose.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnChoose.BackColor = System.Drawing.Color.Lime;
             this.btnChoose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnChoose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChoose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChoose.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnChoose.Location = new System.Drawing.Point(486, 12);
             this.btnChoose.Name = "btnChoose";
@@ -204,9 +207,9 @@
             this.panelOrderDetail.Controls.Add(this.panel3);
             this.panelOrderDetail.Controls.Add(this.label6);
             this.panelOrderDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelOrderDetail.Location = new System.Drawing.Point(3, 217);
+            this.panelOrderDetail.Location = new System.Drawing.Point(3, 183);
             this.panelOrderDetail.Name = "panelOrderDetail";
-            this.panelOrderDetail.Size = new System.Drawing.Size(623, 679);
+            this.panelOrderDetail.Size = new System.Drawing.Size(623, 713);
             this.panelOrderDetail.TabIndex = 3;
             // 
             // dgvDetails
@@ -218,11 +221,14 @@
             this.dgvDetails.Name = "dgvDetails";
             this.dgvDetails.RowHeadersWidth = 62;
             this.dgvDetails.RowTemplate.Height = 28;
-            this.dgvDetails.Size = new System.Drawing.Size(619, 465);
+            this.dgvDetails.Size = new System.Drawing.Size(619, 419);
             this.dgvDetails.TabIndex = 5;
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.rdByMomo);
+            this.panel3.Controls.Add(this.rdByTransfer);
+            this.panel3.Controls.Add(this.rdByCash);
             this.panel3.Controls.Add(this.btnChange);
             this.panel3.Controls.Add(this.btnCancel);
             this.panel3.Controls.Add(this.btnGenerateBill);
@@ -233,9 +239,9 @@
             this.panel3.Controls.Add(this.label11);
             this.panel3.Controls.Add(this.label10);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 500);
+            this.panel3.Location = new System.Drawing.Point(0, 454);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(619, 175);
+            this.panel3.Size = new System.Drawing.Size(619, 255);
             this.panel3.TabIndex = 4;
             // 
             // btnChange
@@ -243,11 +249,11 @@
             this.btnChange.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnChange.BackColor = System.Drawing.Color.Lime;
             this.btnChange.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChange.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnChange.Location = new System.Drawing.Point(517, 50);
+            this.btnChange.Location = new System.Drawing.Point(519, 114);
             this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(87, 39);
+            this.btnChange.Size = new System.Drawing.Size(87, 30);
             this.btnChange.TabIndex = 11;
             this.btnChange.Text = "OK";
             this.btnChange.UseVisualStyleBackColor = false;
@@ -258,11 +264,11 @@
             this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCancel.BackColor = System.Drawing.Color.Red;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCancel.Location = new System.Drawing.Point(304, 131);
+            this.btnCancel.Location = new System.Drawing.Point(306, 195);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(149, 34);
+            this.btnCancel.Size = new System.Drawing.Size(149, 44);
             this.btnCancel.TabIndex = 10;
             this.btnCancel.Text = "Hủy";
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -273,11 +279,11 @@
             this.btnGenerateBill.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnGenerateBill.BackColor = System.Drawing.Color.Blue;
             this.btnGenerateBill.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnGenerateBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerateBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerateBill.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnGenerateBill.Location = new System.Drawing.Point(111, 131);
+            this.btnGenerateBill.Location = new System.Drawing.Point(113, 195);
             this.btnGenerateBill.Name = "btnGenerateBill";
-            this.btnGenerateBill.Size = new System.Drawing.Size(175, 34);
+            this.btnGenerateBill.Size = new System.Drawing.Size(175, 44);
             this.btnGenerateBill.TabIndex = 9;
             this.btnGenerateBill.Text = "Thanh toán";
             this.btnGenerateBill.UseVisualStyleBackColor = false;
@@ -287,7 +293,7 @@
             // 
             this.txtChange.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtChange.Location = new System.Drawing.Point(304, 90);
+            this.txtChange.Location = new System.Drawing.Point(306, 154);
             this.txtChange.Name = "txtChange";
             this.txtChange.Size = new System.Drawing.Size(207, 30);
             this.txtChange.TabIndex = 6;
@@ -297,7 +303,7 @@
             // 
             this.txtTotalPaid.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtTotalPaid.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalPaid.Location = new System.Drawing.Point(304, 50);
+            this.txtTotalPaid.Location = new System.Drawing.Point(306, 114);
             this.txtTotalPaid.Name = "txtTotalPaid";
             this.txtTotalPaid.Size = new System.Drawing.Size(207, 30);
             this.txtTotalPaid.TabIndex = 5;
@@ -307,7 +313,7 @@
             // 
             this.txtTotalBill.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtTotalBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalBill.Location = new System.Drawing.Point(304, 10);
+            this.txtTotalBill.Location = new System.Drawing.Point(306, 26);
             this.txtTotalBill.Name = "txtTotalBill";
             this.txtTotalBill.Size = new System.Drawing.Size(207, 30);
             this.txtTotalBill.TabIndex = 4;
@@ -318,7 +324,7 @@
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(50, 93);
+            this.label12.Location = new System.Drawing.Point(52, 157);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(94, 25);
             this.label12.TabIndex = 3;
@@ -329,7 +335,7 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(50, 53);
+            this.label11.Location = new System.Drawing.Point(52, 117);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(136, 25);
             this.label11.TabIndex = 2;
@@ -340,7 +346,7 @@
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(50, 13);
+            this.label10.Location = new System.Drawing.Point(54, 29);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(134, 25);
             this.label10.TabIndex = 1;
@@ -371,14 +377,14 @@
             this.panelCusInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelCusInfo.Location = new System.Drawing.Point(3, 3);
             this.panelCusInfo.Name = "panelCusInfo";
-            this.panelCusInfo.Size = new System.Drawing.Size(623, 208);
+            this.panelCusInfo.Size = new System.Drawing.Size(623, 174);
             this.panelCusInfo.TabIndex = 1;
             // 
             // txtCusPhone
             // 
             this.txtCusPhone.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtCusPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCusPhone.Location = new System.Drawing.Point(230, 122);
+            this.txtCusPhone.Location = new System.Drawing.Point(230, 105);
             this.txtCusPhone.Name = "txtCusPhone";
             this.txtCusPhone.Size = new System.Drawing.Size(340, 30);
             this.txtCusPhone.TabIndex = 4;
@@ -387,7 +393,7 @@
             // 
             this.txtCusName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtCusName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCusName.Location = new System.Drawing.Point(230, 75);
+            this.txtCusName.Location = new System.Drawing.Point(230, 58);
             this.txtCusName.Name = "txtCusName";
             this.txtCusName.Size = new System.Drawing.Size(340, 30);
             this.txtCusName.TabIndex = 3;
@@ -411,7 +417,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(54, 125);
+            this.label3.Location = new System.Drawing.Point(54, 108);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(126, 25);
             this.label3.TabIndex = 1;
@@ -422,7 +428,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(54, 78);
+            this.label1.Location = new System.Drawing.Point(54, 61);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(95, 25);
             this.label1.TabIndex = 0;
@@ -442,7 +448,7 @@
             this.panelSort.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSort.Location = new System.Drawing.Point(632, 3);
             this.panelSort.Name = "panelSort";
-            this.panelSort.Size = new System.Drawing.Size(716, 208);
+            this.panelSort.Size = new System.Drawing.Size(716, 174);
             this.panelSort.TabIndex = 2;
             // 
             // btnReset
@@ -545,6 +551,44 @@
             this.label5.Text = "BỘ LỌC";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // rdByCash
+            // 
+            this.rdByCash.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.rdByCash.AutoSize = true;
+            this.rdByCash.Checked = true;
+            this.rdByCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdByCash.Location = new System.Drawing.Point(16, 72);
+            this.rdByCash.Name = "rdByCash";
+            this.rdByCash.Size = new System.Drawing.Size(109, 29);
+            this.rdByCash.TabIndex = 12;
+            this.rdByCash.TabStop = true;
+            this.rdByCash.Text = "Tiền mặt";
+            this.rdByCash.UseVisualStyleBackColor = true;
+            // 
+            // rdByTransfer
+            // 
+            this.rdByTransfer.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.rdByTransfer.AutoSize = true;
+            this.rdByTransfer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdByTransfer.Location = new System.Drawing.Point(187, 72);
+            this.rdByTransfer.Name = "rdByTransfer";
+            this.rdByTransfer.Size = new System.Drawing.Size(259, 29);
+            this.rdByTransfer.TabIndex = 13;
+            this.rdByTransfer.Text = "Chuyển khoản ngân hàng";
+            this.rdByTransfer.UseVisualStyleBackColor = true;
+            // 
+            // rdByMomo
+            // 
+            this.rdByMomo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.rdByMomo.AutoSize = true;
+            this.rdByMomo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdByMomo.Location = new System.Drawing.Point(508, 72);
+            this.rdByMomo.Name = "rdByMomo";
+            this.rdByMomo.Size = new System.Drawing.Size(88, 29);
+            this.rdByMomo.TabIndex = 14;
+            this.rdByMomo.Text = "Momo";
+            this.rdByMomo.UseVisualStyleBackColor = true;
+            // 
             // UCCheckout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -611,5 +655,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dgvBooks;
         private System.Windows.Forms.Button btnChange;
+        private System.Windows.Forms.RadioButton rdByMomo;
+        private System.Windows.Forms.RadioButton rdByTransfer;
+        private System.Windows.Forms.RadioButton rdByCash;
     }
 }
