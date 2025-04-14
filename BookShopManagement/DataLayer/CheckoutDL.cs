@@ -7,11 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using TransferObject;
+using System.Windows.Forms;
 
 namespace DataLayer
 {
     public class CheckoutDL : DataProvider
     {
+        private OrderDL orderDL;
+        
         public List<Book> GetBooks()
         {
             string sql = "SELECT b.BookID, b.BookName, b.Price, s.Quantity " +
@@ -127,13 +130,13 @@ namespace DataLayer
             }
         }
 
-        public List<Category> LoadCategories()
+        public List<BookCategoryStock> LoadCategories()
         {
-            List<Category> categories = new List<Category>();
+            List<BookCategoryStock> categories = new List<BookCategoryStock>();
 
             try
             {
-                Connect();
+                cn.Open();
 
                 string sql = "SELECT * FROM BookCategory";
                 SqlDataReader reader = MyExecuteReader(sql, CommandType.Text);
@@ -142,7 +145,7 @@ namespace DataLayer
                     string categoryID = reader["CategoryID"].ToString();
                     string categoryName = reader["CategoryName"].ToString();
 
-                    categories.Add(new Category(categoryID, categoryName));
+                    categories.Add(new BookCategoryStock(categoryID, categoryName));
                 }
                 reader.Close();
                 return categories;
@@ -175,5 +178,6 @@ namespace DataLayer
                 throw ex;
             }
         }
+        
     }
 }

@@ -28,7 +28,7 @@ namespace BusinessLayer
         {
             return CheckoutDL.GetBooksByCategory(cate);
         }
-        public List<Category> GetCategories()
+        public List<BookCategoryStock> GetCategories()
         {
             return CheckoutDL.LoadCategories();
         }

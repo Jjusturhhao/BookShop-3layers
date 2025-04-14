@@ -58,7 +58,7 @@
     <Compile Include="Account.cs" />
     <Compile Include="Book.cs" />
     <Compile Include="BookCategoryStock.cs" />
-    <Compile Include="Category.cs" />
+    <Compile Include="CartItem.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Info.cs" />
     <Compile Include="Order.cs" />

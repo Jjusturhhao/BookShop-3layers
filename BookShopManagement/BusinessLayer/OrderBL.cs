@@ -13,6 +13,7 @@ namespace BusinessLayer
     public class OrderBL
     {
         private OrderDL OrderDL;
+
         public OrderBL()
         {
             OrderDL = new OrderDL();
@@ -39,5 +40,7 @@ namespace BusinessLayer
                 throw ex;
             }
         }
+        
+
     }
 }

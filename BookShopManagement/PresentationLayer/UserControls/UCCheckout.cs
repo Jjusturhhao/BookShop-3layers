@@ -47,7 +47,7 @@ namespace PresentationLayer.UserControls
         }
         private void LoadCategoriesToCBX()
         {
-            List<Category> categories = CheckoutBL.GetCategories();
+            List<BookCategoryStock> categories = CheckoutBL.GetCategories();
 
             // Đổ dữ liệu vào ComboBox
             cbxCategories.DataSource = categories;
@@ -201,22 +201,31 @@ namespace PresentationLayer.UserControls
 
         private void CalculateChange()
         {
-            int totalBill = Convert.ToInt32(txtTotalBill.Text);
-            if (string.IsNullOrEmpty(txtTotalPaid.Text))
+            if (rdByCash.Checked == true)
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            int totalPaid = Convert.ToInt32(txtTotalPaid.Text);
+                int totalBill = Convert.ToInt32(txtTotalBill.Text);
+                if (string.IsNullOrEmpty(txtTotalPaid.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                int totalPaid = Convert.ToInt32(txtTotalPaid.Text);
 
-            if (totalPaid < totalBill)
+                if (totalPaid < totalBill)
+                {
+                    MessageBox.Show("Số tiền khách đưa chưa đủ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int change = totalPaid - totalBill;
+                txtChange.Text = change.ToString();
+            }
+            else if (rdByTransfer.Checked == true || rdByMomo.Checked == true)
             {
-                MessageBox.Show("Số tiền khách đưa chưa đủ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                txtTotalPaid.ReadOnly = true;
+                txtChange.ReadOnly = true;
+                btnChange.Enabled = false;
             }
-
-            int change = totalPaid - totalBill;
-            txtChange.Text = change.ToString(); 
         }
 
         private void btnChange_Click(object sender, EventArgs e)
@@ -282,8 +291,12 @@ namespace PresentationLayer.UserControls
         private void btnGenerateBill_Click(object sender, EventArgs e)
         {
             MessageBox.Show("MÌNH CHƯA CÓ LÀM: ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            SaveBill();
         }
-
+        private void SaveBill()
+        {
+             
+        }
         private void btnApply_Click(object sender, EventArgs e)
         {
             txtNameSearch.Text = String.Empty;
