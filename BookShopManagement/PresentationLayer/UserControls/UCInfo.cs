@@ -27,7 +27,7 @@ namespace PresentationLayer.UserControls
 
         private void LoadUserInfo()
         {
-            Info info = infoBL.GetUserInfo(currentUsername); // Dùng InfoBL đúng chuẩn
+            Info info = infoBL.GetUserInfo(currentUsername);
 
             if (info != null)
             {
@@ -49,8 +49,8 @@ namespace PresentationLayer.UserControls
             try
             {
                 Info updatedInfo = new Info(
-                    txtName.Text,
                     txtUsername.Text,
+                    txtName.Text,
                     "", // Password không đổi
                     txtAddress.Text,
                     txtPhone.Text,

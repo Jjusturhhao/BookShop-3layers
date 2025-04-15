@@ -32,7 +32,7 @@ namespace PresentationLayer
 
                 Form mainForm = null;
                 if (userRole == "Admin")
-                    mainForm = new Main(username);
+                    mainForm = new AdminInterface(username);
                 else if (userRole == "Staff")
                     mainForm = new Main(username);
                 else if (userRole == "Customer")

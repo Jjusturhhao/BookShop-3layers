@@ -29,6 +29,18 @@ namespace BusinessLayer
                 throw ex;
             }
         }
+
+        public List<string> GetEmployeeNames()
+        {
+            try
+            {
+                return OrderDL.GetEmployeeNames();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
         public void UpdateOrder(string orderID, string newStatus)
         {
             try

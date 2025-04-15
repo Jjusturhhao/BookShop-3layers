@@ -49,7 +49,7 @@ namespace DataLayer
 
         public bool UpdateUserInfo(Info info)
         {
-            string sql = "UPDATE Users SET Address = @Address, Phone = @Phone, Email = @Email WHERE Username = @Username";
+            string sql = "UPDATE Users SET Address = @Address, PhoneNumber = @Phone, Email = @Email WHERE Username = @Username";
 
             SqlCommand cmd = new SqlCommand(sql);
             cmd.CommandType = CommandType.Text;

@@ -26,27 +26,25 @@ namespace PresentationLayer.UserControls
         private void UCOrders_Load(object sender, EventArgs e)
         {
             LoadOrders();
+            LoadEmployeeNamesToComboBox();
         }
         private void LoadOrders()
         {
             dgvOrders.DataSource = new OrderBL().GetOrders();
 
-            // Tự động fit theo nội dung cho cột Total_Cost
-            dgvOrders.Columns["Total_Cost"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
-            // Các cột còn lại set lại width thủ công
-            dgvOrders.Columns["Order_ID"].Width = 100;
-            dgvOrders.Columns["Customer_Name"].Width = 130;
-            dgvOrders.Columns["Employee_ID"].Width = 110;
-            dgvOrders.Columns["Order_Date"].Width = 110;
-            dgvOrders.Columns["Status"].Width = 130;
-
         }
+
+        public void LoadEmployeeNamesToComboBox()
+        {
+            List<string> employeeNames = orderBL.GetEmployeeNames();  // Sử dụng orderBL đã khởi tạo sẵn
+            cbxEmployeeName.DataSource = employeeNames;
+        }
+
         private void ResetFormControls()
         {
             txtOrderID.Clear();
             txtCustomerName.Clear();
-            txtEmployeeID.Clear();
+            cbxEmployeeName.Items.Clear();
             dateTimePickerOrderDate.Checked = false;
             cbxStatus.Text = "";
             txtTotal.Clear();
@@ -61,7 +59,7 @@ namespace PresentationLayer.UserControls
 
                 txtOrderID.Text = row.Cells["Order_ID"].Value.ToString();
                 txtCustomerName.Text = row.Cells["Customer_Name"].Value.ToString();
-                txtEmployeeID.Text = row.Cells["Employee_ID"].Value.ToString();
+                cbxEmployeeName.Text = row.Cells["Employee_Name"].Value.ToString();
                 if (DateTime.TryParse(row.Cells["Order_Date"].Value.ToString(), out DateTime orderDate))
                 {
                     dateTimePickerOrderDate.Value = orderDate;
@@ -72,7 +70,7 @@ namespace PresentationLayer.UserControls
                 // Chỉ cho phép sửa Status
                 txtOrderID.ReadOnly = true;
                 txtCustomerName.ReadOnly = true;
-                txtEmployeeID.ReadOnly = true;
+                cbxEmployeeName.Enabled = false;
                 txtTotal.ReadOnly = true;
                 dateTimePickerOrderDate.Enabled = false; 
 

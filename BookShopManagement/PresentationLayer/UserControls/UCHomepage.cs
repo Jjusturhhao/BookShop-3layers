@@ -112,7 +112,7 @@ namespace PresentationLayer.UserControls
                 btnBuy.Click += (s, e) =>
                 {
                     string bookID = row["BookID"].ToString();
-                    
+
                     cartBL.AddToCart(bookID);
 
                     if (ucCart == null)
