@@ -34,13 +34,15 @@ namespace BusinessLayer
             return bookDL.GenerateNextBookID();
         }
 
-
         public Book GetEmptyBook()
         {
             return bookDL.GetEmptyBook();
         }
 
-
+        public Book GetBookByID(string bookID)
+        {
+            return bookDL.GetBookByID(bookID);
+        }
     }
 
 }

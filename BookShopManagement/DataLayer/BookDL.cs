@@ -9,6 +9,7 @@ using TransferObject;
 using System.Net;
 using DataLayer;
 using System.Diagnostics;
+using System.Data.Common;
 
 namespace DataLayer
 {
@@ -35,20 +36,20 @@ namespace DataLayer
                         int price = Convert.ToInt32(reader["Price"]);
                         string bookImageUrl = reader["BookImage"].ToString();
 
-                        byte[] imageBytes = null;
-                        if (!string.IsNullOrEmpty(bookImageUrl))
-                        {
-                            try
-                            {
-                                imageBytes = client.DownloadData(bookImageUrl);
-                            }
-                            catch
-                            {
-                                imageBytes = null;
-                            }
-                        }
+                        //byte[] imageBytes = null;
+                        //if (!string.IsNullOrEmpty(bookImageUrl))
+                        //{
+                        //    try
+                        //    {
+                        //        imageBytes = client.DownloadData(bookImageUrl);
+                        //    }
+                        //    catch
+                        //    {
+                        //        imageBytes = null;
+                        //    }
+                        //}
 
-                        Book book = new Book(bookid, bookName, categoryID, author, price, imageBytes);
+                        Book book = new Book(bookid, bookName, categoryID, author, price, bookImageUrl);
                         books.Add(book);
                     }
                 }
@@ -91,8 +92,70 @@ namespace DataLayer
         {
             return new Book("", "", "", "", 0, null);
         }
+        public Book GetBookByID(string bookID)
+        {
+            Book book = null;
+            string sql = "SELECT b.BookID, b.BookName, b.CategoryID, c.CategoryName, b.Author, b.Price, b.BookImage " +
+                "FROM Book b " +
+                "JOIN BookCategory c ON b.CategoryID = c.CategoryID " +
+                "WHERE BookID = @BookID";
+            try
+            {
+                Connect();
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                cmd.Parameters.AddWithValue("@BookID", bookID);
 
+                SqlDataReader reader = cmd.ExecuteReader();
+                string bookName = "", categoryID = "", categoryName = "", author = "", bookImageUrl = "";
+                int price = 0;
+                if (reader.Read())
+                {
+                    bookName = reader["BookName"].ToString();
+                    categoryID = reader["CategoryID"].ToString();
+                    categoryName = reader["CategoryName"].ToString();
+                    author = reader["Author"].ToString();
+                    price = Convert.ToInt32(reader["Price"]);
+                    bookImageUrl = reader["BookImage"].ToString();
+                }
+                reader.Close();
 
+                int quantity = GetQuantity(bookID);
+                book = new Book(bookID, bookName, categoryID, author, price, bookImageUrl);
+                book.Categoryname = categoryName;
+                book.Quantity = quantity;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+            return book;
+        }
+        public int GetQuantity(string bookID)
+        {
+            try
+            {
+                Connect();
 
+                string sql = "GetStockQuantity ";  // Tên của stored procedure
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@BookID", bookID);
+
+                object result = cmd.ExecuteScalar();
+                return Convert.ToInt32(result);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+        }
     }
 }

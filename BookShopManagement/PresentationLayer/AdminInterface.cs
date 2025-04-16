@@ -23,7 +23,7 @@ namespace PresentationLayer
 
         private void AdminInterface_Load(object sender, EventArgs e)
         {
-            UCHomepage homeUC = new UCHomepage(null);
+            UCHomepage homeUC = new UCHomepage(null, null);
             homeUC.Dock = DockStyle.Fill;
             tabHomepage.Controls.Add(homeUC);
             homeUC.BringToFront(); // đảm bảo nó hiển thị
