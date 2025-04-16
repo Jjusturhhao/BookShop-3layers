@@ -1,6 +1,6 @@
 ﻿namespace PresentationLayer
 {
-    partial class Book
+    partial class Books
     {
         /// <summary>
         /// Required designer variable.

@@ -6,6 +6,7 @@ using System.Net;
 using System.Windows.Forms;
 using BusinessLayer;
 using TransferObject;
+using static Guna.UI2.Native.WinApi;
 
 namespace PresentationLayer.UserControls
 {
@@ -17,14 +18,16 @@ namespace PresentationLayer.UserControls
         private string currentCategoryID = null;
         private UCCart ucCart;
         private CartBL cartBL;
+        private Action<string> showBookDetailCallback;
 
-        public UCHomepage(UCCart cart)
+        public UCHomepage(UCCart cart, Action<string> callback)
         {
             InitializeComponent();
             homepageBL = new HomepageBL();
             cartBL = new CartBL();
             ucCart = cart;
             Load += UCHomepage_Load;
+            showBookDetailCallback = callback;
         }
 
         private void UCHomepage_Load(object sender, EventArgs e)
@@ -123,15 +126,21 @@ namespace PresentationLayer.UserControls
                     {
                         ucCart.LoadCartItems();
                     }
-
-
                     MessageBox.Show("Sản phẩm đã được thêm vào giỏ hàng của bạn!");
                 };
 
                 pictureBox.Click += (s, e) =>
                 {
-                    BookDetail bookDetail = new BookDetail();
-                    bookDetail.Show();
+                    string bookID = row["BookID"].ToString();
+                    //showBookDetailCallback?.Invoke(bookID); // Gọi callback khi click
+                    if (showBookDetailCallback == null)
+                    {
+                        MessageBox.Show("Callback không được gán.");
+                    }
+                    else
+                    {
+                        showBookDetailCallback(bookID);
+                    }
                 };
 
                 panel.Controls.Add(pictureBox);
@@ -152,6 +161,8 @@ namespace PresentationLayer.UserControls
             int totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
             LoadPaginationControls(totalRecords, totalPages);
         }
+
+        
 
         private void LoadPaginationControls(int totalRecords, int totalPages)
         {
@@ -176,9 +187,6 @@ namespace PresentationLayer.UserControls
                 }
             };
         }
-        private void AddToCart(string BookID)
-        {
-
-        }
+        
     }
 }

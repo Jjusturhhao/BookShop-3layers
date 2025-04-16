@@ -84,6 +84,7 @@
             this.flpCart.Name = "flpCart";
             this.flpCart.Size = new System.Drawing.Size(570, 517);
             this.flpCart.TabIndex = 3;
+            this.flpCart.WrapContents = false;
             // 
             // panel3
             // 

@@ -17,10 +17,10 @@ namespace PresentationLayer.UserControls
     {
         private CartBL cartBL;
 
-        public UCCart()
+        public UCCart(CartBL cartBL)
         {
             InitializeComponent();
-            cartBL = new CartBL();
+            this.cartBL = cartBL;
             Load += UCCart_Load;
         }
 

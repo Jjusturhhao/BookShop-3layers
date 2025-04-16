@@ -11,12 +11,12 @@ using System.Windows.Forms;
 
 namespace PresentationLayer
 {
-    public partial class Book : Form
+    public partial class Books : Form
     {
         public string StockID;
         SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=BookStoreManagement;Integrated Security=True;TrustServerCertificate=True");
 
-        public Book()
+        public Books()
         {
             InitializeComponent();
         }

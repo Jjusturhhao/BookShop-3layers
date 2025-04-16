@@ -10,26 +10,30 @@ namespace PresentationLayer
     public partial class Homepage : Form
     {
         private HomepageBL homepageBL;
+        private BookBL bookBL;
+        private CartBL cartBL;
         private UCHomepage ucHomepage;
         private UCCart ucCart;
         private UCCusOrders ucCusOrders;   
         private UCInfo ucInfo; 
         private ContextMenuStrip accountMenu;
+        private UCBookDetail ucBookDetail;
 
         public Homepage(string username)
         {
             InitializeComponent();
             homepageBL = new HomepageBL();
-
+            bookBL = new BookBL();
+            cartBL = new CartBL();
             // Lưu tham chiếu đến picBanner
             picBanner = this.picBanner;
 
-
-            ucCart = new UCCart();
+            
+            ucCart = new UCCart(cartBL); //cartBL dùng chung
             ucCart.Dock = DockStyle.Fill;
 
             // Khởi tạo tất cả UserControl một lần duy nhất
-            ucHomepage = new UCHomepage(ucCart);
+            ucHomepage = new UCHomepage(ucCart, ShowBookDetail); //chia sẻ cùng giỏ hàng dùng chung
             ucHomepage.Dock = DockStyle.Fill;
 
             ucCusOrders = new UCCusOrders();
@@ -194,6 +198,34 @@ namespace PresentationLayer
             };
         }
 
-       
+        private void ShowBookDetail(string bookID)
+        {
+            if (ucBookDetail != null)
+            {
+                panelContainer.Controls.Remove(ucBookDetail);
+                ucBookDetail.Dispose();
+            }
+            ucBookDetail = new UCBookDetail(bookID, ucCart, cartBL);
+            ucBookDetail.Dock = DockStyle.Fill;
+            panelContainer.Controls.Add(ucBookDetail);
+            HideAllUserControls();
+            ucBookDetail.Visible = true;
+            ucBookDetail.BringToFront();
+
+            ucBookDetail.OnBuyClick = () =>
+            {
+                HideAllUserControls();
+                ucCart.Visible = true;
+                ucCart.BringToFront();
+                ucCart.LoadCartItems();
+            };
+
+            ucBookDetail.OnBackClick = () =>
+            {
+                HideAllUserControls();
+                ucHomepage.Visible = true;
+                ucHomepage.BringToFront();
+            };
+        }
     }
 }
