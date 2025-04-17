@@ -25,7 +25,7 @@ namespace PresentationLayer
         public Homepage(string username)
         {
             InitializeComponent();
-            username = username;
+            this.username = username;
             homepageBL = new HomepageBL();
             bookBL = new BookBL();
             cartBL = new CartBL();
@@ -42,7 +42,7 @@ namespace PresentationLayer
             ucHomepage = new UCHomepage(ucCart, ShowBookDetail); //chia sẻ cùng giỏ hàng dùng chung
             ucHomepage.Dock = DockStyle.Fill;
 
-            ucCusOrders = new UCCusOrders();
+            ucCusOrders = new UCCusOrders(username);
             ucCusOrders.Dock = DockStyle.Fill;
 
             ucInfo = new UCInfo(username);
@@ -252,9 +252,9 @@ namespace PresentationLayer
             uCFormOrder.OnOrderSuccess = () =>
             {
                 HideAllUserControls();
+                ucCusOrders.LoadOrders(); // Load lại dữ liệu mới nhất trước khi hiện
                 ucCusOrders.Visible = true;
                 ucCusOrders.BringToFront();
-                //ucCusOrders.LoadOrders();
             };
         }
     }

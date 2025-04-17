@@ -1,25 +1,125 @@
-﻿using System;
+﻿using BusinessLayer;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using TransferObject;
 
 namespace PresentationLayer.UserControls
 {
     public partial class UCCusOrders : UserControl
     {
-        public UCCusOrders()
+        private CusOrderBL cusOrderBL;
+        private string currentUsername;
+
+        public UCCusOrders(string username)
         {
             InitializeComponent();
+            cusOrderBL = new CusOrderBL();
+            currentUsername = username;
         }
 
         private void UCCusOrders_Load(object sender, EventArgs e)
         {
+            LoadCustomerOrders();
+            CustomizeGrid();
+        }
 
+        // ✅ Public method để Homepage.cs có thể gọi khi cần reload
+        public void LoadOrders()
+        {
+            LoadCustomerOrders();
+        }
+
+        private void LoadCustomerOrders()
+        {
+            try
+            {
+                List<CusOrder> orders = cusOrderBL.GetCusOrdersByUsername(currentUsername);
+                dgvOrders.DataSource = orders;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải đơn hàng: " + ex.Message);
+            }
+        }
+
+        private void CustomizeGrid()
+        {
+            dgvOrders.AutoGenerateColumns = false;
+            dgvOrders.Columns.Clear();
+
+            dgvOrders.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "STT",
+                DataPropertyName = "Index",
+            });
+            dgvOrders.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Mã đơn",
+                DataPropertyName = "Orderid",
+            });
+            dgvOrders.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Ngày đặt",
+                DataPropertyName = "Orderdate",
+            });
+            dgvOrders.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Tổng tiền",
+                DataPropertyName = "Total",
+            });
+            dgvOrders.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Trạng thái",
+                DataPropertyName = "Status",
+            });
+
+            // Cột nút "Xem chi tiết"
+            DataGridViewButtonColumn btnDetail = new DataGridViewButtonColumn();
+            btnDetail.HeaderText = "";
+            btnDetail.Text = "Xem chi tiết";
+            btnDetail.UseColumnTextForButtonValue = true;
+            btnDetail.Width = 100;
+            dgvOrders.Columns.Add(btnDetail);
+        }
+
+        private void dgvOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvOrders.Columns[e.ColumnIndex].DataPropertyName == "Total" && e.Value != null)
+            {
+                if (int.TryParse(e.Value.ToString(), out int total))
+                {
+                    e.Value = total.ToString("#,##0").Replace(",", ".");
+                    e.FormattingApplied = true;
+                }
+            }
+
+            if (dgvOrders.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                DataGridViewButtonCell buttonCell = dgvOrders.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewButtonCell;
+                if (buttonCell != null)
+                {
+                    buttonCell.Style.BackColor = System.Drawing.Color.MediumSeaGreen;   // Màu nền nút
+                    buttonCell.Style.ForeColor = System.Drawing.Color.White;            // Màu chữ nút
+                    buttonCell.Style.Font = new System.Drawing.Font("Segoe UI", 12, System.Drawing.FontStyle.Bold);
+                }
+            }
+        }
+
+        private void dgvOrders_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Nếu là cột nút cuối cùng (cột "Xem chi tiết")
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgvOrders.Columns.Count - 1)
+            {
+                // Lấy orderID từ dòng được chọn
+                string orderID = dgvOrders.Rows[e.RowIndex].Cells["Orderid"].Value.ToString();
+
+                // Mở form chi tiết đơn hàng (hoặc UC)
+                MessageBox.Show("Hiện chi tiết đơn hàng: " + orderID);
+
+                // TODO: Ở đây bạn có thể mở một form chi tiết đơn hàng, truyền orderID vô
+            }
         }
     }
 }

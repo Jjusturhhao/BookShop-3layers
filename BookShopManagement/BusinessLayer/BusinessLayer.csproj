@@ -60,6 +60,7 @@
     <Compile Include="CartBL.cs" />
     <Compile Include="CheckoutBL.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="CusOrderBL.cs" />
     <Compile Include="HomepageBL.cs" />
     <Compile Include="InfoBL.cs" />
     <Compile Include="LoginBL.cs" />

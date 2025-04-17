@@ -60,6 +60,7 @@
     <Compile Include="BookCategoryStock.cs" />
     <Compile Include="CartItem.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="CusOrder.cs" />
     <Compile Include="Info.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

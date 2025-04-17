@@ -77,9 +77,10 @@
             this.cbxSupplier.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbxSupplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxSupplier.FormattingEnabled = true;
-            this.cbxSupplier.Location = new System.Drawing.Point(263, 466);
+            this.cbxSupplier.Location = new System.Drawing.Point(296, 583);
+            this.cbxSupplier.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbxSupplier.Name = "cbxSupplier";
-            this.cbxSupplier.Size = new System.Drawing.Size(308, 37);
+            this.cbxSupplier.Size = new System.Drawing.Size(346, 40);
             this.cbxSupplier.TabIndex = 41;
             // 
             // lbSupplier
@@ -87,9 +88,9 @@
             this.lbSupplier.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbSupplier.AutoSize = true;
             this.lbSupplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSupplier.Location = new System.Drawing.Point(82, 466);
+            this.lbSupplier.Location = new System.Drawing.Point(92, 583);
             this.lbSupplier.Name = "lbSupplier";
-            this.lbSupplier.Size = new System.Drawing.Size(160, 29);
+            this.lbSupplier.Size = new System.Drawing.Size(188, 32);
             this.lbSupplier.TabIndex = 34;
             this.lbSupplier.Text = "Nhà cung cấp";
             // 
@@ -97,9 +98,10 @@
             // 
             this.txtAuthor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAuthor.Location = new System.Drawing.Point(263, 418);
+            this.txtAuthor.Location = new System.Drawing.Point(296, 523);
+            this.txtAuthor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtAuthor.Name = "txtAuthor";
-            this.txtAuthor.Size = new System.Drawing.Size(308, 34);
+            this.txtAuthor.Size = new System.Drawing.Size(346, 39);
             this.txtAuthor.TabIndex = 33;
             // 
             // lbAuthor
@@ -107,9 +109,9 @@
             this.lbAuthor.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbAuthor.AutoSize = true;
             this.lbAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAuthor.Location = new System.Drawing.Point(82, 418);
+            this.lbAuthor.Location = new System.Drawing.Point(92, 523);
             this.lbAuthor.Name = "lbAuthor";
-            this.lbAuthor.Size = new System.Drawing.Size(93, 29);
+            this.lbAuthor.Size = new System.Drawing.Size(107, 32);
             this.lbAuthor.TabIndex = 32;
             this.lbAuthor.Text = "Tác giả";
             // 
@@ -119,27 +121,30 @@
             this.cbxCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbxCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxCategory.FormattingEnabled = true;
-            this.cbxCategory.Location = new System.Drawing.Point(263, 360);
+            this.cbxCategory.Location = new System.Drawing.Point(296, 451);
+            this.cbxCategory.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbxCategory.Name = "cbxCategory";
-            this.cbxCategory.Size = new System.Drawing.Size(308, 37);
+            this.cbxCategory.Size = new System.Drawing.Size(346, 40);
             this.cbxCategory.TabIndex = 31;
             // 
             // txtBookName
             // 
             this.txtBookName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBookName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBookName.Location = new System.Drawing.Point(263, 318);
+            this.txtBookName.Location = new System.Drawing.Point(296, 399);
+            this.txtBookName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBookName.Name = "txtBookName";
-            this.txtBookName.Size = new System.Drawing.Size(308, 34);
+            this.txtBookName.Size = new System.Drawing.Size(346, 39);
             this.txtBookName.TabIndex = 29;
             // 
             // txtBookID
             // 
             this.txtBookID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBookID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBookID.Location = new System.Drawing.Point(263, 267);
+            this.txtBookID.Location = new System.Drawing.Point(296, 335);
+            this.txtBookID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBookID.Name = "txtBookID";
-            this.txtBookID.Size = new System.Drawing.Size(308, 34);
+            this.txtBookID.Size = new System.Drawing.Size(346, 39);
             this.txtBookID.TabIndex = 28;
             // 
             // lbCategory
@@ -147,9 +152,9 @@
             this.lbCategory.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbCategory.AutoSize = true;
             this.lbCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCategory.Location = new System.Drawing.Point(78, 362);
+            this.lbCategory.Location = new System.Drawing.Point(88, 453);
             this.lbCategory.Name = "lbCategory";
-            this.lbCategory.Size = new System.Drawing.Size(101, 29);
+            this.lbCategory.Size = new System.Drawing.Size(116, 32);
             this.lbCategory.TabIndex = 26;
             this.lbCategory.Text = "Thể loại";
             // 
@@ -158,9 +163,9 @@
             this.lbBookName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbBookName.AutoSize = true;
             this.lbBookName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbBookName.Location = new System.Drawing.Point(78, 318);
+            this.lbBookName.Location = new System.Drawing.Point(88, 399);
             this.lbBookName.Name = "lbBookName";
-            this.lbBookName.Size = new System.Drawing.Size(56, 29);
+            this.lbBookName.Size = new System.Drawing.Size(63, 32);
             this.lbBookName.TabIndex = 25;
             this.lbBookName.Text = "Tên";
             // 
@@ -169,9 +174,9 @@
             this.lbBookID.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbBookID.AutoSize = true;
             this.lbBookID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbBookID.Location = new System.Drawing.Point(78, 273);
+            this.lbBookID.Location = new System.Drawing.Point(88, 342);
             this.lbBookID.Name = "lbBookID";
-            this.lbBookID.Size = new System.Drawing.Size(92, 29);
+            this.lbBookID.Size = new System.Drawing.Size(106, 32);
             this.lbBookID.TabIndex = 24;
             this.lbBookID.Text = "BookID";
             // 
@@ -182,9 +187,10 @@
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(420, 72);
+            this.btnRefresh.Location = new System.Drawing.Point(473, 90);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(206, 42);
+            this.btnRefresh.Size = new System.Drawing.Size(232, 52);
             this.btnRefresh.TabIndex = 21;
             this.btnRefresh.Text = "Làm mới";
             this.btnRefresh.UseVisualStyleBackColor = false;
@@ -197,9 +203,10 @@
             this.btnUpdateBook.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnUpdateBook.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateBook.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateBook.Location = new System.Drawing.Point(183, 14);
+            this.btnUpdateBook.Location = new System.Drawing.Point(207, 18);
+            this.btnUpdateBook.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdateBook.Name = "btnUpdateBook";
-            this.btnUpdateBook.Size = new System.Drawing.Size(205, 43);
+            this.btnUpdateBook.Size = new System.Drawing.Size(231, 54);
             this.btnUpdateBook.TabIndex = 19;
             this.btnUpdateBook.Text = "Cập nhật";
             this.btnUpdateBook.UseVisualStyleBackColor = false;
@@ -211,9 +218,10 @@
             this.btnDeleteBook.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDeleteBook.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteBook.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteBook.Location = new System.Drawing.Point(183, 71);
+            this.btnDeleteBook.Location = new System.Drawing.Point(207, 89);
+            this.btnDeleteBook.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDeleteBook.Name = "btnDeleteBook";
-            this.btnDeleteBook.Size = new System.Drawing.Size(205, 43);
+            this.btnDeleteBook.Size = new System.Drawing.Size(231, 54);
             this.btnDeleteBook.TabIndex = 18;
             this.btnDeleteBook.Text = "Xóa sách";
             this.btnDeleteBook.UseVisualStyleBackColor = false;
@@ -225,9 +233,10 @@
             this.btnEntryBook.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEntryBook.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEntryBook.ForeColor = System.Drawing.Color.White;
-            this.btnEntryBook.Location = new System.Drawing.Point(420, 14);
+            this.btnEntryBook.Location = new System.Drawing.Point(473, 18);
+            this.btnEntryBook.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEntryBook.Name = "btnEntryBook";
-            this.btnEntryBook.Size = new System.Drawing.Size(205, 43);
+            this.btnEntryBook.Size = new System.Drawing.Size(231, 54);
             this.btnEntryBook.TabIndex = 17;
             this.btnEntryBook.Text = "Thêm mới";
             this.btnEntryBook.UseVisualStyleBackColor = false;
@@ -241,10 +250,10 @@
             this.panel5.Controls.Add(this.btnDeleteBook);
             this.panel5.Controls.Add(this.btnEntryBook);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 551);
+            this.panel5.Location = new System.Drawing.Point(0, 691);
             this.panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(805, 123);
+            this.panel5.Size = new System.Drawing.Size(906, 153);
             this.panel5.TabIndex = 0;
             // 
             // panel4
@@ -252,10 +261,10 @@
             this.panel4.Controls.Add(this.panel6);
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(948, 106);
+            this.panel4.Location = new System.Drawing.Point(1067, 132);
             this.panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(805, 674);
+            this.panel4.Size = new System.Drawing.Size(906, 844);
             this.panel4.TabIndex = 3;
             // 
             // panel6
@@ -279,16 +288,16 @@
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(805, 551);
+            this.panel6.Size = new System.Drawing.Size(906, 691);
             this.panel6.TabIndex = 1;
             // 
             // btnAddCategory
             // 
             this.btnAddCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddCategory.Location = new System.Drawing.Point(588, 360);
+            this.btnAddCategory.Location = new System.Drawing.Point(662, 450);
             this.btnAddCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAddCategory.Name = "btnAddCategory";
-            this.btnAddCategory.Size = new System.Drawing.Size(166, 37);
+            this.btnAddCategory.Size = new System.Drawing.Size(187, 46);
             this.btnAddCategory.TabIndex = 46;
             this.btnAddCategory.Text = "Thêm danh mục";
             this.btnAddCategory.UseVisualStyleBackColor = true;
@@ -298,9 +307,10 @@
             // 
             this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrice.Location = new System.Drawing.Point(263, 509);
+            this.txtPrice.Location = new System.Drawing.Point(296, 637);
+            this.txtPrice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(308, 34);
+            this.txtPrice.Size = new System.Drawing.Size(346, 39);
             this.txtPrice.TabIndex = 45;
             // 
             // lbPrice
@@ -308,19 +318,19 @@
             this.lbPrice.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbPrice.AutoSize = true;
             this.lbPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPrice.Location = new System.Drawing.Point(82, 509);
+            this.lbPrice.Location = new System.Drawing.Point(92, 637);
             this.lbPrice.Name = "lbPrice";
-            this.lbPrice.Size = new System.Drawing.Size(50, 29);
+            this.lbPrice.Size = new System.Drawing.Size(59, 32);
             this.lbPrice.TabIndex = 44;
             this.lbPrice.Text = "Giá";
             // 
             // btnUpload
             // 
             this.btnUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpload.Location = new System.Drawing.Point(332, 177);
+            this.btnUpload.Location = new System.Drawing.Point(374, 221);
             this.btnUpload.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(152, 42);
+            this.btnUpload.Size = new System.Drawing.Size(171, 52);
             this.btnUpload.TabIndex = 43;
             this.btnUpload.Text = "Tải ảnh";
             this.btnUpload.UseVisualStyleBackColor = true;
@@ -328,10 +338,10 @@
             // picBook
             // 
             this.picBook.ImageRotate = 0F;
-            this.picBook.Location = new System.Drawing.Point(263, 2);
+            this.picBook.Location = new System.Drawing.Point(296, 2);
             this.picBook.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.picBook.Name = "picBook";
-            this.picBook.Size = new System.Drawing.Size(286, 217);
+            this.picBook.Size = new System.Drawing.Size(322, 271);
             this.picBook.TabIndex = 42;
             this.picBook.TabStop = false;
             // 
@@ -358,10 +368,11 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvBook.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvBook.Location = new System.Drawing.Point(0, 0);
+            this.dgvBook.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvBook.Name = "dgvBook";
             this.dgvBook.RowHeadersWidth = 51;
             this.dgvBook.RowTemplate.Height = 24;
-            this.dgvBook.Size = new System.Drawing.Size(940, 673);
+            this.dgvBook.Size = new System.Drawing.Size(1058, 841);
             this.dgvBook.TabIndex = 3;
             this.dgvBook.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvBook_CellFormatting);
             this.dgvBook.Click += new System.EventHandler(this.dgvBook_Click);
@@ -370,10 +381,10 @@
             // 
             this.panel3.Controls.Add(this.dgvBook);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(3, 106);
+            this.panel3.Location = new System.Drawing.Point(3, 132);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(939, 674);
+            this.panel3.Size = new System.Drawing.Size(1058, 844);
             this.panel3.TabIndex = 2;
             // 
             // label1
@@ -383,7 +394,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(801, 96);
+            this.label1.Size = new System.Drawing.Size(902, 122);
             this.label1.TabIndex = 0;
             this.label1.Text = "Quản lý sách";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -394,10 +405,10 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(948, 2);
+            this.panel2.Location = new System.Drawing.Point(1067, 2);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(805, 100);
+            this.panel2.Size = new System.Drawing.Size(906, 126);
             this.panel2.TabIndex = 1;
             // 
             // btnSearch
@@ -407,9 +418,10 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSearch.Location = new System.Drawing.Point(528, 27);
+            this.btnSearch.Location = new System.Drawing.Point(595, 35);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(176, 42);
+            this.btnSearch.Size = new System.Drawing.Size(198, 52);
             this.btnSearch.TabIndex = 17;
             this.btnSearch.Text = "Tìm kiếm";
             this.btnSearch.UseVisualStyleBackColor = false;
@@ -418,9 +430,10 @@
             // 
             this.txtSearch.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(232, 32);
+            this.txtSearch.Location = new System.Drawing.Point(262, 41);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(270, 34);
+            this.txtSearch.Size = new System.Drawing.Size(303, 39);
             this.txtSearch.TabIndex = 16;
             // 
             // panel1
@@ -432,7 +445,7 @@
             this.panel1.Location = new System.Drawing.Point(3, 2);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(939, 100);
+            this.panel1.Size = new System.Drawing.Size(1058, 126);
             this.panel1.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -451,18 +464,18 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.66666F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1756, 782);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1976, 978);
             this.tableLayoutPanel1.TabIndex = 1;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // UCBook
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "UCBook";
-            this.Size = new System.Drawing.Size(1756, 782);
+            this.Size = new System.Drawing.Size(1976, 978);
             this.Load += new System.EventHandler(this.UCBook_Load);
             this.panel5.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
