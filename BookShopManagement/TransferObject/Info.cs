@@ -8,6 +8,7 @@ namespace TransferObject
 {
     public class Info
     {
+        private string id;
         private string user;
         private string name;
         private string pass;
@@ -15,6 +16,7 @@ namespace TransferObject
         private string phone;
         private string email;
 
+        public string User_ID { get; set; }
         public string Username { get; set; }
         public string Name { get; set; }
         public string Pass { get; set; }

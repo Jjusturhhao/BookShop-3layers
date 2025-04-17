@@ -9,6 +9,7 @@ namespace TransferObject
     public class Order
     {
         public string Order_ID { get; set; }
+        public string Customer_ID { get; set; }
         public string Customer_Name { get; set; }
         public string Employee_Name { get; set; }
         public DateTime Order_Date { get; set; }

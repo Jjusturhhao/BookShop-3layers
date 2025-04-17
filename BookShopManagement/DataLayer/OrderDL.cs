@@ -104,6 +104,97 @@ namespace DataLayer
                 DisConnect();  // Ngắt kết nối
             }
         }
+        public string GenerateOrderID()
+        {
+            string newUserId = string.Empty;
+            string sql = "SELECT MAX(CAST(SUBSTRING(Order_ID, 4, LEN(Order_ID) - 3) AS INT)) FROM Orders ";
+            int nextOrderId = 1; // Mặc định nếu chưa có Order nào
+            try
+            {
+                Connect();
+                using (SqlCommand getMaxUserIdCmd = new SqlCommand(sql, cn))
+                {
+                    object maxIdObj = getMaxUserIdCmd.ExecuteScalar();
+                    if (maxIdObj != DBNull.Value) // Nếu có dữ liệu trong DB
+                    {
+                        nextOrderId = Convert.ToInt32(maxIdObj) + 1; // Lấy số lớn nhất + 1
+                    }
+                }
+                newUserId = "ORD" + nextOrderId;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                DisConnect();  
+            }
+            return newUserId;
+        }
+        
+        public void SaveOrder(string orderID, string customerID, string employeeID, DateTime orderDate, string status)
+        {
+            string insertOrderQuery = "INSERT INTO Orders (Order_ID, Customer_ID, Employee_ID, Order_Date, Status) " +
+                                      "VALUES (@Order_ID, @Customer_ID, @Employee_ID, @Order_Date, @Status)";
+
+            try
+            {
+                Connect();
+                using (SqlCommand cmd = new SqlCommand(insertOrderQuery, cn))
+                {
+                    cmd.Parameters.AddWithValue("@Order_ID", orderID);
+                    cmd.Parameters.AddWithValue("@Customer_ID", customerID);
+                    cmd.Parameters.AddWithValue("@Employee_ID", string.IsNullOrEmpty(employeeID) ? (object)DBNull.Value : employeeID);
+                    cmd.Parameters.AddWithValue("@Order_Date", orderDate);
+                    cmd.Parameters.AddWithValue("@Status", status);
+
+                    cmd.ExecuteNonQuery(); // Thực thi câu lệnh insert
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                Console.WriteLine($"SQL Error: {sqlEx.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"General Error: {ex.Message}");
+            }
+            finally
+            {
+                DisConnect();
+            }
+        }
+        public void SaveOrderDetail(string orderID, List<CartItem> cartItems)
+        {
+            string insertOrderDetailQuery = "INSERT INTO OrderDetails (Order_ID, StockID, Qty_sold, PriceAtOrderTime) " +
+                                            "VALUES (@Order_ID, @StockID, @Qty_sold, @PriceAtOrderTime)";
+
+            try
+            {
+                Connect();
+
+                // Lặp qua từng sản phẩm trong giỏ hàng và lưu vào OrderDetails
+                foreach (CartItem cartItem in cartItems)
+                {
+                    SqlCommand cmd = new SqlCommand(insertOrderDetailQuery, cn);
+                    cmd.Parameters.AddWithValue("@Order_ID", orderID);  
+                    cmd.Parameters.AddWithValue("@StockID", cartItem.StockID);  
+                    cmd.Parameters.AddWithValue("@Qty_sold", cartItem.Quantity);  
+                    cmd.Parameters.AddWithValue("@PriceAtOrderTime", cartItem.UnitPrice);  
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khi lưu chi tiết đơn hàng: {ex.Message}");
+            }
+            finally
+            {
+                DisConnect();
+            }
+        }
 
     }
 }

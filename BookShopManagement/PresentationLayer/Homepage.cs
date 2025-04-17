@@ -9,6 +9,8 @@ namespace PresentationLayer
 {
     public partial class Homepage : Form
     {
+        private string username;
+
         private HomepageBL homepageBL;
         private BookBL bookBL;
         private CartBL cartBL;
@@ -18,17 +20,21 @@ namespace PresentationLayer
         private UCInfo ucInfo; 
         private ContextMenuStrip accountMenu;
         private UCBookDetail ucBookDetail;
+        private UCFormOrder uCFormOrder;
 
         public Homepage(string username)
         {
             InitializeComponent();
+            username = username;
             homepageBL = new HomepageBL();
             bookBL = new BookBL();
             cartBL = new CartBL();
             // Lưu tham chiếu đến picBanner
             picBanner = this.picBanner;
 
-            
+            uCFormOrder = new UCFormOrder(username, cartBL); //cartBL dùng chung
+            uCFormOrder.Dock = DockStyle.Fill;
+
             ucCart = new UCCart(cartBL); //cartBL dùng chung
             ucCart.Dock = DockStyle.Fill;
 
@@ -47,6 +53,7 @@ namespace PresentationLayer
             panelContainer.Controls.Add(ucCart);
             panelContainer.Controls.Add(ucCusOrders);
             panelContainer.Controls.Add(ucInfo);
+            panelContainer.Controls.Add(uCFormOrder);
 
             // Hiển thị trang chủ mặc định và ẩn các UC khác
             ucHomepage.Visible = false; ;
@@ -154,6 +161,8 @@ namespace PresentationLayer
             ucCart.BringToFront();
 
             ucCart.LoadCartItems();
+
+            ucCart.OnOrderClick = () => ShowOrderForm(); //truyền delegate
         }
 
         private void btnOrder_Click(object sender, EventArgs e)
@@ -225,6 +234,27 @@ namespace PresentationLayer
                 HideAllUserControls();
                 ucHomepage.Visible = true;
                 ucHomepage.BringToFront();
+            };
+        }
+        private void ShowOrderForm()
+        {
+            HideAllUserControls();
+            uCFormOrder.Visible = true;
+            uCFormOrder.BringToFront();
+
+            uCFormOrder.OnBackToCartClick = () =>
+            {
+                HideAllUserControls();
+                ucCart.Visible = true;
+                ucCart.BringToFront();
+                ucCart.LoadCartItems(); // Tải lại giỏ hàng sau khi quay về
+            };
+            uCFormOrder.OnOrderSuccess = () =>
+            {
+                HideAllUserControls();
+                ucCusOrders.Visible = true;
+                ucCusOrders.BringToFront();
+                //ucCusOrders.LoadOrders();
             };
         }
     }

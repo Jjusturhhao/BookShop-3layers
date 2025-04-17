@@ -11,6 +11,7 @@ namespace TransferObject
     {
         public string BookID { get; set; }
         public string BookName { get; set; }
+        public string StockID { get; set; }
         public int UnitPrice { get; set; }
         public int Quantity { get; set; }
 
