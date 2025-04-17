@@ -21,6 +21,11 @@ namespace BusinessLayer
         {
             return cartItems;
         }
+        public void ClearCart()
+        {
+            cartItems.Clear();  // Xóa toàn bộ các mục trong giỏ hàng
+        }
+
         public void AddToCart(string bookID)
         {
             CartItem existing = null;
@@ -93,5 +98,6 @@ namespace BusinessLayer
 
             return totalQuantity;
         }
+        
     }
 }

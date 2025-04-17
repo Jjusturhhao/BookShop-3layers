@@ -16,6 +16,7 @@ namespace PresentationLayer.UserControls
     public partial class UCCart : UserControl
     {
         private CartBL cartBL;
+        public Action OnOrderClick;
 
         public UCCart(CartBL cartBL)
         {
@@ -51,7 +52,7 @@ namespace PresentationLayer.UserControls
                 Font = new Font("Arial", 14, FontStyle.Bold),
                 AutoSize = true,
                 Location = new Point(10, 10),
-                Width = (int)(headerPanel.Width * 0.5) - 20
+                Width = (int)(headerPanel.Width * 0.4) - 20
             };
 
             Label lblPriceHeader = new Label()
@@ -105,7 +106,7 @@ namespace PresentationLayer.UserControls
                     AutoSize = true,
                     Font = new Font("Arial", 14),
                     Location = new Point(10, 10),
-                    Width = (int)(panel.Width * 0.5) - 20 
+                    Width = (int)(panel.Width * 0.4) - 20 
                 };
 
                 Label lblPrice = new Label()
@@ -142,13 +143,30 @@ namespace PresentationLayer.UserControls
                     Text = (item.Quantity * item.UnitPrice).ToString("#,##0") + " đ", 
                     AutoSize = true,
                     Location = new Point(numQuantity.Right + 80, 10),
-                    Width = (int)(panel.Width * 0.22)
+                    Width = (int)(panel.Width * 0.2)
+                };
+
+                Button btnDelete = new Button()
+                {
+                    Text = "Xóa",
+                    Font = new Font("Arial", 14),
+                    Size = new Size(70, 30),
+                    Location = new Point(lblTotalPrice.Right, 10),
+                    BackColor = Color.LightCoral,
+                    ForeColor = Color.White,
+                    FlatStyle = FlatStyle.Flat
+                };
+                btnDelete.Click += (s, ev) =>
+                {
+                    cartBL.RemoveFromCart(item.BookID); 
+                    LoadCartItems();
                 };
 
                 panel.Controls.Add(lblBookName);
                 panel.Controls.Add(lblPrice);
                 panel.Controls.Add(numQuantity);
                 panel.Controls.Add(lblTotalPrice);
+                panel.Controls.Add(btnDelete);
 
                 flpCart.Controls.Add(panel);
             }
@@ -158,15 +176,24 @@ namespace PresentationLayer.UserControls
                 Label lblEmpty = new Label()
                 {
                     Text = "Giỏ hàng của bạn trống!",
+                    Font = new Font("Arial", 16),
                     AutoSize = true,
                     Location = new Point(10, 10)
                 };
+                btnOrder.Enabled = false;
                 flpCart.Controls.Add(lblEmpty);
             }
-
-
             lbTotalCost.Text = $"Tổng cộng: {cartBL.GetTotalAmount():#,##0} đ";
             lbQuantity.Text = $"{cartBL.GetTotalQuantity()} sản phẩm";
+
+            // Bật / Tắt nút đặt hàng
+            btnOrder.Enabled = cartItems.Count > 0;
+        }
+
+        private void btnOrder_Click(object sender, EventArgs e)
+        {
+            if (OnOrderClick != null)
+                OnOrderClick.Invoke();
         }
     }
 }

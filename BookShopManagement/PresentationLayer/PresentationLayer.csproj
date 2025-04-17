@@ -188,6 +188,12 @@
     <Compile Include="UserControls\UCBookDetail.Designer.cs">
       <DependentUpon>UCBookDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCFormOrder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCFormOrder.Designer.cs">
+      <DependentUpon>UCFormOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -335,6 +341,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCBookDetail.resx">
       <DependentUpon>UCBookDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCFormOrder.resx">
+      <DependentUpon>UCFormOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCInfo.resx">
       <DependentUpon>UCInfo.cs</DependentUpon>

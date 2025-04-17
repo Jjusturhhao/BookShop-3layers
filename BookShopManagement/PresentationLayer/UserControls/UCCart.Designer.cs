@@ -33,7 +33,7 @@
             this.panelCart = new System.Windows.Forms.Panel();
             this.flpCart = new System.Windows.Forms.FlowLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnPay = new System.Windows.Forms.Button();
+            this.btnOrder = new System.Windows.Forms.Button();
             this.lbTotalCost = new System.Windows.Forms.Label();
             this.panelCart.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -91,26 +91,27 @@
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackColor = System.Drawing.Color.Ivory;
-            this.panel3.Controls.Add(this.btnPay);
+            this.panel3.Controls.Add(this.btnOrder);
             this.panel3.Controls.Add(this.lbTotalCost);
             this.panel3.Location = new System.Drawing.Point(670, 28);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(371, 517);
             this.panel3.TabIndex = 2;
             // 
-            // btnPay
+            // btnOrder
             // 
-            this.btnPay.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnPay.BackColor = System.Drawing.Color.Red;
-            this.btnPay.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPay.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPay.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnPay.Location = new System.Drawing.Point(97, 441);
-            this.btnPay.Name = "btnPay";
-            this.btnPay.Size = new System.Drawing.Size(181, 54);
-            this.btnPay.TabIndex = 1;
-            this.btnPay.Text = "Thanh toán";
-            this.btnPay.UseVisualStyleBackColor = false;
+            this.btnOrder.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnOrder.BackColor = System.Drawing.Color.Red;
+            this.btnOrder.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOrder.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnOrder.Location = new System.Drawing.Point(97, 441);
+            this.btnOrder.Name = "btnOrder";
+            this.btnOrder.Size = new System.Drawing.Size(181, 54);
+            this.btnOrder.TabIndex = 1;
+            this.btnOrder.Text = "Thanh toán";
+            this.btnOrder.UseVisualStyleBackColor = false;
+            this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
             // 
             // lbTotalCost
             // 
@@ -147,7 +148,7 @@
         private System.Windows.Forms.Label lbQuantity;
         private System.Windows.Forms.Panel panelCart;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btnPay;
+        private System.Windows.Forms.Button btnOrder;
         private System.Windows.Forms.Label lbTotalCost;
         private System.Windows.Forms.FlowLayoutPanel flpCart;
     }

@@ -24,6 +24,7 @@ namespace DataLayer
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
+                    string id = reader["User_ID"].ToString();
                     string name = reader["Name"].ToString();
                     string pass = reader["Password"].ToString();
                     string address = reader["Address"].ToString();
@@ -31,6 +32,7 @@ namespace DataLayer
                     string email = reader["Email"].ToString();
 
                     userInfo = new Info(username, name, pass, address, phone, email);
+                    userInfo.User_ID = id;
                 }
 
                 reader.Close();

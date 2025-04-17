@@ -133,7 +133,7 @@ go
 CREATE TABLE Orders (
     Order_ID VARCHAR(55) NOT NULL PRIMARY KEY, 
     Customer_ID VARCHAR(30) NOT NULL, 
-    Employee_ID VARCHAR(30) NOT NULL, 
+    Employee_ID VARCHAR(30), 
     Order_Date DATETIME NOT NULL DEFAULT GETDATE(), 
 	Status NVARCHAR(20) DEFAULT 'Pending' CHECK (Status IN (N'Chờ xác nhận', N'Đã giao', N'Đã hoàn thành', N'Đã hủy')),
 

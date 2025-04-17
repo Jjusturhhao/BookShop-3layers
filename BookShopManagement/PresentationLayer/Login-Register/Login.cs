@@ -61,6 +61,7 @@ namespace PresentationLayer
             {
                 MessageBox.Show("Đăng nhập thành công! Chào mừng quý khách!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
+                Homepage homepage = new Homepage(username);
                 this.Hide(); 
             }
             else
