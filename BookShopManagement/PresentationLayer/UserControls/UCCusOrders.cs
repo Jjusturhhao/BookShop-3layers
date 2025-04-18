@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using TransferObject;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace PresentationLayer.UserControls
 {
@@ -11,6 +12,10 @@ namespace PresentationLayer.UserControls
     {
         private CusOrderBL cusOrderBL;
         private string currentUsername;
+
+        //Tạo delegate để báo cho Homepage biết khi cần mở chi tiết đơn hàng
+        public Action<string> OnOrderDetailClick { get; set; }
+
 
         public UCCusOrders(string username)
         {
@@ -56,6 +61,7 @@ namespace PresentationLayer.UserControls
             });
             dgvOrders.Columns.Add(new DataGridViewTextBoxColumn
             {
+                Name = "Orderid",
                 HeaderText = "Mã đơn",
                 DataPropertyName = "Orderid",
             });
@@ -115,10 +121,7 @@ namespace PresentationLayer.UserControls
                 // Lấy orderID từ dòng được chọn
                 string orderID = dgvOrders.Rows[e.RowIndex].Cells["Orderid"].Value.ToString();
 
-                // Mở form chi tiết đơn hàng (hoặc UC)
-                MessageBox.Show("Hiện chi tiết đơn hàng: " + orderID);
-
-                // TODO: Ở đây bạn có thể mở một form chi tiết đơn hàng, truyền orderID vô
+                OnOrderDetailClick?.Invoke(orderID);
             }
         }
     }
