@@ -16,11 +16,13 @@ namespace PresentationLayer
         private CartBL cartBL;
         private UCHomepage ucHomepage;
         private UCCart ucCart;
-        private UCCusOrders ucCusOrders;   
+        private UCCusOrders ucCusOrders;
+        private UCCusOrderDetail ucCusOrderDetail;
         private UCInfo ucInfo; 
         private ContextMenuStrip accountMenu;
         private UCBookDetail ucBookDetail;
         private UCFormOrder uCFormOrder;
+
 
         public Homepage(string username)
         {
@@ -170,6 +172,12 @@ namespace PresentationLayer
             HideAllUserControls();
             ucCusOrders.Visible = true;
             ucCusOrders.BringToFront();
+
+            ucCusOrders.OnOrderDetailClick = (orderID) =>
+            {
+                ShowOrderDetail(orderID);
+            };
+
         }
 
         private void SetupAccountDropdown()
@@ -253,6 +261,34 @@ namespace PresentationLayer
             {
                 HideAllUserControls();
                 ucCusOrders.LoadOrders(); // Load lại dữ liệu mới nhất trước khi hiện
+                ucCusOrders.Visible = true;
+                ucCusOrders.BringToFront();
+
+                ucCusOrders.OnOrderDetailClick = (orderID) =>
+                {
+                    ShowOrderDetail(orderID);
+                };
+            };
+
+        }
+        private void ShowOrderDetail(string orderID)
+        {
+            if (ucCusOrderDetail != null)
+            {
+                panelContainer.Controls.Remove(ucCusOrderDetail);
+                ucCusOrderDetail.Dispose();
+            }
+
+            ucCusOrderDetail = new UCCusOrderDetail(orderID);
+            ucCusOrderDetail.Dock = DockStyle.Fill;
+            panelContainer.Controls.Add(ucCusOrderDetail);
+            HideAllUserControls();
+            ucCusOrderDetail.Visible = true;
+            ucCusOrderDetail.BringToFront();
+
+            ucCusOrderDetail.OnBackClick = () =>
+            {
+                HideAllUserControls();
                 ucCusOrders.Visible = true;
                 ucCusOrders.BringToFront();
             };
