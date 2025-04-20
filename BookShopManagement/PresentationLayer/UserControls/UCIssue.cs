@@ -42,5 +42,10 @@ namespace PresentationLayer.UserControls
         {
             ShowUserControl(new UCStock());
         }
+
+        private void UCIssue_Load(object sender, EventArgs e)
+        {
+            label3.Text = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt");
+        }
     }
 }
