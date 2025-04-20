@@ -69,6 +69,7 @@
     <Compile Include="LoginBL.cs" />
     <Compile Include="OrderBL.cs" />
     <Compile Include="OrderDetailsBL.cs" />
+    <Compile Include="PaymentBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StockBL.cs" />
     <Compile Include="SupplierBL.cs" />

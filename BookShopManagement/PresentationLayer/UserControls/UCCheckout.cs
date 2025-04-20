@@ -26,6 +26,7 @@ namespace PresentationLayer.UserControls
         private StockBL stockBL;
         private BillBL billBL;
         private CustomerBL customerBL;
+        private PaymentBL paymentBL;
 
         private string username;
         private Info info;
@@ -49,6 +50,7 @@ namespace PresentationLayer.UserControls
             stockBL = new StockBL();
             billBL = new BillBL();
             customerBL = new CustomerBL();
+            paymentBL = new PaymentBL();
             this.username = username;
         }
         public void UCCheckout_Load(object sender, EventArgs e)
@@ -252,7 +254,7 @@ namespace PresentationLayer.UserControls
                 int change = totalPaid - totalBill;
                 txtChange.Text = change.ToString();
             }
-            else if (rdByTransfer.Checked == true || rdByMomo.Checked == true)
+            else if (rdByTransfer.Checked == true || rdByEWallet.Checked == true)
             {
                 txtTotalPaid.ReadOnly = true;
                 txtChange.ReadOnly = true;
@@ -369,12 +371,22 @@ namespace PresentationLayer.UserControls
                 }
 
                 // Bước 4: Tạo hóa đơn và lưu vào bảng Bill_Generate
-                billBL.CreateBill(orderID);
+                string billID = billBL.GetBillID(orderID);
+                billBL.CreateBill(billID, orderID);
 
-                // Bước 5: Thông báo
+                // Bước 5: Tạo phương thức thanh toán và lưu vào bảo Payments
+                string paymentID = paymentBL.GetPaymentID();
+                string paymentMethod = GetSelectedPaymentMethod();
+                string transactionCode = GetTransactionCode(rdByCash.Checked, paymentID);
+                DateTime? paymentDate = GetPaymentDate(rdByCash.Checked, transactionCode); //? kiểu nullable
+                int totalCost = Convert.ToInt32(txtTotalBill.Text);
+
+                paymentBL.AddPayment(paymentID, billID, cusphone, paymentMethod, transactionCode, paymentDate, totalCost);
+                
+                // Bước 6: Thông báo
                 MessageBox.Show("Đặt hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Bước 6: Xóa giỏ hàng
+                // Bước 7: Load lại FORM
                 LoadAfterCheckout();
             }
             catch (Exception ex)
@@ -382,6 +394,7 @@ namespace PresentationLayer.UserControls
                 MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        
         public void LoadAfterCheckout()
         {
             LoadDetails();
@@ -391,6 +404,63 @@ namespace PresentationLayer.UserControls
             txtTotalPaid.Clear();
             txtChange.Clear();
             rdByCash.Checked = true;
+        }
+        private string GetSelectedPaymentMethod()
+        {
+            if (rdByCash.Checked) return "Tiền mặt";
+            if (rdByTransfer.Checked) return "Chuyển khoản ngân hàng";
+            if (rdByCard.Checked) return "Thẻ ghi nợ";
+            if (rdByEWallet.Checked) return "Ví điện tử";
+            return "Không xác định";
+        }
+        private string GetTransactionCode(bool isCash, string paymentID)
+        {
+            if (isCash)
+                return null;
+            else
+                return paymentBL.GetTransactionCode(paymentID); 
+        }
+        private DateTime? GetPaymentDate(bool isCash, string transactionCode)
+        {
+            if (isCash || !string.IsNullOrEmpty(transactionCode))
+            {
+                return DateTime.Now;
+            }
+            return null;
+        }
+        private void UpdatePaymentControls()
+        {
+            bool isCash = rdByCash.Checked;
+
+            txtTotalPaid.Enabled = isCash;
+            txtChange.Enabled = isCash;
+            btnChange.Enabled = isCash;
+
+            if (!isCash)
+            {
+                txtTotalPaid.Text = "";
+                txtChange.Text = "";
+            }
+        }
+
+        private void rdByCash_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdatePaymentControls();
+        }
+
+        private void rdByTransfer_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdatePaymentControls();
+        }
+
+        private void rdByEWallet_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdatePaymentControls();
+        }
+
+        private void rdByCard_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdatePaymentControls();
         }
     }
 }

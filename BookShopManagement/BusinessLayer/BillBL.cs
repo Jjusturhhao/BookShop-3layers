@@ -14,12 +14,11 @@ namespace BusinessLayer
         {
             billDL = new BillDL();
         }
-        public void CreateBill(string orderID)
+        public void CreateBill(string billID, string orderID)
         {
             try
             {
                 int totalCost = GetTotalCost(orderID);
-                string billID = GetBillID(orderID);
 
                 // Lưu thông tin hóa đơn vào bảng Bill_Generate
                 billDL.SaveBill(billID, orderID, totalCost);
@@ -37,6 +36,11 @@ namespace BusinessLayer
         {
             return billDL.CalculateTotalCost(orderID);
         }
+        public string GetBillIDByOrderID(string orderID)
+        {
+            return billDL.GetBillIDByOrderID(orderID);
+        }
+        
     }
 }
 

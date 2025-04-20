@@ -20,7 +20,7 @@ namespace PresentationLayer.UserControls
         private InfoBL infoBL;
         private OrderDetailsBL orderDetailsBL;
         private BillBL billBL;
-
+        private PaymentBL paymentBL;
 
         public Action OnBackClick;
 
@@ -30,6 +30,7 @@ namespace PresentationLayer.UserControls
             orderDetailsBL = new OrderDetailsBL();
             billBL = new BillBL();
             infoBL = new InfoBL();
+            paymentBL = new PaymentBL();
             this.orderID = orderID;
             this.username = username;
         }
@@ -41,7 +42,11 @@ namespace PresentationLayer.UserControls
         private void LoadOrderDetail(string orderID, string username)
         {
             lbOrderID.Text = $"Đơn hàng: {orderID}";
+
             //lbPayment 
+            string billID = billBL.GetBillIDByOrderID(orderID);
+            Payment payment = paymentBL.GetPayments(billID);
+            lbPayment.Text = $"Phương thức thanh toán: {payment.Payment_Method}";
 
             Info info = infoBL.GetUserInfo(username);
             if (info != null)

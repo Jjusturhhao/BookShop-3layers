@@ -21,6 +21,7 @@ namespace PresentationLayer.UserControls
         private OrderDetailsBL orderDetailsBL;
         private StockBL stockBL;
         private BillBL billBL;
+        private PaymentBL paymentBL;
 
         private Info info;
         private string username;
@@ -38,6 +39,7 @@ namespace PresentationLayer.UserControls
             orderDetailsBL = new OrderDetailsBL();
             stockBL = new StockBL();
             billBL = new BillBL();
+            paymentBL = new PaymentBL();
         }
         
         private void UCFormOrder_Load(object sender, EventArgs e)
@@ -69,21 +71,32 @@ namespace PresentationLayer.UserControls
                 // Bước 3: Lấy danh sách sản phẩm trong giỏ hàng và lưu chi tiết đơn hàng
                 List<CartItem> cartItems = cartBL.GetCartItems();
                 orderDetailsBL.SaveOrderDetails(orderID, cartItems);
+                int totalCost = 0;
                 foreach (var item in cartItems)
                 {
                     stockBL.ReduceStockQuantity(item.StockID, item.Quantity);
+                    totalCost += (item.Quantity + item.UnitPrice);
                 }
 
                 // Bước 4: Tạo hóa đơn và lưu vào bảng Bill_Generate
-                billBL.CreateBill(orderID);
+                string billID = billBL.GetBillID(orderID);
+                billBL.CreateBill(billID, orderID);
 
-                // Bước 5: Thông báo
+                // Bước 5: Tạo phương thức thanh toán và lưu vào bảo Payments
+                string paymentID = paymentBL.GetPaymentID();
+                string paymentMethod = GetSelectedPaymentMethod();
+                string transactionCode = GetTransactionCode(rdByCash.Checked, paymentID);
+                DateTime? paymentDate = GetPaymentDate(rdByCash.Checked, transactionCode); //? kiểu nullable
+                //totalCost+Ship
+                paymentBL.AddPayment(paymentID, billID, phone, paymentMethod, transactionCode, paymentDate, totalCost);
+
+                // Bước 6: Thông báo
                 MessageBox.Show("Đặt hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Bước 6: Xóa giỏ hàng
+                // Bước 7: Xóa giỏ hàng
                 cartBL.ClearCart();
 
-                // Bước 7: Chuyển đến giao diện danh sách đơn hàng
+                // Bước 8: Chuyển đến giao diện danh sách đơn hàng
                 OnOrderSuccess?.Invoke();
             }
             catch (Exception ex)
@@ -91,7 +104,28 @@ namespace PresentationLayer.UserControls
                 MessageBox.Show("Đã xảy ra lỗi khi đặt hàng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        private string GetSelectedPaymentMethod()
+        {
+            if (rdByCash.Checked) return "Tiền mặt";
+            if (rdByTransfer.Checked) return "Chuyển khoản ngân hàng";
+            if (rdByEWallet.Checked) return "Ví điện tử";
+            return "Không xác định";
+        }
+        private string GetTransactionCode(bool isCash, string paymentID)
+        {
+            if (isCash)
+                return null;
+            else
+                return paymentBL.GetTransactionCode(paymentID);
+        }
+        private DateTime? GetPaymentDate(bool isCash, string transactionCode)
+        {
+            if (!isCash || !string.IsNullOrEmpty(transactionCode))
+            {
+                return DateTime.Now;
+            }
+            return null;
+        }
         private void btnBack_Click(object sender, EventArgs e)
         {
             OnBackToCartClick?.Invoke();
