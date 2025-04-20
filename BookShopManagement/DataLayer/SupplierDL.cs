@@ -45,5 +45,39 @@ namespace DataLayer
                 DisConnect();
             }
         }
+
+        public bool AddSupplier(Supplier supplier)
+        {
+            string sql = "INSERT INTO Suppliers VALUES (@id, @name, @address, @email, @phone)";
+            SqlCommand cmd = new SqlCommand(sql);
+            cmd.Parameters.AddWithValue("@id", supplier.ID);
+            cmd.Parameters.AddWithValue("@name", supplier.Name);
+            cmd.Parameters.AddWithValue("@address", supplier.Address);
+            cmd.Parameters.AddWithValue("@email", supplier.Email);
+            cmd.Parameters.AddWithValue("@phone", supplier.Phone);
+
+            return MyExecuteNonQuery(cmd) > 0;
+        }
+
+        public bool UpdateSupplier(Supplier supplier)
+        {
+            string sql = "UPDATE Suppliers SET Supplier_name = @name, Supplier_address = @address, Supplier_email = @email, Supplier_phone = @phone WHERE Supplier_ID = @id";
+            SqlCommand cmd = new SqlCommand(sql);
+            cmd.Parameters.AddWithValue("@id", supplier.ID);
+            cmd.Parameters.AddWithValue("@name", supplier.Name);
+            cmd.Parameters.AddWithValue("@address", supplier.Address);
+            cmd.Parameters.AddWithValue("@email", supplier.Email);
+            cmd.Parameters.AddWithValue("@phone", supplier.Phone);
+
+            return MyExecuteNonQuery(cmd) > 0;
+        }
+
+        public bool DeleteSupplier(string supplierID)
+        {
+            string sql = "DELETE FROM Suppliers WHERE Supplier_ID = @id";
+            SqlCommand cmd = new SqlCommand(sql);
+            cmd.Parameters.AddWithValue("@id", supplierID);
+            return MyExecuteNonQuery(cmd) > 0;
+        }
     }
 }

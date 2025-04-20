@@ -29,5 +29,20 @@ namespace BusinessLayer
                 throw ex;
             }
         }
+
+        public bool AddSupplier(Supplier supplier)
+        {
+            return supplierDL.AddSupplier(supplier);
+        }
+
+        public bool UpdateSupplier(Supplier supplier)
+        {
+            return supplierDL.UpdateSupplier(supplier);
+        }
+
+        public bool DeleteSupplier(string supplierID)
+        {
+            return supplierDL.DeleteSupplier(supplierID);
+        }
     }
 }
