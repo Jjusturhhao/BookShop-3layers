@@ -30,8 +30,6 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.cbxSupplier = new System.Windows.Forms.ComboBox();
-            this.lbSupplier = new System.Windows.Forms.Label();
             this.txtAuthor = new System.Windows.Forms.TextBox();
             this.lbAuthor = new System.Windows.Forms.Label();
             this.cbxCategory = new System.Windows.Forms.ComboBox();
@@ -70,29 +68,6 @@
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // cbxSupplier
-            // 
-            this.cbxSupplier.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbxSupplier.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbxSupplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxSupplier.FormattingEnabled = true;
-            this.cbxSupplier.Location = new System.Drawing.Point(296, 583);
-            this.cbxSupplier.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbxSupplier.Name = "cbxSupplier";
-            this.cbxSupplier.Size = new System.Drawing.Size(346, 40);
-            this.cbxSupplier.TabIndex = 41;
-            // 
-            // lbSupplier
-            // 
-            this.lbSupplier.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lbSupplier.AutoSize = true;
-            this.lbSupplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSupplier.Location = new System.Drawing.Point(92, 583);
-            this.lbSupplier.Name = "lbSupplier";
-            this.lbSupplier.Size = new System.Drawing.Size(188, 32);
-            this.lbSupplier.TabIndex = 34;
-            this.lbSupplier.Text = "Nhà cung cấp";
             // 
             // txtAuthor
             // 
@@ -274,8 +249,6 @@
             this.panel6.Controls.Add(this.lbPrice);
             this.panel6.Controls.Add(this.btnUpload);
             this.panel6.Controls.Add(this.picBook);
-            this.panel6.Controls.Add(this.cbxSupplier);
-            this.panel6.Controls.Add(this.lbSupplier);
             this.panel6.Controls.Add(this.txtAuthor);
             this.panel6.Controls.Add(this.lbAuthor);
             this.panel6.Controls.Add(this.cbxCategory);
@@ -307,7 +280,7 @@
             // 
             this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrice.Location = new System.Drawing.Point(296, 637);
+            this.txtPrice.Location = new System.Drawing.Point(296, 606);
             this.txtPrice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(346, 39);
@@ -318,7 +291,7 @@
             this.lbPrice.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbPrice.AutoSize = true;
             this.lbPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPrice.Location = new System.Drawing.Point(92, 637);
+            this.lbPrice.Location = new System.Drawing.Point(92, 594);
             this.lbPrice.Name = "lbPrice";
             this.lbPrice.Size = new System.Drawing.Size(59, 32);
             this.lbPrice.TabIndex = 44;
@@ -493,9 +466,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox cbxSupplier;
-        private System.Windows.Forms.Label lbSupplier;
         private System.Windows.Forms.TextBox txtAuthor;
         private System.Windows.Forms.Label lbAuthor;
         private System.Windows.Forms.ComboBox cbxCategory;

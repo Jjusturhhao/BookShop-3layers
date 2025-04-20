@@ -74,7 +74,7 @@ namespace PresentationLayer.UserControls
         private void btnReset_Click(object sender, EventArgs e)
         {
 
-            TransferObject.Stock emptyStock = stockBL.Refest();
+            Stock emptyStock = stockBL.GetEmptyStock();
 
             string newStockID = stockBL.GenerateNextStockID();
             string newBookID = stockBL.GenerateNextBookID(); 

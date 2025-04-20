@@ -43,6 +43,40 @@ namespace BusinessLayer
         {
             return bookDL.GetBookByID(bookID);
         }
+        //=============================================
+        public List<Book> GetBooks1()
+        {
+            try
+            {
+                return bookDL.GetBooks1();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        public Book Refest1()
+        {
+            return bookDL.Refest1();
+        }
+        public List<BookCategoryStock> GetBookCategories1()
+        {
+            try
+            {
+                return bookDL.bookCategoryStocks1();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        public string GenerateNextBookID1()
+        {
+            return bookDL.GenerateNextBookID1();
+        }
     }
+
 
 }

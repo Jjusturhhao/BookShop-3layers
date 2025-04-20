@@ -42,7 +42,7 @@ namespace BusinessLayer
         {
             return stockDL.GenerateNextBookID();
         }
-        public Stock Refest()
+        public Stock GetEmptyStock()
         {
             return stockDL.Refest();
         }

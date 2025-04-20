@@ -30,7 +30,18 @@ namespace PresentationLayer.UserControls
 
         private void LoadCategoriesToComboBox()
         {
-
+            try
+            {
+                // Load danh sách Category
+                cbxCategory.DataSource = bookBL.GetBookCategories1();
+                cbxCategory.DisplayMember = "CategoryName";
+                cbxCategory.ValueMember = "CategoryID";
+                cbxCategory.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi load ComboBox: " + ex.Message);
+            }
         }
 
         private void btnAddCategory_Click(object sender, EventArgs e)
@@ -39,7 +50,7 @@ namespace PresentationLayer.UserControls
             if (addCategory.ShowDialog() == DialogResult.OK) 
             {
                 //Sau khi thêm xong thì reload combobox
-                LoadCategoriesToComboBox();
+                //LoadCategoriesToComboBox();
             }
         }
 
@@ -57,7 +68,17 @@ namespace PresentationLayer.UserControls
         {
             try
             {
-                dgvBook.DataSource = bookBL.GetBooks();
+                dgvBook.DataSource = bookBL.GetBooks1();
+                try
+                {
+                    LoadCategoriesToComboBox();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+               
 
                 if (dgvBook.Columns.Contains("Bookimage"))
                 {
@@ -81,30 +102,26 @@ namespace PresentationLayer.UserControls
         private void btnRefresh_Click(object sender, EventArgs e)
         {
 
-            TransferObject.Book emptyBook = bookBL.GetEmptyBook();
-            
-            txtBookID.Text = bookBL.GenerateNextBookID(); // ID mới
+            Book emptyBook = bookBL.Refest1();
+            txtBookID.Text = bookBL.GenerateNextBookID1();
             txtBookID.ReadOnly = true;
-
             txtBookName.Text = emptyBook.Bookname;
             cbxCategory.SelectedIndex = -1;
             txtAuthor.Text = emptyBook.Author;
-            cbxSupplier.SelectedIndex = -1;
             txtPrice.Text = emptyBook.Price.ToString();
             picBook.Image = null;
-
             txtBookName.Focus();
 
         }
 
         private void btnEntryBook_Click(object sender, EventArgs e)
         {
-            string BookID, picBook, BookName, Category, Author, Supplier, Price;
-            BookID = txtBookID.Text;
-            BookName = txtBookName.Text;
-            Category = cbxCategory.SelectedItem?.ToString(); 
-            Supplier = cbxSupplier.SelectedItem?.ToString();  
-            Price = txtPrice.Text;
+            //string BookID, picBook, BookName, Category, Author, Supplier, Price;
+            //BookID = txtBookID.Text;
+            //BookName = txtBookName.Text;
+            //Category = cbxCategory.SelectedItem?.ToString(); 
+            //Supplier = cbxSupplier.SelectedItem?.ToString();  
+            //Price = txtPrice.Text;
 
         }
 

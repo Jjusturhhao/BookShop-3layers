@@ -157,5 +157,96 @@ namespace DataLayer
                 DisConnect();
             }
         }
+        //=====================
+        public List<Book> GetBooks1()
+        {
+            string bookid, bookname, categoryid, author, bookImageUrl;
+            int price;
+
+            List<Book> books = new List<Book>();
+            string sql = "SELECT b.BookID,b.BookName, c.CategoryName, b.Author, b.Price, b.BookImage " +
+                "FROM Book b " + "JOIN BookCategory c ON b.CategoryID = c.CategoryID";
+            
+            try
+            {
+                Connect();
+                SqlDataReader reader = MyExecuteReader(sql, CommandType.Text);
+                while (reader.Read())
+                {
+                    bookid = reader["BookID"].ToString();
+                    bookname = reader["BookName"].ToString();
+                    categoryid = reader["CategoryName"].ToString();
+                    author = reader["Author"].ToString();
+                    price = Convert.ToInt32(reader["Price"]);
+                    bookImageUrl = reader["BookImage"].ToString();
+
+                    Book book = new Book(bookid,bookname,categoryid,author,price, bookImageUrl);
+                    books.Add(book);
+                }
+                reader.Close();
+                return books;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+        }
+        public Book Refest1()
+        {
+            return new Book("","","","",0,null);
+        }
+        public List<BookCategoryStock> bookCategoryStocks1()
+        {
+            string CategoryID, Categoryname;
+            List<BookCategoryStock> bookCategoryStocks = new List<BookCategoryStock>();
+            string sql = "SELECT * FROM BookCategory";
+            try
+            {
+                Connect();
+                SqlDataReader reader1 = MyExecuteReader(sql, CommandType.Text);
+                while (reader1.Read())
+                {
+                    CategoryID = reader1["CategoryID"].ToString();
+                    Categoryname = reader1["CategoryName"].ToString();
+                    BookCategoryStock bookCategoryStock = new BookCategoryStock(CategoryID, Categoryname);
+                    bookCategoryStocks.Add(bookCategoryStock);
+                }
+                reader1.Close();
+                return bookCategoryStocks;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+        }
+        public string GenerateNextBookID1()
+        {
+            List<Book> books1 = GetBooks1();
+
+            int maxID = 0;
+            foreach (var book in books1)
+            {
+                if (book.Bookid.StartsWith("BOOK"))
+                {
+                    string numberPart = book.Bookid.Substring(4);
+                    if (int.TryParse(numberPart, out int idNum))
+                    {
+                        if (idNum > maxID)
+                            maxID = idNum;
+                    }
+                }
+            }
+
+            int nextID = maxID + 1;
+            return $"BOOK{nextID:D1}";
+        }
     }
 }
