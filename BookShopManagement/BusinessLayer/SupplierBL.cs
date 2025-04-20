@@ -44,5 +44,18 @@ namespace BusinessLayer
         {
             return supplierDL.DeleteSupplier(supplierID);
         }
+
+        public List<Supplier> SearchSuppliers(string keyword)
+        {
+            try
+            {
+                return supplierDL.SearchSuppliers(keyword);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

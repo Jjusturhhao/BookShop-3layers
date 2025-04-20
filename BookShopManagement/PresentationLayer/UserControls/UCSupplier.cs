@@ -114,6 +114,32 @@ namespace PresentationLayer.UserControls
             }
         }
 
-        
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            //string keyword = txtSearch.Text.Trim();
+            //if (!string.IsNullOrEmpty(keyword))
+            //{
+            //    dgvSupplier.DataSource = new SupplierBL().SearchSuppliers(keyword);
+            //}
+            //else
+            //{
+            //    // Nếu người dùng không nhập gì → load lại toàn bộ
+            //    LoadSuppliers();
+            //}
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string keyword = txtSearch.Text.Trim();
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                dgvSupplier.DataSource = new SupplierBL().SearchSuppliers(keyword);
+            }
+            else
+            {
+                // Nếu người dùng không nhập gì → load lại toàn bộ
+                LoadSuppliers();
+            }
+        }
     }
 }

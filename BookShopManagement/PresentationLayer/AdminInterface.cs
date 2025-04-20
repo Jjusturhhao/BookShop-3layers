@@ -57,7 +57,7 @@ namespace PresentationLayer
             {
                 if (tabControlMain.GetTabRect(i).Contains(e.Location))
                 {
-                    // Giả sử TabPage "Cá nhân" là cái bé muốn show menu
+                    // Giả sử TabPage "Cá nhân" là cái muốn show menu
                     if (tabControlMain.TabPages[i].Text == "Cá nhân")
                     {
                         if (e.Button == MouseButtons.Left) // hoặc Right nếu muốn phải chuột

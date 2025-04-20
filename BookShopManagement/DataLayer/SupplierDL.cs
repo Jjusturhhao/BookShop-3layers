@@ -79,5 +79,40 @@ namespace DataLayer
             cmd.Parameters.AddWithValue("@id", supplierID);
             return MyExecuteNonQuery(cmd) > 0;
         }
+
+        public List<Supplier> SearchSuppliers(string keyword)
+        {
+            string sql = "SELECT * FROM Suppliers WHERE Supplier_ID LIKE @kw OR Supplier_name LIKE @kw";
+            List<Supplier> suppliers = new List<Supplier>();
+            try
+            {
+                Connect();
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                cmd.Parameters.AddWithValue("@kw", "%" + keyword + "%");
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    suppliers.Add(new Supplier(
+                        reader["Supplier_ID"].ToString(),
+                        reader["Supplier_name"].ToString(),
+                        reader["Supplier_address"].ToString(),
+                        reader["Supplier_email"].ToString(),
+                        reader["Supplier_phone"].ToString()
+                    ));
+                }
+                reader.Close();
+                return suppliers;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+        }
+
     }
 }
