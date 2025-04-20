@@ -64,6 +64,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="CusOrder.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="Employee.cs" />
     <Compile Include="Info.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderDetails.cs" />

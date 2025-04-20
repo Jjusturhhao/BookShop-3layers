@@ -178,7 +178,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Main";
+            this.Text = "Giao diện nhân viên";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panel.ResumeLayout(false);
             this.ResumeLayout(false);

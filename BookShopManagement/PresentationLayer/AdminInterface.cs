@@ -69,5 +69,18 @@ namespace PresentationLayer
                 }
             }
         }
+
+        private void tabControlMain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControlMain.SelectedTab == tabEmployee)
+            {
+                if (tabEmployee.Controls.Count == 0)
+                {
+                    UCEmployee employeeUC = new UCEmployee();
+                    employeeUC.Dock = DockStyle.Fill;
+                    tabEmployee.Controls.Add(employeeUC);
+                }
+            }
+        }
     }
 }

@@ -63,6 +63,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="CusOrderBL.cs" />
     <Compile Include="CustomerBL.cs" />
+    <Compile Include="EmployeeBL.cs" />
     <Compile Include="HomepageBL.cs" />
     <Compile Include="InfoBL.cs" />
     <Compile Include="LoginBL.cs" />

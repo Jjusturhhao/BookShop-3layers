@@ -53,6 +53,7 @@
             this.tabControlMain.SelectedIndex = 0;
             this.tabControlMain.Size = new System.Drawing.Size(1001, 599);
             this.tabControlMain.TabIndex = 0;
+            this.tabControlMain.SelectedIndexChanged += new System.EventHandler(this.tabControlMain_SelectedIndexChanged);
             this.tabControlMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabControlMain_MouseDown);
             // 
             // tabHomepage
@@ -107,14 +108,14 @@
             // tsmiChangeInfo
             // 
             this.tsmiChangeInfo.Name = "tsmiChangeInfo";
-            this.tsmiChangeInfo.Size = new System.Drawing.Size(240, 32);
+            this.tsmiChangeInfo.Size = new System.Drawing.Size(190, 32);
             this.tsmiChangeInfo.Text = "Đổi thông tin";
             this.tsmiChangeInfo.Click += new System.EventHandler(this.tsmiChangeInfo_Click);
             // 
             // tsmiLogout
             // 
             this.tsmiLogout.Name = "tsmiLogout";
-            this.tsmiLogout.Size = new System.Drawing.Size(240, 32);
+            this.tsmiLogout.Size = new System.Drawing.Size(190, 32);
             this.tsmiLogout.Text = "Đăng xuất";
             this.tsmiLogout.Click += new System.EventHandler(this.tsmiLogout_Click);
             // 
@@ -125,7 +126,7 @@
             this.ClientSize = new System.Drawing.Size(1001, 599);
             this.Controls.Add(this.tabControlMain);
             this.Name = "AdminInterface";
-            this.Text = "AdminInterface";
+            this.Text = "Giao diện quản trị viên";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.AdminInterface_Load);
             this.tabControlMain.ResumeLayout(false);

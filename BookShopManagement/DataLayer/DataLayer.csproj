@@ -39,6 +39,7 @@
     <Compile Include="CusOrderDL.cs" />
     <Compile Include="CustomerDL.cs" />
     <Compile Include="DataProvider.cs" />
+    <Compile Include="EmployeeDL.cs" />
     <Compile Include="HomepageDL.cs" />
     <Compile Include="InfoDL.cs" />
     <Compile Include="LoginDL.cs" />

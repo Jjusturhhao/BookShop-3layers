@@ -483,7 +483,6 @@
             this.btnGIN.TabIndex = 22;
             this.btnGIN.Text = "Xuất phiếu";
             this.btnGIN.UseVisualStyleBackColor = false;
-            this.btnGIN.Click += new System.EventHandler(this.btnGIN_Click);
             // 
             // btnReset
             // 

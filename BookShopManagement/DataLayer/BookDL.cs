@@ -13,19 +13,16 @@ using System.Data.Common;
 
 namespace DataLayer
 {
-    public class BookDL:DataProvider
+    public class BookDL : DataProvider
     {
         public List<Book> GetBooks()
         {
             List<Book> books = new List<Book>();
             string sql = "SELECT * FROM Book";
-
             try
             {
                 Connect();
                 SqlDataReader reader = MyExecuteReader(sql, CommandType.Text);
-
-                using (WebClient client = new WebClient())
                 {
                     while (reader.Read())
                     {
@@ -34,26 +31,11 @@ namespace DataLayer
                         string categoryID = reader["CategoryID"].ToString();
                         string author = reader["Author"].ToString();
                         int price = Convert.ToInt32(reader["Price"]);
-                        string bookImageUrl = reader["BookImage"].ToString();
-
-                        //byte[] imageBytes = null;
-                        //if (!string.IsNullOrEmpty(bookImageUrl))
-                        //{
-                        //    try
-                        //    {
-                        //        imageBytes = client.DownloadData(bookImageUrl);
-                        //    }
-                        //    catch
-                        //    {
-                        //        imageBytes = null;
-                        //    }
-                        //}
-
-                        Book book = new Book(bookid, bookName, categoryID, author, price, bookImageUrl);
+                        string bookiamge = reader["BookImage"].ToString();
+                        Book book = new Book(bookid, bookName, categoryID, author, price, bookiamge);
                         books.Add(book);
                     }
                 }
-
                 reader.Close();
                 return books;
             }
@@ -69,7 +51,6 @@ namespace DataLayer
         public string GenerateNextBookID()
         {
             List<Book> books = new List<Book>();
-
             int maxID = 0;
             foreach (var book in books)
             {
@@ -83,48 +64,34 @@ namespace DataLayer
                     }
                 }
             }
-
             int nextID = maxID + 1;
             return $"BOOK{nextID:D1}";
         }
 
-        public Book GetEmptyBook()
+        public Book Reset()
         {
             return new Book("", "", "", "", 0, null);
         }
-        public Book GetBookByID(string bookID)
+        public List<BookCategoryStock> bookCategoryStocks()
         {
-            Book book = null;
-            string sql = "SELECT b.BookID, b.BookName, b.CategoryID, c.CategoryName, b.Author, b.Price, b.BookImage " +
-                "FROM Book b " +
-                "JOIN BookCategory c ON b.CategoryID = c.CategoryID " +
-                "WHERE BookID = @BookID";
+            string CategoryID, Categoryname;
+            List<BookCategoryStock> bookCategoryStocks = new List<BookCategoryStock>();
+            string sql = "SELECT * FROM BookCategory";
             try
             {
                 Connect();
-                SqlCommand cmd = new SqlCommand(sql, cn);
-                cmd.Parameters.AddWithValue("@BookID", bookID);
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                string bookName = "", categoryID = "", categoryName = "", author = "", bookImageUrl = "";
-                int price = 0;
-                if (reader.Read())
+                SqlDataReader reader1 = MyExecuteReader(sql, CommandType.Text);
+                while (reader1.Read())
                 {
-                    bookName = reader["BookName"].ToString();
-                    categoryID = reader["CategoryID"].ToString();
-                    categoryName = reader["CategoryName"].ToString();
-                    author = reader["Author"].ToString();
-                    price = Convert.ToInt32(reader["Price"]);
-                    bookImageUrl = reader["BookImage"].ToString();
+                    CategoryID = reader1["CategoryID"].ToString();
+                    Categoryname = reader1["CategoryName"].ToString();
+                    BookCategoryStock bookCategoryStock = new BookCategoryStock(CategoryID, Categoryname);
+                    bookCategoryStocks.Add(bookCategoryStock);
                 }
-                reader.Close();
-
-                int quantity = GetQuantity(bookID);
-                book = new Book(bookID, bookName, categoryID, author, price, bookImageUrl);
-                book.Categoryname = categoryName;
-                book.Quantity = quantity;
+                reader1.Close();
+                return bookCategoryStocks;
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -132,21 +99,119 @@ namespace DataLayer
             {
                 DisConnect();
             }
-            return book;
         }
-        public int GetQuantity(string bookID)
+
+        public int Add(Book book)
         {
+            string sql = "INSERT INTO Book (BookID, CategoryID, BookName, Author, Price, Bookimage) " +
+                         "VALUES('" + book.Bookid + "', '" + book.Categoryid + "', '" + book.Bookname + "', '" + book.Author + "', " + book.Price + ", '" + book.Bookimage + "')";
+            try
+            {
+                return MyExecuteNonQuery(sql, CommandType.Text);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+        }
+
+        public int Delete(Book book)
+        {
+            string sql = "DELETE FROM Book WHERE 1=1";
+            sql += " AND CategoryID = '" + book.Categoryid + "'";
+            if (!string.IsNullOrEmpty(book.Bookname))
+                sql += " AND BookName = '" + book.Bookname.Replace("'", "''") + "'";
+            if (!string.IsNullOrEmpty(book.Author))
+                sql += " AND Author = '" + book.Author.Replace("'", "''") + "'";
+            if (book.Price != 0)
+                sql += " AND Price = " + book.Price;
+            try
+            {
+                return MyExecuteNonQuery(sql, CommandType.Text);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+        }
+
+        public int Update(Book book)
+        {
+            string sql = "UPDATE Book SET ";
+
+            List<string> updates = new List<string>();
+
+            updates.Add("CategoryID = '" + book.Categoryid + "'");
+            if (!string.IsNullOrEmpty(book.Bookname))
+                updates.Add("BookName = '" + book.Bookname.Replace("'", "''") + "'");
+            if (!string.IsNullOrEmpty(book.Author))
+                updates.Add("Author = '" + book.Author.Replace("'", "''") + "'");
+            if (book.Price != 0)
+                updates.Add("Price = " + book.Price);
+            if (!string.IsNullOrEmpty(book.Bookimage))
+                updates.Add("Bookimage = '" + book.Bookimage + "'");
+            if (updates.Count == 0)
+                throw new Exception("Không có thông tin nào để cập nhật.");
+
+            sql += string.Join(", ", updates);
+            sql += " WHERE BookID = '" + book.Bookid + "'";
+
+            try
+            {
+                return MyExecuteNonQuery(sql, CommandType.Text);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+        }
+
+        public List<Book> SearchBook(string keyword)
+        {
+            string bookID, categoryID, bookName, author;
+
+            List<Book> books = new List<Book>();
+            string sql = "SELECT b.BookID, sl.Supplier_name, b.CategoryID, c.CategoryName, b.BookName, b.Author, b.Price, b.Bookimage" +
+                         "FROM Book b " +
+                         "JOIN BookCategory c ON b.CategoryID = c.CategoryID " +
+                         "JOIN Suppliers sl ON b.SupplierID = sl.Supplier_ID " +
+                         "WHERE b.BookID LIKE N'%" + keyword + "%' OR " +
+                         "sl.Supplier_name LIKE N'%" + keyword + "%' OR " +
+                         "b.CategoryID LIKE N'%" + keyword + "%' OR " +
+                         "c.CategoryName LIKE N'%" + keyword + "%' OR " +
+                         "b.BookName LIKE N'%" + keyword + "%' OR " +
+                         "b.Author LIKE N'%" + keyword + "%' OR " +
+                         "CONVERT(NVARCHAR, b.Price) LIKE N'%" + keyword + "%' OR ";
             try
             {
                 Connect();
-
-                string sql = "GetStockQuantity ";  // Tên của stored procedure
-                SqlCommand cmd = new SqlCommand(sql, cn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@BookID", bookID);
-
-                object result = cmd.ExecuteScalar();
-                return Convert.ToInt32(result);
+                SqlDataReader reader = MyExecuteReader(sql, CommandType.Text);
+                while (reader.Read())
+                {
+                    bookID = reader["BookID"].ToString();
+                    string supplierID = reader["Supplier_name"].ToString();
+                    categoryID = reader["CategoryName"].ToString();
+                    bookName = reader["BookName"].ToString();
+                    author = reader["Author"].ToString();
+                    int price = reader["Price"] != DBNull.Value ? Convert.ToInt32(reader["Price"]) : 0;
+                    string bookImage = reader["Bookimage"].ToString();
+                    Book book = new Book(bookID, bookName, categoryID, author, price, bookImage);
+                    books.Add(book);
+                }
+                reader.Close();
+                return books;
             }
             catch (Exception ex)
             {

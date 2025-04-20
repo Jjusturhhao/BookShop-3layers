@@ -374,8 +374,6 @@
             this.dgvBook.RowTemplate.Height = 24;
             this.dgvBook.Size = new System.Drawing.Size(1058, 841);
             this.dgvBook.TabIndex = 3;
-            this.dgvBook.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvBook_CellFormatting);
-            this.dgvBook.Click += new System.EventHandler(this.dgvBook_Click);
             // 
             // panel3
             // 
@@ -466,7 +464,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.66666F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1976, 978);
             this.tableLayoutPanel1.TabIndex = 1;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // UCBook
             // 

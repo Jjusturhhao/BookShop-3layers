@@ -194,6 +194,12 @@
     <Compile Include="UserControls\UCCusOrderDetail.Designer.cs">
       <DependentUpon>UCCusOrderDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCEmployee.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCEmployee.Designer.cs">
+      <DependentUpon>UCEmployee.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCFormOrder.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -350,6 +356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCCusOrderDetail.resx">
       <DependentUpon>UCCusOrderDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCEmployee.resx">
+      <DependentUpon>UCEmployee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCFormOrder.resx">
       <DependentUpon>UCFormOrder.cs</DependentUpon>
