@@ -30,11 +30,11 @@ namespace DataLayer
                 {
                     string orderId = reader["Order_ID"].ToString();
                     string phone = reader["PhoneNumber"].ToString();
-                    string empName = reader["Employee_Name"].ToString();  
+                    string empName = reader["Employee_Name"] == DBNull.Value ? "Online" : reader["Employee_Name"].ToString();
                     DateTime orderDate = Convert.ToDateTime(reader["Order_Date"]);
                     string status = reader["Status"].ToString();
                     int totalCost = Convert.ToInt32(reader["Total_Cost"]);
-
+                    
                     Order order = new Order(orderId, phone, empName, orderDate, status, totalCost);  // Cập nhật constructor Order
                     orders.Add(order);
                 }
@@ -105,21 +105,21 @@ namespace DataLayer
         }
         public string GenerateOrderID()
         {
-            string newUserId = string.Empty;
+            string newOrderID = string.Empty;
             string sql = "SELECT MAX(CAST(SUBSTRING(Order_ID, 4, LEN(Order_ID) - 3) AS INT)) FROM Orders ";
             int nextOrderId = 1; // Mặc định nếu chưa có Order nào
             try
             {
                 Connect();
-                using (SqlCommand getMaxUserIdCmd = new SqlCommand(sql, cn))
+                using (SqlCommand getMaxOrderIDCmd = new SqlCommand(sql, cn))
                 {
-                    object maxIdObj = getMaxUserIdCmd.ExecuteScalar();
+                    object maxIdObj = getMaxOrderIDCmd.ExecuteScalar();
                     if (maxIdObj != DBNull.Value) // Nếu có dữ liệu trong DB
                     {
                         nextOrderId = Convert.ToInt32(maxIdObj) + 1; // Lấy số lớn nhất + 1
                     }
                 }
-                newUserId = "ORD" + nextOrderId;
+                newOrderID = "ORD" + nextOrderId;
             }
             catch (Exception ex)
             {
@@ -129,7 +129,7 @@ namespace DataLayer
             {
                 DisConnect();  
             }
-            return newUserId;
+            return newOrderID;
         }
         
         public void SaveOrder(string orderID, string phone, string employeeID, DateTime orderDate, string status)

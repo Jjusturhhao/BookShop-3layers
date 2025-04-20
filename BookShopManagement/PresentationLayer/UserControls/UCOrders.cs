@@ -44,7 +44,7 @@ namespace PresentationLayer.UserControls
         {
             txtOrderID.Clear();
             txtPhone.Clear();
-            cbxEmployeeName.Items.Clear();
+            
             dateTimePickerOrderDate.Checked = false;
             cbxStatus.Text = "";
             txtTotal.Clear();

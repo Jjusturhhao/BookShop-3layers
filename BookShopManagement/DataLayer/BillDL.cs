@@ -68,6 +68,34 @@ namespace DataLayer
             }
             return totalCost;
         }
+        public string GetBillIDByOrderID(string orderID)
+        {
+            string billID = null;
+            string sql = "SELECT Bill_ID FROM Bill_Generate WHERE Order_ID = @OrderID";
 
+            try
+            {
+                cn.Open();
+                using (SqlCommand cmd = new SqlCommand(sql, cn))
+                {
+                    cmd.Parameters.AddWithValue("@OrderID", orderID);
+                    var result = cmd.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        billID = result.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+            return billID;
+        }
     }
 }

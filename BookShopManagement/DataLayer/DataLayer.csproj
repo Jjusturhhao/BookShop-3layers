@@ -45,6 +45,7 @@
     <Compile Include="LoginDL.cs" />
     <Compile Include="OrderDetailsDL.cs" />
     <Compile Include="OrderDL.cs" />
+    <Compile Include="PaymentDL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StockDL.cs" />
     <Compile Include="SupplierDL.cs" />
