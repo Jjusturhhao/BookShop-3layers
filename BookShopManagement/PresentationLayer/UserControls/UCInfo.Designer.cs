@@ -32,7 +32,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSavePass = new System.Windows.Forms.Button();
             this.txtConfirmNewPass = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtNewPass = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtOldPass = new Guna.UI2.WinForms.Guna2TextBox();
@@ -95,7 +95,7 @@
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel4.Controls.Add(this.button1);
+            this.panel4.Controls.Add(this.btnSavePass);
             this.panel4.Controls.Add(this.txtConfirmNewPass);
             this.panel4.Controls.Add(this.txtNewPass);
             this.panel4.Controls.Add(this.txtOldPass);
@@ -108,17 +108,18 @@
             this.panel4.Size = new System.Drawing.Size(919, 348);
             this.panel4.TabIndex = 2;
             // 
-            // button1
+            // btnSavePass
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.button1.Font = new System.Drawing.Font("Verdana", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button1.Location = new System.Drawing.Point(305, 260);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(288, 81);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnSavePass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnSavePass.Font = new System.Drawing.Font("Verdana", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSavePass.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnSavePass.Location = new System.Drawing.Point(305, 260);
+            this.btnSavePass.Name = "btnSavePass";
+            this.btnSavePass.Size = new System.Drawing.Size(288, 81);
+            this.btnSavePass.TabIndex = 3;
+            this.btnSavePass.Text = "Save";
+            this.btnSavePass.UseVisualStyleBackColor = false;
+            this.btnSavePass.Click += new System.EventHandler(this.btnSavePass_Click);
             // 
             // txtConfirmNewPass
             // 
@@ -141,7 +142,7 @@
             this.txtConfirmNewPass.PlaceholderText = "";
             this.txtConfirmNewPass.SelectedText = "";
             this.txtConfirmNewPass.Size = new System.Drawing.Size(346, 74);
-            this.txtConfirmNewPass.TabIndex = 10;
+            this.txtConfirmNewPass.TabIndex = 2;
             // 
             // txtNewPass
             // 
@@ -164,7 +165,7 @@
             this.txtNewPass.PlaceholderText = "";
             this.txtNewPass.SelectedText = "";
             this.txtNewPass.Size = new System.Drawing.Size(346, 72);
-            this.txtNewPass.TabIndex = 10;
+            this.txtNewPass.TabIndex = 1;
             // 
             // txtOldPass
             // 
@@ -187,7 +188,7 @@
             this.txtOldPass.PlaceholderText = "";
             this.txtOldPass.SelectedText = "";
             this.txtOldPass.Size = new System.Drawing.Size(346, 74);
-            this.txtOldPass.TabIndex = 8;
+            this.txtOldPass.TabIndex = 0;
             // 
             // label8
             // 
@@ -261,7 +262,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(919, 577);
-            this.panel2.TabIndex = 0;
+            this.panel2.TabIndex = 2;
             // 
             // btnSave
             // 
@@ -271,7 +272,7 @@
             this.btnSave.Location = new System.Drawing.Point(305, 478);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(288, 83);
-            this.btnSave.TabIndex = 10;
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -297,7 +298,7 @@
             this.txtEmail.PlaceholderText = "";
             this.txtEmail.SelectedText = "";
             this.txtEmail.Size = new System.Drawing.Size(623, 79);
-            this.txtEmail.TabIndex = 9;
+            this.txtEmail.TabIndex = 6;
             // 
             // txtPhone
             // 
@@ -320,7 +321,7 @@
             this.txtPhone.PlaceholderText = "";
             this.txtPhone.SelectedText = "";
             this.txtPhone.Size = new System.Drawing.Size(346, 80);
-            this.txtPhone.TabIndex = 8;
+            this.txtPhone.TabIndex = 5;
             // 
             // txtAddress
             // 
@@ -343,7 +344,7 @@
             this.txtAddress.PlaceholderText = "";
             this.txtAddress.SelectedText = "";
             this.txtAddress.Size = new System.Drawing.Size(346, 80);
-            this.txtAddress.TabIndex = 7;
+            this.txtAddress.TabIndex = 4;
             // 
             // txtUsername
             // 
@@ -367,7 +368,7 @@
             this.txtUsername.PlaceholderText = "";
             this.txtUsername.SelectedText = "";
             this.txtUsername.Size = new System.Drawing.Size(448, 75);
-            this.txtUsername.TabIndex = 6;
+            this.txtUsername.TabIndex = 3;
             // 
             // txtName
             // 
@@ -391,7 +392,7 @@
             this.txtName.PlaceholderText = "";
             this.txtName.SelectedText = "";
             this.txtName.Size = new System.Drawing.Size(355, 75);
-            this.txtName.TabIndex = 5;
+            this.txtName.TabIndex = 2;
             // 
             // label5
             // 
@@ -517,6 +518,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSavePass;
     }
 }

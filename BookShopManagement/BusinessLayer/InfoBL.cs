@@ -39,5 +39,35 @@ namespace BusinessLayer
                 throw ex;
             }
         }
+
+        public bool CheckCurrentPassword(string username, string currentPassword)
+        {
+            try
+            {
+                Info user = infoDL.GetUserInfo(username);
+                if (user != null)
+                {
+                    return user.Pass == currentPassword;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool ChangePassword(string username, string newPassword)
+        {
+            try
+            {
+                return infoDL.ChangeUserPassword(username, newPassword);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

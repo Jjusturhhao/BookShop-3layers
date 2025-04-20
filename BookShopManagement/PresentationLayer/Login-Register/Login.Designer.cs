@@ -64,7 +64,7 @@
             this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(313, 32);
-            this.txtUsername.TabIndex = 8;
+            this.txtUsername.TabIndex = 0;
             this.txtUsername.Text = "hao";
             // 
             // txtPassword
@@ -75,7 +75,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(313, 32);
-            this.txtPassword.TabIndex = 9;
+            this.txtPassword.TabIndex = 1;
             this.txtPassword.Text = "123";
             // 
             // label2
@@ -97,7 +97,7 @@
             this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(313, 58);
-            this.btnLogin.TabIndex = 10;
+            this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Đăng nhập";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -132,7 +132,7 @@
             this.btnRegister.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(313, 59);
-            this.btnRegister.TabIndex = 13;
+            this.btnRegister.TabIndex = 3;
             this.btnRegister.Text = "Đăng ký";
             this.btnRegister.UseVisualStyleBackColor = false;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);

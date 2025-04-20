@@ -63,6 +63,31 @@ namespace DataLayer
             return MyExecuteNonQuery(cmd) > 0;
         }
 
+        public bool ChangeUserPassword(string username, string newPassword)
+        {
+            string sql = "UPDATE Users SET Password = @Password WHERE Username = @Username";
+
+            try
+            {
+                Connect();
+                using (SqlCommand cmd = new SqlCommand(sql, cn))
+                {
+                    cmd.Parameters.AddWithValue("@Password", newPassword);
+                    cmd.Parameters.AddWithValue("@Username", username);
+
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi đổi mật khẩu: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                DisConnect();
+            }
+        }
 
     }
 }

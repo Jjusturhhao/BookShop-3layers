@@ -69,5 +69,66 @@ namespace PresentationLayer.UserControls
                 MessageBox.Show("Lỗi khi cập nhật: " + ex.Message);
             }
         }
+
+        public bool checkPassword()
+        {
+            if (txtOldPass.Text.Length == 0)
+            {
+                MessageBox.Show("Hãy nhập mật khẩu");
+                txtOldPass.Focus();
+                return false;
+            }
+            if (txtNewPass.Text.Length == 0)
+            {
+                MessageBox.Show("Hãy nhập mật khẩu mới");
+                txtNewPass.Focus();
+                return false;
+            }
+            if (txtConfirmNewPass.Text.Length == 0)
+            {
+                MessageBox.Show("Hãy nhập xác nhận mật khẩu");
+                txtConfirmNewPass.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        private void btnSavePass_Click(object sender, EventArgs e)
+        {
+            if (!checkPassword())
+                return;
+
+            string oldpass = txtOldPass.Text.Trim();
+            string newpass = txtNewPass.Text.Trim();
+            string confirmpass = txtConfirmNewPass.Text.Trim();
+
+            if (!infoBL.CheckCurrentPassword(currentUsername, oldpass))
+            {
+                MessageBox.Show("Sai mật khẩu cũ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtOldPass.Focus();
+                return;
+            }
+
+            if (newpass != confirmpass)
+            {
+                MessageBox.Show("Mật khẩu xác nhận không khớp", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtConfirmNewPass.Focus();
+                return;
+            }
+
+            // Tiến hành đổi mật khẩu
+            bool result = infoBL.ChangePassword(currentUsername, newpass);
+            if (result)
+            {
+                MessageBox.Show("Đổi mật khẩu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtOldPass.Text = "";
+                txtNewPass.Text = "";
+                txtConfirmNewPass.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Đổi mật khẩu thất bại. Vui lòng thử lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

@@ -53,7 +53,7 @@
             this.label5.Location = new System.Drawing.Point(236, 67);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(206, 46);
-            this.label5.TabIndex = 19;
+            this.label5.TabIndex = 6;
             this.label5.Text = "ĐĂNG KÝ";
             // 
             // btnRegister
@@ -65,7 +65,7 @@
             this.btnRegister.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(415, 54);
-            this.btnRegister.TabIndex = 18;
+            this.btnRegister.TabIndex = 7;
             this.btnRegister.Text = "Đăng ký";
             this.btnRegister.UseVisualStyleBackColor = false;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
@@ -77,7 +77,7 @@
             this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(248, 31);
-            this.txtEmail.TabIndex = 17;
+            this.txtEmail.TabIndex = 4;
             // 
             // txtPassword
             // 
@@ -87,7 +87,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(248, 31);
-            this.txtPassword.TabIndex = 16;
+            this.txtPassword.TabIndex = 3;
             // 
             // txtUsername
             // 
@@ -96,7 +96,7 @@
             this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(248, 31);
-            this.txtUsername.TabIndex = 15;
+            this.txtUsername.TabIndex = 2;
             // 
             // txtName
             // 
@@ -105,7 +105,7 @@
             this.txtName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(248, 31);
-            this.txtName.TabIndex = 14;
+            this.txtName.TabIndex = 1;
             // 
             // label4
             // 
@@ -174,7 +174,7 @@
             this.txtAddress.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(248, 31);
-            this.txtAddress.TabIndex = 22;
+            this.txtAddress.TabIndex = 5;
             // 
             // txtPhoneNumber
             // 
@@ -183,7 +183,7 @@
             this.txtPhoneNumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.Size = new System.Drawing.Size(248, 31);
-            this.txtPhoneNumber.TabIndex = 23;
+            this.txtPhoneNumber.TabIndex = 6;
             // 
             // guna2Panel1
             // 
@@ -193,7 +193,7 @@
             this.guna2Panel1.Location = new System.Drawing.Point(57, 45);
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.Size = new System.Drawing.Size(520, 538);
-            this.guna2Panel1.TabIndex = 24;
+            this.guna2Panel1.TabIndex = 7;
             // 
             // Register
             // 
