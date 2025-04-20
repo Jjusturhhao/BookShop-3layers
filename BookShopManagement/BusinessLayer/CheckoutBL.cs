@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using TransferObject;
 
 namespace BusinessLayer
@@ -35,6 +36,14 @@ namespace BusinessLayer
         public int GetQuantity(string bookID)
         {
             return CheckoutDL.GetQuantity(bookID);
+        }
+        public string GetStockID(string bookID)
+        {
+            return CheckoutDL.GetStockID(bookID);
+        }
+        public List<CartItem> GetCartItemsFromDgv(DataGridView dgvDetails)
+        {
+            return CheckoutDL.GetCartItemsFromDgv(dgvDetails);
         }
     }
 }

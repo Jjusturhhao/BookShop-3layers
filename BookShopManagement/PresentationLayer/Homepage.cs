@@ -173,9 +173,9 @@ namespace PresentationLayer
             ucCusOrders.Visible = true;
             ucCusOrders.BringToFront();
 
-            ucCusOrders.OnOrderDetailClick = (orderID) =>
+            ucCusOrders.OnOrderDetailClick = (orderID, currentUsername) =>
             {
-                ShowOrderDetail(orderID);
+                ShowOrderDetail(orderID, currentUsername);
             };
 
         }
@@ -264,14 +264,14 @@ namespace PresentationLayer
                 ucCusOrders.Visible = true;
                 ucCusOrders.BringToFront();
 
-                ucCusOrders.OnOrderDetailClick = (orderID) =>
+                ucCusOrders.OnOrderDetailClick = (orderID, currentUsername) =>
                 {
-                    ShowOrderDetail(orderID);
+                    ShowOrderDetail(orderID, currentUsername);
                 };
             };
 
         }
-        private void ShowOrderDetail(string orderID)
+        private void ShowOrderDetail(string orderID, string currentUsername)
         {
             if (ucCusOrderDetail != null)
             {
@@ -279,7 +279,7 @@ namespace PresentationLayer
                 ucCusOrderDetail.Dispose();
             }
 
-            ucCusOrderDetail = new UCCusOrderDetail(orderID);
+            ucCusOrderDetail = new UCCusOrderDetail(orderID, currentUsername);
             ucCusOrderDetail.Dock = DockStyle.Fill;
             panelContainer.Controls.Add(ucCusOrderDetail);
             HideAllUserControls();

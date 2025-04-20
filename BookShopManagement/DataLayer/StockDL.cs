@@ -278,6 +278,32 @@ namespace DataLayer
                 DisConnect();
             }
         }
+
+        public void ReduceQuantity(string stockID, int quantity)
+        {
+            string sql = "UPDATE Stock " +
+                           "SET Quantity = Quantity - @quantity " +
+                           "WHERE StockID = @stockID AND Quantity >= @quantity ";
+            try
+            {
+                Connect();
+                using (SqlCommand cmd = new SqlCommand(sql, cn))
+                {
+                    cmd.Parameters.AddWithValue("@stockID", stockID);
+                    cmd.Parameters.AddWithValue("@quantity", quantity);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+        }
     }
 }
 

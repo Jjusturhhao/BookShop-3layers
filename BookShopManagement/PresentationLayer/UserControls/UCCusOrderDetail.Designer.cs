@@ -31,6 +31,7 @@
             this.btnBack = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.lbTotalCost = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.flpDetails = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -39,7 +40,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.lbInforCus = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.lbTotalCost = new System.Windows.Forms.Label();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -86,6 +86,19 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(967, 435);
             this.panel4.TabIndex = 13;
+            // 
+            // lbTotalCost
+            // 
+            this.lbTotalCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbTotalCost.AutoSize = true;
+            this.lbTotalCost.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lbTotalCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTotalCost.ForeColor = System.Drawing.Color.Red;
+            this.lbTotalCost.Location = new System.Drawing.Point(564, 373);
+            this.lbTotalCost.Name = "lbTotalCost";
+            this.lbTotalCost.Size = new System.Drawing.Size(231, 36);
+            this.lbTotalCost.TabIndex = 14;
+            this.lbTotalCost.Text = "Tổng đơn hàng";
             // 
             // panel1
             // 
@@ -182,19 +195,6 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Thông tin nhận hàng";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbTotalCost
-            // 
-            this.lbTotalCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbTotalCost.AutoSize = true;
-            this.lbTotalCost.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lbTotalCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTotalCost.ForeColor = System.Drawing.Color.Red;
-            this.lbTotalCost.Location = new System.Drawing.Point(659, 374);
-            this.lbTotalCost.Name = "lbTotalCost";
-            this.lbTotalCost.Size = new System.Drawing.Size(231, 36);
-            this.lbTotalCost.TabIndex = 14;
-            this.lbTotalCost.Text = "Tổng đơn hàng";
             // 
             // UCCusOrderDetail
             // 

@@ -21,7 +21,7 @@ namespace DataLayer
                 o.Status, 
                 ISNULL(SUM(od.Qty_sold * od.PriceAtOrderTime), 0) AS Total
             FROM Orders o
-            JOIN Users u ON o.Customer_ID = u.User_ID
+            JOIN Users u ON o.PhoneNumber = u.PhoneNumber
             LEFT JOIN OrderDetails od ON o.Order_ID = od.Order_ID
             WHERE u.Username = @Username
             GROUP BY o.Order_ID, o.Order_Date, o.Status

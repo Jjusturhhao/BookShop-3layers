@@ -12,9 +12,12 @@ namespace PresentationLayer.UserControls
 {
     public partial class UCStaffInterface : UserControl
     {
-        public UCStaffInterface()
+        private string username;
+
+        public UCStaffInterface(string username)
         {
             InitializeComponent();
+            this.username = username;
         }
 
         private void btnCheckout_Click(object sender, EventArgs e)
@@ -25,7 +28,7 @@ namespace PresentationLayer.UserControls
             if (mainForm != null)
             {
                 // Tạo và hiển thị UCCheckout trong panelContainer của Main
-                UCCheckout checkout = new UCCheckout();
+                UCCheckout checkout = new UCCheckout(username);
                 mainForm.PanelContainer.Controls.Clear();
                 checkout.Dock = DockStyle.Fill;
                 mainForm.PanelContainer.Controls.Add(checkout);

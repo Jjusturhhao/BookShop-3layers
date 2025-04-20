@@ -53,11 +53,11 @@ namespace PresentationLayer
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO PAYMENTS VALUES (@Payment_ID, @Bill_ID, @Customer_ID, @Credit_card_numb, @Credit_card_expiry, @PaymentPaid)", con);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO PAYMENTS VALUES (@Payment_ID, @Bill_ID, @PhoneNumber, @Credit_card_numb, @Credit_card_expiry, @PaymentPaid)", con);
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@Payment_ID", textBox1.Text);
                     cmd.Parameters.AddWithValue("@Bill_ID", textBox2.Text);
-                    cmd.Parameters.AddWithValue("@Customer_ID", textBox3.Text);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", textBox3.Text);
                     cmd.Parameters.AddWithValue("@Credit_card_numb", textBox4.Text);
                     cmd.Parameters.AddWithValue("@Credit_card_expiry", textBox5.Text);
                     cmd.Parameters.AddWithValue("@PaymentPaid", textBox6.Text);
@@ -90,11 +90,11 @@ namespace PresentationLayer
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("UPDATE PAYMENTS SET Payment_ID = @Payment_ID, Bill_ID = @Bill_ID, Customer_ID = @Customer_ID, Credit_card_numb= @Credit_card_numb, Credit_card_expiry = @Credit_card_expiry, PaymentPaid = @PaymentPaid WHERE Payment_ID = @ID", con);
+                    SqlCommand cmd = new SqlCommand("UPDATE PAYMENTS SET Payment_ID = @Payment_ID, Bill_ID = @Bill_ID, PhoneNumber = @PhoneNumber, Credit_card_numb= @Credit_card_numb, Credit_card_expiry = @Credit_card_expiry, PaymentPaid = @PaymentPaid WHERE Payment_ID = @ID", con);
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@Payment_ID", textBox1.Text);
                     cmd.Parameters.AddWithValue("@Bill_ID", textBox2.Text);
-                    cmd.Parameters.AddWithValue("@Customer_ID", textBox3.Text);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", textBox3.Text);
                     cmd.Parameters.AddWithValue("@Credit_card_numb", textBox4.Text);
                     cmd.Parameters.AddWithValue("@Credit_card_expiry", textBox5.Text);
                     cmd.Parameters.AddWithValue("@PaymentPaid", textBox6.Text);

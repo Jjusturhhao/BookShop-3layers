@@ -15,9 +15,8 @@ namespace DataLayer
     {
         public List<Order> GetOrders()
         {
-            string sql = "SELECT o.Order_ID, u.Name AS Customer_Name, e.Name AS Employee_Name, o.Order_Date, o.Status, b.Total_Cost AS Total_Cost " +
+            string sql = "SELECT o.Order_ID, o.PhoneNumber, e.Name AS Employee_Name, o.Order_Date, o.Status, b.Total_Cost AS Total_Cost " +
                          "FROM Orders o " +
-                         "LEFT JOIN Users u ON o.Customer_ID = u.User_ID " +
                          "LEFT JOIN Bill_Generate b ON o.Order_ID = b.Order_ID " +
                          "LEFT JOIN Users e ON o.Employee_ID = e.User_ID";
 
@@ -30,13 +29,13 @@ namespace DataLayer
                 while (reader.Read())
                 {
                     string orderId = reader["Order_ID"].ToString();
-                    string cusName = reader["Customer_Name"].ToString();
+                    string phone = reader["PhoneNumber"].ToString();
                     string empName = reader["Employee_Name"].ToString();  
                     DateTime orderDate = Convert.ToDateTime(reader["Order_Date"]);
                     string status = reader["Status"].ToString();
                     int totalCost = Convert.ToInt32(reader["Total_Cost"]);
 
-                    Order order = new Order(orderId, cusName, empName, orderDate, status, totalCost);  // Cập nhật constructor Order
+                    Order order = new Order(orderId, phone, empName, orderDate, status, totalCost);  // Cập nhật constructor Order
                     orders.Add(order);
                 }
                 reader.Close();
@@ -133,10 +132,10 @@ namespace DataLayer
             return newUserId;
         }
         
-        public void SaveOrder(string orderID, string customerID, string employeeID, DateTime orderDate, string status)
+        public void SaveOrder(string orderID, string phone, string employeeID, DateTime orderDate, string status)
         {
-            string insertOrderQuery = "INSERT INTO Orders (Order_ID, Customer_ID, Employee_ID, Order_Date, Status) " +
-                                      "VALUES (@Order_ID, @Customer_ID, @Employee_ID, @Order_Date, @Status)";
+            string insertOrderQuery = "INSERT INTO Orders (Order_ID, PhoneNumber, Employee_ID, Order_Date, Status) " +
+                                      "VALUES (@Order_ID, @PhoneNumber, @Employee_ID, @Order_Date, @Status)";
 
             try
             {
@@ -144,7 +143,7 @@ namespace DataLayer
                 using (SqlCommand cmd = new SqlCommand(insertOrderQuery, cn))
                 {
                     cmd.Parameters.AddWithValue("@Order_ID", orderID);
-                    cmd.Parameters.AddWithValue("@Customer_ID", customerID);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", phone);
                     cmd.Parameters.AddWithValue("@Employee_ID", string.IsNullOrEmpty(employeeID) ? (object)DBNull.Value : employeeID);
                     cmd.Parameters.AddWithValue("@Order_Date", orderDate);
                     cmd.Parameters.AddWithValue("@Status", status);
@@ -165,36 +164,6 @@ namespace DataLayer
                 DisConnect();
             }
         }
-        public void SaveOrderDetail(string orderID, List<CartItem> cartItems)
-        {
-            string insertOrderDetailQuery = "INSERT INTO OrderDetails (Order_ID, StockID, Qty_sold, PriceAtOrderTime) " +
-                                            "VALUES (@Order_ID, @StockID, @Qty_sold, @PriceAtOrderTime)";
-
-            try
-            {
-                Connect();
-
-                // Lặp qua từng sản phẩm trong giỏ hàng và lưu vào OrderDetails
-                foreach (CartItem cartItem in cartItems)
-                {
-                    SqlCommand cmd = new SqlCommand(insertOrderDetailQuery, cn);
-                    cmd.Parameters.AddWithValue("@Order_ID", orderID);  
-                    cmd.Parameters.AddWithValue("@StockID", cartItem.StockID);  
-                    cmd.Parameters.AddWithValue("@Qty_sold", cartItem.Quantity);  
-                    cmd.Parameters.AddWithValue("@PriceAtOrderTime", cartItem.UnitPrice);  
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Lỗi khi lưu chi tiết đơn hàng: {ex.Message}");
-            }
-            finally
-            {
-                DisConnect();
-            }
-        }
-
+        
     }
 }

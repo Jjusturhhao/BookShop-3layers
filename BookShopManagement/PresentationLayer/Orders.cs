@@ -42,10 +42,10 @@ namespace PresentationLayer
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO Orders VALUES (@Order_ID, @Customer_ID, @Customer_Name, @Employee_ID, @StockID, @Qty_sold, @Order_Date)", con);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Orders VALUES (@Order_ID, @PhoneNumber, @Customer_Name, @Employee_ID, @StockID, @Qty_sold, @Order_Date)", con);
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@Order_ID", textBox1.Text);
-                    cmd.Parameters.AddWithValue("@Customer_ID", textBox2.Text);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", textBox2.Text);
                     cmd.Parameters.AddWithValue("@Customer_Name", textBox3.Text);
                     cmd.Parameters.AddWithValue("@Employee_ID", textBox4.Text);
                     cmd.Parameters.AddWithValue("@StockID", textBox5.Text);
@@ -80,10 +80,10 @@ namespace PresentationLayer
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("UPDATE Orders SET Order_ID = @Order_ID, Customer_ID = @Customer_ID , Customer_Name = @Customer_Name, Employee_ID = @Employee_ID, StockID = @StockID, Qty_sold = @Qty_sold, Order_Date = @Order_Date WHERE Order_ID = @ID", con);
+                    SqlCommand cmd = new SqlCommand("UPDATE Orders SET Order_ID = @Order_ID, PhoneNumber = @PhoneNumber , Customer_Name = @Customer_Name, Employee_ID = @Employee_ID, StockID = @StockID, Qty_sold = @Qty_sold, Order_Date = @Order_Date WHERE Order_ID = @ID", con);
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("@Order_ID", textBox1.Text);
-                    cmd.Parameters.AddWithValue("@Customer_ID", textBox2.Text);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", textBox2.Text);
                     cmd.Parameters.AddWithValue("@Customer_Name", textBox3.Text);
                     cmd.Parameters.AddWithValue("@Employee_ID", textBox4.Text);
                     cmd.Parameters.AddWithValue("@StockID", textBox5.Text);

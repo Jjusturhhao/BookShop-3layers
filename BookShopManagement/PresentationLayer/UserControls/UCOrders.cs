@@ -43,7 +43,7 @@ namespace PresentationLayer.UserControls
         private void ResetFormControls()
         {
             txtOrderID.Clear();
-            txtCustomerName.Clear();
+            txtPhone.Clear();
             cbxEmployeeName.Items.Clear();
             dateTimePickerOrderDate.Checked = false;
             cbxStatus.Text = "";
@@ -58,7 +58,7 @@ namespace PresentationLayer.UserControls
                 DataGridViewRow row = dgvOrders.SelectedRows[0];
 
                 txtOrderID.Text = row.Cells["Order_ID"].Value.ToString();
-                txtCustomerName.Text = row.Cells["Customer_Name"].Value.ToString();
+                txtPhone.Text = row.Cells["PhoneNumber"].Value.ToString();
                 cbxEmployeeName.Text = row.Cells["Employee_Name"].Value.ToString();
                 if (DateTime.TryParse(row.Cells["Order_Date"].Value.ToString(), out DateTime orderDate))
                 {
@@ -69,7 +69,7 @@ namespace PresentationLayer.UserControls
 
                 // Chỉ cho phép sửa Status
                 txtOrderID.ReadOnly = true;
-                txtCustomerName.ReadOnly = true;
+                txtPhone.ReadOnly = true;
                 cbxEmployeeName.Enabled = false;
                 txtTotal.ReadOnly = true;
                 dateTimePickerOrderDate.Enabled = false; 

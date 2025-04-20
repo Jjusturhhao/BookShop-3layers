@@ -18,6 +18,10 @@ namespace PresentationLayer.UserControls
         private CartBL cartBL;
         private InfoBL infoBL;
         private OrderBL orderBL;
+        private OrderDetailsBL orderDetailsBL;
+        private StockBL stockBL;
+        private BillBL billBL;
+
         private Info info;
         private string username;
 
@@ -31,7 +35,9 @@ namespace PresentationLayer.UserControls
             this.cartBL = cartBL;
             infoBL = new InfoBL();
             orderBL = new OrderBL();
-
+            orderDetailsBL = new OrderDetailsBL();
+            stockBL = new StockBL();
+            billBL = new BillBL();
         }
         
         private void UCFormOrder_Load(object sender, EventArgs e)
@@ -55,28 +61,34 @@ namespace PresentationLayer.UserControls
                 string orderID = orderBL.GenerateOrderID();
                 
                 // Bước 2: Lưu thông tin Order vào bảng Orders
-                string customerID = info.User_ID;
+                string phone = info.Phone;
                 DateTime orderDate = DateTime.Now;
                 string status = "Chờ xác nhận";
-
-                orderBL.SaveOrder(orderID, customerID, null, orderDate, status);
+                orderBL.SaveOrder(orderID, phone, null, orderDate, status);
 
                 // Bước 3: Lấy danh sách sản phẩm trong giỏ hàng và lưu chi tiết đơn hàng
                 List<CartItem> cartItems = cartBL.GetCartItems();
-                orderBL.SaveOrderDetails(orderID, cartItems);
+                orderDetailsBL.SaveOrderDetails(orderID, cartItems);
+                foreach (var item in cartItems)
+                {
+                    stockBL.ReduceStockQuantity(item.StockID, item.Quantity);
+                }
 
-                // Bước 4: Thông báo
+                // Bước 4: Tạo hóa đơn và lưu vào bảng Bill_Generate
+                billBL.CreateBill(orderID);
+
+                // Bước 5: Thông báo
                 MessageBox.Show("Đặt hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Bước 5: Xóa giỏ hàng
+                // Bước 6: Xóa giỏ hàng
                 cartBL.ClearCart();
 
-                // Bước 6: Chuyển đến giao diện danh sách đơn hàng
+                // Bước 7: Chuyển đến giao diện danh sách đơn hàng
                 OnOrderSuccess?.Invoke();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Đã xảy ra lỗi khi đặt hàng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -20,18 +20,36 @@ namespace PresentationLayer.UserControls
     public partial class UCCheckout : UserControl
     {
         private CheckoutBL CheckoutBL;
+        private InfoBL infoBL;
+        private OrderBL orderBL;
+        private OrderDetailsBL orderDetailsBL;
+        private StockBL stockBL;
+        private BillBL billBL;
+        private CustomerBL customerBL;
+
+        private string username;
+        private Info info;
         private Panel selectedPanel = null;  // Biến lưu trữ panel của sách đã chọn
+        
+        private string selectedStockID = string.Empty;
         private string selectedBookID = string.Empty; 
         private string selectedBookName = string.Empty; 
         private int selectedPrice = 0;
 
 
-        public UCCheckout()
+        public UCCheckout(string username)
         {
             InitializeComponent();
             CheckoutBL = new CheckoutBL();
             Load += UCCheckout_Load;
 
+            infoBL = new InfoBL(); 
+            orderBL = new OrderBL();
+            orderDetailsBL = new OrderDetailsBL();
+            stockBL = new StockBL();
+            billBL = new BillBL();
+            customerBL = new CustomerBL();
+            this.username = username;
         }
         public void UCCheckout_Load(object sender, EventArgs e)
         {
@@ -59,6 +77,8 @@ namespace PresentationLayer.UserControls
         {
             dgvBooks.Columns.Clear(); // Đảm bảo không bị lặp cột
 
+            dgvBooks.Columns.Add("StockID", "Mã kho");
+            dgvBooks.Columns["StockID"].Visible = false;
             dgvBooks.Columns.Add("BookID", "Mã sách");
             dgvBooks.Columns.Add("BookName", "Tên sách");
             dgvBooks.Columns.Add("Price", "Đơn giá");
@@ -75,7 +95,8 @@ namespace PresentationLayer.UserControls
 
             foreach (var book in books)
             {
-                dgvBooks.Rows.Add(book.Bookid, book.Bookname, book.Price, book.Quantity);
+                string stockid = CheckoutBL.GetStockID(book.Bookid);
+                dgvBooks.Rows.Add(stockid, book.Bookid, book.Bookname, book.Price, book.Quantity);
             }
 
             dgvBooks.Columns["BookName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -110,6 +131,7 @@ namespace PresentationLayer.UserControls
             if (e.RowIndex >= 0) // Đảm bảo chỉ xử lý khi nhấp vào một dòng hợp lệ
             {
                 // Lưu thông tin sách được chọn
+                selectedStockID = dgvBooks.Rows[e.RowIndex].Cells["StockID"].Value.ToString();
                 selectedBookID = dgvBooks.Rows[e.RowIndex].Cells["BookID"].Value.ToString();
                 selectedBookName = dgvBooks.Rows[e.RowIndex].Cells["BookName"].Value.ToString();
                 selectedPrice = Convert.ToInt32(dgvBooks.Rows[e.RowIndex].Cells["Price"].Value.ToString().Replace(",", ""));
@@ -132,7 +154,13 @@ namespace PresentationLayer.UserControls
 
         private void LoadDetails()
         {
-            dgvDetails.Columns.Clear(); 
+            dgvDetails.Columns.Clear();
+
+            dgvDetails.Columns.Add("Mã kho", "Mã kho"); // Cột ẩn để lưu StockID
+            dgvDetails.Columns["Mã kho"].Visible = false;  // Ẩn cột này đi
+            dgvDetails.Columns.Add("Mã sách", "Mã sách"); // Cột ẩn để lưu BookID
+            dgvDetails.Columns["Mã sách"].Visible = false;  // Ẩn cột này đi
+            
             dgvDetails.Columns.Add("Tên sách", "Tên sách");
             dgvDetails.Columns.Add("Số lượng", "Số lượng");
             dgvDetails.Columns.Add("Đơn giá", "Đơn giá");
@@ -150,6 +178,7 @@ namespace PresentationLayer.UserControls
             }
 
             // Lấy thông tin từ các điều khiển
+            string stockID = selectedStockID;
             int quantity = (int)numericUpDownQuantity.Value; 
             int unitPrice = selectedPrice;
             int totalPrice = unitPrice * quantity;
@@ -158,7 +187,7 @@ namespace PresentationLayer.UserControls
 
             foreach (DataGridViewRow dgvRow in dgvDetails.Rows)
             {
-                if (dgvRow.Cells["Tên sách"].Value != null && dgvRow.Cells["Tên sách"].Value.ToString() == selectedBookName)
+                if (dgvRow.Cells["Mã sách"].Value != null && dgvRow.Cells["Mã sách"].Value.ToString() == selectedBookID)
                 {
                     // Cập nhật số lượng và thành tiền
                     int existingQuantity = Convert.ToInt32(dgvRow.Cells["Số lượng"].Value);
@@ -173,6 +202,9 @@ namespace PresentationLayer.UserControls
             if (!bookExists)
             {
                 DataGridViewRow newRow = new DataGridViewRow();
+
+                newRow.Cells.Add(new DataGridViewTextBoxCell() { Value = stockID });
+                newRow.Cells.Add(new DataGridViewTextBoxCell() { Value = selectedBookID });
                 newRow.Cells.Add(new DataGridViewTextBoxCell() { Value = selectedBookName });
                 newRow.Cells.Add(new DataGridViewTextBoxCell() { Value = quantity });
                 newRow.Cells.Add(new DataGridViewTextBoxCell() { Value = unitPrice });
@@ -287,20 +319,78 @@ namespace PresentationLayer.UserControls
             txtChange.Text = null;
             numericUpDownQuantity.Value = 1;
         }
-
-        private void btnGenerateBill_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("MÌNH CHƯA CÓ LÀM: ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            SaveBill();
-        }
-        private void SaveBill()
-        {
-             
-        }
+       
         private void btnApply_Click(object sender, EventArgs e)
         {
             txtNameSearch.Text = String.Empty;
             LoadBooksByCate();
+        }
+
+        private void btnGenerateBill_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string cusname = txtCusName.Text.Trim();
+                string cusphone = txtCusPhone.Text.Trim();
+
+                if (string.IsNullOrEmpty(cusname) || string.IsNullOrEmpty(cusphone))
+                {
+                    MessageBox.Show("Vui lòng nhập đầy đủ tên và số điện thoại khách hàng.", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // Dừng lại, không tiếp tục thực hiện
+                }
+
+                // Kiểm tra xem khách hàng đã tồn tại trong bảng Customers chưa
+                bool customerExists = customerBL.CheckCustomerExist(cusphone);
+                if (!customerExists)
+                {
+                    customerBL.SaveCustomer(cusphone, cusname);
+                }
+
+                //Lấy StaffID
+                info = infoBL.GetUserInfo(username);
+                string staffID = info.User_ID;
+
+                
+                // Bước 1: Tạo Order_ID mới
+                string orderID = orderBL.GenerateOrderID();
+
+                // Bước 2: Lưu thông tin Order vào bảng Orders
+                DateTime orderDate = DateTime.Now;
+                string status = "Đã hoàn thành";
+
+                orderBL.SaveOrder(orderID, cusphone, staffID, orderDate, status);
+
+                // Bước 3: Lấy danh sách sản phẩm trong giỏ hàng và lưu chi tiết đơn hàng
+                List<CartItem> cartItems = CheckoutBL.GetCartItemsFromDgv(dgvDetails);
+                orderDetailsBL.SaveOrderDetails(orderID, cartItems);
+                foreach (var item in cartItems)
+                {
+                    stockBL.ReduceStockQuantity(item.StockID, item.Quantity);
+                }
+
+                // Bước 4: Tạo hóa đơn và lưu vào bảng Bill_Generate
+                billBL.CreateBill(orderID);
+
+                // Bước 5: Thông báo
+                MessageBox.Show("Đặt hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Bước 6: Xóa giỏ hàng
+                LoadAfterCheckout();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void LoadAfterCheckout()
+        {
+            LoadDetails();
+            txtCusName.Clear();
+            txtCusPhone.Clear();
+            txtTotalBill.Clear();
+            txtTotalPaid.Clear();
+            txtChange.Clear();
+            rdByCash.Checked = true;
         }
     }
 }
