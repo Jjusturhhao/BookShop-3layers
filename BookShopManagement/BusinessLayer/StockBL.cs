@@ -16,15 +16,15 @@ namespace BusinessLayer
     public class StockBL
     {
         private StockDL stockDL;
-        private BookBL BookBL;
+       
 
 
-        public StockBL ()
+        public StockBL()
         {
             stockDL = new StockDL();
         }
-      
-        public List <Stock> GetStocks()
+
+        public List<Stock> GetStocks()
         {
             try
             {
@@ -57,7 +57,7 @@ namespace BusinessLayer
             {
                 throw ex;
             }
-            
+
         }
         public List<SupplierStock> GetSupplierStocks()
         {
@@ -87,6 +87,10 @@ namespace BusinessLayer
         public List<Stock> SearchStock(string keyword)
         {
             return stockDL.SearchStock(keyword);
+        }
+        public Stock GetEmptyStock()
+        {
+            return stockDL.Refest();
         }
     }
 }

@@ -102,14 +102,40 @@ namespace DataLayer
             }
         }
 
+        //public int MyExecuteNonQuery(string sql, CommandType type, List<SqlParameter> parameters)
+        //{
+        //    SqlCommand cmd = new SqlCommand(sql, cn);
+        //    cmd.CommandType = type;
+        //    if (parameters != null)
+        //    {
+        //        foreach (SqlParameter parameter in parameters) ;
+        //    }    
+        //    try
+        //    {
+        //        Connect();
+
+        //        return (cmd.ExecuteNonQuery());   
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        DisConnect();
+        //    }
+        //}
+
         public int MyExecuteNonQuery(string sql, CommandType type)
         {
+            SqlCommand cmd = new SqlCommand(sql, cn);
+            cmd.CommandType = type;
+           
             try
             {
                 Connect();
-                SqlCommand cmd = new SqlCommand(sql, cn);
-                cmd.CommandType = type;
-                return cmd.ExecuteNonQuery();   
+
+                return (cmd.ExecuteNonQuery());
             }
             catch (SqlException ex)
             {

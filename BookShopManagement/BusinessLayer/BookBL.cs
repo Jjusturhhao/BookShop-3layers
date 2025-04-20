@@ -13,7 +13,7 @@ namespace BusinessLayer
     public class BookBL
     {
         private BookDL bookDL;
-        public BookBL ()
+        public BookBL()
         {
             bookDL = new BookDL();
         }
@@ -34,13 +34,39 @@ namespace BusinessLayer
             return bookDL.GenerateNextBookID();
         }
 
-
-        public Book GetEmptyBook()
+        public List<BookCategoryStock> GetBookCategories()
         {
-            return bookDL.GetEmptyBook();
+            try
+            {
+                return bookDL.bookCategoryStocks();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        public int Add(Book book)
+        {
+            return bookDL.Add(book);
+        }
+        public int Delete(Book book)
+        {
+            return bookDL.Delete(book);
+        }
+        public int Update(Book book)
+        {
+            return bookDL.Update(book);
+        }
+        public List<Book> SearchBook(string keyword)
+        {
+            return bookDL.SearchBook(keyword);
         }
 
-
+        public Book ResetBook()
+        {
+            return bookDL.Reset();
+        }
     }
 
 }

@@ -155,7 +155,7 @@ namespace DataLayer
                 DisConnect();
             }
         }
-        public int Add (Stock stock)
+        public int Add(Stock stock)
         {
             string sql = "INSERT INTO Stock (StockID, SupplierID, BookID, CategoryID, BookName, ImportDate, Quantity) " +
              "VALUES('" + stock.StockID + "', '" + stock.Supplier_ID + "', '" + stock.BookID + "', '" + stock.CategoryID + "', '" + stock.BookName + "', '" + stock.ImportDate.ToString("yyyy-MM-dd") + "', " + stock.Quantity + ")";
@@ -173,12 +173,40 @@ namespace DataLayer
                 DisConnect();
             }
         }
+
+        //public int Add(Stock stock)
+        //{
+        //    string sql = "uspAddStock";
+        //    List<SqlParameter> parameters = new List<SqlParameter>();
+
+        //    parameters.Add(new SqlParameter("@StockID", stock.StockID));
+        //    parameters.Add(new SqlParameter("@SupplierID", stock.Supplier_ID));
+        //    parameters.Add(new SqlParameter("@BookID", stock.BookID));
+        //    parameters.Add(new SqlParameter("@CategoryID", stock.CategoryID));
+        //    parameters.Add(new SqlParameter("@BookName", stock.BookName));
+        //    parameters.Add(new SqlParameter("@ImportDate", stock.ImportDate));
+        //    parameters.Add(new SqlParameter("@Quantity", stock.Quantity));
+
+
+        //    try
+        //    {
+        //        return MyExecuteNonQuery(sql, CommandType.StoredProcedure, parameters);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        DisConnect();
+        //    }
+        //}
         public int Delete(Stock stock)
         {
 
-            
+
             string sql = "DELETE FROM Stock WHERE 1=1";
-                sql += " AND CategoryID = '" + stock.CategoryID + "'";
+            sql += " AND CategoryID = '" + stock.CategoryID + "'";
             if (!string.IsNullOrEmpty(stock.BookName))
                 sql += " AND BookName = '" + stock.BookName.Replace("'", "''") + "'";
             if (stock.ImportDate != DateTime.MinValue)
@@ -200,13 +228,38 @@ namespace DataLayer
                 DisConnect();
             }
         }
+
+        //public int Delete(Stock stock)
+        //{
+
+
+        //    string sql = "uspDeleteStock";
+        //    List<SqlParameter> parameters = new List<SqlParameter>();
+
+        //    parameters.Add(new SqlParameter("@StockID", stock.Supplier_ID));
+
+
+        //    try
+        //    {
+        //        return MyExecuteNonQuery(sql, CommandType.StoredProcedure, parameters);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        DisConnect();
+        //    }
+        //}
+
         public int Update(Stock stock)
         {
             string sql = "UPDATE Stock SET ";
 
             List<string> updates = new List<string>();
 
-                updates.Add("CategoryID = '" + stock.CategoryID + "'");
+            updates.Add("CategoryID = '" + stock.CategoryID + "'");
             if (!string.IsNullOrEmpty(stock.BookName))
                 updates.Add("BookName = '" + stock.BookName.Replace("'", "''") + "'");
             if (stock.ImportDate != DateTime.MinValue)
@@ -218,7 +271,7 @@ namespace DataLayer
                 throw new Exception("Không có thông tin nào để cập nhật.");
 
             sql += string.Join(", ", updates);
-            sql += " WHERE StockID = '" + stock.StockID + "'"; 
+            sql += " WHERE StockID = '" + stock.StockID + "'";
 
             try
             {
@@ -278,6 +331,7 @@ namespace DataLayer
                 DisConnect();
             }
         }
+
     }
 }
 

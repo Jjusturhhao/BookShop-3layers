@@ -14,10 +14,13 @@ namespace TransferObject
         public string Categoryid { get; set; }
         public string Author { get; set; }
         public int Price { get; set; }
-        public byte[] Bookimage { get; set; }
+        public string Bookimage { get; set; }
         public int Quantity { get; set; }
 
-        public Book(string bookid, string bookname, string categoryid, string author, int price, byte[] bookimage)
+        public Book() { }
+
+
+        public Book(string bookid, string bookname, string categoryid, string author, int price, string bookimage)
         {
             Bookid = bookid;
             Bookname = bookname;

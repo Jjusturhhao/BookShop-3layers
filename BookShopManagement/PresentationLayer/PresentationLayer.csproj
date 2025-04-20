@@ -182,6 +182,12 @@
     <Compile Include="Book.Designer.cs">
       <DependentUpon>Book.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Issue.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Issue.Designer.cs">
+      <DependentUpon>Issue.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -211,12 +217,6 @@
     </Compile>
     <Compile Include="UserControls\UCCusOrders.Designer.cs">
       <DependentUpon>UCCusOrders.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\UCGoods Issue Note.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UserControls\UCGoods Issue Note.Designer.cs">
-      <DependentUpon>UCGoods Issue Note.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UCHomepage.cs">
       <SubType>UserControl</SubType>
@@ -327,6 +327,9 @@
     <EmbeddedResource Include="Book.resx">
       <DependentUpon>Book.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Issue.resx">
+      <DependentUpon>Issue.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCInfo.resx">
       <DependentUpon>UCInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -341,9 +344,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCCusOrders.resx">
       <DependentUpon>UCCusOrders.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCGoods Issue Note.resx">
-      <DependentUpon>UCGoods Issue Note.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCHomepage.resx">
       <DependentUpon>UCHomepage.cs</DependentUpon>

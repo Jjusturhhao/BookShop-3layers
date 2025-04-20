@@ -13,6 +13,7 @@ using PresentationLayer;
 using TransferObject;
 
 
+
 namespace PresentationLayer.UserControls
 {
     public partial class UCStock : UserControl
@@ -74,7 +75,7 @@ namespace PresentationLayer.UserControls
         private void btnReset_Click(object sender, EventArgs e)
         {
 
-            TransferObject.Stock emptyStock = stockBL.Refest();
+            Stock emptyStock = stockBL.GetEmptyStock();
 
             string newStockID = stockBL.GenerateNextStockID();
             string newBookID = stockBL.GenerateNextBookID(); 
@@ -132,18 +133,22 @@ namespace PresentationLayer.UserControls
                 return;
             }
 
-            Stock stock = new Stock(StockID, supplier_ID, BookID, CategoryID, BookName,importDate, quantity);
+            Stock stock = new Stock(StockID, supplier_ID, BookID, CategoryID, BookName, importDate, quantity);
             try
             {
                 stockBL.Add(stock);
+                MessageBox.Show("Đã thêm sách thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 dgvStock.DataSource = stockBL.GetStocks();
                 btnReset.PerformClick();
+
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Sách đã tồn tại", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
         }
+        
 
         private void btnDeleteBook_Click(object sender, EventArgs e)
         {
@@ -183,10 +188,7 @@ namespace PresentationLayer.UserControls
             CategoryID = cbxCategory.SelectedValue?.ToString();
             BookName = txtBookName.Text;
             importDate = dtpk.Value;
-
             quantity = Convert.ToInt32(txtQuantity.Text);
-
-
 
             Stock stock = new Stock(StockID, supplier_ID, BookID, CategoryID, BookName, importDate, quantity);
             try
@@ -215,21 +217,38 @@ namespace PresentationLayer.UserControls
             }
 
         }
-
-        private void AddForm (Form form)
+        public void ShowUserControl(UserControl userControl)
         {
-            form.TopLevel = false;
-            panel6.Controls.Clear();
-            panel6.Controls.Add(form);
-
-            form.Dock = DockStyle.Fill;
-            form.FormBorderStyle = FormBorderStyle.None;
-            form.Show();
+            this.Controls.Clear(); 
+            userControl.Dock = DockStyle.Fill;  
+            this.Controls.Add(userControl);  
+            userControl.BringToFront();  
         }
-
         private void btnGIN_Click(object sender, EventArgs e)
         {
-            AddForm(new UCGoods_Issue_Note());
+            if (dgvStock.CurrentRow != null)
+            {
+                DataGridViewRow row = dgvStock.CurrentRow;
+
+                string stockID = row.Cells["StockID"].Value?.ToString();
+                string bookID = row.Cells["BookID"].Value?.ToString();
+                string bookName = row.Cells["BookName"].Value?.ToString();
+                string categoryID = row.Cells["CategoryID"].Value?.ToString();
+                string supplierID = row.Cells["Supplier_ID"].Value?.ToString();
+                DateTime importDate = Convert.ToDateTime(row.Cells["ImportDate"].Value);
+                int quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
+
+                Stock selectedStock = new Stock(stockID, supplierID, bookID, categoryID, bookName, importDate, quantity);
+                MessageBox.Show("Đồng ý xuất phiếu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                Issue uc1 = new Issue(selectedStock);
+                ShowUserControl(uc1);
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một dòng để xuất phiếu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
         }
     }
 }
