@@ -61,7 +61,7 @@ namespace PresentationLayer.UserControls
             {
                 // Bước 1: Tạo Order_ID mới
                 string orderID = orderBL.GenerateOrderID();
-                
+
                 // Bước 2: Lưu thông tin Order vào bảng Orders
                 string phone = info.Phone;
                 DateTime orderDate = DateTime.Now;
@@ -75,19 +75,32 @@ namespace PresentationLayer.UserControls
                 foreach (var item in cartItems)
                 {
                     stockBL.ReduceStockQuantity(item.StockID, item.Quantity);
-                    totalCost += (item.Quantity + item.UnitPrice);
+                    totalCost += (item.Quantity * item.UnitPrice);
                 }
 
                 // Bước 4: Tạo hóa đơn và lưu vào bảng Bill_Generate
                 string billID = billBL.GetBillID(orderID);
                 billBL.CreateBill(billID, orderID);
 
-                // Bước 5: Tạo phương thức thanh toán và lưu vào bảo Payments
+                // Bước 5: Tạo phương thức thanh toán và lưu vào bảng Payments
                 string paymentID = paymentBL.GetPaymentID();
                 string paymentMethod = GetSelectedPaymentMethod();
+
+                // 💥💥💥 THÊM SHOW FORM QR Ở ĐÂY:
+                if (paymentMethod == "Chuyển khoản ngân hàng" || paymentMethod == "Ví điện tử")
+                {
+                    FormQR qrForm = new FormQR(paymentMethod);
+                    qrForm.ShowDialog();
+
+                    if (!qrForm.IsConfirmed)
+                    {
+                        MessageBox.Show("Bạn chưa xác nhận đã chuyển khoản. Đơn hàng chưa được tạo.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return; // Không tiếp tục xử lý nữa
+                    }
+                }
+
                 string transactionCode = GetTransactionCode(rdByCash.Checked, paymentID);
-                DateTime? paymentDate = GetPaymentDate(rdByCash.Checked, transactionCode); //? kiểu nullable
-                //totalCost+Ship
+                DateTime? paymentDate = GetPaymentDate(rdByCash.Checked, transactionCode);
                 paymentBL.AddPayment(paymentID, billID, phone, paymentMethod, transactionCode, paymentDate, totalCost);
 
                 // Bước 6: Thông báo
@@ -129,6 +142,11 @@ namespace PresentationLayer.UserControls
         private void btnBack_Click(object sender, EventArgs e)
         {
             OnBackToCartClick?.Invoke();
+        }
+
+        private void rdByTransfer_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

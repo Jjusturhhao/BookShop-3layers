@@ -2,43 +2,42 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using PresentationLayer.UserControls;
+using TransferObject;
 
 namespace PresentationLayer
 {
     public partial class Main : Form
     {
+        private ContextMenuStrip accountMenu;
+        private UCInfo ucInfo;
+
         public Panel PanelContainer
         {
             get { return panelContainer; }
         }
 
         private string username;
+
         public Main(string username)
         {
             InitializeComponent();
             this.username = username;
+            SetupAccountDropdown();
             ShowUserControl(new UCWelcome());
         }
 
         // Hàm dùng để hiển thị UserControl trong panelContainer
         private void ShowUserControl(UserControl userControl)
         {
-            // Hiển thị UserControl trong panelContainer
+            panelContainer.Controls.Clear(); // Clear hết các UC cũ
             userControl.Dock = DockStyle.Fill;
             panelContainer.Controls.Add(userControl);
             userControl.BringToFront();
         }
 
-        // Sự kiện click của btnStaffInterface
         private void btnStaffInterface_Click(object sender, EventArgs e)
         {
             ShowUserControl(new UCStaffInterface(username));
@@ -64,14 +63,45 @@ namespace PresentationLayer
             ShowUserControl(new UCOrders());
         }
 
-        private void btnInfo_Click(object sender, EventArgs e)
-        {
-            ShowUserControl(new UCInfo(username));
-        }
-
         private void btnSupplier_Click(object sender, EventArgs e)
         {
             ShowUserControl(new UCSupplier());
+        }
+
+        private void SetupAccountDropdown()
+        {
+            accountMenu = new ContextMenuStrip();
+
+            ToolStripMenuItem itemProfile = new ToolStripMenuItem("Đổi thông tin");
+            ToolStripMenuItem itemLogout = new ToolStripMenuItem("Đăng xuất");
+
+            itemProfile.Click += (s, e) =>
+            {
+                if (ucInfo == null)
+                {
+                    ucInfo = new UCInfo(username);
+                }
+
+                ShowUserControl(ucInfo);
+            };
+
+            itemLogout.Click += (s, e) =>
+            {
+                DialogResult result = MessageBox.Show("Bạn có chắc muốn đăng xuất không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    this.Hide();
+                    new Login().Show();
+                }
+            };
+
+            accountMenu.Items.Add(itemProfile);
+            accountMenu.Items.Add(itemLogout);
+
+            btnInfo.Click += (s, e) =>
+            {
+                accountMenu.Show(btnInfo, new Point(0, btnInfo.Height));
+            };
         }
     }
 }

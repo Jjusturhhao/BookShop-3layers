@@ -374,15 +374,28 @@ namespace PresentationLayer.UserControls
                 string billID = billBL.GetBillID(orderID);
                 billBL.CreateBill(billID, orderID);
 
-                // Bước 5: Tạo phương thức thanh toán và lưu vào bảo Payments
+                // Bước 5: Tạo phương thức thanh toán và lưu vào bảng Payments
                 string paymentID = paymentBL.GetPaymentID();
                 string paymentMethod = GetSelectedPaymentMethod();
+
+                // 💥💥💥 THÊM SHOW FORM QR Ở ĐÂY:
+                if (paymentMethod == "Chuyển khoản ngân hàng" || paymentMethod == "Ví điện tử")
+                {
+                    FormQR qrForm = new FormQR(paymentMethod);
+                    qrForm.ShowDialog();
+
+                    if (!qrForm.IsConfirmed)
+                    {
+                        MessageBox.Show("Bạn chưa xác nhận đã chuyển khoản. Đơn hàng chưa được tạo.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return; // Không tiếp tục xử lý nữa
+                    }
+                }
+
                 string transactionCode = GetTransactionCode(rdByCash.Checked, paymentID);
                 DateTime? paymentDate = GetPaymentDate(rdByCash.Checked, transactionCode); //? kiểu nullable
                 int totalCost = Convert.ToInt32(txtTotalBill.Text);
-
                 paymentBL.AddPayment(paymentID, billID, cusphone, paymentMethod, transactionCode, paymentDate, totalCost);
-                
+
                 // Bước 6: Thông báo
                 MessageBox.Show("Đặt hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -450,11 +463,21 @@ namespace PresentationLayer.UserControls
 
         private void rdByTransfer_CheckedChanged(object sender, EventArgs e)
         {
+            //if (rdByTransfer.Checked)
+            //{
+            //    FormQR formQR = new FormQR("Chuyển khoản");
+            //    formQR.ShowDialog();
+            //}
             UpdatePaymentControls();
         }
 
         private void rdByEWallet_CheckedChanged(object sender, EventArgs e)
         {
+            //if (rdByEWallet.Checked)
+            //{
+            //    FormQR formQR = new FormQR("Ví điện tử");
+            //    formQR.ShowDialog();
+            //}
             UpdatePaymentControls();
         }
 

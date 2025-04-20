@@ -78,6 +78,21 @@ namespace PresentationLayer
                         }
                     }
 
+                    // Kiểm tra số điện thoại đã tồn tại chưa
+                    string checkPhoneQuery = "SELECT COUNT(*) FROM Users WHERE PhoneNumber = @PhoneNumber";
+                    using (SqlCommand checkPhoneCmd = new SqlCommand(checkPhoneQuery, con))
+                    {
+                        checkPhoneCmd.Parameters.AddWithValue("@PhoneNumber", phone);
+                        int emailCount = (int)checkPhoneCmd.ExecuteScalar();
+
+                        if (emailCount > 0)
+                        {
+                            MessageBox.Show("Số điện thoại này đã được sử dụng! Vui lòng sử dụng số điện thoại khác.",
+                                          "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                    }
+
                     // Lấy User_ID lớn nhất có trong database và tạo User_ID mới
                     string getMaxUserIdQuery = "SELECT MAX(CAST(SUBSTRING(User_ID, 2, LEN(User_ID) - 1) AS INT)) FROM Users WHERE User_ID LIKE 'C%'";
                     int nextUserId = 1; // Mặc định nếu chưa có User nào thì bắt đầu từ C1

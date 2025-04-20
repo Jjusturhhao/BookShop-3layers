@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panel = new System.Windows.Forms.Panel();
             this.btnSupplier = new System.Windows.Forms.Button();
@@ -38,6 +39,7 @@
             this.btnCheckout = new System.Windows.Forms.Button();
             this.btnStaffInterface = new System.Windows.Forms.Button();
             this.panelContainer = new System.Windows.Forms.Panel();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,7 +103,6 @@
             this.btnInfo.Size = new System.Drawing.Size(161, 96);
             this.btnInfo.TabIndex = 4;
             this.btnInfo.UseVisualStyleBackColor = false;
-            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
             // btnStock
             // 
@@ -168,6 +169,12 @@
             this.panelContainer.Size = new System.Drawing.Size(1367, 536);
             this.panelContainer.TabIndex = 63;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(241, 37);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -195,5 +202,6 @@
         private System.Windows.Forms.Button btnStaffInterface;
         private System.Windows.Forms.Panel panelContainer;
         private System.Windows.Forms.Button btnSupplier;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
