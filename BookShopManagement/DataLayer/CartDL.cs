@@ -14,6 +14,7 @@ namespace DataLayer
 {
     public class CartDL : DataProvider
     {
+        private CartDL cartDL;
         public CartItem GetBookByID(string bookID)
         {
             CartItem item = null;
@@ -55,6 +56,5 @@ namespace DataLayer
             }
             return item;
         }
-        
     }
 }

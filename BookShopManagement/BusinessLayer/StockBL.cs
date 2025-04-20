@@ -18,7 +18,6 @@ namespace BusinessLayer
         private StockDL stockDL;
         private BookBL BookBL;
 
-
         public StockBL ()
         {
             stockDL = new StockDL();
@@ -87,6 +86,12 @@ namespace BusinessLayer
         public List<Stock> SearchStock(string keyword)
         {
             return stockDL.SearchStock(keyword);
+        }
+
+
+        public void ReduceStockQuantity(string bookID, int quantity)
+        {
+            stockDL.ReduceQuantity(bookID, quantity);
         }
     }
 }

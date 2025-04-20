@@ -16,26 +16,43 @@ namespace PresentationLayer.UserControls
     public partial class UCCusOrderDetail : UserControl
     {
         private string orderID;
+        private string username;
+        private InfoBL infoBL;
         private OrderDetailsBL orderDetailsBL;
+        private BillBL billBL;
+
 
         public Action OnBackClick;
 
-        public UCCusOrderDetail(string orderID)
+        public UCCusOrderDetail(string orderID, string username)
         {
             InitializeComponent();
             orderDetailsBL = new OrderDetailsBL();
+            billBL = new BillBL();
+            infoBL = new InfoBL();
             this.orderID = orderID;
+            this.username = username;
         }
         
         private void UCCusOrderDetail_Load(object sender, EventArgs e)
         {
-            LoadOrderDetail(orderID);
+            LoadOrderDetail(orderID, username);
         }
-        private void LoadOrderDetail(string orderID)
+        private void LoadOrderDetail(string orderID, string username)
         {
             lbOrderID.Text = $"Đơn hàng: {orderID}";
             //lbPayment 
-            //lbInforCus
+
+            Info info = infoBL.GetUserInfo(username);
+            if (info != null)
+            {
+                lbInforCus.Text = $"Khách hàng: {info.Name} - SĐT: {info.Phone} " +
+                    $"\nĐịa chỉ: {info.Address}";
+            }
+            else
+            {
+                lbInforCus.Text = "Không tìm thấy thông tin khách hàng.";
+            }
 
             flpDetails.Controls.Clear(); 
 
@@ -129,7 +146,8 @@ namespace PresentationLayer.UserControls
                 flpDetails.Controls.Add(panel);
             }
 
-            //lbTotalCost.Text = $"Tổng cộng: {cartBL.GetTotalAmount():#,##0} đ";
+            int totalCost = billBL.GetTotalCost(orderID);
+            lbTotalCost.Text = $"Tổng cộng: {totalCost:#,##0} đ";
         }
 
         private void btnBack_Click(object sender, EventArgs e)

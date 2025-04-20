@@ -59,5 +59,36 @@ namespace DataLayer
             }
             return detailsList;
         }
+        public void SaveOrderDetail(string orderID, List<CartItem> cartItems)
+        {
+            string insertOrderDetailQuery = "INSERT INTO OrderDetails (Order_ID, StockID, Qty_sold, PriceAtOrderTime) " +
+                                            "VALUES (@Order_ID, @StockID, @Qty_sold, @PriceAtOrderTime)";
+
+            try
+            {
+                Connect();
+
+                // Lặp qua từng sản phẩm trong giỏ hàng và lưu vào OrderDetails
+                foreach (CartItem cartItem in cartItems)
+                {
+                    SqlCommand cmd = new SqlCommand(insertOrderDetailQuery, cn);
+                    cmd.Parameters.AddWithValue("@Order_ID", orderID);
+                    cmd.Parameters.AddWithValue("@StockID", cartItem.StockID);
+                    cmd.Parameters.AddWithValue("@Qty_sold", cartItem.Quantity);
+                    cmd.Parameters.AddWithValue("@PriceAtOrderTime", cartItem.UnitPrice);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khi lưu chi tiết đơn hàng: {ex.Message}");
+            }
+            finally
+            {
+                DisConnect();
+            }
+        }
+
     }
 }

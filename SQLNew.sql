@@ -100,7 +100,7 @@ go
 	ORDER BY CAST(SUBSTRING(StockID, 4, LEN(StockID)) AS INT);
 
 
-	CREATE TABLE Users (
+CREATE TABLE Users (
     User_ID VARCHAR(30) PRIMARY KEY,
     Name NVARCHAR(30) NOT NULL, 
     Username VARCHAR(30) NOT NULL UNIQUE, -- Đảm bảo Username không trùng
@@ -130,26 +130,30 @@ go
 go
 	SELECT * FROM Users
 
+CREATE TABLE Customers (
+    PhoneNumber VARCHAR(20) PRIMARY KEY,
+	FullName NVARCHAR(100)
+);
+
 CREATE TABLE Orders (
     Order_ID VARCHAR(55) NOT NULL PRIMARY KEY, 
-    Customer_ID VARCHAR(30) NOT NULL, 
+	PhoneNumber NVARCHAR(15) NOT NULL,
     Employee_ID VARCHAR(30), 
     Order_Date DATETIME NOT NULL DEFAULT GETDATE(), 
 	Status NVARCHAR(20) DEFAULT 'Pending' CHECK (Status IN (N'Chờ xác nhận', N'Đã giao', N'Đã hoàn thành', N'Đã hủy')),
 
     -- Thiết lập khóa ngoại
-    CONSTRAINT FK_Orders_Customer FOREIGN KEY (Customer_ID) REFERENCES Users(User_ID),
     CONSTRAINT FK_Orders_Employee FOREIGN KEY (Employee_ID) REFERENCES Users(User_ID)
 );
 go
 
-INSERT INTO Orders (Order_ID, Customer_ID, Employee_ID, Order_Date, Status) 
+INSERT INTO Orders (Order_ID, PhoneNumber, Employee_ID, Order_Date, Status) 
 VALUES 
-    ('ORD1', 'C1', 'S1', '2025-03-24', N'Đã giao'),
-    ('ORD2', 'C2', 'S2', '2025-04-01', N'Chờ xác nhận'),
-    ('ORD3', 'C3', 'S3', '2025-03-21', N'Đã hoàn thành'),
-    ('ORD4', 'C1', 'S1', '2025-04-02', N'Đã hủy'),
-    ('ORD5', 'C3', 'S3', '2025-04-01', N'Chờ xác nhận');
+    ('ORD1', '0987654321', 'S1', '2025-03-24', N'Đã giao'),
+    ('ORD2', '0987654322', 'S2', '2025-04-01', N'Chờ xác nhận'),
+    ('ORD3', '0987654323', 'S3', '2025-03-21', N'Đã hoàn thành'),
+    ('ORD4', '0987654321', 'S1', '2025-04-02', N'Đã hủy'),
+    ('ORD5', '0987654323', 'S3', '2025-04-01', N'Chờ xác nhận');
 go
 
 CREATE TABLE OrderDetails (
@@ -199,23 +203,25 @@ INSERT INTO Bill_Generate (Bill_ID, Order_ID, Total_Cost)
 SELECT 
     'BILL' + O.Order_ID,  -- Tạo mã Bill từ Order_ID
     O.Order_ID,  
-    SUM(B.Price * OD.Qty_sold) AS Total_Cost  -- Lấy giá sách từ bảng Books
+    SUM(OD.PriceAtOrderTime * OD.Qty_sold) AS Total_Cost  
 FROM Orders O
-JOIN OrderDetails OD ON O.Order_ID = OD.Order_ID
+JOIN OrderDetails OD ON O.Order_ID = OD.Order_ID -- Lấy giá sách từ bảng OrderDetails
 JOIN Stock S ON OD.StockID = S.StockID
-JOIN Book B ON S.BookID = B.BookID  -- Lấy giá từ bảng Book
 GROUP BY O.Order_ID;
 go
 SELECT * FROM Bill_Generate; 
 
 CREATE TABLE Payments (
     Payment_ID VARCHAR(50) PRIMARY KEY,
-    Bill_ID VARCHAR(50) FOREIGN KEY REFERENCES Bill_Generate(Bill_ID),
-    Customer_ID VARCHAR(30) FOREIGN KEY REFERENCES Users(User_ID),
+    Bill_ID VARCHAR(50),
+    PhoneNumber VARCHAR(15), -- Có thể là user hoặc customer
     Payment_Method NVARCHAR(50) NOT NULL,  
     Transaction_Code VARCHAR(50) NULL,  -- NULL nếu là Tiền mặt
     Payment_Date DATE NULL,  -- NULL nếu chưa thanh toán
     Total_Cost INT NOT NULL CHECK (Total_Cost > 0)
+
+	--Khóa ngoại
+	CONSTRAINT FK_Payments_Bill FOREIGN KEY (Bill_ID) REFERENCES Bill_Generate(Bill_ID)
 );
 go
 
@@ -225,13 +231,13 @@ ON PAYMENTS(Transaction_Code)
 WHERE Transaction_Code IS NOT NULL;
 go
 
-INSERT INTO Payments (Payment_ID, Bill_ID, Customer_ID, Payment_Method, Transaction_Code, Payment_Date, Total_Cost)
+INSERT INTO Payments (Payment_ID, Bill_ID, PhoneNumber, Payment_Method, Transaction_Code, Payment_Date, Total_Cost)
 VALUES
-    ('PAY1', 'BILLORD1', 'C1', N'Thẻ ghi nợ', 'TXN_001', '2025-03-24', 257550),
-    ('PAY2', 'BILLORD2', 'C2', N'Chuyển khoản ngân hàng', 'TXN_002', '2025-04-01', 486250),
-    ('PAY3', 'BILLORD3', 'C3', N'Tiền mặt', NULL, '2025-03-25', 258290), -- Tiền mặt => NULL Transaction_Code
-    ('PAY4', 'BILLORD4', 'C1', N'Tiền mặt', NULL, NULL, 71540), -- Chưa thanh toán => Payment_Date = NULL
-	('PAY5', 'BILLORD5', 'C3', N'Ví điện tử', 'TXN_005', '2025-04-01', 126750);
+    ('PAY1', 'BILLORD1', '0987654321', N'Thẻ ghi nợ', 'TXN_001', '2025-03-24', 257550),
+    ('PAY2', 'BILLORD2', '0987654322', N'Chuyển khoản ngân hàng', 'TXN_002', '2025-04-01', 486250),
+    ('PAY3', 'BILLORD3', '0987654323', N'Tiền mặt', NULL, '2025-03-25', 258290), -- Tiền mặt => NULL Transaction_Code
+    ('PAY4', 'BILLORD4', '0987654321', N'Tiền mặt', NULL, NULL, 71540), -- Chưa thanh toán => Payment_Date = NULL
+	('PAY5', 'BILLORD5', '0987654323', N'Ví điện tử', 'TXN_005', '2025-04-01', 126750);
 go
 
 SELECT * FROM PAYMENTS;

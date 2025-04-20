@@ -71,17 +71,6 @@ namespace BusinessLayer
                 throw new Exception("Lỗi khi lưu đơn hàng: " + ex.Message);
             }
         }
-        public void SaveOrderDetails(string orderID, List<CartItem> cartItems)
-        {
-            try
-            {
-                OrderDL.SaveOrderDetail(orderID, cartItems);
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        
     }
 }

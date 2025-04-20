@@ -41,12 +41,12 @@ namespace PresentationLayer
         // Sự kiện click của btnStaffInterface
         private void btnStaffInterface_Click(object sender, EventArgs e)
         {
-            ShowUserControl(new UCStaffInterface());
+            ShowUserControl(new UCStaffInterface(username));
         }
 
         private void btnCheckout_Click(object sender, EventArgs e)
         {
-            ShowUserControl(new UCCheckout());
+            ShowUserControl(new UCCheckout(username));
         }
 
         private void btnBook_Click(object sender, EventArgs e)

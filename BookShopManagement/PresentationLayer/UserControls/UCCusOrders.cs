@@ -14,7 +14,7 @@ namespace PresentationLayer.UserControls
         private string currentUsername;
 
         //Tạo delegate để báo cho Homepage biết khi cần mở chi tiết đơn hàng
-        public Action<string> OnOrderDetailClick { get; set; }
+        public Action<string, string> OnOrderDetailClick { get; set; } //// orderID, username
 
 
         public UCCusOrders(string username)
@@ -121,7 +121,7 @@ namespace PresentationLayer.UserControls
                 // Lấy orderID từ dòng được chọn
                 string orderID = dgvOrders.Rows[e.RowIndex].Cells["Orderid"].Value.ToString();
 
-                OnOrderDetailClick?.Invoke(orderID);
+                OnOrderDetailClick?.Invoke(orderID, currentUsername);
             }
         }
     }
