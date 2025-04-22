@@ -7,45 +7,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TransferObject;
+using BusinessLayer;
+using Microsoft.Reporting.WinForms;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 
 namespace PresentationLayer.UserControls
 {
     public partial class UCIssue: UserControl
     {
+        private StockBL stockBL;
         public UCIssue()
         {
+            stockBL = new StockBL();
             InitializeComponent();
-        }
-        public UCIssue(Stock selectedStock) : this()
-        {
-            dgvxp.Rows.Clear();
-            dgvxp.Rows.Add(
-                selectedStock.StockID,
-                selectedStock.BookID,
-                selectedStock.BookName,
-                selectedStock.CategoryID,
-                selectedStock.Supplier_ID,
-                selectedStock.ImportDate.ToShortDateString(),
-                selectedStock.Quantity
-            );
-        }
-        private void ShowUserControl(UCStock uCStock)
-        {
-            panel1.Controls.Clear();
-            uCStock.Dock = DockStyle.Fill;
-            panel1.Controls.Add(uCStock);
-            uCStock.BringToFront();
-        }
-
-        private void btnOk_Click(object sender, EventArgs e)
-        {
-            ShowUserControl(new UCStock());
         }
 
         private void UCIssue_Load(object sender, EventArgs e)
         {
-            label3.Text = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt");
+            
+            try
+            {
+                
+                reportViewer1.LocalReport.ReportEmbeddedResource = "PresentationLayer.UserControls.rpxuatphieu.rdlc";
+                ReportDataSource reportDataSource = new ReportDataSource();
+                reportDataSource.Name = "DataSet1";
+                reportDataSource.Value = stockBL.GetStocks();
+                reportViewer1.LocalReport.DataSources.Clear(); 
+                reportViewer1.LocalReport.DataSources.Add(reportDataSource);
+                this.reportViewer1.RefreshReport();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

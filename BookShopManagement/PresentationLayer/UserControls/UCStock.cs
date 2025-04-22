@@ -216,16 +216,7 @@ namespace PresentationLayer.UserControls
 
         }
 
-        private void AddForm (Form form)
-        {
-            form.TopLevel = false;
-            panel6.Controls.Clear();
-            panel6.Controls.Add(form);
-
-            form.Dock = DockStyle.Fill;
-            form.FormBorderStyle = FormBorderStyle.None;
-            form.Show();
-        }
+        
 
         public void ShowUserControl(UserControl userControl)
         {
@@ -236,29 +227,8 @@ namespace PresentationLayer.UserControls
         }
         private void btnGIN_Click(object sender, EventArgs e)
         {
-            if (dgvStock.CurrentRow != null)
-            {
-                DataGridViewRow row = dgvStock.CurrentRow;
-
-                string stockID = row.Cells["StockID"].Value?.ToString();
-                string bookID = row.Cells["BookID"].Value?.ToString();
-                string bookName = row.Cells["BookName"].Value?.ToString();
-                string categoryID = row.Cells["CategoryID"].Value?.ToString();
-                string supplierID = row.Cells["Supplier_ID"].Value?.ToString();
-                DateTime importDate = Convert.ToDateTime(row.Cells["ImportDate"].Value);
-                int quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
-
-                Stock selectedStock = new Stock(stockID, supplierID, bookID, categoryID, bookName, importDate, quantity);
-                MessageBox.Show("Đồng ý xuất phiếu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                UCIssue uc1 = new UCIssue(selectedStock);
-                ShowUserControl(uc1);
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn một dòng để xuất phiếu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            
+            UCIssue uCIssue = new UCIssue();
+            ShowUserControl(uCIssue);
         }
     }
 }
