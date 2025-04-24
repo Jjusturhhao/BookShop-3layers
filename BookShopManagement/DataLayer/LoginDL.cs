@@ -38,7 +38,6 @@ namespace DataLayer
             {
                 DisConnect();
             }
-
             return role;
         }
     }

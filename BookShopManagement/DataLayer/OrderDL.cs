@@ -16,9 +16,10 @@ namespace DataLayer
         public List<Order> GetOrders()
         {
             string sql = "SELECT o.Order_ID, o.PhoneNumber, e.Name AS Employee_Name, o.Order_Date, o.Status, b.Total_Cost AS Total_Cost " +
-                         "FROM Orders o " +
-                         "LEFT JOIN Bill_Generate b ON o.Order_ID = b.Order_ID " +
-                         "LEFT JOIN Users e ON o.Employee_ID = e.User_ID";
+             "FROM Orders o " +
+             "LEFT JOIN Bill_Generate b ON o.Order_ID = b.Order_ID " +
+             "LEFT JOIN Users e ON o.Employee_ID = e.User_ID " +
+             "ORDER BY CAST(SUBSTRING(o.Order_ID, 4, LEN(o.Order_ID) - 3) AS INT)";
 
             List<Order> orders = new List<Order>();
 

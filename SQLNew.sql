@@ -1,4 +1,4 @@
-IF DB_ID('BookStoreManagement') IS NULL 
+﻿IF DB_ID('BookStoreManagement') IS NULL 
 	CREATE DATABASE BookStoreManagement
 GO
 
@@ -140,7 +140,7 @@ CREATE TABLE Orders (
 	PhoneNumber NVARCHAR(15) NOT NULL,
     Employee_ID VARCHAR(30), 
     Order_Date DATETIME NOT NULL DEFAULT GETDATE(), 
-	Status NVARCHAR(20) DEFAULT 'Pending' CHECK (Status IN (N'Chờ xác nhận', N'Đã giao', N'Đã hoàn thành', N'Đã hủy')),
+	Status NVARCHAR(20) DEFAULT 'Pending' CHECK (Status IN (N'Chờ xác nhận', N'Đã vận chuyển', N'Đã hoàn thành', N'Đã hủy')),
 
     -- Thiết lập khóa ngoại
     CONSTRAINT FK_Orders_Employee FOREIGN KEY (Employee_ID) REFERENCES Users(User_ID)
@@ -149,7 +149,7 @@ go
 
 INSERT INTO Orders (Order_ID, PhoneNumber, Employee_ID, Order_Date, Status) 
 VALUES 
-    ('ORD1', '0987654321', 'S1', '2025-03-24', N'Đã giao'),
+    ('ORD1', '0987654321', 'S1', '2025-03-24', N'Đã vận chuyển'),
     ('ORD2', '0987654322', 'S2', '2025-04-01', N'Chờ xác nhận'),
     ('ORD3', '0987654323', 'S3', '2025-03-21', N'Đã hoàn thành'),
     ('ORD4', '0987654321', 'S1', '2025-04-02', N'Đã hủy'),
@@ -260,16 +260,16 @@ BEGIN
 		FROM inserted i
 		JOIN deleted d ON i.Order_ID = d.Order_ID;
 
-		IF @OldStatus = N'Chờ xác nhận' AND @NewStatus NOT IN (N'Đã giao', N'Đã hoàn thành', N'Đã hủy')
+		IF @OldStatus = N'Chờ xác nhận' AND @NewStatus NOT IN (N'Đã vận chuyển', N'Đã hoàn thành', N'Đã hủy')
 		BEGIN
 			RAISERROR(N'Trạng thái không hợp lệ! Không thể chuyển từ "Chờ xác nhận" sang "%s".', 16, 1, @NewStatus)
 			ROLLBACK TRANSACTION;
 			RETURN;
 		END
 
-		IF @OldStatus = N'Đã giao' AND @NewStatus NOT IN (N'Đã hoàn thành', N'Đã hủy')
+		IF @OldStatus = N'Đã vận chuyển' AND @NewStatus NOT IN (N'Đã hoàn thành', N'Đã hủy')
 		BEGIN
-			RAISERROR(N'Trạng thái không hợp lệ! Không thể chuyển từ "Đã giao" sang "%s".', 16, 1, @NewStatus)
+			RAISERROR(N'Trạng thái không hợp lệ! Không thể chuyển từ "Đã vận chuyển" sang "%s".', 16, 1, @NewStatus)
 			ROLLBACK TRANSACTION;
 			RETURN;
 		END

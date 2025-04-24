@@ -34,7 +34,7 @@ namespace PresentationLayer.UserControls
             this.orderID = orderID;
             this.username = username;
         }
-        
+
         private void UCCusOrderDetail_Load(object sender, EventArgs e)
         {
             LoadOrderDetail(orderID, username);

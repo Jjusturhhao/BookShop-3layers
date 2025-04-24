@@ -23,6 +23,7 @@ namespace TransferObject
         public string Address { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
+        public string Role { get; set; }
 
         public Info(string username, string name, string pass, string address, string phone, string email)
         {
@@ -33,6 +34,8 @@ namespace TransferObject
             Phone = phone;
             Email = email;
         }
+
+        public Info() { }
     }
 }
 

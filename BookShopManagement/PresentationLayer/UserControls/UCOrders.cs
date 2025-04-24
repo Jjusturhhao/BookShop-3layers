@@ -22,16 +22,24 @@ namespace PresentationLayer.UserControls
         {
             InitializeComponent();
             orderBL = new OrderBL();
+            CustomizeGrid();
         }
         private void UCOrders_Load(object sender, EventArgs e)
         {
             LoadOrders();
             LoadEmployeeNamesToComboBox();
+            cbxStatus.Items.Clear();
+            cbxStatus.Items.AddRange(new string[] {
+                                    "Chờ xác nhận",
+                                    "Đã vận chuyển",
+                                    "Đã hoàn thành",
+                                    "Đã hủy"
+            });
+            cbxStatus.SelectedIndex = -1; // Không chọn gì khi khởi động
         }
         private void LoadOrders()
         {
             dgvOrders.DataSource = new OrderBL().GetOrders();
-
         }
 
         public void LoadEmployeeNamesToComboBox()
@@ -46,8 +54,67 @@ namespace PresentationLayer.UserControls
             txtPhone.Clear();
             
             dateTimePickerOrderDate.Checked = false;
-            cbxStatus.Text = "";
+            cbxStatus.SelectedIndex = -1;
             txtTotal.Clear();
+        }
+
+        private void CustomizeGrid()
+        {
+            dgvOrders.AutoGenerateColumns = false;
+            dgvOrders.Columns.Clear();
+
+            dgvOrders.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Order_ID",
+                HeaderText = "Mã đơn",
+                DataPropertyName = "Order_ID"
+            });
+
+            dgvOrders.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "PhoneNumber",
+                HeaderText = "Số điện thoại",
+                DataPropertyName = "PhoneNumber"
+            });
+
+            dgvOrders.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Employee_Name",
+                HeaderText = "Nhân viên phụ trách",
+                DataPropertyName = "Employee_Name"
+            });
+
+            dgvOrders.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Order_Date",
+                HeaderText = "Ngày đặt",
+                DataPropertyName = "Order_Date"
+            });
+
+            dgvOrders.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Status",
+                HeaderText = "Trạng thái",
+                DataPropertyName = "Status"
+            });
+
+            dgvOrders.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Total_Cost",
+                HeaderText = "Tổng tiền",
+                DataPropertyName = "Total_Cost"
+            });
+
+            // Nút "Xem chi tiết"
+            DataGridViewButtonColumn btnDetail = new DataGridViewButtonColumn
+            {
+                Name = "btnDetail",
+                HeaderText = "",
+                Text = "Xem chi tiết",
+                UseColumnTextForButtonValue = true,
+                Width = 100
+            };
+            dgvOrders.Columns.Add(btnDetail);
         }
 
         private void dgvOrders_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -113,6 +180,16 @@ namespace PresentationLayer.UserControls
                 {
                     e.Value = cost.ToString("N0");
                     e.FormattingApplied = true;
+                }
+            }
+            if (dgvOrders.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                DataGridViewButtonCell buttonCell = dgvOrders.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewButtonCell;
+                if (buttonCell != null)
+                {
+                    buttonCell.Style.BackColor = System.Drawing.Color.MediumSeaGreen;   // Màu nền nút
+                    buttonCell.Style.ForeColor = System.Drawing.Color.White;            // Màu chữ nút
+                    buttonCell.Style.Font = new System.Drawing.Font("Segoe UI", 10, System.Drawing.FontStyle.Bold);
                 }
             }
         }
