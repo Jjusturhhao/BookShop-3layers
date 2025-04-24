@@ -93,6 +93,7 @@ namespace PresentationLayer.UserControls
 
         private void LoadBooks()
         {
+            dgvBooks.Rows.Clear(); 
             var books = CheckoutBL.GetBooks();
 
             foreach (var book in books)
@@ -116,11 +117,12 @@ namespace PresentationLayer.UserControls
             string categoryID = cbxCategories.SelectedValue.ToString();
             var books = CheckoutBL.GetBooksByCategory(categoryID);
 
-            dgvBooks.Rows.Clear(); 
+            dgvBooks.Rows.Clear();
 
             foreach (var book in books)
             {
-                dgvBooks.Rows.Add(book.Bookid, book.Bookname, book.Price, book.Quantity);
+                string stockid = CheckoutBL.GetStockID(book.Bookid); // lấy stock ID nè
+                dgvBooks.Rows.Add(stockid, book.Bookid, book.Bookname, book.Price, book.Quantity);
             }
 
             dgvBooks.Columns["BookName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -287,8 +289,10 @@ namespace PresentationLayer.UserControls
 
                 foreach (var book in books)
                 {
-                    dgvBooks.Rows.Add(book.Bookid, book.Bookname, book.Price, book.Quantity);
+                    string stockid = CheckoutBL.GetStockID(book.Bookid); // Lấy StockID từ BookID
+                    dgvBooks.Rows.Add(stockid, book.Bookid, book.Bookname, book.Price, book.Quantity);
                 }
+
 
                 dgvBooks.Columns["BookName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 dgvBooks.Columns["Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
