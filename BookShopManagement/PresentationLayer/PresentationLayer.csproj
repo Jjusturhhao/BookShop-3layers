@@ -126,6 +126,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BookStoreManagementDataSet2.xsd</DependentUpon>
     </Compile>
+    <Compile Include="BookStoreManagementDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookStoreManagementDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BookStoreManagementDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookStoreManagementDataSet4.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Homepage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -473,6 +483,28 @@
     </None>
     <None Include="BookStoreManagementDataSet2.xss">
       <DependentUpon>BookStoreManagementDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="BookStoreManagementDataSet3.xsc">
+      <DependentUpon>BookStoreManagementDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="BookStoreManagementDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BookStoreManagementDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BookStoreManagementDataSet3.xss">
+      <DependentUpon>BookStoreManagementDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="BookStoreManagementDataSet4.xsc">
+      <DependentUpon>BookStoreManagementDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="BookStoreManagementDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BookStoreManagementDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BookStoreManagementDataSet4.xss">
+      <DependentUpon>BookStoreManagementDataSet4.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

@@ -19,7 +19,9 @@ namespace PresentationLayer.UserControls
 
     {
         private StockBL stockBL;
-     
+        private Stock newStock;
+        private List<Stock> addedStocks = new List<Stock>();
+        private int addedQuantity = 0;
         public UCStock()
         {
             InitializeComponent();
@@ -75,10 +77,10 @@ namespace PresentationLayer.UserControls
         {
 
             Stock emptyStock = stockBL.GetEmptyStock();
-
             string newStockID = stockBL.GenerateNextStockID();
-            string newBookID = stockBL.GenerateNextBookID(); 
-          
+
+            string newBookID = stockBL.GenerateNextBookID();
+
             txtStockID.Text = newStockID;
             txtStockID.ReadOnly = true;
 
@@ -102,11 +104,9 @@ namespace PresentationLayer.UserControls
             if (e.RowIndex >= 0) // đảm bảo không bấm vào tiêu đề cột
             {
                 DataGridViewRow row = dgvStock.Rows[e.RowIndex];
-
                 txtStockID.Text = row.Cells["StockID"].Value?.ToString();
                 txtBookID.Text = row.Cells["BookID"].Value?.ToString();
                 txtBookName.Text = row.Cells["BookName"].Value?.ToString();
-                
                 cbxCategory.Text = row.Cells["CategoryID"].Value?.ToString();
                 cbxSupplier.Text = row.Cells["Supplier_ID"].Value?.ToString();
                 txtQuantity.Text = row.Cells["Quantity"].Value?.ToString();
@@ -116,7 +116,7 @@ namespace PresentationLayer.UserControls
 
         private void btnAddBook_Click(object sender, EventArgs e)
         {
-            string StockID, supplier_ID, BookID, CategoryID, BookName;
+            string StockID,supplier_ID, BookID, CategoryID, BookName;
             DateTime importDate;
             int quantity;
             StockID = txtStockID.Text;
@@ -132,12 +132,15 @@ namespace PresentationLayer.UserControls
                 return;
             }
 
-            Stock stock = new Stock(StockID, supplier_ID, BookID, CategoryID, BookName,importDate, quantity);
+            Stock stock = new Stock(StockID,supplier_ID, BookID, CategoryID, BookName,importDate, quantity);
             try
             {
                 stockBL.Add(stock);
                 dgvStock.DataSource = stockBL.GetStocks();
+                addedStocks.Add(stock);
+                newStock = stock;
                 btnReset.PerformClick();
+                 
             }
             catch (SqlException ex)
             {
@@ -147,7 +150,7 @@ namespace PresentationLayer.UserControls
 
         private void btnDeleteBook_Click(object sender, EventArgs e)
         {
-            string StockID, supplier_ID, BookID, CategoryID, BookName;
+            string StockID,supplier_ID, BookID, CategoryID, BookName;
             DateTime importDate;
             int quantity;
             StockID = txtStockID.Text;
@@ -159,7 +162,7 @@ namespace PresentationLayer.UserControls
 
             quantity = Convert.ToInt32(txtQuantity.Text);
 
-            Stock stock = new Stock(StockID, supplier_ID, BookID, CategoryID, BookName, importDate, quantity);
+            Stock stock = new Stock(StockID,supplier_ID, BookID, CategoryID, BookName, importDate, quantity);
             try
             {
                 stockBL.Delete(stock);
@@ -174,7 +177,7 @@ namespace PresentationLayer.UserControls
 
         private void btnUpdateBook_Click(object sender, EventArgs e)
         {
-            string StockID, supplier_ID, BookID, CategoryID, BookName;
+            string StockID,supplier_ID, BookID, CategoryID, BookName;
             DateTime importDate;
             int quantity;
             StockID = txtStockID.Text;
@@ -186,13 +189,19 @@ namespace PresentationLayer.UserControls
 
             quantity = Convert.ToInt32(txtQuantity.Text);
 
-
-
+            if (quantity < 150)
+            {
+                MessageBox.Show("Cần nhập tối thiểu 150 sách", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            int currentQuantity = stockBL.GetCurrentQuantity(BookID);
             Stock stock = new Stock(StockID, supplier_ID, BookID, CategoryID, BookName, importDate, quantity);
             try
             {
                 stockBL.Update(stock);
                 dgvStock.DataSource = stockBL.GetStocks();
+                addedStocks.RemoveAll(s => s.BookID == stock.BookID);
+                addedStocks.Add(stock);
                 btnReset.PerformClick();
             }
             catch (SqlException ex)
@@ -215,8 +224,7 @@ namespace PresentationLayer.UserControls
             }
 
         }
-
-        
+  
 
         public void ShowUserControl(UserControl userControl)
         {
@@ -227,8 +235,19 @@ namespace PresentationLayer.UserControls
         }
         private void btnGIN_Click(object sender, EventArgs e)
         {
-            UCIssue uCIssue = new UCIssue();
-            ShowUserControl(uCIssue);
+           
+            if (addedStocks.Count > 0) 
+            {
+                UCIssue uCIssue = new UCIssue();
+                uCIssue.SetDate(DateTime.Now);
+                uCIssue.SetStockList(addedStocks);
+                ShowUserControl(uCIssue);
+            }
+            else
+            {
+                
+                MessageBox.Show("Chưa có sách nào được thêm vào");
+            }
         }
     }
 }
