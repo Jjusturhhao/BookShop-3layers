@@ -93,5 +93,9 @@ namespace BusinessLayer
         {
             stockDL.ReduceQuantity(bookID, quantity);
         }
+        public int GetCurrentQuantity(string stockID)
+        {
+            return stockDL.GetCurrentQuantity(stockID);
+        }
     }
 }
