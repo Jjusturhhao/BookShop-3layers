@@ -32,7 +32,7 @@
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabHomepage = new System.Windows.Forms.TabPage();
             this.tabEmployee = new System.Windows.Forms.TabPage();
-            this.tabChart = new System.Windows.Forms.TabPage();
+            this.tabRevenue = new System.Windows.Forms.TabPage();
             this.tabInfo = new System.Windows.Forms.TabPage();
             this.tabInfoMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiChangeInfo = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,7 +45,7 @@
             // 
             this.tabControlMain.Controls.Add(this.tabHomepage);
             this.tabControlMain.Controls.Add(this.tabEmployee);
-            this.tabControlMain.Controls.Add(this.tabChart);
+            this.tabControlMain.Controls.Add(this.tabRevenue);
             this.tabControlMain.Controls.Add(this.tabInfo);
             this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlMain.Location = new System.Drawing.Point(0, 0);
@@ -76,15 +76,15 @@
             this.tabEmployee.Text = "Quản lý nhân viên";
             this.tabEmployee.UseVisualStyleBackColor = true;
             // 
-            // tabChart
+            // tabRevenue
             // 
-            this.tabChart.Location = new System.Drawing.Point(4, 29);
-            this.tabChart.Name = "tabChart";
-            this.tabChart.Padding = new System.Windows.Forms.Padding(3);
-            this.tabChart.Size = new System.Drawing.Size(993, 566);
-            this.tabChart.TabIndex = 2;
-            this.tabChart.Text = "Báo cáo - Thống kê";
-            this.tabChart.UseVisualStyleBackColor = true;
+            this.tabRevenue.Location = new System.Drawing.Point(4, 29);
+            this.tabRevenue.Name = "tabRevenue";
+            this.tabRevenue.Padding = new System.Windows.Forms.Padding(3);
+            this.tabRevenue.Size = new System.Drawing.Size(993, 566);
+            this.tabRevenue.TabIndex = 2;
+            this.tabRevenue.Text = "Báo cáo - Thống kê";
+            this.tabRevenue.UseVisualStyleBackColor = true;
             // 
             // tabInfo
             // 
@@ -140,7 +140,7 @@
         private System.Windows.Forms.TabControl tabControlMain;
         private System.Windows.Forms.TabPage tabHomepage;
         private System.Windows.Forms.TabPage tabEmployee;
-        private System.Windows.Forms.TabPage tabChart;
+        private System.Windows.Forms.TabPage tabRevenue;
         private System.Windows.Forms.TabPage tabInfo;
         private System.Windows.Forms.ContextMenuStrip tabInfoMenu;
         private System.Windows.Forms.ToolStripMenuItem tsmiChangeInfo;

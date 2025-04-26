@@ -193,5 +193,16 @@ namespace PresentationLayer.UserControls
                 }
             }
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            
+            
+        }
     }
 }
