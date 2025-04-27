@@ -7,7 +7,7 @@ using PresentationLayer.UserControls;
 
 namespace PresentationLayer
 {
-    public partial class Homepage : Form
+    public partial class HomepageCus : Form
     {
         private string username;
 
@@ -24,7 +24,7 @@ namespace PresentationLayer
         private UCFormOrder uCFormOrder;
 
 
-        public Homepage(string username)
+        public HomepageCus(string username)
         {
             InitializeComponent();
             this.username = username;

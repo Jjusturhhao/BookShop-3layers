@@ -1,6 +1,6 @@
 ﻿namespace PresentationLayer
 {
-    partial class Main
+    partial class HomepageStaff
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomepageStaff));
             this.panel = new System.Windows.Forms.Panel();
             this.btnSupplier = new System.Windows.Forms.Button();
             this.btnOrder = new System.Windows.Forms.Button();
@@ -37,7 +37,6 @@
             this.btnStock = new System.Windows.Forms.Button();
             this.btnBook = new System.Windows.Forms.Button();
             this.btnCheckout = new System.Windows.Forms.Button();
-            this.btnStaffInterface = new System.Windows.Forms.Button();
             this.panelContainer = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel.SuspendLayout();
@@ -53,7 +52,6 @@
             this.panel.Controls.Add(this.btnStock);
             this.panel.Controls.Add(this.btnBook);
             this.panel.Controls.Add(this.btnCheckout);
-            this.panel.Controls.Add(this.btnStaffInterface);
             this.panel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel.Location = new System.Drawing.Point(0, 536);
             this.panel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -66,7 +64,7 @@
             this.btnSupplier.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnSupplier.Font = new System.Drawing.Font("Verdana", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSupplier.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSupplier.Location = new System.Drawing.Point(984, -4);
+            this.btnSupplier.Location = new System.Drawing.Point(764, -1);
             this.btnSupplier.Margin = new System.Windows.Forms.Padding(0);
             this.btnSupplier.Name = "btnSupplier";
             this.btnSupplier.Size = new System.Drawing.Size(220, 95);
@@ -80,7 +78,7 @@
             this.btnOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnOrder.Font = new System.Drawing.Font("Verdana", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOrder.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnOrder.Location = new System.Drawing.Point(775, -4);
+            this.btnOrder.Location = new System.Drawing.Point(555, -1);
             this.btnOrder.Margin = new System.Windows.Forms.Padding(0);
             this.btnOrder.Name = "btnOrder";
             this.btnOrder.Size = new System.Drawing.Size(220, 95);
@@ -109,7 +107,7 @@
             this.btnStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnStock.Font = new System.Drawing.Font("Verdana", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStock.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnStock.Location = new System.Drawing.Point(610, -4);
+            this.btnStock.Location = new System.Drawing.Point(390, -1);
             this.btnStock.Margin = new System.Windows.Forms.Padding(0);
             this.btnStock.Name = "btnStock";
             this.btnStock.Size = new System.Drawing.Size(176, 96);
@@ -123,7 +121,7 @@
             this.btnBook.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnBook.Font = new System.Drawing.Font("Verdana", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBook.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnBook.Location = new System.Drawing.Point(428, -4);
+            this.btnBook.Location = new System.Drawing.Point(208, -1);
             this.btnBook.Margin = new System.Windows.Forms.Padding(0);
             this.btnBook.Name = "btnBook";
             this.btnBook.Size = new System.Drawing.Size(192, 96);
@@ -137,7 +135,7 @@
             this.btnCheckout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnCheckout.Font = new System.Drawing.Font("Verdana", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCheckout.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCheckout.Location = new System.Drawing.Point(219, -4);
+            this.btnCheckout.Location = new System.Drawing.Point(-1, -1);
             this.btnCheckout.Margin = new System.Windows.Forms.Padding(0);
             this.btnCheckout.Name = "btnCheckout";
             this.btnCheckout.Size = new System.Drawing.Size(213, 96);
@@ -145,20 +143,6 @@
             this.btnCheckout.Text = "Bán hàng";
             this.btnCheckout.UseVisualStyleBackColor = false;
             this.btnCheckout.Click += new System.EventHandler(this.btnCheckout_Click);
-            // 
-            // btnStaffInterface
-            // 
-            this.btnStaffInterface.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnStaffInterface.Font = new System.Drawing.Font("Verdana", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStaffInterface.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnStaffInterface.Location = new System.Drawing.Point(-1, -6);
-            this.btnStaffInterface.Margin = new System.Windows.Forms.Padding(0);
-            this.btnStaffInterface.Name = "btnStaffInterface";
-            this.btnStaffInterface.Size = new System.Drawing.Size(230, 98);
-            this.btnStaffInterface.TabIndex = 0;
-            this.btnStaffInterface.Text = "Trang chủ";
-            this.btnStaffInterface.UseVisualStyleBackColor = false;
-            this.btnStaffInterface.Click += new System.EventHandler(this.btnStaffInterface_Click);
             // 
             // panelContainer
             // 
@@ -173,9 +157,9 @@
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(241, 37);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // Main
+            // HomepageStaff
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -183,7 +167,7 @@
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.panel);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "Main";
+            this.Name = "HomepageStaff";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Giao diện nhân viên";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -199,7 +183,6 @@
         private System.Windows.Forms.Button btnStock;
         private System.Windows.Forms.Button btnBook;
         private System.Windows.Forms.Button btnCheckout;
-        private System.Windows.Forms.Button btnStaffInterface;
         private System.Windows.Forms.Panel panelContainer;
         private System.Windows.Forms.Button btnSupplier;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;

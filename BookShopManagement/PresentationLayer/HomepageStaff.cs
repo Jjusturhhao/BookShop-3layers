@@ -9,7 +9,7 @@ using TransferObject;
 
 namespace PresentationLayer
 {
-    public partial class Main : Form
+    public partial class HomepageStaff : Form
     {
         private ContextMenuStrip accountMenu;
         private UCInfo ucInfo;
@@ -21,7 +21,7 @@ namespace PresentationLayer
 
         private string username;
 
-        public Main(string username)
+        public HomepageStaff(string username)
         {
             InitializeComponent();
             this.username = username;
@@ -36,11 +36,6 @@ namespace PresentationLayer
             userControl.Dock = DockStyle.Fill;
             panelContainer.Controls.Add(userControl);
             userControl.BringToFront();
-        }
-
-        private void btnStaffInterface_Click(object sender, EventArgs e)
-        {
-            ShowUserControl(new UCStaffInterface(username));
         }
 
         private void btnCheckout_Click(object sender, EventArgs e)
