@@ -96,7 +96,7 @@ namespace PresentationLayer.UserControls
                 Font = new Font("Arial", 14, FontStyle.Bold),
                 AutoSize = true,
                 Location = new Point(60, 10),
-                Width = (int)(headerPanel.Width * 0.6) - 50
+                Width = (int)(headerPanel.Width * 0.45) - 50
             };
 
             
@@ -106,7 +106,7 @@ namespace PresentationLayer.UserControls
                 Font = new Font("Arial", 14, FontStyle.Bold),
                 AutoSize = true,
                 Location = new Point(lbBookNameHeader.Right, 10),
-                Width = (int)(headerPanel.Width * 0.2) - 50
+                Width = (int)(headerPanel.Width * 0.15) - 50
             };
 
             Label lbPriceHeader = new Label()
@@ -118,21 +118,21 @@ namespace PresentationLayer.UserControls
                 Width = (int)(headerPanel.Width * 0.2) - 50
             };
 
-            //Label lbTotalPriceHeader = new Label()
-            //{
-            //    Text = "Thành tiền",
-            //    Font = new Font("Arial", 14, FontStyle.Bold),
-            //    AutoSize = true,
-            //    Location = new Point(lbPriceHeader.Right + 50, 10),
-            //    Width = (int)(headerPanel.Width * 0.2) - 50
-            //};
+            Label lbTotalPriceHeader = new Label()
+            {
+                Text = "Thành tiền",
+                Font = new Font("Arial", 14, FontStyle.Bold),
+                AutoSize = true,
+                Location = new Point(lbPriceHeader.Right + 19, 10),
+                Width = (int)(headerPanel.Width * 0.2) - 50
+            };
             headerPanel.Controls.Add(lbBookNameHeader);
             headerPanel.Controls.Add(lbQuantityHeader);
             headerPanel.Controls.Add(lbPriceHeader);
-            //headerPanel.Controls.Add(lbTotalPriceHeader);
+            headerPanel.Controls.Add(lbTotalPriceHeader);
 
 
-            // Thêm header vào flpCart
+            //Thêm header vào flpCart
             flpDetails.Controls.Add(headerPanel);
 
             foreach (OrderDetails detail in details)
@@ -151,16 +151,16 @@ namespace PresentationLayer.UserControls
                     AutoSize = true,
                     Font = new Font("Arial", 16),
                     Location = new Point(10, 10),
-                    Width = (int)(panel.Width * 0.6) - 50
+                    Width = (int)(panel.Width * 0.45) - 50
                 };
-                
+
                 Label lbQuantity = new Label()
                 {
                     Font = new Font("Arial", 16),
                     Text = detail.QuantitySold.ToString(),
                     AutoSize = true,
                     Location = new Point(lbBookName.Right + 80, 10),
-                    Width = (int)(panel.Width * 0.2) - 50
+                    Width = (int)(panel.Width * 0.15) - 50
                 };
 
                 Label lbPrice = new Label()
@@ -171,20 +171,21 @@ namespace PresentationLayer.UserControls
                     Location = new Point(lbQuantity.Right + 20, 10),
                     Width = (int)(panel.Width * 0.2) - 50
                 };
-                //Label lbTotalPrice = new Label()
-                //{
-                //    Font = new Font("Arial", 16),
-                //    Text = (detail.UnitPrice * detail.QuantitySold).ToString("#,##0") + " đ",
-                //    AutoSize = true,
-                //    Location = new Point(lbPrice.Right + 20, 10),
-                //    Width = (int)(panel.Width * 0.2) - 50
-                //};
+
+                Label lbTotalPrice = new Label()
+                {
+                    Font = new Font("Arial", 16),
+                    Text = (detail.UnitPrice * detail.QuantitySold).ToString("#,##0") + " đ",
+                    AutoSize = true,
+                    Location = new Point(lbPrice.Right + 20, 10),
+                    Width = (int)(panel.Width * 0.2) - 50
+                };
 
 
                 panel.Controls.Add(lbBookName);
                 panel.Controls.Add(lbQuantity);
                 panel.Controls.Add(lbPrice);
-                //panel.Controls.Add(lbTotalPrice);
+                panel.Controls.Add(lbTotalPrice);
 
                 flpDetails.Controls.Add(panel);
             }
