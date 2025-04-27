@@ -74,7 +74,7 @@ namespace PresentationLayer.UserControls
                 int totalCost = 0;
                 foreach (var item in cartItems)
                 {
-                    stockBL.ReduceStockQuantity(item.StockID, item.Quantity);
+                    stockBL.ReduceStockQuantity(item.BookID, item.Quantity);
                     totalCost += (item.Quantity * item.UnitPrice);
                 }
 

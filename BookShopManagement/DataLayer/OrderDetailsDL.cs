@@ -23,7 +23,7 @@ namespace DataLayer
                     od.PriceAtOrderTime AS UnitPrice,
                     (od.Qty_sold * od.PriceAtOrderTime) AS TotalCost
                 FROM OrderDetails od
-                INNER JOIN Stock s ON od.StockID = s.StockID
+                INNER JOIN Stock s ON od.BookID = s.BookID
                 WHERE od.Order_ID = @OrderID";
             try
             {
@@ -61,8 +61,8 @@ namespace DataLayer
         }
         public void SaveOrderDetail(string orderID, List<CartItem> cartItems)
         {
-            string insertOrderDetailQuery = "INSERT INTO OrderDetails (Order_ID, StockID, Qty_sold, PriceAtOrderTime) " +
-                                            "VALUES (@Order_ID, @StockID, @Qty_sold, @PriceAtOrderTime)";
+            string insertOrderDetailQuery = "INSERT INTO OrderDetails (Order_ID, BookID, Qty_sold, PriceAtOrderTime) " +
+                                            "VALUES (@Order_ID, @BookID, @Qty_sold, @PriceAtOrderTime)";
 
             try
             {
@@ -73,7 +73,7 @@ namespace DataLayer
                 {
                     SqlCommand cmd = new SqlCommand(insertOrderDetailQuery, cn);
                     cmd.Parameters.AddWithValue("@Order_ID", orderID);
-                    cmd.Parameters.AddWithValue("@StockID", cartItem.StockID);
+                    cmd.Parameters.AddWithValue("@BookID", cartItem.BookID);
                     cmd.Parameters.AddWithValue("@Qty_sold", cartItem.Quantity);
                     cmd.Parameters.AddWithValue("@PriceAtOrderTime", cartItem.UnitPrice);
 

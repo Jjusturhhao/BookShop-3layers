@@ -279,7 +279,7 @@ namespace PresentationLayer
                 ucCusOrderDetail.Dispose();
             }
 
-            ucCusOrderDetail = new UCCusOrderDetail(orderID, currentUsername);
+            ucCusOrderDetail = new UCCusOrderDetail(orderID, currentUsername, null);
             ucCusOrderDetail.Dock = DockStyle.Fill;
             panelContainer.Controls.Add(ucCusOrderDetail);
             HideAllUserControls();
