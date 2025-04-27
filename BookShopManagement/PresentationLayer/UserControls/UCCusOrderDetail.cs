@@ -117,9 +117,20 @@ namespace PresentationLayer.UserControls
                 Location = new Point(lbQuantityHeader.Right + 50, 10),
                 Width = (int)(headerPanel.Width * 0.2) - 50
             };
+
+            //Label lbTotalPriceHeader = new Label()
+            //{
+            //    Text = "Thành tiền",
+            //    Font = new Font("Arial", 14, FontStyle.Bold),
+            //    AutoSize = true,
+            //    Location = new Point(lbPriceHeader.Right + 50, 10),
+            //    Width = (int)(headerPanel.Width * 0.2) - 50
+            //};
             headerPanel.Controls.Add(lbBookNameHeader);
-            headerPanel.Controls.Add(lbPriceHeader);
             headerPanel.Controls.Add(lbQuantityHeader);
+            headerPanel.Controls.Add(lbPriceHeader);
+            //headerPanel.Controls.Add(lbTotalPriceHeader);
+
 
             // Thêm header vào flpCart
             flpDetails.Controls.Add(headerPanel);
@@ -160,11 +171,20 @@ namespace PresentationLayer.UserControls
                     Location = new Point(lbQuantity.Right + 20, 10),
                     Width = (int)(panel.Width * 0.2) - 50
                 };
+                //Label lbTotalPrice = new Label()
+                //{
+                //    Font = new Font("Arial", 16),
+                //    Text = (detail.UnitPrice * detail.QuantitySold).ToString("#,##0") + " đ",
+                //    AutoSize = true,
+                //    Location = new Point(lbPrice.Right + 20, 10),
+                //    Width = (int)(panel.Width * 0.2) - 50
+                //};
 
 
                 panel.Controls.Add(lbBookName);
-                panel.Controls.Add(lbPrice);
                 panel.Controls.Add(lbQuantity);
+                panel.Controls.Add(lbPrice);
+                //panel.Controls.Add(lbTotalPrice);
 
                 flpDetails.Controls.Add(panel);
             }

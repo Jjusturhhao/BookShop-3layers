@@ -75,7 +75,7 @@ create table Stock(
 		CategoryID VARCHAR(10) FOREIGN KEY REFERENCES BookCategory(CategoryID),
 		BookName NVARCHAR(100) NOT NULL,
 		ImportDate DATETIME DEFAULT GETDATE(),
-	    	Quantity INT NOT NULL CHECK (Quantity >= 0)
+	    Quantity INT NOT NULL CHECK (Quantity >= 0)
 );
 go
 
@@ -136,7 +136,7 @@ CREATE TABLE Customers (
 
 CREATE TABLE Orders (
     Order_ID VARCHAR(55) NOT NULL PRIMARY KEY, 
-   PhoneNumber NVARCHAR(15) NOT NULL,
+	PhoneNumber NVARCHAR(15) NOT NULL,
     Employee_ID VARCHAR(30), 
     Order_Date DATETIME NOT NULL DEFAULT GETDATE(), 
 	Status NVARCHAR(20) DEFAULT N'Chờ xác nhận' CHECK (Status IN (N'Chờ xác nhận', N'Đã vận chuyển', N'Đã hoàn thành', N'Đã hủy')),
@@ -204,8 +204,8 @@ SELECT
     O.Order_ID,  
     SUM(OD.PriceAtOrderTime * OD.Qty_sold) AS Total_Cost  
 FROM Orders O
-JOIN OrderDetails OD ON O.Order_ID = OD.Order_ID -- Lấy giá sách từ bảng OrderDetails
-JOIN Stock S ON OD.BookID = S.BookID
+	JOIN OrderDetails OD ON O.Order_ID = OD.Order_ID -- Lấy giá sách từ bảng OrderDetails
+	JOIN Stock S ON OD.BookID = S.BookID
 GROUP BY O.Order_ID;
 go
 SELECT * FROM Bill_Generate; 
