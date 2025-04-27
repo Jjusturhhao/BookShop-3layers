@@ -37,10 +37,6 @@ namespace BusinessLayer
         {
             return CheckoutDL.GetQuantity(bookID);
         }
-        public string GetStockID(string bookID)
-        {
-            return CheckoutDL.GetStockID(bookID);
-        }
         public List<CartItem> GetCartItemsFromDgv(DataGridView dgvDetails)
         {
             return CheckoutDL.GetCartItemsFromDgv(dgvDetails);

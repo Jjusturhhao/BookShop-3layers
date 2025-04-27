@@ -18,7 +18,7 @@ namespace DataLayer
         public CartItem GetBookByID(string bookID)
         {
             CartItem item = null;
-            string sql = "SELECT s.StockID, s.BookID, s.BookName, b.Price "+
+            string sql = "SELECT s.BookID, s.BookName, b.Price "+
                 "FROM Stock s "+
                 "INNER JOIN Book b ON s.BookID = b.BookID "+
                 "WHERE s.BookID = @BookID";
@@ -35,13 +35,11 @@ namespace DataLayer
                         // Chỉ cần đọc 1 bản ghi
                         if (reader.Read())
                         {
-                            string stockID = reader["StockID"].ToString();  
                             string bookName = reader["BookName"].ToString();
                             int unitPrice = Convert.ToInt32(reader["Price"]);
                             int quantity = 1;
 
                             item = new CartItem(bookID, bookName, unitPrice, quantity);
-                            item.StockID = stockID;
                         }
                     }
                 }

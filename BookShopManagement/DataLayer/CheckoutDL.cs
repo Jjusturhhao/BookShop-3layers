@@ -139,14 +139,12 @@ namespace DataLayer
                 // Kiểm tra xem row có dữ liệu hợp lệ không
                 if (row.Cells["Tên sách"].Value != null && row.Cells["Số lượng"].Value != null && row.Cells["Đơn giá"].Value != null)
                 {
-                    string stockID = row.Cells["Mã kho"].Value.ToString();
                     string bookID = row.Cells["Mã sách"].Value.ToString();
                     string bookName = row.Cells["Tên sách"].Value.ToString();
                     int quantity = Convert.ToInt32(row.Cells["Số lượng"].Value);
                     int unitPrice = Convert.ToInt32(row.Cells["Đơn giá"].Value);
 
                     CartItem item = new CartItem(bookID, bookName, unitPrice, quantity);
-                    item.StockID = stockID;
                     cartItems.Add(item);
                 }
             }
@@ -198,31 +196,6 @@ namespace DataLayer
             catch (Exception ex)
             {
                 throw ex;
-            }
-        }
-        public string GetStockID(string bookID)
-        {
-            try
-            {
-                Connect();
-
-                string sql = "SELECT StockID FROM Stock WHERE BookID = @bookID"; 
-                using (SqlCommand cmd = new SqlCommand(sql, cn))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Parameters.AddWithValue("@BookID", bookID);
-
-                    object result = cmd.ExecuteScalar();
-                    return result.ToString();
-                }    
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                DisConnect();
             }
         }
     }

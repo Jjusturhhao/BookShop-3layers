@@ -60,7 +60,7 @@ namespace PresentationLayer
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
-            ShowUserControl(new UCOrders());
+            HandleOrderButtonClick();
         }
 
         private void btnSupplier_Click(object sender, EventArgs e)
@@ -103,5 +103,24 @@ namespace PresentationLayer
                 accountMenu.Show(btnInfo, new Point(0, btnInfo.Height));
             };
         }
+        private void HandleOrderButtonClick()
+        {
+            UCOrders ucOrders = new UCOrders();
+            ucOrders.OnOrderDetailClick = (orderID, phone) =>
+            {
+                ShowOrderDetail(orderID, phone);
+            };
+            ShowUserControl(ucOrders);
+        }
+        private void ShowOrderDetail(string orderID, string phone)
+        {
+            UCCusOrderDetail ucOrderDetail = new UCCusOrderDetail(orderID, null, phone);
+            ShowUserControl(ucOrderDetail);
+            ucOrderDetail.OnBackClick = () =>
+            {
+                HandleOrderButtonClick();
+            };
+        }
+
     }
 }

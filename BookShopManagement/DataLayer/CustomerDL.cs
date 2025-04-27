@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TransferObject;
 
 namespace DataLayer
 {
@@ -58,6 +59,34 @@ namespace DataLayer
             {
                 DisConnect();
             }
+        }
+        public Customer GetCustomerByPhone(string phone)
+        {
+            Customer customer = null;
+            string sql = "SELECT * FROM Customers WHERE PhoneNumber = @PhoneNumber";
+            try
+            {
+                Connect(); // mở kết nối DB
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                cmd.Parameters.AddWithValue("@PhoneNumber", phone);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    string name = reader["FullName"].ToString();
+
+                    customer = new Customer(phone, name);
+                }   
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy thông tin người dùng: " + ex.Message);
+            }
+            finally
+            {
+                DisConnect();
+            }
+            return customer;
         }
     }
 }

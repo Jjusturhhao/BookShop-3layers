@@ -17,46 +17,64 @@ namespace PresentationLayer.UserControls
     {
         private string orderID;
         private string username;
+        private string phone;
         private InfoBL infoBL;
+        private CustomerBL customerBL;
         private OrderDetailsBL orderDetailsBL;
         private BillBL billBL;
         private PaymentBL paymentBL;
 
         public Action OnBackClick;
 
-        public UCCusOrderDetail(string orderID, string username)
+        public UCCusOrderDetail(string orderID, string username = null, string phone = null)
         {
             InitializeComponent();
+            customerBL = new CustomerBL();
             orderDetailsBL = new OrderDetailsBL();
             billBL = new BillBL();
             infoBL = new InfoBL();
             paymentBL = new PaymentBL();
             this.orderID = orderID;
-            this.username = username;
+            this.username = username;  // Nếu có username sẽ sử dụng, nếu không thì bỏ qua
+            this.phone = phone;
         }
 
         private void UCCusOrderDetail_Load(object sender, EventArgs e)
         {
-            LoadOrderDetail(orderID, username);
+            LoadOrderDetail(orderID, username, phone);
         }
-        private void LoadOrderDetail(string orderID, string username)
+        private void LoadOrderDetail(string orderID, string username = null, string phone = null)
         {
             lbOrderID.Text = $"Đơn hàng: {orderID}";
 
-            //lbPayment 
             string billID = billBL.GetBillIDByOrderID(orderID);
             Payment payment = paymentBL.GetPayments(billID);
             lbPayment.Text = $"Phương thức thanh toán: {payment.Payment_Method}";
 
-            Info info = infoBL.GetUserInfo(username);
-            if (info != null)
+            if (!string.IsNullOrEmpty(username)) // Nếu có username (đặt online)
             {
-                lbInforCus.Text = $"Khách hàng: {info.Name} - SĐT: {info.Phone} " +
-                    $"\nĐịa chỉ: {info.Address}";
+                Info info = infoBL.GetUserInfo(username);
+                if (info != null)
+                {
+                    lbInforCus.Text = $"Khách hàng: {info.Name} - SĐT: {info.Phone} " +
+                        $"\nĐịa chỉ: {info.Address}";
+                }
+                else
+                {
+                    lbInforCus.Text = "Không tìm thấy thông tin khách hàng.";
+                }
             }
-            else
+            else if (!string.IsNullOrEmpty(phone)) // Nếu không có username và có phone (bán offline)
             {
-                lbInforCus.Text = "Không tìm thấy thông tin khách hàng.";
+                Customer customer = customerBL.GetCustomerByPhone(phone);  // Lấy thông tin khách hàng từ bảng Customer
+                if (customer != null)
+                {
+                    lbInforCus.Text = $"Khách hàng: {customer.FullName} - SĐT: {customer.PhoneNumber}"; // Chỉ cung cấp tên và số điện thoại cho bán offline
+                }
+                else
+                {
+                    lbInforCus.Text = "Không tìm thấy thông tin khách hàng.";
+                }
             }
 
             flpDetails.Controls.Clear(); 

@@ -32,7 +32,6 @@ namespace PresentationLayer.UserControls
         private Info info;
         private Panel selectedPanel = null;  // Biến lưu trữ panel của sách đã chọn
         
-        private string selectedStockID = string.Empty;
         private string selectedBookID = string.Empty; 
         private string selectedBookName = string.Empty; 
         private int selectedPrice = 0;
@@ -79,8 +78,6 @@ namespace PresentationLayer.UserControls
         {
             dgvBooks.Columns.Clear(); // Đảm bảo không bị lặp cột
 
-            dgvBooks.Columns.Add("StockID", "Mã kho");
-            dgvBooks.Columns["StockID"].Visible = false;
             dgvBooks.Columns.Add("BookID", "Mã sách");
             dgvBooks.Columns.Add("BookName", "Tên sách");
             dgvBooks.Columns.Add("Price", "Đơn giá");
@@ -98,8 +95,7 @@ namespace PresentationLayer.UserControls
 
             foreach (var book in books)
             {
-                string stockid = CheckoutBL.GetStockID(book.Bookid);
-                dgvBooks.Rows.Add(stockid, book.Bookid, book.Bookname, book.Price, book.Quantity);
+                dgvBooks.Rows.Add(book.Bookid, book.Bookname, book.Price, book.Quantity);
             }
 
             dgvBooks.Columns["BookName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -121,8 +117,7 @@ namespace PresentationLayer.UserControls
 
             foreach (var book in books)
             {
-                string stockid = CheckoutBL.GetStockID(book.Bookid); // lấy stock ID nè
-                dgvBooks.Rows.Add(stockid, book.Bookid, book.Bookname, book.Price, book.Quantity);
+                dgvBooks.Rows.Add(book.Bookid, book.Bookname, book.Price, book.Quantity);
             }
 
             dgvBooks.Columns["BookName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -135,7 +130,6 @@ namespace PresentationLayer.UserControls
             if (e.RowIndex >= 0) // Đảm bảo chỉ xử lý khi nhấp vào một dòng hợp lệ
             {
                 // Lưu thông tin sách được chọn
-                selectedStockID = dgvBooks.Rows[e.RowIndex].Cells["StockID"].Value.ToString();
                 selectedBookID = dgvBooks.Rows[e.RowIndex].Cells["BookID"].Value.ToString();
                 selectedBookName = dgvBooks.Rows[e.RowIndex].Cells["BookName"].Value.ToString();
                 selectedPrice = Convert.ToInt32(dgvBooks.Rows[e.RowIndex].Cells["Price"].Value.ToString().Replace(",", ""));
@@ -160,8 +154,6 @@ namespace PresentationLayer.UserControls
         {
             dgvDetails.Columns.Clear();
 
-            dgvDetails.Columns.Add("Mã kho", "Mã kho"); // Cột ẩn để lưu StockID
-            dgvDetails.Columns["Mã kho"].Visible = false;  // Ẩn cột này đi
             dgvDetails.Columns.Add("Mã sách", "Mã sách"); // Cột ẩn để lưu BookID
             dgvDetails.Columns["Mã sách"].Visible = false;  // Ẩn cột này đi
             
@@ -182,7 +174,6 @@ namespace PresentationLayer.UserControls
             }
 
             // Lấy thông tin từ các điều khiển
-            string stockID = selectedStockID;
             int quantity = (int)numericUpDownQuantity.Value; 
             int unitPrice = selectedPrice;
             int totalPrice = unitPrice * quantity;
@@ -207,7 +198,6 @@ namespace PresentationLayer.UserControls
             {
                 DataGridViewRow newRow = new DataGridViewRow();
 
-                newRow.Cells.Add(new DataGridViewTextBoxCell() { Value = stockID });
                 newRow.Cells.Add(new DataGridViewTextBoxCell() { Value = selectedBookID });
                 newRow.Cells.Add(new DataGridViewTextBoxCell() { Value = selectedBookName });
                 newRow.Cells.Add(new DataGridViewTextBoxCell() { Value = quantity });
@@ -289,8 +279,7 @@ namespace PresentationLayer.UserControls
 
                 foreach (var book in books)
                 {
-                    string stockid = CheckoutBL.GetStockID(book.Bookid); // Lấy StockID từ BookID
-                    dgvBooks.Rows.Add(stockid, book.Bookid, book.Bookname, book.Price, book.Quantity);
+                    dgvBooks.Rows.Add(book.Bookid, book.Bookname, book.Price, book.Quantity);
                 }
 
 
@@ -371,7 +360,7 @@ namespace PresentationLayer.UserControls
                 orderDetailsBL.SaveOrderDetails(orderID, cartItems);
                 foreach (var item in cartItems)
                 {
-                    stockBL.ReduceStockQuantity(item.StockID, item.Quantity);
+                    stockBL.ReduceStockQuantity(item.BookID, item.Quantity);
                 }
 
                 // Bước 4: Tạo hóa đơn và lưu vào bảng Bill_Generate
@@ -414,6 +403,7 @@ namespace PresentationLayer.UserControls
         
         public void LoadAfterCheckout()
         {
+            LoadBooks();
             LoadDetails();
             txtCusName.Clear();
             txtCusPhone.Clear();
