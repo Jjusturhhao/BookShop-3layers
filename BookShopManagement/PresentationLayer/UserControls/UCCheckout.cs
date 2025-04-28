@@ -27,6 +27,13 @@ namespace PresentationLayer.UserControls
         private BillBL billBL;
         private CustomerBL customerBL;
         private PaymentBL paymentBL;
+        
+
+        //==
+        
+       
+
+        //===
 
         private string username;
         private Info info;
@@ -52,6 +59,10 @@ namespace PresentationLayer.UserControls
             customerBL = new CustomerBL();
             paymentBL = new PaymentBL();
             this.username = username;
+
+            //==
+           
+            //==
         }
         public void UCCheckout_Load(object sender, EventArgs e)
         {
@@ -166,7 +177,7 @@ namespace PresentationLayer.UserControls
             dgvDetails.Columns["Mã sách"].Visible = false;  // Ẩn cột này đi
             
             dgvDetails.Columns.Add("Tên sách", "Tên sách");
-            dgvDetails.Columns.Add("Số lượng", "Số lượng");
+            dgvDetails.Columns.Add("Số lượng", "Số lượng"); 
             dgvDetails.Columns.Add("Đơn giá", "Đơn giá");
             dgvDetails.Columns.Add("Thành tiền", "Thành tiền");
             dgvDetails.Columns["Đơn giá"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -255,6 +266,10 @@ namespace PresentationLayer.UserControls
 
                 int change = totalPaid - totalBill;
                 txtChange.Text = change.ToString();
+
+                //
+
+                //
             }
             else if (rdByTransfer.Checked == true || rdByEWallet.Checked == true)
             {
@@ -355,8 +370,11 @@ namespace PresentationLayer.UserControls
                 //Lấy StaffID
                 info = infoBL.GetUserInfo(username);
                 string staffID = info.User_ID;
+                //==
+                string staffName = info.Name;
+                //==
 
-                
+
                 // Bước 1: Tạo Order_ID mới
                 string orderID = orderBL.GenerateOrderID();
 
@@ -399,9 +417,65 @@ namespace PresentationLayer.UserControls
                 DateTime? paymentDate = GetPaymentDate(rdByCash.Checked, transactionCode); //? kiểu nullable
                 int totalCost = Convert.ToInt32(txtTotalBill.Text);
                 paymentBL.AddPayment(paymentID, billID, cusphone, paymentMethod, transactionCode, paymentDate, totalCost);
+                //==
 
+                //==
                 // Bước 6: Thông báo
                 MessageBox.Show("Đặt hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                //==
+                //UCInbill uCInbill = new UCInbill();
+                List<(string bookName, int quantity, int price, int total)> books = new List<(string, int, int, int)>();
+
+                foreach (DataGridViewRow row in dgvDetails.Rows)
+                {
+                    if (row.Cells["Tên sách"].Value != null &&
+                        row.Cells["Số lượng"].Value != null &&
+                        row.Cells["Đơn giá"].Value != null)
+                    {
+                        string bookName = row.Cells["Tên sách"].Value.ToString();
+                        int quantity = Convert.ToInt32(row.Cells["Số lượng"].Value);
+                        int price = Convert.ToInt32(row.Cells["Đơn giá"].Value);
+                        int total = quantity * price;
+                        books.Add((bookName, quantity, price, total));
+                    }
+                }
+
+                //==
+
+                int totalBill = 0;
+                int totalPaid = 0;
+                int change = 0;
+
+                if (paymentMethod == "Tiền mặt")
+                {
+                    // Kiểm tra nếu totalBill và totalPaid là số hợp lệ
+                    if (int.TryParse(txtTotalBill.Text, out totalBill) && int.TryParse(txtTotalPaid.Text, out totalPaid))
+                    {
+                        // Tính tiền thừa
+                        change = CalculateChange(totalBill, totalPaid);
+                        UCInBill inBill = new UCInBill(orderID, cusname, cusphone, totalBill, paymentMethod,
+                                                       books, staffName, orderDate, change, totalPaid);
+                        ShowUserControl(inBill);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Vui lòng nhập đúng số tiền");
+                    }
+                }
+                else
+                {
+                    // Nếu không phải thanh toán bằng tiền mặt, bỏ qua phần nhập liệu
+                    totalBill = 0;  // Giá trị mặc định nếu không cần thiết
+                    totalPaid = 0;  // Giá trị mặc định nếu không cần thiết
+                    change = 0;     // Không cần tính tiền thừa
+
+                    // Tạo đối tượng UCInBill mà không cần các giá trị tiền thừa
+                    UCInBill inBill = new UCInBill(orderID, cusname, cusphone, totalCost, paymentMethod,
+                                                   books, staffName, orderDate, change, totalPaid);
+                    ShowUserControl(inBill);
+                }
+                //==
 
                 // Bước 7: Load lại FORM
                 LoadAfterCheckout();
@@ -489,5 +563,25 @@ namespace PresentationLayer.UserControls
         {
             UpdatePaymentControls();
         }
+        //======
+        public void ShowUserControl(UserControl userControl)
+        {
+            this.Controls.Clear();
+            userControl.Dock = DockStyle.Fill;
+            this.Controls.Add(userControl);
+            userControl.BringToFront();
+        }
+        private int CalculateChange(int totalBill, int totalPaid)
+        {
+            if (totalPaid < totalBill)
+            {
+                MessageBox.Show("Số tiền khách đưa chưa đủ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return 0;  // Nếu tiền khách trả chưa đủ, trả lại 0
+            }
+            return totalPaid - totalBill;  // Trả về tiền thừa
+
+        }
+
+        //==
     }
 }
