@@ -57,5 +57,9 @@ namespace BusinessLayer
             }
         }
 
+        public string GenerateNextSupplierID()
+        {
+            return supplierDL.GenerateNextSupplierID();
+        }
     }
 }

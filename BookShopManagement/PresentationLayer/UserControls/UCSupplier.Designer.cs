@@ -246,10 +246,12 @@
             // 
             // txtID
             // 
+            this.txtID.Enabled = false;
             this.txtID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtID.Location = new System.Drawing.Point(374, 125);
             this.txtID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtID.Name = "txtID";
+            this.txtID.ReadOnly = true;
             this.txtID.Size = new System.Drawing.Size(404, 39);
             this.txtID.TabIndex = 0;
             // 
@@ -299,9 +301,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(92, 128);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(162, 32);
+            this.label2.Size = new System.Drawing.Size(230, 32);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Supplier_ID";
+            this.label2.Text = "Mã nhà cung cấp";
             // 
             // panel5
             // 

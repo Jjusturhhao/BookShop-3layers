@@ -28,7 +28,7 @@ namespace PresentationLayer.UserControls
             HidePasswordInDGV();
         }
 
-        private void ClearFields()
+        private void ClearForm()
         {
             txtID.Text = employeeBL.GenerateNextEmployeeID(); // Tự sinh ID mới mỗi lần clear
             txtName.Clear();
@@ -79,7 +79,7 @@ namespace PresentationLayer.UserControls
             {
                 MessageBox.Show($"Thêm nhân viên thành công! Mã nhân viên: {emp.ID}");
                 LoadEmployees();
-                ClearFields();
+                ClearForm();
             }
             else
             {
@@ -94,7 +94,7 @@ namespace PresentationLayer.UserControls
             {
                 MessageBox.Show("Cập nhật thành công!");
                 LoadEmployees();
-                ClearFields();
+                ClearForm();
             }
             else
                 MessageBox.Show("Cập nhật thất bại!");
@@ -107,7 +107,7 @@ namespace PresentationLayer.UserControls
             {
                 MessageBox.Show("Xóa thành công!");
                 LoadEmployees();
-                ClearFields();
+                ClearForm();
             }
             else
                 MessageBox.Show("Xóa thất bại!");
@@ -115,7 +115,7 @@ namespace PresentationLayer.UserControls
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            ClearFields();
+            ClearForm();
             txtPassword.Enabled = true;
         }
 

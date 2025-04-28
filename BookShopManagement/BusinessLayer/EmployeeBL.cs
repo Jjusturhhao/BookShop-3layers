@@ -61,6 +61,5 @@ namespace BusinessLayer
         {
             return employeeDL.GenerateNextEmployeeID();
         }
-
     }
 }

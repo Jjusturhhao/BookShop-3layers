@@ -114,5 +114,34 @@ namespace DataLayer
             }
         }
 
+        public string GenerateNextSupplierID()
+        {
+            string sql = "SELECT TOP 1 Supplier_ID FROM Suppliers ORDER BY CAST(SUBSTRING(Supplier_ID, 4, LEN(Supplier_ID)) AS INT) DESC";
+            try
+            {
+                Connect();
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                object result = cmd.ExecuteScalar();
+                if (result != null)
+                {
+                    string lastID = result.ToString(); // Ví dụ: SUP5
+                    int number = int.Parse(lastID.Substring(3)); // lấy số 5
+                    return "SUP" + (number + 1); // tạo SUP6
+                }
+                else
+                {
+                    return "SUP1"; // Nếu chưa có NCC nào
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+        }
+
     }
 }
