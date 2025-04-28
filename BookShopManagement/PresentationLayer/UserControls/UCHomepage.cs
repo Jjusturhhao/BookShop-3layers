@@ -187,6 +187,150 @@ namespace PresentationLayer.UserControls
                 }
             };
         }
-        
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string keyword = txtSearch.Text.Trim();
+
+            if (string.IsNullOrEmpty(keyword))
+            {
+                LoadBooks(currentPage, currentCategoryID);
+                return;
+            }
+
+            try
+            {
+                DataTable allBooks = homepageBL.GetBooks(currentPage, pageSize);
+
+                // Tạo bảng chứa sách tìm kiếm được
+                DataTable searchResult = allBooks.Clone(); // Tạo structure y chang allBooks nhưng chưa có dữ liệu
+
+                foreach (DataRow row in allBooks.Rows)
+                {
+                    if (row["BookName"].ToString().IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        searchResult.ImportRow(row);
+                    }
+                }
+
+                flowLayoutPanelBooks.Controls.Clear();
+
+                int screenWidth = this.flowLayoutPanelBooks.Width;
+                int screenHeight = this.flowLayoutPanelBooks.Height;
+                int panelWidth = screenWidth / 4 - 30;
+                int panelHeight = screenHeight / 2 - 30;
+
+                foreach (DataRow row in searchResult.Rows)
+                {
+                    Panel panel = new Panel()
+                    {
+                        Width = panelWidth,
+                        Height = panelHeight + 80,
+                        Margin = new Padding(10)
+                    };
+
+                    PictureBox pictureBox = new PictureBox()
+                    {
+                        Width = panelWidth - 20,
+                        Height = panelHeight - 50,
+                        SizeMode = PictureBoxSizeMode.Zoom,
+                        Cursor = Cursors.Hand
+                    };
+
+                    string imageUrl = row["BookImage"].ToString();
+                    try
+                    {
+                        using (WebClient webClient = new WebClient())
+                        {
+                            byte[] imageBytes = webClient.DownloadData(imageUrl);
+                            using (MemoryStream ms = new MemoryStream(imageBytes))
+                            {
+                                pictureBox.Image = Image.FromStream(ms);
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        pictureBox.Image = Properties.Resources.bookdefault;
+                    }
+
+                    Label lblName = new Label()
+                    {
+                        Text = row["BookName"].ToString(),
+                        AutoSize = false,
+                        Width = panelWidth - 20,
+                        Height = 40,
+                        Font = new Font("Arial", 12),
+                        TextAlign = ContentAlignment.TopLeft
+                    };
+
+                    Label lblPrice = new Label()
+                    {
+                        Text = Convert.ToDecimal(row["Price"]).ToString("#,##0") + " đ",
+                        AutoSize = false,
+                        Width = panelWidth - 20,
+                        Font = new Font("Arial", 12, FontStyle.Bold),
+                        ForeColor = Color.DarkRed,
+                        TextAlign = ContentAlignment.MiddleLeft
+                    };
+
+                    Button btnBuy = new Button()
+                    {
+                        Text = "Thêm vào giỏ",
+                        Width = panelWidth - 20,
+                        Height = 40,
+                        Font = new Font("Arial", 13),
+                        BackColor = Color.LightSeaGreen,
+                        ForeColor = Color.White,
+                        FlatStyle = FlatStyle.Flat
+                    };
+                    btnBuy.Click += (s, ev) =>
+                    {
+                        string bookID = row["BookID"].ToString();
+                        cartBL.AddToCart(bookID);
+                        if (ucCart == null)
+                        {
+                            MessageBox.Show("Giỏ hàng chưa được truyền từ Homepage.");
+                        }
+                        else
+                        {
+                            ucCart.LoadCartItems();
+                        }
+                        MessageBox.Show("Sản phẩm đã được thêm vào giỏ hàng của bạn!");
+                    };
+
+                    pictureBox.Click += (s, ev) =>
+                    {
+                        string bookID = row["BookID"].ToString();
+                        if (showBookDetailCallback == null)
+                        {
+                            MessageBox.Show("Callback không được gán.");
+                        }
+                        else
+                        {
+                            showBookDetailCallback(bookID);
+                        }
+                    };
+
+                    panel.Controls.Add(pictureBox);
+                    panel.Controls.Add(lblName);
+                    panel.Controls.Add(lblPrice);
+                    panel.Controls.Add(btnBuy);
+
+                    pictureBox.Location = new Point(10, 10);
+                    lblName.Location = new Point(10, pictureBox.Bottom + 10);
+                    lblPrice.Location = new Point(10, lblName.Bottom + 5);
+                    btnBuy.Location = new Point(10, lblPrice.Bottom + 5);
+
+                    flowLayoutPanelBooks.Controls.Add(panel);
+                }
+
+                lbPage.Text = "1"; // Khi search thì về page 1
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

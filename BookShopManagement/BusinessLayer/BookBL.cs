@@ -67,6 +67,12 @@ namespace BusinessLayer
         {
             return bookDL.Reset();
         }
+
+        public Book GetBookByID(string id)
+        {
+            return bookDL.GetBookByID(id);
+        }
+
     }
 }
 

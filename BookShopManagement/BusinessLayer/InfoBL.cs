@@ -68,6 +68,16 @@ namespace BusinessLayer
                 throw ex;
             }
         }
-
+        public Info GetUserInfoByPhone(string phone)
+        {
+            try
+            {
+                return infoDL.GetUserInfoByPhone(phone);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

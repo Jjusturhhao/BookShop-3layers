@@ -101,15 +101,15 @@ namespace PresentationLayer
         private void HandleOrderButtonClick()
         {
             UCOrders ucOrders = new UCOrders();
-            ucOrders.OnOrderDetailClick = (orderID, phone) =>
+            ucOrders.OnOrderDetailClick = (orderID, employee, phone) =>
             {
-                ShowOrderDetail(orderID, phone);
+                ShowOrderDetail(orderID, employee, phone);
             };
             ShowUserControl(ucOrders);
         }
-        private void ShowOrderDetail(string orderID, string phone)
+        private void ShowOrderDetail(string orderID, string employee, string phone)
         {
-            UCCusOrderDetail ucOrderDetail = new UCCusOrderDetail(orderID, null, phone);
+            UCCusOrderDetail ucOrderDetail = new UCCusOrderDetail(orderID, employee, phone);
             ShowUserControl(ucOrderDetail);
             ucOrderDetail.OnBackClick = () =>
             {

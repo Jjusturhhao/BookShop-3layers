@@ -133,6 +133,12 @@ CREATE TABLE Customers (
     PhoneNumber VARCHAR(20) PRIMARY KEY,
 	FullName NVARCHAR(100)
 );
+INSERT INTO Customers (PhoneNumber, FullName) 
+VALUES 
+    ('0987654321', N'Tin'),
+	('0987654322', N'Hân Hân'),
+    ('0987654323', N'Mỹ Diên');
+go
 
 CREATE TABLE Orders (
     Order_ID VARCHAR(55) NOT NULL PRIMARY KEY, 

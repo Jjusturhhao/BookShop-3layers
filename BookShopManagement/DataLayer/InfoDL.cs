@@ -88,5 +88,43 @@ namespace DataLayer
                 DisConnect();
             }
         }
+        public Info GetUserInfoByPhone(string phone)
+        {
+            Info userInfo = null;
+            string sql = "SELECT * FROM Users WHERE PhoneNumber = @Phone";
+            try
+            {
+                Connect(); // mở kết nối DB
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                cmd.Parameters.AddWithValue("@Phone", phone);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    string id = reader["User_ID"].ToString();
+                    string username = reader["Username"].ToString();
+                    string name = reader["Name"].ToString();
+                    string pass = reader["Password"].ToString();
+                    string address = reader["Address"].ToString();
+                    string email = reader["Email"].ToString();
+
+                    userInfo = new Info(username, name, pass, address, phone, email);
+                    userInfo.User_ID = id;
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // Ghi log hoặc xử lý lỗi nếu cần
+                Console.WriteLine("Lỗi khi lấy thông tin người dùng: " + ex.Message);
+            }
+            finally
+            {
+                DisConnect(); // đóng kết nối DB
+            }
+            return userInfo;
+        }
+
     }
 }

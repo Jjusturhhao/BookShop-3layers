@@ -222,5 +222,37 @@ namespace DataLayer
                 DisConnect();
             }
         }
+        public Book GetBookByID(string id)
+        {
+            Book book = null;
+            string sql = "SELECT * FROM Book WHERE BookID = @BookID";
+            try
+            {
+                Connect();
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                cmd.Parameters.AddWithValue("@BookID", id);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string bookid = reader["BookID"].ToString();
+                    string bookName = reader["BookName"].ToString();
+                    string categoryID = reader["CategoryID"].ToString();
+                    string author = reader["Author"].ToString();
+                    int price = Convert.ToInt32(reader["Price"]);
+                    string bookiamge = reader["BookImage"].ToString();
+                    book = new Book(bookid, bookName, categoryID, author, price, bookiamge);
+                }
+                reader.Close();
+                return book;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+        }
     }
 }

@@ -479,5 +479,10 @@ namespace PresentationLayer.UserControls
         {
             UpdatePaymentControls();
         }
+
+        private void txtNameSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
