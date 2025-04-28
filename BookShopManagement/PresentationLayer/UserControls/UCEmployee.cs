@@ -30,7 +30,7 @@ namespace PresentationLayer.UserControls
 
         private void ClearFields()
         {
-            txtID.Clear();
+            txtID.Text = employeeBL.GenerateNextEmployeeID(); // Tự sinh ID mới mỗi lần clear
             txtName.Clear();
             txtUsername.Clear();
             txtPassword.Clear();
@@ -71,14 +71,20 @@ namespace PresentationLayer.UserControls
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Employee emp = GetEmployeeFromFields();
+
+            // Luôn luôn tự generate ID, không lấy từ txtID
+            emp.ID = employeeBL.GenerateNextEmployeeID();
+
             if (employeeBL.AddEmployee(emp))
             {
-                MessageBox.Show("Thêm nhân viên thành công!");
+                MessageBox.Show($"Thêm nhân viên thành công! Mã nhân viên: {emp.ID}");
                 LoadEmployees();
                 ClearFields();
             }
             else
+            {
                 MessageBox.Show("Thêm thất bại!");
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)

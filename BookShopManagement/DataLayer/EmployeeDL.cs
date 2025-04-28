@@ -115,5 +115,34 @@ namespace DataLayer
                 DisConnect();
             }
         }
+
+        public string GenerateNextEmployeeID()
+        {
+            string sql = "SELECT TOP 1 User_ID FROM Users WHERE Role = 'Staff' ORDER BY CAST(SUBSTRING(User_ID, 2, LEN(User_ID)) AS INT) DESC";
+            try
+            {
+                Connect();
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                object result = cmd.ExecuteScalar();
+                if (result != null)
+                {
+                    string lastID = result.ToString(); // Ví dụ: S5
+                    int number = int.Parse(lastID.Substring(1)); // lấy số 5
+                    return "S" + (number + 1); // tạo S6
+                }
+                else
+                {
+                    return "S1"; // Nếu chưa có nhân viên nào
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+        }
     }
 }

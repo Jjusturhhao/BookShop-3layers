@@ -56,5 +56,11 @@ namespace BusinessLayer
                 throw ex;
             }
         }
+
+        public string GenerateNextEmployeeID()
+        {
+            return employeeDL.GenerateNextEmployeeID();
+        }
+
     }
 }
