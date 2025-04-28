@@ -9,6 +9,7 @@ using System.Net;
 using TransferObject;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Data.SqlTypes;
 
 namespace DataLayer
 {
@@ -21,7 +22,7 @@ namespace DataLayer
             string sql = "SELECT b.BookID, b.BookName, b.Price, s.Quantity " +
                 "FROM Book b " +
                 "LEFT JOIN Stock s ON b.BookID = s.BookID " +
-                "ORDER BY b.BookID";
+                "ORDER BY CAST(SUBSTRING(b.BookID, 5, LEN(b.BookID)) AS INT)";
 
             List<Book> books = new List<Book>();
 
@@ -58,7 +59,7 @@ namespace DataLayer
                      "FROM Book b " +
                      "LEFT JOIN Stock s ON b.BookID = s.BookID " + 
                      "WHERE b.BookName LIKE @kw " +
-                     "ORDER BY b.BookID ";
+                     "ORDER BY CAST(SUBSTRING(b.BookID, 5, LEN(b.BookID)) AS INT)";
 
             List<Book> booksByKw = new List<Book>();
 
@@ -97,7 +98,7 @@ namespace DataLayer
                      "FROM Book b " +
                      "LEFT JOIN Stock s ON b.BookID = s.BookID " +
                      "WHERE b.CategoryID = @category " +
-                     "ORDER BY b.BookID ";
+                     "ORDER BY CAST(SUBSTRING(b.BookID, 5, LEN(b.BookID)) AS INT)";
 
             List<Book> booksByCate = new List<Book>();
 

@@ -19,13 +19,43 @@ namespace PresentationLayer.UserControls
         {
             InitializeComponent();
             LoadEmployees();
+            SetPlaceholder();
             txtPassword.Enabled = true;
+            CustomizeColumnHeaders();
         }
 
         private void LoadEmployees()
         {
             dgvEmployees.DataSource = employeeBL.GetEmployees();
+            CustomizeColumnHeaders();
             HidePasswordInDGV();
+        }
+
+        private void CustomizeColumnHeaders()
+        {
+            if (dgvEmployees.Columns.Contains("ID"))
+                dgvEmployees.Columns["ID"].HeaderText = "Mã NV";
+
+            if (dgvEmployees.Columns.Contains("Name"))
+                dgvEmployees.Columns["Name"].HeaderText = "Tên NV";
+
+            if (dgvEmployees.Columns.Contains("Username"))
+                dgvEmployees.Columns["Username"].HeaderText = "Tên đăng nhập";
+
+            if (dgvEmployees.Columns.Contains("Password"))
+                dgvEmployees.Columns["Password"].HeaderText = "Mật khẩu";
+
+            if (dgvEmployees.Columns.Contains("Address"))
+                dgvEmployees.Columns["Address"].HeaderText = "Địa chỉ";
+
+            if (dgvEmployees.Columns.Contains("Phone"))
+                dgvEmployees.Columns["Phone"].HeaderText = "Số điện thoại";
+        }
+
+        private void SetPlaceholder()
+        {
+            txtSearch.ForeColor = Color.Gray;
+            txtSearch.Text = "Nhập Mã/Tên nhân viên cần tra cứu";
         }
 
         private void ClearForm()
@@ -127,6 +157,13 @@ namespace PresentationLayer.UserControls
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             string keyword = txtSearch.Text.Trim();
+
+            // Nếu đang là placeholder thì bỏ qua không tìm kiếm
+            if (keyword == "Nhập Mã/Tên nhân viên cần tra cứu")
+            {
+                return;
+            }
+
             if (!string.IsNullOrEmpty(keyword))
             {
                 dgvEmployees.DataSource = new EmployeeBL().SearchEmployees(keyword);
@@ -152,5 +189,22 @@ namespace PresentationLayer.UserControls
             }
         }
 
+        private void txtSearch_Enter(object sender, EventArgs e)
+        {
+            if (txtSearch.Text == "Nhập Mã/Tên nhân viên cần tra cứu")
+            {
+                txtSearch.Text = "";
+                txtSearch.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtSearch_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtSearch.Text))
+            {
+                txtSearch.ForeColor = Color.Gray;
+                txtSearch.Text = "Nhập Mã/Tên nhân viên cần tra cứu";
+            }
+        }
     }
 }

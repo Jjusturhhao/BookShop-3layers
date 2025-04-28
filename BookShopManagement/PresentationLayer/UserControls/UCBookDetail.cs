@@ -92,14 +92,6 @@ namespace PresentationLayer.UserControls
             MessageBox.Show("Sản phẩm đã được thêm vào giỏ hàng của bạn!");
         }
 
-        private void btnBuy_Click(object sender, EventArgs e)
-        {
-            string bookID = book.Bookid;
-            cartBL.AddToCart(bookID);
-
-            OnBuyClick?.Invoke();
-        }
-
         private void btnBack_Click(object sender, EventArgs e)
         {
             OnBackClick?.Invoke();

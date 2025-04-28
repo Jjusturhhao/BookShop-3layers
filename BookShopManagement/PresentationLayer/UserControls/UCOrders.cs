@@ -30,15 +30,17 @@ namespace PresentationLayer.UserControls
         {
             LoadOrders();
             LoadEmployeeNamesToComboBox();
-            cbxStatus.Items.Clear();
-            cbxStatus.Items.AddRange(new string[] {
-                                    "Chờ xác nhận",
-                                    "Đã vận chuyển",
-                                    "Đã hoàn thành",
-                                    "Đã hủy"
-            });
+            LoadStatusToComboBox();
+            SetPlaceholder();
             cbxStatus.SelectedIndex = -1; // Không chọn gì khi khởi động
         }
+
+        private void SetPlaceholder()
+        {
+            txtSearch.ForeColor = Color.Gray;
+            txtSearch.Text = "Nhập số điện thoại cần tra cứu";
+        }
+
         private void LoadOrders()
         {
             dgvOrders.DataSource = orderBL.GetOrders();
@@ -48,6 +50,12 @@ namespace PresentationLayer.UserControls
         {
             List<string> employeeNames = orderBL.GetEmployeeNames();  // Sử dụng orderBL đã khởi tạo sẵn
             cbxEmployeeName.DataSource = employeeNames;
+        }
+
+        public void LoadStatusToComboBox()
+        {
+            List<string> status = orderBL.GetOrderStatus();  // Sử dụng orderBL đã khởi tạo sẵn
+            cbxStatus.DataSource = status;
         }
 
         private void ResetFormControls()
@@ -127,7 +135,7 @@ namespace PresentationLayer.UserControls
                 //DataGridViewRow row = dgvOrders.SelectedRows[0];
 
                 // Nếu click vào nút "Xem chi tiết"
-                if (dgvOrders.Columns[e.ColumnIndex].Name == "btnDetail")
+                if (e.ColumnIndex >= 0 && dgvOrders.Columns[e.ColumnIndex].Name == "btnDetail")
                 {
                     string orderId = dgvOrders.Rows[e.RowIndex].Cells["Order_ID"].Value.ToString();
                     string employee = dgvOrders.Rows[e.RowIndex].Cells["Employee_Name"].Value.ToString();
@@ -137,8 +145,7 @@ namespace PresentationLayer.UserControls
                         OnOrderDetailClick?.Invoke(orderId, employee, phone);
                     }
                 }
-                else
-                {
+                
                     txtOrderID.Text = dgvOrders.Rows[e.RowIndex].Cells["Order_ID"].Value.ToString();
                     txtPhone.Text = dgvOrders.Rows[e.RowIndex].Cells["PhoneNumber"].Value.ToString();
                     //txtPhone.Text = row.Cells["PhoneNumber"].Value.ToString();
@@ -161,7 +168,6 @@ namespace PresentationLayer.UserControls
                     dateTimePickerOrderDate.Enabled = false;
 
                     cbxStatus.Enabled = true;
-                }
             }
         }
 
@@ -219,6 +225,12 @@ namespace PresentationLayer.UserControls
         {
             string keyword = txtSearch.Text.Trim();
 
+            // Nếu đang là placeholder thì bỏ qua không tìm kiếm
+            if (keyword == "Nhập số điện thoại cần tra cứu")
+            {
+                return;
+            }
+
             if (string.IsNullOrEmpty(keyword))
             {
                 // Nếu không có từ khóa, tải lại toàn bộ danh sách đơn hàng
@@ -258,6 +270,24 @@ namespace PresentationLayer.UserControls
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtSearch_Enter(object sender, EventArgs e)
+        {
+            if (txtSearch.Text == "Nhập số điện thoại cần tra cứu")
+            {
+                txtSearch.Text = "";
+                txtSearch.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtSearch_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtSearch.Text))
+            {
+                txtSearch.ForeColor = Color.Gray;
+                txtSearch.Text = "Nhập số điện thoại cần tra cứu";
             }
         }
     }

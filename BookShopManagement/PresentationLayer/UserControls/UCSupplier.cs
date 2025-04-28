@@ -20,16 +20,40 @@ namespace PresentationLayer.UserControls
         public UCSupplier()
         {
             InitializeComponent();
+            SetPlaceholder();
         }
 
         private void UCSupplier_Load(object sender, EventArgs e)
         {
             dgvSupplier.DataSource = new SupplierBL().GetSuppliers();
+            CustomizeColumnHeaders();
         }
 
         private void LoadSuppliers()
         {
             dgvSupplier.DataSource = supplierBL.GetSuppliers();
+            CustomizeColumnHeaders();
+        }
+
+        private void CustomizeColumnHeaders()
+        {
+            if (dgvSupplier.Columns.Contains("ID"))
+                dgvSupplier.Columns["ID"].HeaderText = "Mã NCC";
+
+            if (dgvSupplier.Columns.Contains("Name"))
+                dgvSupplier.Columns["Name"].HeaderText = "Tên NCC";
+
+            if (dgvSupplier.Columns.Contains("Address"))
+                dgvSupplier.Columns["Address"].HeaderText = "Địa chỉ";
+
+            if (dgvSupplier.Columns.Contains("Phone"))
+                dgvSupplier.Columns["Phone"].HeaderText = "Số điện thoại";
+        }
+
+        private void SetPlaceholder()
+        {
+            txtSearch.ForeColor = Color.Gray;
+            txtSearch.Text = "Nhập Mã/Tên NCC cần tra cứu";
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -135,6 +159,13 @@ namespace PresentationLayer.UserControls
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             string keyword = txtSearch.Text.Trim();
+
+            // Nếu đang là placeholder thì bỏ qua không tìm kiếm
+            if (keyword == "Nhập Mã/Tên NCC cần tra cứu")
+            {
+                return;
+            }
+
             if (!string.IsNullOrEmpty(keyword))
             {
                 dgvSupplier.DataSource = new SupplierBL().SearchSuppliers(keyword);
@@ -143,6 +174,24 @@ namespace PresentationLayer.UserControls
             {
                 // Nếu người dùng không nhập gì → load lại toàn bộ
                 LoadSuppliers();
+            }
+        }
+
+        private void txtSearch_Enter(object sender, EventArgs e)
+        {
+            if (txtSearch.Text == "Nhập Mã/Tên NCC cần tra cứu")
+            {
+                txtSearch.Text = "";
+                txtSearch.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtSearch_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtSearch.Text))
+            {
+                txtSearch.ForeColor = Color.Gray;
+                txtSearch.Text = "Nhập Mã/Tên NCC cần tra cứu";
             }
         }
     }

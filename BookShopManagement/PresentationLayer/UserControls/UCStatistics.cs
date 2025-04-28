@@ -176,7 +176,7 @@ namespace PresentationLayer.UserControls
             }
 
             // Làm cột rộng ra
-            series["PointWidth"] = "0.6"; // từ 0 -> 1, càng lớn càng mập
+            series["PointWidth"] = "0.6"; // từ 0 -> 1, càng lớn càng rộng
 
             chartCategoryRevenue.Series.Add(series);
 

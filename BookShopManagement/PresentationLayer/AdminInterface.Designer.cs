@@ -78,12 +78,13 @@
             // 
             // tabRevenue
             // 
+            this.tabRevenue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabRevenue.Location = new System.Drawing.Point(4, 29);
             this.tabRevenue.Name = "tabRevenue";
             this.tabRevenue.Padding = new System.Windows.Forms.Padding(3);
             this.tabRevenue.Size = new System.Drawing.Size(993, 566);
             this.tabRevenue.TabIndex = 2;
-            this.tabRevenue.Text = "Báo cáo - Thống kê";
+            this.tabRevenue.Text = "Thống kê";
             this.tabRevenue.UseVisualStyleBackColor = true;
             // 
             // tabInfo

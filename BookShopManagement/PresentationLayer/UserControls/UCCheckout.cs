@@ -390,7 +390,7 @@ namespace PresentationLayer.UserControls
                 paymentBL.AddPayment(paymentID, billID, cusphone, paymentMethod, transactionCode, paymentDate, totalCost);
 
                 // Bước 6: Thông báo
-                MessageBox.Show("Đặt hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Mua hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Bước 7: Load lại FORM
                 LoadAfterCheckout();
