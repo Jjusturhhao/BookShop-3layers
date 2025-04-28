@@ -34,7 +34,7 @@ namespace DataLayer
                     string empName = reader["Employee_Name"] == DBNull.Value ? "Online" : reader["Employee_Name"].ToString();
                     DateTime orderDate = Convert.ToDateTime(reader["Order_Date"]);
                     string status = reader["Status"].ToString();
-                    int totalCost = Convert.ToInt32(reader["Total_Cost"]);
+                    int totalCost = reader["Total_Cost"] == DBNull.Value ? 0 : Convert.ToInt32(reader["Total_Cost"]);
                     
                     Order order = new Order(orderId, phone, empName, orderDate, status, totalCost);  // Cập nhật constructor Order
                     orders.Add(order);

@@ -8,35 +8,36 @@ using System.Threading.Tasks;
 using TransferObject;
 using System.Net;
 using System.Data.Common;
+using Microsoft.Reporting.Map.WebForms.BingMaps;
 
 namespace DataLayer
 {
-    public class StockDL:DataProvider
+    public class StockDL : DataProvider
     {
-       
+
         public List<Stock> GetStocks()
         {
-            string stockID, supplierID, bookID, categoryID, bookName;
+            string supplierID, bookID, categoryID, bookName;
 
             List<Stock> stocks = new List<Stock>();
-            string sql = "SELECT s.StockID, sl.Supplier_name, s.BookID, c.CategoryName, s.BookName, s.ImportDate, s.Quantity " +
-                "FROM Stock s JOIN BookCategory c ON s.CategoryID = c.CategoryID " +
-                "JOIN Suppliers sl ON s.SupplierID = sl.Supplier_ID";
+            string sql = "SELECT s.BookID,sl.Supplier_name, c.CategoryName, s.BookName, s.ImportDate, s.Quantity " +
+                "FROM Stock s JOIN BookCategory c ON s.CategoryID = c.CategoryID " + 
+                "JOIN Suppliers sl ON s.SupplierID = sl.Supplier_ID " + 
+                "ORDER BY CAST(SUBSTRING(s.BookID, 5, LEN(s.BookID)) AS INT)";
             try
             {
                 Connect();
                 SqlDataReader reader = MyExecuteReader(sql, CommandType.Text);
                 while (reader.Read())
                 {
-                    stockID = reader["StockID"].ToString();
-                    supplierID = reader["Supplier_name"].ToString();
                     bookID = reader["BookID"].ToString();
+                    supplierID = reader["Supplier_name"].ToString();
                     categoryID = reader["CategoryName"].ToString();
                     bookName = reader["BookName"].ToString();
                     DateTime importDate = reader["ImportDate"] != DBNull.Value ? Convert.ToDateTime(reader["ImportDate"]) : DateTime.MinValue;
                     int quantity = reader["Quantity"] != DBNull.Value ? Convert.ToInt32(reader["Quantity"]) : 0;
 
-                    Stock stock = new Stock(stockID, supplierID, bookID, categoryID, bookName, importDate, quantity);
+                    Stock stock = new Stock(bookID, supplierID, categoryID, bookName, importDate, quantity);
                     stocks.Add(stock);
                 }
                 reader.Close();
@@ -51,28 +52,7 @@ namespace DataLayer
                 DisConnect();
             }
         }
-        public string GenerateNextStockID()
-        {
-            List<Stock> stocks = GetStocks();
 
-            int maxID = 0;
-            foreach (var stock in stocks)
-            {
-                if (stock.StockID.StartsWith("STK"))
-                {
-                    string numberPart = stock.StockID.Substring(3);
-                    if (int.TryParse(numberPart, out int idNum))
-                    {
-                        if (idNum > maxID)
-                            maxID = idNum;
-                    }
-                }
-            }
-
-            int nextID = maxID + 1;
-            return $"STK{nextID:D2}";
-
-        }
         public string GenerateNextBookID()
         {
             List<Stock> stocks = GetStocks();
@@ -96,7 +76,7 @@ namespace DataLayer
         }
         public Stock Refest()
         {
-            return new Stock("", "", "", "", "", DateTime.Now, 0);
+            return new Stock("", "", "", "", DateTime.Now, 150);
         }
         public List<BookCategoryStock> bookCategoryStocks()
         {
@@ -111,7 +91,7 @@ namespace DataLayer
                 {
                     CategoryID = reader1["CategoryID"].ToString();
                     Categoryname = reader1["CategoryName"].ToString();
-                    BookCategoryStock bookCategoryStock = new BookCategoryStock(CategoryID,Categoryname);
+                    BookCategoryStock bookCategoryStock = new BookCategoryStock(CategoryID, Categoryname);
                     bookCategoryStocks.Add(bookCategoryStock);
                 }
                 reader1.Close();
@@ -128,7 +108,7 @@ namespace DataLayer
         }
         public List<SupplierStock> supplierStocks()
         {
-            string Supplier_ID, Supplier_name;
+            string SupplierID, Supplier_name;
             List<SupplierStock> supplierStocks = new List<SupplierStock>();
             string sql = "SELECT * FROM Suppliers";
             try
@@ -137,10 +117,10 @@ namespace DataLayer
                 SqlDataReader reader2 = MyExecuteReader(sql, CommandType.Text);
                 while (reader2.Read())
                 {
-                    Supplier_ID = reader2["Supplier_ID"].ToString();
+                    SupplierID = reader2["Supplier_ID"].ToString();
                     Supplier_name = reader2["Supplier_name"].ToString();
-                   
-                    SupplierStock supplierStock = new SupplierStock(Supplier_ID,Supplier_name);
+
+                    SupplierStock supplierStock = new SupplierStock(SupplierID, Supplier_name);
                     supplierStocks.Add(supplierStock);
                 }
                 reader2.Close();
@@ -155,10 +135,12 @@ namespace DataLayer
                 DisConnect();
             }
         }
-        public int Add (Stock stock)
+        public int Add(Stock stock)
         {
-            string sql = "INSERT INTO Stock (StockID, SupplierID, BookID, CategoryID, BookName, ImportDate, Quantity) " +
-             "VALUES('" + stock.StockID + "', '" + stock.Supplier_ID + "', '" + stock.BookID + "', '" + stock.CategoryID + "', '" + stock.BookName + "', '" + stock.ImportDate.ToString("yyyy-MM-dd") + "', " + stock.Quantity + ")";
+            string sql = "INSERT INTO Stock (BookID, SupplierID, CategoryID, BookName, ImportDate, Quantity) " +
+             "VALUES ('" + stock.BookID + "', '" + stock.SupplierID + "', '" + stock.CategoryID + "', '" +
+             stock.BookName + "', '" + stock.ImportDate.ToString("yyyy-MM-dd") + "', " + stock.Quantity + ")";
+
 
             try
             {
@@ -176,9 +158,11 @@ namespace DataLayer
         public int Delete(Stock stock)
         {
 
-            
+
             string sql = "DELETE FROM Stock WHERE 1=1";
-                sql += " AND CategoryID = '" + stock.CategoryID + "'";
+            if (!string.IsNullOrEmpty(stock.BookID))
+                sql += " AND BookID = '" + stock.BookID.Replace("'", "''") + "'";
+            sql += " AND CategoryID = '" + stock.CategoryID + "'";
             if (!string.IsNullOrEmpty(stock.BookName))
                 sql += " AND BookName = '" + stock.BookName.Replace("'", "''") + "'";
             if (stock.ImportDate != DateTime.MinValue)
@@ -206,19 +190,28 @@ namespace DataLayer
 
             List<string> updates = new List<string>();
 
-                updates.Add("CategoryID = '" + stock.CategoryID + "'");
+            updates.Add("CategoryID = '" + stock.CategoryID + "'");
             if (!string.IsNullOrEmpty(stock.BookName))
                 updates.Add("BookName = '" + stock.BookName.Replace("'", "''") + "'");
             if (stock.ImportDate != DateTime.MinValue)
                 updates.Add("ImportDate = '" + stock.ImportDate.ToString("yyyy-MM-dd") + "'");
-            if (stock.Quantity != 0)
-                updates.Add("Quantity = " + stock.Quantity);
+            int currentQuantity = GetCurrentQuantity(stock.BookID);
+
+            if (stock.Quantity < 150)
+            {
+                throw new Exception("Vui lòng nhập ít nhất 150 sách.");
+            }
+
+
+            int newQuantity = currentQuantity + stock.Quantity;
+
+            updates.Add("Quantity = " + newQuantity);
 
             if (updates.Count == 0)
                 throw new Exception("Không có thông tin nào để cập nhật.");
 
             sql += string.Join(", ", updates);
-            sql += " WHERE StockID = '" + stock.StockID + "'"; 
+            sql += " WHERE BookID = '" + stock.BookID + "'";
 
             try
             {
@@ -235,35 +228,33 @@ namespace DataLayer
         }
         public List<Stock> SearchStock(string keyword)
         {
-            string stockID, supplierID, bookID, categoryID, bookName;
+            string supplierID, bookID, categoryID, bookName;
 
             List<Stock> stocks = new List<Stock>();
-            string sql = "SELECT s.StockID, sl.Supplier_name, s.BookID, c.CategoryName, s.BookName, s.ImportDate, s.Quantity " +
-                 "FROM Stock s " +
-                 "JOIN BookCategory c ON s.CategoryID = c.CategoryID " +
-                 "JOIN Suppliers sl ON s.SupplierID = sl.Supplier_ID " +
-                 "WHERE s.StockID LIKE N'%" + keyword + "%' OR " +
-                 "sl.Supplier_name LIKE N'%" + keyword + "%' OR " +
-                 "s.BookID LIKE N'%" + keyword + "%' OR " +
-                 "c.CategoryName LIKE N'%" + keyword + "%' OR " +
-                 "s.BookName LIKE N'%" + keyword + "%' OR " +
-                 "CONVERT(NVARCHAR, s.ImportDate, 120) LIKE N'%" + keyword + "%' OR " +
-                 "CONVERT(NVARCHAR, s.Quantity) LIKE N'%" + keyword + "%'";
+            string sql = "SELECT s.BookID, sl.Supplier_name, c.CategoryName, s.BookName, s.ImportDate, s.Quantity " +
+    "FROM Stock s " +
+    "JOIN BookCategory c ON s.CategoryID = c.CategoryID " +
+    "JOIN Suppliers sl ON s.SupplierID = sl.Supplier_ID " +
+    "WHERE sl.Supplier_name LIKE N'%" + keyword + "%' OR " +
+    "s.BookID LIKE N'%" + keyword + "%' OR " +
+    "c.CategoryName LIKE N'%" + keyword + "%' OR " +
+    "s.BookName LIKE N'%" + keyword + "%' OR " +
+    "CONVERT(NVARCHAR, s.ImportDate, 120) LIKE N'%" + keyword + "%' OR " +
+    "CONVERT(NVARCHAR, s.Quantity) LIKE N'%" + keyword + "%'";
             try
             {
                 Connect();
                 SqlDataReader reader = MyExecuteReader(sql, CommandType.Text);
                 while (reader.Read())
                 {
-                    stockID = reader["StockID"].ToString();
-                    supplierID = reader["Supplier_name"].ToString();
                     bookID = reader["BookID"].ToString();
+                    supplierID = reader["Supplier_name"].ToString();
                     categoryID = reader["CategoryName"].ToString();
                     bookName = reader["BookName"].ToString();
                     DateTime importDate = reader["ImportDate"] != DBNull.Value ? Convert.ToDateTime(reader["ImportDate"]) : DateTime.MinValue;
                     int quantity = reader["Quantity"] != DBNull.Value ? Convert.ToInt32(reader["Quantity"]) : 0;
 
-                    Stock stock = new Stock(stockID, supplierID, bookID, categoryID, bookName, importDate, quantity);
+                    Stock stock = new Stock(bookID, supplierID, categoryID, bookName, importDate, quantity);
                     stocks.Add(stock);
                 }
                 reader.Close();
@@ -293,6 +284,32 @@ namespace DataLayer
                     cmd.Parameters.AddWithValue("@quantity", quantity);
 
                     cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+        }
+        public int GetCurrentQuantity(string bookID)
+        {
+            string sql = "SELECT Quantity FROM Stock WHERE bookID = @bookID";
+            try
+            {
+                Connect();
+                using (SqlCommand cmd = new SqlCommand(sql, cn))
+                {
+                    cmd.Parameters.AddWithValue("@bookID", bookID);
+                    object result = cmd.ExecuteScalar();
+                    if (result != DBNull.Value)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                    return 0;
                 }
             }
             catch (Exception ex)

@@ -18,12 +18,12 @@ namespace BusinessLayer
         private StockDL stockDL;
         private BookBL BookBL;
 
-        public StockBL ()
+        public StockBL()
         {
             stockDL = new StockDL();
         }
-      
-        public List <Stock> GetStocks()
+
+        public List<Stock> GetStocks()
         {
             try
             {
@@ -34,10 +34,7 @@ namespace BusinessLayer
                 throw ex;
             }
         }
-        public string GenerateNextStockID()
-        {
-            return stockDL.GenerateNextStockID();
-        }
+
         public string GenerateNextBookID()
         {
             return stockDL.GenerateNextBookID();
@@ -56,7 +53,7 @@ namespace BusinessLayer
             {
                 throw ex;
             }
-            
+
         }
         public List<SupplierStock> GetSupplierStocks()
         {
@@ -93,5 +90,10 @@ namespace BusinessLayer
         {
             stockDL.ReduceQuantity(bookID, quantity);
         }
+        public int GetCurrentQuantity(string bookID)
+        {
+            return stockDL.GetCurrentQuantity(bookID);
+        }
     }
 }
+

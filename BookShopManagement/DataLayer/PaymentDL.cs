@@ -107,7 +107,7 @@ namespace DataLayer
             }
             catch (Exception ex)
             {
-                throw new Exception("Lỗi khi lấy Payment từ Bill_ID: " + ex.Message);
+                throw new Exception("Lỗi khi lấy Payment từ Bill_ID: " + ex.ToString());
             }
             finally
             {

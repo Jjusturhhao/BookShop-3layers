@@ -345,7 +345,9 @@ namespace PresentationLayer.UserControls
                 info = infoBL.GetUserInfo(username);
                 string staffID = info.User_ID;
 
-                
+                string staffName = info.Name;
+
+
                 // Bước 1: Tạo Order_ID mới
                 string orderID = orderBL.GenerateOrderID();
 
@@ -392,12 +394,63 @@ namespace PresentationLayer.UserControls
                 // Bước 6: Thông báo
                 MessageBox.Show("Mua hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                List<(string bookName, int quantity, int price, int total)> books = new List<(string, int, int, int)>();
+
+                foreach (DataGridViewRow row in dgvDetails.Rows)
+                {
+                    if (row.Cells["Tên sách"].Value != null &&
+                        row.Cells["Số lượng"].Value != null &&
+                        row.Cells["Đơn giá"].Value != null)
+                    {
+                        string bookName = row.Cells["Tên sách"].Value.ToString();
+                        int quantity = Convert.ToInt32(row.Cells["Số lượng"].Value);
+                        int price = Convert.ToInt32(row.Cells["Đơn giá"].Value);
+                        int total = quantity * price;
+                        books.Add((bookName, quantity, price, total));
+                    }
+                }
+
+                //==
+
+                int totalBill = 0;
+                int totalPaid = 0;
+                int change = 0;
+
+                if (paymentMethod == "Tiền mặt")
+                {
+                    // Kiểm tra nếu totalBill và totalPaid là số hợp lệ
+                    if (int.TryParse(txtTotalBill.Text, out totalBill) && int.TryParse(txtTotalPaid.Text, out totalPaid))
+                    {
+                        // Tính tiền thừa
+                        change = CalculateChange(totalBill, totalPaid);
+                        InBill inBill = new InBill(orderID, cusname, cusphone, totalBill, paymentMethod,
+                                                       books, staffName, orderDate, change, totalPaid);
+                        ShowUserControl(inBill);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Vui lòng nhập đúng số tiền");
+                    }
+                }
+                else
+                {
+                    // Nếu không phải thanh toán bằng tiền mặt, bỏ qua phần nhập liệu
+                    totalBill = 0;  // Giá trị mặc định nếu không cần thiết
+                    totalPaid = 0;  // Giá trị mặc định nếu không cần thiết
+                    change = 0;     // Không cần tính tiền thừa
+
+                    // Tạo đối tượng UCInBill mà không cần các giá trị tiền thừa
+                    InBill inBill = new InBill(orderID, cusname, cusphone, totalCost, paymentMethod,
+                                                   books, staffName, orderDate, change, totalPaid);
+                    ShowUserControl(inBill);
+                }
                 // Bước 7: Load lại FORM
                 LoadAfterCheckout();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString());
+                //MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         
@@ -482,6 +535,23 @@ namespace PresentationLayer.UserControls
 
         private void txtNameSearch_TextChanged(object sender, EventArgs e)
         {
+
+        }
+        public void ShowUserControl(UserControl userControl)
+        {
+            this.Controls.Clear();
+            userControl.Dock = DockStyle.Fill;
+            this.Controls.Add(userControl);
+            userControl.BringToFront();
+        }
+        private int CalculateChange(int totalBill, int totalPaid)
+        {
+            if (totalPaid < totalBill)
+            {
+                MessageBox.Show("Số tiền khách đưa chưa đủ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return 0;  // Nếu tiền khách trả chưa đủ, trả lại 0
+            }
+            return totalPaid - totalBill;  // Trả về tiền thừa
 
         }
     }
