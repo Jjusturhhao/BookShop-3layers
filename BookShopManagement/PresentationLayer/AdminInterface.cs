@@ -81,6 +81,15 @@ namespace PresentationLayer
                     tabEmployee.Controls.Add(employeeUC);
                 }
             }
+            else if (tabControlMain.SelectedTab == tabRevenue)
+            {
+                if (tabRevenue.Controls.Count == 0)
+                {
+                    UCStatistics statisticsUC = new UCStatistics();
+                    statisticsUC.Dock = DockStyle.Fill;
+                    tabRevenue.Controls.Add(statisticsUC);
+                }
+            }
         }
     }
 }

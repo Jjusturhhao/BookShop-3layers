@@ -9,7 +9,7 @@ using TransferObject;
 
 namespace PresentationLayer
 {
-    public partial class Main : Form
+    public partial class HomepageStaff : Form
     {
         private ContextMenuStrip accountMenu;
         private UCInfo ucInfo;
@@ -21,7 +21,7 @@ namespace PresentationLayer
 
         private string username;
 
-        public Main(string username)
+        public HomepageStaff(string username)
         {
             InitializeComponent();
             this.username = username;
@@ -36,11 +36,6 @@ namespace PresentationLayer
             userControl.Dock = DockStyle.Fill;
             panelContainer.Controls.Add(userControl);
             userControl.BringToFront();
-        }
-
-        private void btnStaffInterface_Click(object sender, EventArgs e)
-        {
-            ShowUserControl(new UCStaffInterface(username));
         }
 
         private void btnCheckout_Click(object sender, EventArgs e)
@@ -60,7 +55,7 @@ namespace PresentationLayer
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
-            ShowUserControl(new UCOrders());
+            HandleOrderButtonClick();
         }
 
         private void btnSupplier_Click(object sender, EventArgs e)
@@ -103,5 +98,24 @@ namespace PresentationLayer
                 accountMenu.Show(btnInfo, new Point(0, btnInfo.Height));
             };
         }
+        private void HandleOrderButtonClick()
+        {
+            UCOrders ucOrders = new UCOrders();
+            ucOrders.OnOrderDetailClick = (orderID, phone) =>
+            {
+                ShowOrderDetail(orderID, phone);
+            };
+            ShowUserControl(ucOrders);
+        }
+        private void ShowOrderDetail(string orderID, string phone)
+        {
+            UCCusOrderDetail ucOrderDetail = new UCCusOrderDetail(orderID, null, phone);
+            ShowUserControl(ucOrderDetail);
+            ucOrderDetail.OnBackClick = () =>
+            {
+                HandleOrderButtonClick();
+            };
+        }
+
     }
 }

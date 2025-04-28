@@ -51,6 +51,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterDL.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="StatisticsDL.cs" />
     <Compile Include="StockDL.cs" />
     <Compile Include="SupplierDL.cs" />
   </ItemGroup>

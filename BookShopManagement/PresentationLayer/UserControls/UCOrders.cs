@@ -18,6 +18,8 @@ namespace PresentationLayer.UserControls
     public partial class UCOrders : UserControl
     {
         private OrderBL orderBL;
+        public Action<string, string> OnOrderDetailClick { get; set; } //orderid, phone
+
         public UCOrders()
         {
             InitializeComponent();
@@ -39,7 +41,7 @@ namespace PresentationLayer.UserControls
         }
         private void LoadOrders()
         {
-            dgvOrders.DataSource = new OrderBL().GetOrders();
+            dgvOrders.DataSource = orderBL.GetOrders();
         }
 
         public void LoadEmployeeNamesToComboBox()
@@ -52,7 +54,7 @@ namespace PresentationLayer.UserControls
         {
             txtOrderID.Clear();
             txtPhone.Clear();
-            
+
             dateTimePickerOrderDate.Checked = false;
             cbxStatus.SelectedIndex = -1;
             txtTotal.Clear();
@@ -124,28 +126,41 @@ namespace PresentationLayer.UserControls
             {
                 //DataGridViewRow row = dgvOrders.SelectedRows[0];
 
-                txtOrderID.Text = dgvOrders.Rows[e.RowIndex].Cells["Order_ID"].Value.ToString();
-                txtPhone.Text = dgvOrders.Rows[e.RowIndex].Cells["PhoneNumber"].Value.ToString();
-                //txtPhone.Text = row.Cells["PhoneNumber"].Value.ToString();
-                cbxEmployeeName.Text = dgvOrders.Rows[e.RowIndex].Cells["Employee_Name"].Value.ToString();
-                //cbxEmployeeName.Text = row.Cells["Employee_Name"].Value.ToString();
-                if (DateTime.TryParse(dgvOrders.Rows[e.RowIndex].Cells["Order_Date"].Value.ToString(), out DateTime orderDate))
+                // Nếu click vào nút "Xem chi tiết"
+                if (dgvOrders.Columns[e.ColumnIndex].Name == "btnDetail")
                 {
-                    dateTimePickerOrderDate.Value = orderDate;
+                    string orderId = dgvOrders.Rows[e.RowIndex].Cells["Order_ID"].Value.ToString();
+                    string phone = dgvOrders.Rows[e.RowIndex].Cells["PhoneNumber"].Value.ToString();
+                    if (!string.IsNullOrEmpty(orderId))
+                    {
+                        OnOrderDetailClick?.Invoke(orderId, phone);
+                    }
                 }
-                cbxStatus.Text = dgvOrders.Rows[e.RowIndex].Cells["Status"].Value.ToString();
-                //cbxStatus.Text = row.Cells["Status"].Value.ToString();
-                txtTotal.Text = dgvOrders.Rows[e.RowIndex].Cells["Total_Cost"].Value.ToString();
-                //txtTotal.Text = row.Cells["Total_Cost"].Value.ToString();
+                else
+                {
+                    txtOrderID.Text = dgvOrders.Rows[e.RowIndex].Cells["Order_ID"].Value.ToString();
+                    txtPhone.Text = dgvOrders.Rows[e.RowIndex].Cells["PhoneNumber"].Value.ToString();
+                    //txtPhone.Text = row.Cells["PhoneNumber"].Value.ToString();
+                    cbxEmployeeName.Text = dgvOrders.Rows[e.RowIndex].Cells["Employee_Name"].Value.ToString();
+                    //cbxEmployeeName.Text = row.Cells["Employee_Name"].Value.ToString();
+                    if (DateTime.TryParse(dgvOrders.Rows[e.RowIndex].Cells["Order_Date"].Value.ToString(), out DateTime orderDate))
+                    {
+                        dateTimePickerOrderDate.Value = orderDate;
+                    }
+                    cbxStatus.Text = dgvOrders.Rows[e.RowIndex].Cells["Status"].Value.ToString();
+                    //cbxStatus.Text = row.Cells["Status"].Value.ToString();
+                    txtTotal.Text = dgvOrders.Rows[e.RowIndex].Cells["Total_Cost"].Value.ToString();
+                    //txtTotal.Text = row.Cells["Total_Cost"].Value.ToString();
 
-                // Chỉ cho phép sửa Status
-                txtOrderID.ReadOnly = true;
-                txtPhone.ReadOnly = true;
-                cbxEmployeeName.Enabled = false;
-                txtTotal.ReadOnly = true;
-                dateTimePickerOrderDate.Enabled = false; 
+                    // Chỉ cho phép sửa Status
+                    txtOrderID.ReadOnly = true;
+                    txtPhone.ReadOnly = true;
+                    cbxEmployeeName.Enabled = false;
+                    txtTotal.ReadOnly = true;
+                    dateTimePickerOrderDate.Enabled = false;
 
-                cbxStatus.Enabled = true; 
+                    cbxStatus.Enabled = true;
+                }
             }
         }
 
@@ -192,6 +207,49 @@ namespace PresentationLayer.UserControls
                     buttonCell.Style.Font = new System.Drawing.Font("Segoe UI", 10, System.Drawing.FontStyle.Bold);
                 }
             }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            //string keyword = txtSearch.Text.Trim();
+
+            //if (string.IsNullOrEmpty(keyword))
+            //{
+            //    // Nếu không có từ khóa, tải lại toàn bộ danh sách đơn hàng
+            //    LoadOrders();
+            //    return;
+            //}
+
+            //// Xóa hết các dòng hiện tại trong DataGridView
+            //dgvOrders.Rows.Clear();
+            //try
+            //{
+            //    // Tìm kiếm các đơn hàng có chứa số điện thoại trùng với từ khóa
+            //    var orders = orderBL.GetOrders()
+            //                        .Where(order => order.PhoneNumber.Contains(keyword))
+            //                        .ToList();
+
+            //    // Thêm các đơn hàng tìm được vào DataGridView
+            //    foreach (var order in orders)
+            //    {
+            //        dgvOrders.Rows.Add(order.Order_ID, order.PhoneNumber, order.Employee_Name, order.Order_Date, order.Status, order.Total_Cost);
+            //    }
+
+            //    // Nếu không tìm thấy đơn hàng nào
+            //    if (orders.Count == 0)
+            //    {
+            //        MessageBox.Show("Không tìm thấy đơn hàng với số điện thoại này!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
     }
 }

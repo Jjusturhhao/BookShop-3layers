@@ -31,21 +31,21 @@ CREATE TABLE Book(
 );
 go
 
-INSERT INTO Book VALUES('BOOK1',N'Cây Cam Ngọt Của Tôi','CAT1',N'José Mauro de Vasconcelos', 80400, 'https://cdn1.fahasa.com/media/catalog/product/i/m/image_217480.jpg');
-INSERT INTO Book VALUES('BOOK2',N'25 Độ Âm','CAT1',N'Thảo Trang', 210000, 'https://cdn1.fahasa.com/media/catalog/product/b/_/b_a-1-25-_-_m_1.jpg');
-INSERT INTO Book VALUES('BOOK3',N'Người Đua Diều','CAT1',N'Khaled Hosseini', 96750, 'https://cdn1.fahasa.com/media/catalog/product/8/9/8935235237773.jpg');
-INSERT INTO Book VALUES('BOOK4',N'Sapiens : A Brief History of Humankind','CAT2',N'Yuval Noah Harari', 276250, 'https://cdn1.fahasa.com/media/catalog/product/7/1/713jiomo3ul.jpg');
-INSERT INTO Book VALUES('BOOK5',N'Flipped','CAT2',N'Van Draanen Wendelin', 210000, 'https://cdn1.fahasa.com/media/catalog/product/f/l/flipped_1_2018_08_22_11_41_29.jpg');
-INSERT INTO Book VALUES('BOOK6',N'Think and Grow Rich','CAT2',N'Napoleon Hill', 230400, 'https://cdn1.fahasa.com/media/catalog/product/5/1/51dxwcr9fjl_1.jpg');
-INSERT INTO Book VALUES('BOOK7',N'Bí Mật Tư Duy Triệu Phú (Tái Bản 2021)','CAT3',N'T Harv Eker', 78840, 'https://cdn1.fahasa.com/media/catalog/product/thumbnailframe/product_frame_ncc/frame_image_188995_1_1.jpg');
-INSERT INTO Book VALUES('BOOK8',N'Người Giàu Có Nhất Thành Babylon','CAT3',N'Van Draanen Wendelin', 71540, 'https://cdn1.fahasa.com/media/catalog/product/i/m/image_195509_1_41914.jpg');
-INSERT INTO Book VALUES('BOOK9',N'Ai Toàn Năng: Chinh Phục Thời Đại Số','CAT3',N'Ajay Agrawal, Joshua Gans', 126750, 'https://cdn1.fahasa.com/media/catalog/product/a/i/ai---c_ng-c_-n_ng-cao-hi_u-su_t-c_ng-vi_c-b_a-1.jpg');
-INSERT INTO Book VALUES('BOOK10',N'Búp Sen Xanh (Tái Bản 2020)','CAT4',N'Sơn Tùng', 57600, 'https://cdn1.fahasa.com/media/catalog/product/b/u/bup-sen-xanh_bia_phien-ban-ky-niem-2020.jpg');
-INSERT INTO Book VALUES('BOOK11',N'100 Kỹ Năng Sinh Tồn','CAT4',N'Clint Emerson', 70000, 'https://cdn1.fahasa.com/media/catalog/product/8/9/8935212351621.jpg');
-INSERT INTO Book VALUES('BOOK12',N'Hoàng Tử Bé (Tái Bản 2022)','CAT4',N'Antoine De Saint-Exupéry', 22750, 'https://cdn1.fahasa.com/media/catalog/product/8/9/8935244868999.jpg');
-INSERT INTO Book VALUES('BOOK13',N'Con Đường Chẳng Mấy Ai Đi','CAT5',N'M. Scott Peck', 99000, 'https://cdn1.fahasa.com/media/catalog/product/9/7/9786044009674.jpg');
-INSERT INTO Book VALUES('BOOK14',N'Tư Duy Ngược','CAT5',N'Nguyễn Anh Dũng', 65330, 'https://cdn1.fahasa.com/media/catalog/product/9/7/9786043440287.jpg');
-INSERT INTO Book VALUES('BOOK15',N'Manifest - 7 Bước Để Thay Đổi Cuộc Đời Bạn Mãi Mãi','CAT5',N'Roxie Nafousi', 62300, 'https://cdn1.fahasa.com/media/catalog/product/b/_/b_a-tr_c-manifest_1.jpg');
+INSERT INTO Book VALUES('BOOK1',N'Cây Cam Ngọt Của Tôi','CAT1',N'José Mauro de Vasconcelos', 80400, 'CCNCT.jpg');
+INSERT INTO Book VALUES('BOOK2',N'25 Độ Âm','CAT1',N'Thảo Trang', 210000, '25DA.jpg');
+INSERT INTO Book VALUES('BOOK3',N'Người Đua Diều','CAT1',N'Khaled Hosseini', 96750, '25DA.jpg');
+INSERT INTO Book VALUES('BOOK4',N'Sapiens : A Brief History of Humankind','CAT2',N'Yuval Noah Harari', 276250, 'Sapiens.jpg');
+INSERT INTO Book VALUES('BOOK5',N'Flipped','CAT2',N'Van Draanen Wendelin', 210000, 'Flipped.jpg');
+INSERT INTO Book VALUES('BOOK6',N'Think and Grow Rich','CAT2',N'Napoleon Hill', 230400, 'TAGR.jpg');
+INSERT INTO Book VALUES('BOOK7',N'Bí Mật Tư Duy Triệu Phú (Tái Bản 2021)','CAT3',N'T Harv Eker', 78840, 'BMTDTP.jpg');
+INSERT INTO Book VALUES('BOOK8',N'Người Giàu Có Nhất Thành Babylon','CAT3',N'Van Draanen Wendelin', 71540, 'NGCNTB.jpg');
+INSERT INTO Book VALUES('BOOK9',N'Ai Toàn Năng: Chinh Phục Thời Đại Số','CAT3',N'Ajay Agrawal, Joshua Gans', 126750, 'AI.jpg');
+INSERT INTO Book VALUES('BOOK10',N'Búp Sen Xanh (Tái Bản 2020)','CAT4',N'Sơn Tùng', 57600, 'BSX.jpg');
+INSERT INTO Book VALUES('BOOK11',N'100 Kỹ Năng Sinh Tồn','CAT4',N'Clint Emerson', 70000, '100KNST.jpg');
+INSERT INTO Book VALUES('BOOK12',N'Hoàng Tử Bé (Tái Bản 2022)','CAT4',N'Antoine De Saint-Exupéry', 22750, 'HTB.jpg');
+INSERT INTO Book VALUES('BOOK13',N'Con Đường Chẳng Mấy Ai Đi','CAT5',N'M. Scott Peck', 99000, 'CDCMAD.jpg');
+INSERT INTO Book VALUES('BOOK14',N'Tư Duy Ngược','CAT5',N'Nguyễn Anh Dũng', 65330, 'TDN.jpg');
+INSERT INTO Book VALUES('BOOK15',N'Manifest - 7 Bước Để Thay Đổi Cuộc Đời Bạn Mãi Mãi','CAT5',N'Roxie Nafousi', 62300, 'MNF.jpg');
 go
 SELECT * FROM Book
 
@@ -70,9 +70,8 @@ go
 
 	
 create table Stock(
-		StockID VARCHAR(50) PRIMARY KEY,
+		BookID VARCHAR(50) PRIMARY KEY,
 		SupplierID VARCHAR(55) FOREIGN KEY REFERENCES Suppliers(Supplier_ID),
-		BookID VARCHAR(50) NOT NULL,
 		CategoryID VARCHAR(10) FOREIGN KEY REFERENCES BookCategory(CategoryID),
 		BookName NVARCHAR(100) NOT NULL,
 		ImportDate DATETIME DEFAULT GETDATE(),
@@ -80,24 +79,24 @@ create table Stock(
 );
 go
 
-	INSERT INTO Stock VALUES('STK1','SUP1','BOOK1','CAT1',N'Cây Cam Ngọt Của Tôi','2025-03-12', 250);
-	INSERT INTO Stock VALUES('STK2','SUP1','BOOK2','CAT1',N'25 Độ Âm','2025-03-12', 200);
-	INSERT INTO Stock VALUES('STK3','SUP2','BOOK3','CAT1',N'Người Đua Diều','2025-03-10', 300);
-	INSERT INTO Stock VALUES('STK4','SUP3','BOOK4','CAT2',N'Sapiens : A Brief History of Humankind','2025-03-20', 400);
-	INSERT INTO Stock VALUES('STK5','SUP3','BOOK5','CAT2',N'Flipped','2025-03-20', 350);
-	INSERT INTO Stock VALUES('STK6','SUP4','BOOK6','CAT2',N'Think and Grow Rich','2025-03-20', 200);
-	INSERT INTO Stock VALUES('STK7','SUP5','BOOK7','CAT3',N'Bí Mật Tư Duy Triệu Phú (Tái Bản 2021)','2025-03-15', 400);
-	INSERT INTO Stock VALUES('STK8','SUP5','BOOK8','CAT3',N'Người Giàu Có Nhất Thành Babylon','2025-03-10', 500);
-	INSERT INTO Stock VALUES('STK9','SUP6','BOOK9','CAT3',N'Ai Toàn Năng: Chinh Phục Thời Đại Số','2025-03-15', 500);
-	INSERT INTO Stock VALUES('STK10','SUP6','BOOK10','CAT4',N'Búp Sen Xanh (Tái Bản 2020)','2025-03-15', 600);
-	INSERT INTO Stock VALUES('STK11','SUP2','BOOK11','CAT4',N'100 Kỹ Năng Sinh Tồn','2025-03-05', 500);
-	INSERT INTO Stock VALUES('STK12','SUP2','BOOK12','CAT4',N'Hoàng Tử Bé (Tái Bản 2022)','2025-03-05', 550);
-	INSERT INTO Stock VALUES('STK13','SUP5','BOOK13','CAT5',N'Con Đường Chẳng Mấy Ai Đi','2025-03-05', 1000);
-	INSERT INTO Stock VALUES('STK14','SUP1','BOOK14','CAT5',N'Tư Duy Ngược','2025-03-01', 800);
-	INSERT INTO Stock VALUES('STK15','SUP6','BOOK15','CAT5',N'Manifest - 7 Bước Để Thay Đổi Cuộc Đời Bạn Mãi Mãi','2025-03-01', 1000);
+	INSERT INTO Stock VALUES('BOOK1','SUP1','CAT1',N'Cây Cam Ngọt Của Tôi','2025-03-12', 250);
+	INSERT INTO Stock VALUES('BOOK2','SUP1','CAT1',N'25 Độ Âm','2025-03-12', 200);
+	INSERT INTO Stock VALUES('BOOK3','SUP2','CAT1',N'Người Đua Diều','2025-03-10', 300);
+	INSERT INTO Stock VALUES('BOOK4','SUP3','CAT2',N'Sapiens : A Brief History of Humankind','2025-03-20', 400);
+	INSERT INTO Stock VALUES('BOOK5','SUP3', 'CAT2',N'Flipped','2025-03-20', 350);
+	INSERT INTO Stock VALUES('BOOK6','SUP4', 'CAT2',N'Think and Grow Rich','2025-03-20', 200);
+	INSERT INTO Stock VALUES('BOOK7','SUP5', 'CAT3',N'Bí Mật Tư Duy Triệu Phú (Tái Bản 2021)','2025-03-15', 400);
+	INSERT INTO Stock VALUES('BOOK8','SUP5','CAT3',N'Người Giàu Có Nhất Thành Babylon','2025-03-10', 500);
+	INSERT INTO Stock VALUES('BOOK9','SUP6','CAT3',N'Ai Toàn Năng: Chinh Phục Thời Đại Số','2025-03-15', 500);
+	INSERT INTO Stock VALUES('BOOK10','SUP6','CAT4',N'Búp Sen Xanh (Tái Bản 2020)','2025-03-15', 600);
+	INSERT INTO Stock VALUES('BOOK11','SUP2','CAT4',N'100 Kỹ Năng Sinh Tồn','2025-03-05', 500);
+	INSERT INTO Stock VALUES('BOOK12','SUP2','CAT4',N'Hoàng Tử Bé (Tái Bản 2022)','2025-03-05', 550);
+	INSERT INTO Stock VALUES('BOOK13','SUP5','CAT5',N'Con Đường Chẳng Mấy Ai Đi','2025-03-05', 1000);
+	INSERT INTO Stock VALUES('BOOK14','SUP1','CAT5',N'Tư Duy Ngược','2025-03-01', 800);
+	INSERT INTO Stock VALUES('BOOK15','SUP6','CAT5',N'Manifest - 7 Bước Để Thay Đổi Cuộc Đời Bạn Mãi Mãi','2025-03-01', 1000);
 go
 	SELECT * FROM Stock
-	ORDER BY CAST(SUBSTRING(StockID, 4, LEN(StockID)) AS INT);
+	ORDER BY CAST(SUBSTRING(BookID, 5, LEN(BookID)) AS INT);
 
 
 CREATE TABLE Users (
@@ -140,7 +139,7 @@ CREATE TABLE Orders (
 	PhoneNumber NVARCHAR(15) NOT NULL,
     Employee_ID VARCHAR(30), 
     Order_Date DATETIME NOT NULL DEFAULT GETDATE(), 
-	Status NVARCHAR(20) DEFAULT 'Pending' CHECK (Status IN (N'Chờ xác nhận', N'Đã vận chuyển', N'Đã hoàn thành', N'Đã hủy')),
+	Status NVARCHAR(20) DEFAULT N'Chờ xác nhận' CHECK (Status IN (N'Chờ xác nhận', N'Đã vận chuyển', N'Đã hoàn thành', N'Đã hủy')),
 
     -- Thiết lập khóa ngoại
     CONSTRAINT FK_Orders_Employee FOREIGN KEY (Employee_ID) REFERENCES Users(User_ID)
@@ -159,32 +158,32 @@ go
 CREATE TABLE OrderDetails (
     OrderDetail_ID INT IDENTITY(1,1) PRIMARY KEY, 
     Order_ID VARCHAR(55) NOT NULL,
-    StockID VARCHAR(50) NOT NULL, 
+    BookID VARCHAR(50) NOT NULL, 
     Qty_sold INT CHECK (Qty_sold > 0),
 	PriceAtOrderTime INT NOT NULL -- Cập nhật OrderDetails để lưu giá tại thời điểm đặt hàng
 
     -- Thiết lập khóa ngoại
     CONSTRAINT FK_OrderDetails_Order FOREIGN KEY (Order_ID) REFERENCES Orders(Order_ID),
-    CONSTRAINT FK_OrderDetails_Stock FOREIGN KEY (StockID) REFERENCES Stock(StockID)
+    CONSTRAINT FK_OrderDetails_Stock FOREIGN KEY (BookID) REFERENCES Stock(BookID)
 );
 go
 
-INSERT INTO OrderDetails (Order_ID, StockID, Qty_sold, PriceAtOrderTime)
-VALUES ('ORD1', 'STK1', 2, 80400),  -- 2 cuốn "Cây Cam Ngọt Của Tôi"
-       ('ORD1', 'STK3', 1, 96750),  -- 1 cuốn "Người Đua Diều"
-       ('ORD2', 'STK4', 1, 276250),  
-       ('ORD2', 'STK5', 1, 210000),
-	   ('ORD3', 'STK15', 1, 62300),  
-	   ('ORD3', 'STK14', 3, 65330),
-	   ('ORD4', 'STK8', 1, 71540),  
-	   ('ORD5', 'STK9', 1, 126750); 
+INSERT INTO OrderDetails (Order_ID, BookID, Qty_sold, PriceAtOrderTime)
+VALUES ('ORD1', 'BOOK1', 2, 80400),  -- 2 cuốn "Cây Cam Ngọt Của Tôi"
+       ('ORD1', 'BOOK3', 1, 96750),  -- 1 cuốn "Người Đua Diều"
+       ('ORD2', 'BOOK4', 1, 276250),  
+       ('ORD2', 'BOOK5', 1, 210000),
+	   ('ORD3', 'BOOK15', 1, 62300),  
+	   ('ORD3', 'BOOK14', 3, 65330),
+	   ('ORD4', 'BOOK8', 1, 71540),  
+	   ('ORD5', 'BOOK9', 1, 126750); 
 go
 SELECT * FROM OrderDetails
  
-SELECT O.Order_ID, O.Order_Date, OD.StockID, S.BookName, OD.Qty_sold
+SELECT O.Order_ID, O.Order_Date, OD.BookID, S.BookName, OD.Qty_sold
 FROM Orders O
 JOIN OrderDetails OD ON O.Order_ID = OD.Order_ID
-JOIN Stock S ON OD.StockID = S.StockID
+JOIN Stock S ON OD.BookID = S.BookID
 WHERE O.Order_ID = 'ORD1';
 
 	
@@ -205,8 +204,8 @@ SELECT
     O.Order_ID,  
     SUM(OD.PriceAtOrderTime * OD.Qty_sold) AS Total_Cost  
 FROM Orders O
-JOIN OrderDetails OD ON O.Order_ID = OD.Order_ID -- Lấy giá sách từ bảng OrderDetails
-JOIN Stock S ON OD.StockID = S.StockID
+	JOIN OrderDetails OD ON O.Order_ID = OD.Order_ID -- Lấy giá sách từ bảng OrderDetails
+	JOIN Stock S ON OD.BookID = S.BookID
 GROUP BY O.Order_ID;
 go
 SELECT * FROM Bill_Generate; 
@@ -242,6 +241,7 @@ go
 
 SELECT * FROM PAYMENTS;
 go
+
 
 --TRIGGER
 CREATE TRIGGER trg_UpdateOrderStatus
@@ -293,4 +293,43 @@ AS
 	WHERE BookID = @BookID
 GO
 
+--Update 25/04
+CREATE OR ALTER TRIGGER trg_Update_PaymentDate_When_OrderCompleted
+ON Orders
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
 
+    UPDATE P
+    SET Payment_Date = GETDATE()
+    FROM Payments P
+    INNER JOIN Bill_Generate B ON P.Bill_ID = B.Bill_ID
+    INNER JOIN inserted i ON B.Order_ID = i.Order_ID
+    WHERE i.Status = N'Đã hoàn thành' AND P.Payment_Date IS NULL;
+END
+
+
+SELECT 
+    MONTH(b.Bill_Date) AS Month,
+    YEAR(b.Bill_Date) AS Year,
+    SUM(b.Total_Cost) AS TotalRevenue,
+    COUNT(DISTINCT b.Order_ID) AS OrderCount
+FROM 
+    Bill_Generate b
+JOIN Payments p ON p.Bill_ID = b.Bill_ID
+JOIN Orders o ON o.Order_ID = b.Order_ID
+WHERE 
+    YEAR(b.Bill_Date) = 2025
+    AND o.Status = N'Đã hoàn thành'
+    AND p.Payment_Date IS NOT NULL
+GROUP BY 
+    MONTH(b.Bill_Date), YEAR(b.Bill_Date)
+ORDER BY 
+    Month;
+
+UPDATE b
+SET b.Bill_Date = o.Order_Date
+FROM Bill_Generate b
+JOIN Orders o ON b.Order_ID = o.Order_ID
+go

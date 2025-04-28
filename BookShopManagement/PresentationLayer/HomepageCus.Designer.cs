@@ -1,6 +1,6 @@
 ﻿namespace PresentationLayer
 {
-    partial class Homepage
+    partial class HomepageCus
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Homepage));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomepageCus));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanelButtons = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
