@@ -18,7 +18,7 @@ namespace PresentationLayer.UserControls
     public partial class UCOrders : UserControl
     {
         private OrderBL orderBL;
-        public Action<string, string> OnOrderDetailClick { get; set; } //orderid, phone
+        public Action<string, string, string> OnOrderDetailClick { get; set; } //orderid, employee, phone
 
         public UCOrders()
         {
@@ -130,10 +130,11 @@ namespace PresentationLayer.UserControls
                 if (dgvOrders.Columns[e.ColumnIndex].Name == "btnDetail")
                 {
                     string orderId = dgvOrders.Rows[e.RowIndex].Cells["Order_ID"].Value.ToString();
+                    string employee = dgvOrders.Rows[e.RowIndex].Cells["Employee_Name"].Value.ToString();
                     string phone = dgvOrders.Rows[e.RowIndex].Cells["PhoneNumber"].Value.ToString();
                     if (!string.IsNullOrEmpty(orderId))
                     {
-                        OnOrderDetailClick?.Invoke(orderId, phone);
+                        OnOrderDetailClick?.Invoke(orderId, employee, phone);
                     }
                 }
                 else
@@ -216,40 +217,48 @@ namespace PresentationLayer.UserControls
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            //string keyword = txtSearch.Text.Trim();
+            string keyword = txtSearch.Text.Trim();
 
-            //if (string.IsNullOrEmpty(keyword))
-            //{
-            //    // Nếu không có từ khóa, tải lại toàn bộ danh sách đơn hàng
-            //    LoadOrders();
-            //    return;
-            //}
+            if (string.IsNullOrEmpty(keyword))
+            {
+                // Nếu không có từ khóa, tải lại toàn bộ danh sách đơn hàng
+                LoadOrders();
+                return;
+            }
 
-            //// Xóa hết các dòng hiện tại trong DataGridView
-            //dgvOrders.Rows.Clear();
-            //try
-            //{
-            //    // Tìm kiếm các đơn hàng có chứa số điện thoại trùng với từ khóa
-            //    var orders = orderBL.GetOrders()
-            //                        .Where(order => order.PhoneNumber.Contains(keyword))
-            //                        .ToList();
+            try
+            {
+                // Lấy danh sách đơn hàng từ Business Layer
+                var orders = orderBL.GetOrders();
 
-            //    // Thêm các đơn hàng tìm được vào DataGridView
-            //    foreach (var order in orders)
-            //    {
-            //        dgvOrders.Rows.Add(order.Order_ID, order.PhoneNumber, order.Employee_Name, order.Order_Date, order.Status, order.Total_Cost);
-            //    }
+                // Tạo DataTable mới để chứa đơn hàng lọc theo số điện thoại
+                DataTable searchResult = new DataTable();
+                searchResult.Columns.Add("Order_ID");
+                searchResult.Columns.Add("PhoneNumber");
+                searchResult.Columns.Add("Employee_Name");
+                searchResult.Columns.Add("Order_Date", typeof(DateTime));
+                searchResult.Columns.Add("Status");
+                searchResult.Columns.Add("Total_Cost", typeof(int));
 
-            //    // Nếu không tìm thấy đơn hàng nào
-            //    if (orders.Count == 0)
-            //    {
-            //        MessageBox.Show("Không tìm thấy đơn hàng với số điện thoại này!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+                foreach (var order in orders)
+                {
+                    if (order.PhoneNumber.Contains(keyword))
+                    {
+                        searchResult.Rows.Add(order.Order_ID, order.PhoneNumber, order.Employee_Name, order.Order_Date, order.Status, order.Total_Cost);
+                    }
+                }
+
+                dgvOrders.DataSource = searchResult;
+
+                if (searchResult.Rows.Count == 0)
+                {
+                    MessageBox.Show("Không tìm thấy đơn hàng với số điện thoại này!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -28,7 +28,7 @@ namespace PresentationLayer.UserControls
         {
             InitializeComponent();
             bookBL = new BookBL();
-            //book = bookBL.GetBookByID(bookID);
+            book = bookBL.GetBookByID(bookID);
             this.cartBL = cartBL;
             this.ucCart = ucCart;
 

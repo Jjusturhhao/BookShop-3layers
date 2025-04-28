@@ -4,16 +4,19 @@ using System.Drawing;
 using System.Windows.Forms;
 using BusinessLayer;
 using PresentationLayer.UserControls;
+using TransferObject;
 
 namespace PresentationLayer
 {
     public partial class HomepageCus : Form
     {
         private string username;
+        private string phone;
 
         private HomepageBL homepageBL;
         private BookBL bookBL;
         private CartBL cartBL;
+        private InfoBL infoBL;
         private UCHomepage ucHomepage;
         private UCCart ucCart;
         private UCCusOrders ucCusOrders;
@@ -22,15 +25,20 @@ namespace PresentationLayer
         private ContextMenuStrip accountMenu;
         private UCBookDetail ucBookDetail;
         private UCFormOrder uCFormOrder;
-
-
+        
         public HomepageCus(string username)
         {
             InitializeComponent();
             this.username = username;
+            
+
             homepageBL = new HomepageBL();
             bookBL = new BookBL();
             cartBL = new CartBL();
+            infoBL = new InfoBL();
+
+            LoadCustomerInfo();
+
             // Lưu tham chiếu đến picBanner
             picBanner = this.picBanner;
 
@@ -44,7 +52,7 @@ namespace PresentationLayer
             ucHomepage = new UCHomepage(ucCart, ShowBookDetail); //chia sẻ cùng giỏ hàng dùng chung
             ucHomepage.Dock = DockStyle.Fill;
 
-            ucCusOrders = new UCCusOrders(username);
+            ucCusOrders = new UCCusOrders(username, phone);
             ucCusOrders.Dock = DockStyle.Fill;
 
             ucInfo = new UCInfo(username);
@@ -68,6 +76,14 @@ namespace PresentationLayer
             {
                 picBanner.Visible = true;
                 picBanner.BringToFront();
+            }
+        }
+        private void LoadCustomerInfo()
+        {
+            Info userInfo = infoBL.GetUserInfo(username);
+            if (userInfo != null)
+            {
+                phone = userInfo.Phone;
             }
         }
 
@@ -173,9 +189,9 @@ namespace PresentationLayer
             ucCusOrders.Visible = true;
             ucCusOrders.BringToFront();
 
-            ucCusOrders.OnOrderDetailClick = (orderID, currentUsername) =>
+            ucCusOrders.OnOrderDetailClick = (orderID, phone) =>
             {
-                ShowOrderDetail(orderID, currentUsername);
+                ShowOrderDetail(orderID, phone);
             };
 
         }
@@ -264,14 +280,14 @@ namespace PresentationLayer
                 ucCusOrders.Visible = true;
                 ucCusOrders.BringToFront();
 
-                ucCusOrders.OnOrderDetailClick = (orderID, currentUsername) =>
+                ucCusOrders.OnOrderDetailClick = (orderID, phone) =>
                 {
-                    ShowOrderDetail(orderID, currentUsername);
+                    ShowOrderDetail(orderID, phone);
                 };
             };
 
         }
-        private void ShowOrderDetail(string orderID, string currentUsername)
+        private void ShowOrderDetail(string orderID, string phone)
         {
             if (ucCusOrderDetail != null)
             {
@@ -279,7 +295,7 @@ namespace PresentationLayer
                 ucCusOrderDetail.Dispose();
             }
 
-            ucCusOrderDetail = new UCCusOrderDetail(orderID, currentUsername, null);
+            ucCusOrderDetail = new UCCusOrderDetail(orderID, null, phone);
             ucCusOrderDetail.Dock = DockStyle.Fill;
             panelContainer.Controls.Add(ucCusOrderDetail);
             HideAllUserControls();

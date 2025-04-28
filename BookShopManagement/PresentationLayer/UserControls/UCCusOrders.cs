@@ -12,16 +12,18 @@ namespace PresentationLayer.UserControls
     {
         private CusOrderBL cusOrderBL;
         private string currentUsername;
+        private string phone;
 
         //Tạo delegate để báo cho Homepage biết khi cần mở chi tiết đơn hàng
-        public Action<string, string> OnOrderDetailClick { get; set; } //// orderID, username
+        public Action<string, string> OnOrderDetailClick { get; set; } //// orderID, phone
 
 
-        public UCCusOrders(string username)
+        public UCCusOrders(string currentUsername, string phone)
         {
             InitializeComponent();
             cusOrderBL = new CusOrderBL();
-            currentUsername = username;
+            this.currentUsername = currentUsername;
+            this.phone = phone;
         }
 
         private void UCCusOrders_Load(object sender, EventArgs e)
@@ -120,8 +122,9 @@ namespace PresentationLayer.UserControls
             {
                 // Lấy orderID từ dòng được chọn
                 string orderID = dgvOrders.Rows[e.RowIndex].Cells["Orderid"].Value.ToString();
+                
 
-                OnOrderDetailClick?.Invoke(orderID, currentUsername);
+                OnOrderDetailClick?.Invoke(orderID, phone);
             }
         }
     }
