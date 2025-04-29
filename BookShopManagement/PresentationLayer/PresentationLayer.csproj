@@ -127,12 +127,6 @@
     <Compile Include="InBill.Designer.cs">
       <DependentUpon>InBill.cs</DependentUpon>
     </Compile>
-    <Compile Include="Issue.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Issue.Designer.cs">
-      <DependentUpon>Issue.cs</DependentUpon>
-    </Compile>
     <Compile Include="Login-Register\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +147,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="UserControls\UCIssue.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCIssue.Designer.cs">
+      <DependentUpon>UCIssue.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCBookDetail.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -219,6 +219,12 @@
     <Compile Include="UserControls\UCOrders.Designer.cs">
       <DependentUpon>UCOrders.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCRule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCRule.Designer.cs">
+      <DependentUpon>UCRule.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCStatistics.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -270,9 +276,6 @@
     <EmbeddedResource Include="InBill.resx">
       <DependentUpon>InBill.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Issue.resx">
-      <DependentUpon>Issue.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Login-Register\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -284,6 +287,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Report1.rdlc" />
+    <EmbeddedResource Include="UserControls\UCIssue.resx">
+      <DependentUpon>UCIssue.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCBookDetail.resx">
       <DependentUpon>UCBookDetail.cs</DependentUpon>
     </EmbeddedResource>
@@ -316,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCOrders.resx">
       <DependentUpon>UCOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCRule.resx">
+      <DependentUpon>UCRule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCStatistics.resx">
       <DependentUpon>UCStatistics.cs</DependentUpon>

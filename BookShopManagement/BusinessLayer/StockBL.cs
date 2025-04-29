@@ -29,9 +29,9 @@ namespace BusinessLayer
             {
                 return stockDL.GetStocks();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -49,9 +49,9 @@ namespace BusinessLayer
             {
                 return stockDL.bookCategoryStocks();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
 
         }
@@ -61,9 +61,9 @@ namespace BusinessLayer
             {
                 return stockDL.supplierStocks();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
 
         }

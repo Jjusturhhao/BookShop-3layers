@@ -138,5 +138,38 @@ namespace DataLayer
                 DisConnect();
             }
         }
+
+        public DataTable ExecuteQuery(string query, SqlParameter[] parameters = null)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                Connect();
+                using (SqlCommand cmd = new SqlCommand(query, cn))
+                {
+                    if (parameters != null)
+                    {
+                        cmd.Parameters.AddRange(parameters);
+                    }
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+
+            return dt;
+        }
+
     }
 }

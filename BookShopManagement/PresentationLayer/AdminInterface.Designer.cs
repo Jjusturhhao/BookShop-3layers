@@ -37,6 +37,7 @@
             this.tabInfoMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiChangeInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiLogout = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabRule = new System.Windows.Forms.TabPage();
             this.tabControlMain.SuspendLayout();
             this.tabInfoMenu.SuspendLayout();
             this.SuspendLayout();
@@ -45,6 +46,7 @@
             // 
             this.tabControlMain.Controls.Add(this.tabHomepage);
             this.tabControlMain.Controls.Add(this.tabEmployee);
+            this.tabControlMain.Controls.Add(this.tabRule);
             this.tabControlMain.Controls.Add(this.tabRevenue);
             this.tabControlMain.Controls.Add(this.tabInfo);
             this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -120,6 +122,16 @@
             this.tsmiLogout.Text = "Đăng xuất";
             this.tsmiLogout.Click += new System.EventHandler(this.tsmiLogout_Click);
             // 
+            // tabRule
+            // 
+            this.tabRule.Location = new System.Drawing.Point(4, 29);
+            this.tabRule.Name = "tabRule";
+            this.tabRule.Padding = new System.Windows.Forms.Padding(3);
+            this.tabRule.Size = new System.Drawing.Size(993, 566);
+            this.tabRule.TabIndex = 4;
+            this.tabRule.Text = "Quản lý quy định";
+            this.tabRule.UseVisualStyleBackColor = true;
+            // 
             // AdminInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -146,5 +158,6 @@
         private System.Windows.Forms.ContextMenuStrip tabInfoMenu;
         private System.Windows.Forms.ToolStripMenuItem tsmiChangeInfo;
         private System.Windows.Forms.ToolStripMenuItem tsmiLogout;
+        private System.Windows.Forms.TabPage tabRule;
     }
 }

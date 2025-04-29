@@ -90,6 +90,7 @@
     <Compile Include="Book.cs" />
     <Compile Include="BookCategoryStock.cs" />
     <Compile Include="CartItem.cs" />
+    <Compile Include="Rule.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Statistics\CategoryRevenue.cs" />
     <Compile Include="Class1.cs" />

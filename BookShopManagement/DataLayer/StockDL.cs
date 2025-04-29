@@ -9,6 +9,8 @@ using TransferObject;
 using System.Net;
 using System.Data.Common;
 using Microsoft.Reporting.Map.WebForms.BingMaps;
+using System.Text.RegularExpressions;
+
 
 namespace DataLayer
 {
@@ -21,8 +23,8 @@ namespace DataLayer
 
             List<Stock> stocks = new List<Stock>();
             string sql = "SELECT s.BookID,sl.Supplier_name, c.CategoryName, s.BookName, s.ImportDate, s.Quantity " +
-                "FROM Stock s JOIN BookCategory c ON s.CategoryID = c.CategoryID " + 
-                "JOIN Suppliers sl ON s.SupplierID = sl.Supplier_ID " + 
+                "FROM Stock s JOIN BookCategory c ON s.CategoryID = c.CategoryID " +
+                "JOIN Suppliers sl ON s.SupplierID = sl.Supplier_ID " +
                 "ORDER BY CAST(SUBSTRING(s.BookID, 5, LEN(s.BookID)) AS INT)";
             try
             {
@@ -138,8 +140,8 @@ namespace DataLayer
         public int Add(Stock stock)
         {
             string sql = "INSERT INTO Stock (BookID, SupplierID, CategoryID, BookName, ImportDate, Quantity) " +
-             "VALUES ('" + stock.BookID + "', '" + stock.SupplierID + "', '" + stock.CategoryID + "', '" +
-             stock.BookName + "', '" + stock.ImportDate.ToString("yyyy-MM-dd") + "', " + stock.Quantity + ")";
+             "VALUES ('" + stock.BookID + "', '" + stock.SupplierID + "', '" + stock.CategoryID + "', N'" +
+             stock.BookName.Replace("'", "''") + "', '" + stock.ImportDate.ToString("yyyy-MM-dd") + "', " + stock.Quantity + ")";
 
 
             try
@@ -157,19 +159,10 @@ namespace DataLayer
         }
         public int Delete(Stock stock)
         {
+            if (string.IsNullOrEmpty(stock.BookID))
+                throw new Exception("BookID không được để trống.");
 
-
-            string sql = "DELETE FROM Stock WHERE 1=1";
-            if (!string.IsNullOrEmpty(stock.BookID))
-                sql += " AND BookID = '" + stock.BookID.Replace("'", "''") + "'";
-            sql += " AND CategoryID = '" + stock.CategoryID + "'";
-            if (!string.IsNullOrEmpty(stock.BookName))
-                sql += " AND BookName = '" + stock.BookName.Replace("'", "''") + "'";
-            if (stock.ImportDate != DateTime.MinValue)
-                sql += " AND ImportDate = '" + stock.ImportDate.ToString("yyyy-MM-dd") + "'";
-            if (stock.Quantity != 0)
-                sql += " AND Quantity = " + stock.Quantity;
-
+            string sql = "DELETE FROM Stock WHERE BookID = '" + stock.BookID.Replace("'", "''") + "'";
 
             try
             {
@@ -184,34 +177,80 @@ namespace DataLayer
                 DisConnect();
             }
         }
+        //public int Update(Stock stock)
+        //{
+        //    string sql = "UPDATE Stock SET ";
+
+        //    List<string> updates = new List<string>();
+
+        //    updates.Add("CategoryID = '" + stock.CategoryID + "'");
+        //    if (!string.IsNullOrEmpty(stock.BookName))
+        //        updates.Add("BookName = '" + stock.BookName.Replace("'", "''") + "'");
+        //    if (stock.ImportDate != DateTime.MinValue)
+        //        updates.Add("ImportDate = '" + stock.ImportDate.ToString("yyyy-MM-dd") + "'");
+        //    int currentQuantity = GetCurrentQuantity(stock.BookID);
+
+        //    if (stock.Quantity < 150)
+        //    {
+        //        throw new Exception("Vui lòng nhập ít nhất 150 sách.");
+        //    }
+
+
+        //    int newQuantity = currentQuantity + stock.Quantity;
+
+        //    updates.Add("Quantity = " + newQuantity);
+
+        //    if (updates.Count == 0)
+        //        throw new Exception("Không có thông tin nào để cập nhật.");
+
+        //    sql += string.Join(", ", updates);
+        //    sql += " WHERE BookID = '" + stock.BookID + "'";
+
+        //    try
+        //    {
+        //        return MyExecuteNonQuery(sql, CommandType.Text);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        DisConnect();
+        //    }
+        //}
+
         public int Update(Stock stock)
         {
             string sql = "UPDATE Stock SET ";
 
             List<string> updates = new List<string>();
 
-            updates.Add("CategoryID = '" + stock.CategoryID + "'");
+            if (!string.IsNullOrEmpty(stock.CategoryID))
+                updates.Add("CategoryID = N'" + stock.CategoryID.Replace("'", "''") + "'");
+            if (!string.IsNullOrEmpty(stock.SupplierID))   // <- Thêm phần này nè
+                updates.Add("SupplierID = '" + stock.SupplierID.Replace("'", "''") + "'");
+
             if (!string.IsNullOrEmpty(stock.BookName))
-                updates.Add("BookName = '" + stock.BookName.Replace("'", "''") + "'");
+                updates.Add("BookName = N'" + stock.BookName.Replace("'", "''") + "'");
+
             if (stock.ImportDate != DateTime.MinValue)
                 updates.Add("ImportDate = '" + stock.ImportDate.ToString("yyyy-MM-dd") + "'");
+
+            // Cập nhật số lượng
             int currentQuantity = GetCurrentQuantity(stock.BookID);
-
-            if (stock.Quantity < 150)
+            if (stock.Quantity < 0)
             {
-                throw new Exception("Vui lòng nhập ít nhất 150 sách.");
+                throw new Exception("Không được nhập số âm.");
             }
-
-
             int newQuantity = currentQuantity + stock.Quantity;
-
             updates.Add("Quantity = " + newQuantity);
 
             if (updates.Count == 0)
                 throw new Exception("Không có thông tin nào để cập nhật.");
 
             sql += string.Join(", ", updates);
-            sql += " WHERE BookID = '" + stock.BookID + "'";
+            sql += " WHERE BookID = '" + stock.BookID.Replace("'", "''") + "'";
 
             try
             {
@@ -219,50 +258,177 @@ namespace DataLayer
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
             finally
             {
                 DisConnect();
             }
         }
+
+        //public List<Stock> SearchStock(string keyword)
+        //{
+        //    //        string supplierID, bookID, categoryID, bookName;
+
+        //    //        List<Stock> stocks = new List<Stock>();
+        //    //        string sql = "SELECT s.BookID, sl.Supplier_name, c.CategoryName, s.BookName, s.ImportDate, s.Quantity " +
+        //    //"FROM Stock s " +
+        //    //"JOIN BookCategory c ON s.CategoryID = c.CategoryID " +
+        //    //"JOIN Suppliers sl ON s.SupplierID = sl.Supplier_ID " +
+        //    //"WHERE sl.Supplier_name LIKE N'%" + keyword + "%' OR " +
+        //    //"s.BookID LIKE N'%" + keyword + "%' OR " +
+        //    //"c.CategoryName LIKE N'%" + keyword + "%' OR " +
+        //    //"s.BookName LIKE N'%" + keyword + "%' OR " +
+        //    //"CONVERT(NVARCHAR, s.ImportDate, 120) LIKE N'%" + keyword + "%' OR " +
+        //    //"CONVERT(NVARCHAR, s.Quantity) LIKE N'%" + keyword + "%'";
+        //    //        try
+        //    //        {
+        //    //            Connect();
+        //    //            SqlDataReader reader = MyExecuteReader(sql, CommandType.Text);
+        //    //            while (reader.Read())
+        //    //            {
+        //    //                bookID = reader["BookID"].ToString();
+        //    //                supplierID = reader["Supplier_name"].ToString();
+        //    //                categoryID = reader["CategoryName"].ToString();
+        //    //                bookName = reader["BookName"].ToString();
+        //    //                DateTime importDate = reader["ImportDate"] != DBNull.Value ? Convert.ToDateTime(reader["ImportDate"]) : DateTime.MinValue;
+        //    //                int quantity = reader["Quantity"] != DBNull.Value ? Convert.ToInt32(reader["Quantity"]) : 0;
+
+        //    //                Stock stock = new Stock(bookID, supplierID, categoryID, bookName, importDate, quantity);
+        //    //                stocks.Add(stock);
+        //    //            }
+        //    //            reader.Close();
+        //    //            return stocks;
+        //    //        }
+        //    //        catch (Exception ex)
+        //    //        {
+        //    //            throw ex;
+        //    //        }
+        //    //        finally
+        //    //        {
+        //    //            DisConnect();
+        //    //        }
+
+        //    string supplierID, bookID, categoryID, bookName;
+
+        //    List<Stock> stocks = new List<Stock>();
+        //    string sql = "SELECT s.BookID, sl.Supplier_name, c.CategoryName, s.BookName, s.ImportDate, s.Quantity " +
+        //                 "FROM Stock s " +
+        //                 "JOIN BookCategory c ON s.CategoryID = c.CategoryID " +
+        //                 "JOIN Suppliers sl ON s.SupplierID = sl.Supplier_ID " +
+        //                 "WHERE sl.Supplier_name LIKE @Keyword OR " +
+        //                 "s.BookID LIKE @Keyword OR " +
+        //                 "c.CategoryName LIKE @Keyword OR " +
+        //                 "s.BookName LIKE @Keyword OR " +
+        //                 "CONVERT(NVARCHAR, s.ImportDate, 120) LIKE @Keyword OR " +
+        //                 "CONVERT(NVARCHAR, s.Quantity) LIKE @Keyword";
+
+        //    try
+        //    {
+        //        using (SqlCommand cmd = new SqlCommand(sql, cn))
+        //        {
+        //            cmd.Parameters.AddWithValue("@Keyword", "%" + keyword + "%");
+        //            Connect();
+
+        //            using (SqlDataReader reader = cmd.ExecuteReader())
+        //            {
+        //                while (reader.Read())
+        //                {
+        //                    bookID = reader["BookID"].ToString();
+        //                    supplierID = reader["Supplier_name"].ToString();
+        //                    categoryID = reader["CategoryName"].ToString();
+        //                    bookName = reader["BookName"].ToString();
+        //                    DateTime importDate = reader["ImportDate"] != DBNull.Value ? Convert.ToDateTime(reader["ImportDate"]) : DateTime.MinValue;
+        //                    int quantity = reader["Quantity"] != DBNull.Value ? Convert.ToInt32(reader["Quantity"]) : 0;
+
+        //                    Stock stock = new Stock(bookID, supplierID, categoryID, bookName, importDate, quantity);
+        //                    stocks.Add(stock);
+        //                }
+        //            }
+        //        }
+        //        return stocks;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception("Error occurred while searching stock: " + ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        DisConnect();
+        //    }
+        //}
+
+
         public List<Stock> SearchStock(string keyword)
         {
-            string supplierID, bookID, categoryID, bookName;
+            var stocks = new List<Stock>();
+            if (string.IsNullOrWhiteSpace(keyword))
+                return stocks;
 
-            List<Stock> stocks = new List<Stock>();
-            string sql = "SELECT s.BookID, sl.Supplier_name, c.CategoryName, s.BookName, s.ImportDate, s.Quantity " +
-    "FROM Stock s " +
-    "JOIN BookCategory c ON s.CategoryID = c.CategoryID " +
-    "JOIN Suppliers sl ON s.SupplierID = sl.Supplier_ID " +
-    "WHERE sl.Supplier_name LIKE N'%" + keyword + "%' OR " +
-    "s.BookID LIKE N'%" + keyword + "%' OR " +
-    "c.CategoryName LIKE N'%" + keyword + "%' OR " +
-    "s.BookName LIKE N'%" + keyword + "%' OR " +
-    "CONVERT(NVARCHAR, s.ImportDate, 120) LIKE N'%" + keyword + "%' OR " +
-    "CONVERT(NVARCHAR, s.Quantity) LIKE N'%" + keyword + "%'";
+            // Xác định xem keyword có phải kiểu BookID chính xác (BOOK + số) không?
+            bool isBookIdExact = Regex.IsMatch(keyword.Trim(), @"^BOOK\d+$", RegexOptions.IgnoreCase);
+
+            string sql;
+            if (isBookIdExact)
+            {
+                // Truy vấn chính xác BookID
+                sql = @"
+            SELECT s.BookID, sl.Supplier_name, c.CategoryName, s.BookName, s.ImportDate, s.Quantity
+            FROM Stock s
+            JOIN BookCategory c ON s.CategoryID = c.CategoryID
+            JOIN Suppliers sl ON s.SupplierID = sl.Supplier_ID
+            WHERE s.BookID COLLATE Latin1_General_CI_AI = @ExactID";
+            }
+            else
+            {
+                // Tìm rộng trên mọi trường, trả về tất cả kết quả
+                sql = @"
+            SELECT s.BookID, sl.Supplier_name, c.CategoryName, s.BookName, s.ImportDate, s.Quantity
+            FROM Stock s
+            JOIN BookCategory c ON s.CategoryID = c.CategoryID
+            JOIN Suppliers sl ON s.SupplierID = sl.Supplier_ID
+            WHERE sl.Supplier_name     COLLATE Latin1_General_CI_AI LIKE @Keyword
+               OR s.BookID             COLLATE Latin1_General_CI_AI LIKE @Keyword
+               OR c.CategoryName       COLLATE Latin1_General_CI_AI LIKE @Keyword
+               OR s.BookName           COLLATE Latin1_General_CI_AI LIKE @Keyword
+               OR CONVERT(NVARCHAR,s.ImportDate,120) COLLATE Latin1_General_CI_AI LIKE @Keyword
+               OR CONVERT(NVARCHAR,s.Quantity)      COLLATE Latin1_General_CI_AI LIKE @Keyword";
+            }
+
             try
             {
                 Connect();
-                SqlDataReader reader = MyExecuteReader(sql, CommandType.Text);
-                while (reader.Read())
+                using (var cmd = new SqlCommand(sql, cn))
                 {
-                    bookID = reader["BookID"].ToString();
-                    supplierID = reader["Supplier_name"].ToString();
-                    categoryID = reader["CategoryName"].ToString();
-                    bookName = reader["BookName"].ToString();
-                    DateTime importDate = reader["ImportDate"] != DBNull.Value ? Convert.ToDateTime(reader["ImportDate"]) : DateTime.MinValue;
-                    int quantity = reader["Quantity"] != DBNull.Value ? Convert.ToInt32(reader["Quantity"]) : 0;
+                    if (isBookIdExact)
+                        cmd.Parameters.AddWithValue("@ExactID", keyword.Trim());
+                    else
+                        cmd.Parameters.AddWithValue("@Keyword", "%" + keyword.Trim() + "%");
 
-                    Stock stock = new Stock(bookID, supplierID, categoryID, bookName, importDate, quantity);
-                    stocks.Add(stock);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string bookID = reader["BookID"].ToString();
+                            string supplier = reader["Supplier_name"].ToString();
+                            string category = reader["CategoryName"].ToString();
+                            string name = reader["BookName"].ToString();
+                            DateTime impDt = reader["ImportDate"] != DBNull.Value
+                                              ? Convert.ToDateTime(reader["ImportDate"])
+                                              : DateTime.MinValue;
+                            int qty = reader["Quantity"] != DBNull.Value
+                                              ? Convert.ToInt32(reader["Quantity"])
+                                              : 0;
+
+                            stocks.Add(new Stock(bookID, supplier, category, name, impDt, qty));
+                        }
+                    }
                 }
-                reader.Close();
                 return stocks;
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error occurred while searching stock: " + ex.Message);
             }
             finally
             {

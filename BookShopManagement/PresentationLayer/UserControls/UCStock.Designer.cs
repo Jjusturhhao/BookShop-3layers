@@ -46,6 +46,8 @@
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.txtSL = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.cbxSupplier = new System.Windows.Forms.ComboBox();
             this.dtpk = new System.Windows.Forms.DateTimePicker();
             this.lbImportDate = new System.Windows.Forms.Label();
@@ -278,6 +280,8 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.SystemColors.Control;
+            this.panel6.Controls.Add(this.txtSL);
+            this.panel6.Controls.Add(this.label2);
             this.panel6.Controls.Add(this.cbxSupplier);
             this.panel6.Controls.Add(this.dtpk);
             this.panel6.Controls.Add(this.lbImportDate);
@@ -297,13 +301,36 @@
             this.panel6.Size = new System.Drawing.Size(597, 689);
             this.panel6.TabIndex = 1;
             // 
+            // txtSL
+            // 
+            this.txtSL.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtSL.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSL.Location = new System.Drawing.Point(251, 512);
+            this.txtSL.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSL.Name = "txtSL";
+            this.txtSL.Size = new System.Drawing.Size(307, 39);
+            this.txtSL.TabIndex = 43;
+            this.txtSL.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(34, 512);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(198, 32);
+            this.label2.TabIndex = 42;
+            this.label2.Text = "Số lượng nhập";
+            this.label2.Visible = false;
+            // 
             // cbxSupplier
             // 
             this.cbxSupplier.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cbxSupplier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxSupplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxSupplier.FormattingEnabled = true;
-            this.cbxSupplier.Location = new System.Drawing.Point(251, 465);
+            this.cbxSupplier.Location = new System.Drawing.Point(251, 345);
             this.cbxSupplier.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbxSupplier.Name = "cbxSupplier";
             this.cbxSupplier.Size = new System.Drawing.Size(307, 40);
@@ -313,7 +340,7 @@
             // 
             this.dtpk.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtpk.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpk.Location = new System.Drawing.Point(251, 394);
+            this.dtpk.Location = new System.Drawing.Point(251, 276);
             this.dtpk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpk.Name = "dtpk";
             this.dtpk.Size = new System.Drawing.Size(307, 39);
@@ -324,7 +351,7 @@
             this.lbImportDate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbImportDate.AutoSize = true;
             this.lbImportDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbImportDate.Location = new System.Drawing.Point(46, 399);
+            this.lbImportDate.Location = new System.Drawing.Point(34, 281);
             this.lbImportDate.Name = "lbImportDate";
             this.lbImportDate.Size = new System.Drawing.Size(151, 32);
             this.lbImportDate.TabIndex = 38;
@@ -335,7 +362,7 @@
             this.lbSupplier.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbSupplier.AutoSize = true;
             this.lbSupplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSupplier.Location = new System.Drawing.Point(46, 471);
+            this.lbSupplier.Location = new System.Drawing.Point(34, 353);
             this.lbSupplier.Name = "lbSupplier";
             this.lbSupplier.Size = new System.Drawing.Size(188, 32);
             this.lbSupplier.TabIndex = 34;
@@ -347,7 +374,7 @@
             this.cbxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxCategory.FormattingEnabled = true;
-            this.cbxCategory.Location = new System.Drawing.Point(251, 319);
+            this.cbxCategory.Location = new System.Drawing.Point(251, 200);
             this.cbxCategory.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbxCategory.Name = "cbxCategory";
             this.cbxCategory.Size = new System.Drawing.Size(307, 40);
@@ -357,9 +384,10 @@
             // 
             this.txtQuantity.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtQuantity.Location = new System.Drawing.Point(251, 540);
+            this.txtQuantity.Location = new System.Drawing.Point(251, 423);
             this.txtQuantity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtQuantity.Name = "txtQuantity";
+            this.txtQuantity.ReadOnly = true;
             this.txtQuantity.Size = new System.Drawing.Size(307, 39);
             this.txtQuantity.TabIndex = 30;
             // 
@@ -367,9 +395,10 @@
             // 
             this.txtBookName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtBookName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBookName.Location = new System.Drawing.Point(251, 248);
+            this.txtBookName.Location = new System.Drawing.Point(251, 133);
             this.txtBookName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBookName.Name = "txtBookName";
+            this.txtBookName.ReadOnly = true;
             this.txtBookName.Size = new System.Drawing.Size(307, 39);
             this.txtBookName.TabIndex = 29;
             // 
@@ -377,7 +406,7 @@
             // 
             this.txtBookID.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtBookID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBookID.Location = new System.Drawing.Point(251, 176);
+            this.txtBookID.Location = new System.Drawing.Point(251, 60);
             this.txtBookID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBookID.Name = "txtBookID";
             this.txtBookID.ReadOnly = true;
@@ -389,7 +418,7 @@
             this.lbQuantity.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbQuantity.AutoSize = true;
             this.lbQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbQuantity.Location = new System.Drawing.Point(46, 544);
+            this.lbQuantity.Location = new System.Drawing.Point(34, 426);
             this.lbQuantity.Name = "lbQuantity";
             this.lbQuantity.Size = new System.Drawing.Size(116, 32);
             this.lbQuantity.TabIndex = 27;
@@ -400,7 +429,7 @@
             this.lbCategory.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbCategory.AutoSize = true;
             this.lbCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCategory.Location = new System.Drawing.Point(46, 326);
+            this.lbCategory.Location = new System.Drawing.Point(34, 208);
             this.lbCategory.Name = "lbCategory";
             this.lbCategory.Size = new System.Drawing.Size(116, 32);
             this.lbCategory.TabIndex = 26;
@@ -411,7 +440,7 @@
             this.lbBookName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbBookName.AutoSize = true;
             this.lbBookName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbBookName.Location = new System.Drawing.Point(46, 254);
+            this.lbBookName.Location = new System.Drawing.Point(34, 136);
             this.lbBookName.Name = "lbBookName";
             this.lbBookName.Size = new System.Drawing.Size(63, 32);
             this.lbBookName.TabIndex = 25;
@@ -422,7 +451,7 @@
             this.lbBookID.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbBookID.AutoSize = true;
             this.lbBookID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbBookID.Location = new System.Drawing.Point(46, 181);
+            this.lbBookID.Location = new System.Drawing.Point(34, 63);
             this.lbBookID.Name = "lbBookID";
             this.lbBookID.Size = new System.Drawing.Size(120, 32);
             this.lbBookID.TabIndex = 24;
@@ -600,5 +629,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn BookName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ImportDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
+        private System.Windows.Forms.TextBox txtSL;
+        private System.Windows.Forms.Label label2;
     }
 }

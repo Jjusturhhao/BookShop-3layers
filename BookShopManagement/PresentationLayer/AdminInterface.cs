@@ -81,6 +81,17 @@ namespace PresentationLayer
                     tabEmployee.Controls.Add(employeeUC);
                 }
             }
+
+            if (tabControlMain.SelectedTab == tabRule)
+            {
+                if (tabRule.Controls.Count == 0)
+                {
+                    UCRule ruleUC = new UCRule();
+                    ruleUC.Dock = DockStyle.Fill;
+                    tabRule.Controls.Add(ruleUC);
+                }
+            }
+
             else if (tabControlMain.SelectedTab == tabRevenue)
             {
                 if (tabRevenue.Controls.Count == 0)

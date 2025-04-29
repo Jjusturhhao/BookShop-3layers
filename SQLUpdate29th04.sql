@@ -249,6 +249,17 @@ SELECT * FROM PAYMENTS;
 go
 
 
+CREATE TABLE Rules (
+    RuleKey NVARCHAR(150) PRIMARY KEY,
+    RuleValue INT
+);
+
+INSERT INTO Rules (RuleKey, RuleValue)
+VALUES (N'Nhập tối thiểu', 150),
+       (N'Chỉ nhập khi số lượng sách trong kho dưới', 300);
+GO
+
+
 --TRIGGER
 CREATE TRIGGER trg_UpdateOrderStatus
 ON Orders

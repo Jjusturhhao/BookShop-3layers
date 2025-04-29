@@ -14,13 +14,13 @@ using Microsoft.Reporting.WinForms;
 
 namespace PresentationLayer.UserControls
 {
-    public partial class Issue: UserControl
+    public partial class UCIssue: UserControl
     {
         private StockBL stockBL;
         private string date;
         private List<Stock> stocks;
 
-        public Issue()
+        public UCIssue()
         {
             stockBL = new StockBL();
             InitializeComponent();
@@ -34,7 +34,14 @@ namespace PresentationLayer.UserControls
         public void SetStockList(List<Stock> stockList)
         {
             stocks = stockList;
-            LoadReport();
+            if (stocks != null && stocks.Count > 0)
+            {
+                LoadReport();
+            }
+            else
+            {
+                MessageBox.Show("Không có sách để xuất phiếu!");
+            }
         }
 
         private void LoadReport()
@@ -43,6 +50,7 @@ namespace PresentationLayer.UserControls
             {
                 List<SupplierStock> SupplierStock = stockBL.GetSupplierStocks();
                 List<BookCategoryStock> BookCategoryStock = stockBL.GetBookCategories();
+
                 if (stocks != null && stocks.Count > 0)
                 {
                     reportViewer1.LocalReport.ReportEmbeddedResource = "PresentationLayer.Report1.rdlc";
@@ -85,6 +93,8 @@ namespace PresentationLayer.UserControls
 
         private void reportViewer1_Load(object sender, EventArgs e)
         {
+           
+            reportViewer1.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.PageWidth;
 
         }
     }
