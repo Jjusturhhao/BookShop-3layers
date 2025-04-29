@@ -77,14 +77,13 @@ namespace DataLayer
 
         public List<string> GetEmployeeNames()
         {
-            string sql = "SELECT Name FROM Users WHERE User_ID LIKE 'S%'"; // Truy vấn để lấy tên nhân viên có ID bắt đầu bằng 'S'
-
+            string sql = "SELECT Name FROM Users WHERE User_ID LIKE 'S%'"; 
             List<string> employeeNames = new List<string>();
 
             try
             {
                 Connect();  // Kết nối đến cơ sở dữ liệu
-                SqlDataReader reader = MyExecuteReader(sql, CommandType.Text);  // Thực thi truy vấn
+                SqlDataReader reader = MyExecuteReader(sql, CommandType.Text); 
 
                 while (reader.Read())
                 {
