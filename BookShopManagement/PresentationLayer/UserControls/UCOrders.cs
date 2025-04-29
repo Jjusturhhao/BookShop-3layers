@@ -132,8 +132,6 @@ namespace PresentationLayer.UserControls
             //Xác định dòng người dùng vừa click
             if (e.RowIndex >= 0)
             {
-                //DataGridViewRow row = dgvOrders.SelectedRows[0];
-
                 // Nếu click vào nút "Xem chi tiết"
                 if (e.ColumnIndex >= 0 && dgvOrders.Columns[e.ColumnIndex].Name == "btnDetail")
                 {
@@ -148,17 +146,13 @@ namespace PresentationLayer.UserControls
                 
                     txtOrderID.Text = dgvOrders.Rows[e.RowIndex].Cells["Order_ID"].Value.ToString();
                     txtPhone.Text = dgvOrders.Rows[e.RowIndex].Cells["PhoneNumber"].Value.ToString();
-                    //txtPhone.Text = row.Cells["PhoneNumber"].Value.ToString();
                     cbxEmployeeName.Text = dgvOrders.Rows[e.RowIndex].Cells["Employee_Name"].Value.ToString();
-                    //cbxEmployeeName.Text = row.Cells["Employee_Name"].Value.ToString();
                     if (DateTime.TryParse(dgvOrders.Rows[e.RowIndex].Cells["Order_Date"].Value.ToString(), out DateTime orderDate))
                     {
                         dateTimePickerOrderDate.Value = orderDate;
                     }
                     cbxStatus.Text = dgvOrders.Rows[e.RowIndex].Cells["Status"].Value.ToString();
-                    //cbxStatus.Text = row.Cells["Status"].Value.ToString();
                     txtTotal.Text = dgvOrders.Rows[e.RowIndex].Cells["Total_Cost"].Value.ToString();
-                    //txtTotal.Text = row.Cells["Total_Cost"].Value.ToString();
 
                     // Chỉ cho phép sửa Status
                     txtOrderID.ReadOnly = true;
