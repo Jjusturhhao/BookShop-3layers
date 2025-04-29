@@ -48,17 +48,11 @@ namespace PresentationLayer.UserControls
                 // Hiển thị ảnh bìa sách
                 try
                 {
-                    string imageUrl = book.Bookimage;
+                    string imageFileName = book.Bookimage;
+                    string imagePath = Path.Combine(Application.StartupPath, "BookImage", imageFileName);
                     try
                     {
-                        using (WebClient webClient = new WebClient())
-                        {
-                            byte[] imageBytes = webClient.DownloadData(imageUrl);
-                            using (MemoryStream ms = new MemoryStream(imageBytes))
-                            {
-                                pictureBoxImage.Image = Image.FromStream(ms);
-                            }
-                        }
+                        pictureBoxImage.Image = Image.FromFile(imagePath);
                     }
                     catch
                     {

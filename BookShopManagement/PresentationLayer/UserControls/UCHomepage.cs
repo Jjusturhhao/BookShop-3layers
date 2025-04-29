@@ -65,17 +65,11 @@ namespace PresentationLayer.UserControls
                     Cursor = Cursors.Hand
                 };
 
-                string imageUrl = row["BookImage"].ToString();
+                string imageFileName = row["BookImage"].ToString();
+                string imagePath = Path.Combine(Application.StartupPath, "BookImage", imageFileName);
                 try
                 {
-                    using (WebClient webClient = new WebClient())
-                    {
-                        byte[] imageBytes = webClient.DownloadData(imageUrl);
-                        using (MemoryStream ms = new MemoryStream(imageBytes))
-                        {
-                            pictureBox.Image = Image.FromStream(ms);
-                        }
-                    }
+                    pictureBox.Image = Image.FromFile(imagePath);
                 }
                 catch
                 {
@@ -237,17 +231,11 @@ namespace PresentationLayer.UserControls
                         Cursor = Cursors.Hand
                     };
 
-                    string imageUrl = row["BookImage"].ToString();
+                    string imageFileName = row["BookImage"].ToString();
+                    string imagePath = Path.Combine(Application.StartupPath, "BookImage", imageFileName);
                     try
                     {
-                        using (WebClient webClient = new WebClient())
-                        {
-                            byte[] imageBytes = webClient.DownloadData(imageUrl);
-                            using (MemoryStream ms = new MemoryStream(imageBytes))
-                            {
-                                pictureBox.Image = Image.FromStream(ms);
-                            }
-                        }
+                        pictureBox.Image = Image.FromFile(imagePath);
                     }
                     catch
                     {
