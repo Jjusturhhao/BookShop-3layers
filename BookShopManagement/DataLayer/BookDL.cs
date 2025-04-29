@@ -225,25 +225,60 @@ namespace DataLayer
         public Book GetBookByID(string id)
         {
             Book book = null;
-            string sql = "SELECT * FROM Book WHERE BookID = @BookID";
+            string sql = "SELECT b.BookID, b.BookName, b.CategoryID, c.CategoryName, b.Author, b.Price, b.BookImage " +
+                "FROM Book b " +
+                "JOIN BookCategory c ON b.CategoryID = c.CategoryID " +
+                "WHERE BookID = @BookID";
             try
             {
                 Connect();
                 SqlCommand cmd = new SqlCommand(sql, cn);
                 cmd.Parameters.AddWithValue("@BookID", id);
+
                 SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+
+                string bookName = "", categoryID = "", categoryName = "", author = "", bookImageUrl = "";
+                int price = 0;
+                if (reader.Read())
                 {
-                    string bookid = reader["BookID"].ToString();
-                    string bookName = reader["BookName"].ToString();
-                    string categoryID = reader["CategoryID"].ToString();
-                    string author = reader["Author"].ToString();
-                    int price = Convert.ToInt32(reader["Price"]);
-                    string bookiamge = reader["BookImage"].ToString();
-                    book = new Book(bookid, bookName, categoryID, author, price, bookiamge);
+                    bookName = reader["BookName"].ToString();
+                    categoryID = reader["CategoryID"].ToString();
+                    categoryName = reader["CategoryName"].ToString();
+                    author = reader["Author"].ToString();
+                    price = Convert.ToInt32(reader["Price"]);
+                    bookImageUrl = reader["BookImage"].ToString();
+                    
                 }
                 reader.Close();
-                return book;
+
+                int quantity = GetQuantity(id);
+                book = new Book(id, bookName, categoryID, author, price, bookImageUrl);
+
+                book.Categoryname = categoryName;
+                book.Quantity = quantity;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+            return book;
+        }
+        public int GetQuantity(string id)
+        {
+            try
+            {
+                Connect();
+                string sql = "GetStockQuantity "; //stored procedure
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@BookID", id);
+
+                object result = cmd.ExecuteScalar();
+                return Convert.ToInt32(result);
             }
             catch (SqlException ex)
             {
