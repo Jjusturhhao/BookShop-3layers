@@ -48,13 +48,13 @@ namespace PresentationLayer.UserControls
 
         public void LoadEmployeeNamesToComboBox()
         {
-            List<string> employeeNames = orderBL.GetEmployeeNames();  // Sử dụng orderBL đã khởi tạo sẵn
+            List<string> employeeNames = orderBL.GetEmployeeNames();  
             cbxEmployeeName.DataSource = employeeNames;
         }
 
         public void LoadStatusToComboBox()
         {
-            List<string> status = orderBL.GetOrderStatus();  // Sử dụng orderBL đã khởi tạo sẵn
+            List<string> status = orderBL.GetOrderStatus();  
             cbxStatus.DataSource = status;
         }
 

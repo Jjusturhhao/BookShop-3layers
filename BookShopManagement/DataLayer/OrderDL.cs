@@ -175,7 +175,7 @@ namespace DataLayer
             {
                 // Kết nối với cơ sở dữ liệu
                 Connect();
-                string query = "SELECT DISTINCT Status FROM Orders";  // Truy vấn trạng thái duy nhất
+                string query = "SELECT DISTINCT Status FROM Orders WHERE Status IN (N'Chờ xác nhận', N'Đang vận chuyển')";  // Truy vấn trạng thái duy nhất
 
                 using (SqlCommand cmd = new SqlCommand(query, cn))
                 {
