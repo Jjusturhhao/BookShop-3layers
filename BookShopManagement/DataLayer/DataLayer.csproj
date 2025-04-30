@@ -36,6 +36,7 @@
     <Compile Include="BillDL.cs" />
     <Compile Include="BookDL.cs" />
     <Compile Include="CartDL.cs" />
+    <Compile Include="CategoryDL.cs" />
     <Compile Include="CheckoutDL.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="CusOrderDL.cs" />

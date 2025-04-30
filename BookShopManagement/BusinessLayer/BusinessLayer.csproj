@@ -88,6 +88,7 @@
     <Compile Include="BillBL.cs" />
     <Compile Include="BookBL.cs" />
     <Compile Include="CartBL.cs" />
+    <Compile Include="CategoryBL.cs" />
     <Compile Include="CheckoutBL.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="CusOrderBL.cs" />

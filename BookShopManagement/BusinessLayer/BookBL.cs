@@ -52,6 +52,10 @@ namespace BusinessLayer
         }
         public int Delete(Book book)
         {
+            if (bookDL.IsBookInOrder(book.Bookid))
+            {
+                throw new Exception("Không thể xóa sách vì nó đang có trong đơn hàng!");
+            }
             return bookDL.Delete(book);
         }
         public int Update(Book book)
@@ -71,6 +75,11 @@ namespace BusinessLayer
         public Book GetBookByID(string id)
         {
             return bookDL.GetBookByID(id);
+        }
+
+        public bool IsBookInOrder(string bookID)
+        {
+            return bookDL.IsBookInOrder(bookID);  // Call the method in BookDL
         }
 
     }
