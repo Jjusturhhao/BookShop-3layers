@@ -169,7 +169,7 @@
             // btnRefresh
             // 
             this.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRefresh.BackColor = System.Drawing.Color.Tomato;
+            this.btnRefresh.BackColor = System.Drawing.Color.LightCoral;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefresh.ForeColor = System.Drawing.Color.White;
@@ -185,7 +185,7 @@
             // btnUpdateBook
             // 
             this.btnUpdateBook.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnUpdateBook.BackColor = System.Drawing.Color.Tomato;
+            this.btnUpdateBook.BackColor = System.Drawing.Color.LightCoral;
             this.btnUpdateBook.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnUpdateBook.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateBook.ForeColor = System.Drawing.Color.White;
@@ -201,7 +201,7 @@
             // btnDeleteBook
             // 
             this.btnDeleteBook.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnDeleteBook.BackColor = System.Drawing.Color.Tomato;
+            this.btnDeleteBook.BackColor = System.Drawing.Color.Red;
             this.btnDeleteBook.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDeleteBook.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteBook.ForeColor = System.Drawing.Color.White;
@@ -217,7 +217,7 @@
             // btnEntryBook
             // 
             this.btnEntryBook.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnEntryBook.BackColor = System.Drawing.Color.Tomato;
+            this.btnEntryBook.BackColor = System.Drawing.Color.LightCoral;
             this.btnEntryBook.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEntryBook.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEntryBook.ForeColor = System.Drawing.Color.White;

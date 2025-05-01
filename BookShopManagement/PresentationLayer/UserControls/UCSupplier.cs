@@ -59,21 +59,6 @@ namespace PresentationLayer.UserControls
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Supplier s = GetSupplierFromForm();
-            if (supplierBL.AddSupplier(s))
-            {
-                MessageBox.Show("Thêm nhà cung cấp thành công!");
-                LoadSuppliers();
-                ClearForm();
-            }
-            else
-            {
-                MessageBox.Show("Thêm thất bại!");
-            }
-        }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            Supplier s = GetSupplierFromForm();
 
             // Luôn luôn tự generate ID, không lấy từ txtID
             s.ID = supplierBL.GenerateNextSupplierID();
@@ -87,6 +72,22 @@ namespace PresentationLayer.UserControls
             else
             {
                 MessageBox.Show("Thêm thất bại!");
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            Supplier s = GetSupplierFromForm();
+
+            if (supplierBL.UpdateSupplier(s))
+            {
+                MessageBox.Show("Cập nhật nhà cung cấp thành công!");
+                LoadSuppliers();
+                ClearForm();
+            }
+            else
+            {
+                MessageBox.Show("Cập nhật thất bại!");
             }
         }
 
