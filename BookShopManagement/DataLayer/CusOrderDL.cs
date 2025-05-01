@@ -27,7 +27,6 @@ namespace DataLayer
             GROUP BY o.Order_ID, o.Order_Date, o.Status
             ORDER BY o.Order_Date ASC";
 
-
             List<CusOrder> orders = new List<CusOrder>();
 
             try

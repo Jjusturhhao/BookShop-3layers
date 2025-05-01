@@ -552,7 +552,6 @@ namespace PresentationLayer.UserControls
                 return 0;  // Nếu tiền khách trả chưa đủ, trả lại 0
             }
             return totalPaid - totalBill;  // Trả về tiền thừa
-
         }
     }
 }

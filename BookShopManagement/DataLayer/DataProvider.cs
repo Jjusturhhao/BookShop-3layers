@@ -109,7 +109,7 @@ namespace DataLayer
                 Connect();
                 SqlCommand cmd = new SqlCommand(sql, cn);
                 cmd.CommandType = type;
-                return cmd.ExecuteNonQuery();   
+                return cmd.ExecuteNonQuery();
             }
             catch (SqlException ex)
             {
@@ -167,9 +167,23 @@ namespace DataLayer
             {
                 DisConnect();
             }
-
             return dt;
         }
 
+        //==
+        public SqlDataReader MyExecuteReader(SqlCommand cmd)
+        {
+            try
+            {
+                Connect(); // Mở kết nối
+                cmd.Connection = cn;
+                return cmd.ExecuteReader(); // Trả về SqlDataReader
+            }
+            catch (SqlException ex)
+            {
+                throw ex; // Bắt lỗi nếu có
+            }
+        }
+        //==
     }
 }

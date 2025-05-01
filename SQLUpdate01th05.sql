@@ -33,7 +33,7 @@ go
 
 INSERT INTO Book VALUES('BOOK1',N'Cây Cam Ngọt Của Tôi','CAT1',N'José Mauro de Vasconcelos', 80400, 'CCNCT.jpg');
 INSERT INTO Book VALUES('BOOK2',N'25 Độ Âm','CAT1',N'Thảo Trang', 210000, '25DA.jpg');
-INSERT INTO Book VALUES('BOOK3',N'Người Đua Diều','CAT1',N'Khaled Hosseini', 96750, '25DA.jpg');
+INSERT INTO Book VALUES('BOOK3',N'Người Đua Diều','CAT1',N'Khaled Hosseini', 96750, 'NDD.jpg');
 INSERT INTO Book VALUES('BOOK4',N'Sapiens : A Brief History of Humankind','CAT2',N'Yuval Noah Harari', 276250, 'Sapiens.jpg');
 INSERT INTO Book VALUES('BOOK5',N'Flipped','CAT2',N'Van Draanen Wendelin', 210000, 'Flipped.jpg');
 INSERT INTO Book VALUES('BOOK6',N'Think and Grow Rich','CAT2',N'Napoleon Hill', 230400, 'TAGR.jpg');
@@ -155,11 +155,14 @@ go
 
 INSERT INTO Orders (Order_ID, PhoneNumber, Employee_ID, Order_Date, Status) 
 VALUES 
-    ('ORD1', '0987654321', 'S1', '2025-03-24', N'Đang vận chuyển'),
-    ('ORD2', '0987654322', 'S2', '2025-04-01', N'Chờ xác nhận'),
-    ('ORD3', '0987654323', 'S3', '2025-03-21', N'Đã hoàn thành'),
-    ('ORD4', '0987654321', 'S1', '2025-04-02', N'Đã hủy'),
-    ('ORD5', '0987654323', 'S3', '2025-04-01', N'Chờ xác nhận');
+    ('ORD1', '0987654321', NULL , '2025-03-24', N'Đang vận chuyển'),
+    ('ORD2', '0987654322', NULL, '2025-03-25', N'Chờ xác nhận'),
+    ('ORD3', '0987654323', 'S3', '2025-03-26', N'Đã hoàn thành'),
+    ('ORD4', '0987654321', NULL, '2025-04-01', N'Đã hủy'),
+    ('ORD5', '0987654323', NULL, '2025-04-02', N'Chờ xác nhận'),
+	('ORD6', '0987654323', 'S2', '2025-04-25', N'Đã hoàn thành'),
+    ('ORD7', '0987654321', 'S1', '2025-04-26', N'Đã hoàn thành'),
+	('ORD8', '0987654322', 'S3', '2025-04-27', N'Đã hoàn thành');
 go
 
 CREATE TABLE OrderDetails (
@@ -183,7 +186,13 @@ VALUES ('ORD1', 'BOOK1', 2, 80400),  -- 2 cuốn "Cây Cam Ngọt Của Tôi"
 	   ('ORD3', 'BOOK15', 1, 62300),  
 	   ('ORD3', 'BOOK14', 3, 65330),
 	   ('ORD4', 'BOOK8', 1, 71540),  
-	   ('ORD5', 'BOOK9', 1, 126750); 
+	   ('ORD5', 'BOOK9', 1, 126750),
+	   ('ORD6', 'BOOK7', 1, 78840),
+	   ('ORD6', 'BOOK8', 1, 71540),
+	   ('ORD7', 'BOOK2', 1, 210000),
+	   ('ORD7', 'BOOK5', 1, 210000),
+	   ('ORD8', 'BOOK6', 2, 230400),
+	   ('ORD8', 'BOOK10', 1, 57600);
 go
 SELECT * FROM OrderDetails
  
@@ -243,7 +252,11 @@ VALUES
     ('PAY2', 'BILLORD2', '0987654322', N'Chuyển khoản ngân hàng', 'TXN_002', '2025-04-01', 486250),
     ('PAY3', 'BILLORD3', '0987654323', N'Tiền mặt', NULL, '2025-03-25', 258290), -- Tiền mặt => NULL Transaction_Code
     ('PAY4', 'BILLORD4', '0987654321', N'Tiền mặt', NULL, NULL, 71540), -- Chưa thanh toán => Payment_Date = NULL
-	('PAY5', 'BILLORD5', '0987654323', N'Ví điện tử', 'TXN_005', '2025-04-01', 126750);
+	('PAY5', 'BILLORD5', '0987654323', N'Ví điện tử', 'TXN_005', '2025-04-01', 126750),
+	('PAY6', 'BILLORD6', '0987654323', N'Ví điện tử', 'TXN_006', '2025-04-25', 150380),
+	('PAY7', 'BILLORD7', '0987654321', N'Tiền mặt', NULL, '2025-04-26', 420000),
+	('PAY8', 'BILLORD8', '0987654322', N'Chuyển khoản ngân hàng', 'TXN_008','2025-04-27', 518400); 
+
 go
 
 SELECT * FROM PAYMENTS;

@@ -84,5 +84,18 @@ namespace BusinessLayer
             }
         }
 
+        //==
+        public bool OrderStatus(string orderID, string newStatus)
+        {
+            return OrderDL.OrderStatus(orderID, newStatus);
+        }
+
+        public string GetOrderStatus(string orderID)
+        {
+            return OrderDL.GetOrderStatus(orderID);
+        }
+        //==
+
+
     }
 }

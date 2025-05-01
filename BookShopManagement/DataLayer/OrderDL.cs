@@ -195,8 +195,58 @@ namespace DataLayer
             {
                 DisConnect();
             }
-
             return statuses;
         }
+
+        //==
+        public bool OrderStatus(string orderID, string newStatus)
+        {
+            string sql = "UPDATE Orders SET Status = @Status WHERE Order_ID = @OrderID";
+            SqlCommand cmd = new SqlCommand(sql);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@Status", newStatus);
+            cmd.Parameters.AddWithValue("@OrderID", orderID);
+
+            DataProvider dataProvider = new DataProvider();
+            int rows = dataProvider.MyExecuteNonQuery(cmd);
+
+            return rows > 0;
+        }
+        public static string GetOrderStatus(string orderID)
+        {
+            string status = string.Empty;
+            string sql = "SELECT Status FROM Orders WHERE Order_ID = @OrderID";
+
+            SqlCommand cmd = new SqlCommand(sql);
+            cmd.Parameters.AddWithValue("@OrderID", orderID);
+
+            DataProvider dataProvider = new DataProvider();
+            SqlDataReader reader = null;
+
+            try
+            {
+                reader = dataProvider.MyExecuteReader(cmd); // Trả về SqlDataReader
+
+                if (reader != null && reader.Read())
+                {
+                    status = reader["Status"].ToString(); // Lấy giá trị trạng thái
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý lỗi nếu có
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                // Đảm bảo đóng SqlDataReader và ngắt kết nối
+                reader?.Close();
+                dataProvider.DisConnect(); // Đảm bảo ngắt kết nối
+            }
+
+            return status;
+        }
+
+        //==
     }
 }

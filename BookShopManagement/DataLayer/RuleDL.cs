@@ -16,7 +16,7 @@ namespace DataLayer
             List<TransferObject.Rule> rules = new List<TransferObject.Rule>();
             string query = "SELECT RuleKey, RuleValue FROM Rules";
 
-            DataTable dt = ExecuteQuery(query); // ← xài hàm có sẵn
+            DataTable dt = ExecuteQuery(query); 
 
             foreach (DataRow row in dt.Rows)
             {

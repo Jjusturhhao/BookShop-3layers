@@ -11,13 +11,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TransferObject;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+
 
 namespace PresentationLayer.UserControls
 {
     public partial class UCOrders : UserControl
     {
         private OrderBL orderBL;
+        public bool IsEmployee { get; set; }
         public Action<string, string, string> OnOrderDetailClick { get; set; } //orderid, employee, phone
 
         public UCOrders()
@@ -26,6 +29,7 @@ namespace PresentationLayer.UserControls
             orderBL = new OrderBL();
             CustomizeGrid();
         }
+        
         private void UCOrders_Load(object sender, EventArgs e)
         {
             LoadOrders();
@@ -48,13 +52,13 @@ namespace PresentationLayer.UserControls
 
         public void LoadEmployeeNamesToComboBox()
         {
-            List<string> employeeNames = orderBL.GetEmployeeNames();  
+            List<string> employeeNames = orderBL.GetEmployeeNames();  // Sử dụng orderBL đã khởi tạo sẵn
             cbxEmployeeName.DataSource = employeeNames;
         }
 
         public void LoadStatusToComboBox()
         {
-            List<string> status = orderBL.GetOrderStatus();  
+            List<string> status = orderBL.GetOrderStatus();  // Sử dụng orderBL đã khởi tạo sẵn
             cbxStatus.DataSource = status;
         }
 
@@ -129,40 +133,79 @@ namespace PresentationLayer.UserControls
 
         private void dgvOrders_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Xác định dòng người dùng vừa click
-            if (e.RowIndex >= 0)
+
+            //if (e.RowIndex >= 0)
+            //{
+            //    //DataGridViewRow row = dgvOrders.SelectedRows[0];
+            //    if (e.ColumnIndex >= 0 && dgvOrders.Columns[e.ColumnIndex].Name == "btnDetail")
+            //    {
+            //        string orderId = dgvOrders.Rows[e.RowIndex].Cells["Order_ID"].Value.ToString();
+            //        string employee = dgvOrders.Rows[e.RowIndex].Cells["Employee_Name"].Value.ToString();
+            //        string phone = dgvOrders.Rows[e.RowIndex].Cells["PhoneNumber"].Value.ToString();
+            //        if (!string.IsNullOrEmpty(orderId))
+            //        {
+            //            OnOrderDetailClick?.Invoke(orderId, employee, phone);
+            //        }
+            //        if (!string.IsNullOrEmpty(orderId))
+            //        {
+            //            UCCusOrderDetail detail = new UCCusOrderDetail(orderId, employee, phone, true);
+
+            //            detail.OnBackClick = () =>
+            //            {
+            //                this.Controls.Remove(detail);
+            //                LoadOrders();
+            //            };
+            //            this.Controls.Add(detail);
+            //            detail.BringToFront();
+
+            //        }
+
+            //    }
+            if (e.RowIndex < 0)
+                return;
+
+            // Nếu click vào nút "Xem chi tiết"
+            if (e.ColumnIndex >= 0 && dgvOrders.Columns[e.ColumnIndex].Name == "btnDetail")
             {
-                // Nếu click vào nút "Xem chi tiết"
-                if (e.ColumnIndex >= 0 && dgvOrders.Columns[e.ColumnIndex].Name == "btnDetail")
+                string orderId = dgvOrders.Rows[e.RowIndex].Cells["Order_ID"].Value.ToString();
+                string employee = dgvOrders.Rows[e.RowIndex].Cells["Employee_Name"].Value.ToString();
+                string phone = dgvOrders.Rows[e.RowIndex].Cells["PhoneNumber"].Value.ToString();
+
+                if (!string.IsNullOrEmpty(orderId))
                 {
-                    string orderId = dgvOrders.Rows[e.RowIndex].Cells["Order_ID"].Value.ToString();
-                    string employee = dgvOrders.Rows[e.RowIndex].Cells["Employee_Name"].Value.ToString();
-                    string phone = dgvOrders.Rows[e.RowIndex].Cells["PhoneNumber"].Value.ToString();
-                    if (!string.IsNullOrEmpty(orderId))
+                    OnOrderDetailClick?.Invoke(orderId, employee, phone);
+
+                    UCCusOrderDetail detail = new UCCusOrderDetail(orderId, employee, phone);
+                    detail.OnBackClick = () =>
                     {
-                        OnOrderDetailClick?.Invoke(orderId, employee, phone);
-                    }
+                        this.Controls.Remove(detail);
+                        LoadOrders();
+                    };
+                    this.Controls.Add(detail);
+                    detail.BringToFront();
                 }
-                
-                    txtOrderID.Text = dgvOrders.Rows[e.RowIndex].Cells["Order_ID"].Value.ToString();
-                    txtPhone.Text = dgvOrders.Rows[e.RowIndex].Cells["PhoneNumber"].Value.ToString();
-                    cbxEmployeeName.Text = dgvOrders.Rows[e.RowIndex].Cells["Employee_Name"].Value.ToString();
-                    if (DateTime.TryParse(dgvOrders.Rows[e.RowIndex].Cells["Order_Date"].Value.ToString(), out DateTime orderDate))
-                    {
-                        dateTimePickerOrderDate.Value = orderDate;
-                    }
-                    cbxStatus.Text = dgvOrders.Rows[e.RowIndex].Cells["Status"].Value.ToString();
-                    txtTotal.Text = dgvOrders.Rows[e.RowIndex].Cells["Total_Cost"].Value.ToString();
 
-                    // Chỉ cho phép sửa Status
-                    txtOrderID.ReadOnly = true;
-                    txtPhone.ReadOnly = true;
-                    cbxEmployeeName.Enabled = false;
-                    txtTotal.ReadOnly = true;
-                    dateTimePickerOrderDate.Enabled = false;
-
-                    cbxStatus.Enabled = true;
+                return; 
             }
+
+            // Nếu click vào dòng dữ liệu, hiển thị thông tin
+            txtOrderID.Text = dgvOrders.Rows[e.RowIndex].Cells["Order_ID"].Value.ToString();
+            txtPhone.Text = dgvOrders.Rows[e.RowIndex].Cells["PhoneNumber"].Value.ToString();
+            cbxEmployeeName.Text = dgvOrders.Rows[e.RowIndex].Cells["Employee_Name"].Value.ToString();
+            if (DateTime.TryParse(dgvOrders.Rows[e.RowIndex].Cells["Order_Date"].Value.ToString(), out DateTime orderDate))
+            {
+                dateTimePickerOrderDate.Value = orderDate;
+            }
+            cbxStatus.Text = dgvOrders.Rows[e.RowIndex].Cells["Status"].Value.ToString();
+            txtTotal.Text = dgvOrders.Rows[e.RowIndex].Cells["Total_Cost"].Value.ToString();
+
+            txtOrderID.ReadOnly = true;
+            txtPhone.ReadOnly = true;
+            cbxEmployeeName.Enabled = false;
+            txtTotal.ReadOnly = true;
+            dateTimePickerOrderDate.Enabled = false;
+
+            cbxStatus.Enabled = true;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)

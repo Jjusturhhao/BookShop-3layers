@@ -153,6 +153,18 @@
     <Compile Include="UserControls\UCBook.Designer.cs">
       <DependentUpon>UCBook.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCCusOrderDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCCusOrderDetail.Designer.cs">
+      <DependentUpon>UCCusOrderDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCCusOrders.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCCusOrders.Designer.cs">
+      <DependentUpon>UCCusOrders.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCIssue.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -164,12 +176,6 @@
     </Compile>
     <Compile Include="UserControls\UCBookDetail.Designer.cs">
       <DependentUpon>UCBookDetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\UCCusOrderDetail.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\UCCusOrderDetail.Designer.cs">
-      <DependentUpon>UCCusOrderDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UCEmployee.cs">
       <SubType>UserControl</SubType>
@@ -200,12 +206,6 @@
     </Compile>
     <Compile Include="UserControls\UCCheckout.Designer.cs">
       <DependentUpon>UCCheckout.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\UCCusOrders.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\UCCusOrders.Designer.cs">
-      <DependentUpon>UCCusOrders.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UCHomepage.cs">
       <SubType>UserControl</SubType>
@@ -290,14 +290,17 @@
     <EmbeddedResource Include="UserControls\UCBook.resx">
       <DependentUpon>UCBook.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCCusOrderDetail.resx">
+      <DependentUpon>UCCusOrderDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UCCusOrders.resx">
+      <DependentUpon>UCCusOrders.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCIssue.resx">
       <DependentUpon>UCIssue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCBookDetail.resx">
       <DependentUpon>UCBookDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCCusOrderDetail.resx">
-      <DependentUpon>UCCusOrderDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCEmployee.resx">
       <DependentUpon>UCEmployee.cs</DependentUpon>
@@ -313,9 +316,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCCheckout.resx">
       <DependentUpon>UCCheckout.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCCusOrders.resx">
-      <DependentUpon>UCCusOrders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCHomepage.resx">
       <DependentUpon>UCHomepage.cs</DependentUpon>

@@ -13,6 +13,10 @@ namespace PresentationLayer.UserControls
         private CusOrderBL cusOrderBL;
         private string currentUsername;
         private string phone;
+       // private UCCusOrderDetail currentDetailForm = null;
+
+        public Action RefreshOrders { get; set; }
+
 
         //Tạo delegate để báo cho Homepage biết khi cần mở chi tiết đơn hàng
         public Action<string, string> OnOrderDetailClick { get; set; } //// orderID, phone
@@ -117,15 +121,27 @@ namespace PresentationLayer.UserControls
 
         private void dgvOrders_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Nếu là cột nút cuối cùng (cột "Xem chi tiết")
             if (e.RowIndex >= 0 && e.ColumnIndex == dgvOrders.Columns.Count - 1)
             {
                 // Lấy orderID từ dòng được chọn
-                string orderID = dgvOrders.Rows[e.RowIndex].Cells["Orderid"].Value.ToString();
-                
+                string orderId = dgvOrders.Rows[e.RowIndex].Cells["Orderid"].Value.ToString();
+        OnOrderDetailClick?.Invoke(orderId, phone);
+                UCCusOrderDetail detail = new UCCusOrderDetail(orderId,null ,phone);
+                detail.ShowButtons();
 
-                OnOrderDetailClick?.Invoke(orderID, phone);
+               // OnOrderDetailClick?.Invoke(orderId, phone);
+                ReloadData();
             }
+}
+
+        private void dgvOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
+        public void ReloadData()
+        {
+            LoadOrders();  // Làm mới lại danh sách đơn hàng
+        }
+        
     }
 }

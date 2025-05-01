@@ -40,8 +40,9 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.lbInforCus = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnCancle = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnDone = new System.Windows.Forms.Button();
+            this.lbStatus = new System.Windows.Forms.Label();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -84,6 +85,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel4.Controls.Add(this.lbTotalCost);
+            this.panel4.Controls.Add(this.lbStatus);
             this.panel4.Controls.Add(this.panel1);
             this.panel4.Location = new System.Drawing.Point(86, 141);
             this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -204,43 +206,57 @@
             this.label3.Text = "Thông tin nhận hàng";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btnCancle
+            // btnCancel
             // 
-            this.btnCancle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancle.BackColor = System.Drawing.Color.Red;
-            this.btnCancle.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCancle.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancle.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCancle.Location = new System.Drawing.Point(1079, 706);
-            this.btnCancle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnCancle.Name = "btnCancle";
-            this.btnCancle.Size = new System.Drawing.Size(156, 78);
-            this.btnCancle.TabIndex = 14;
-            this.btnCancle.Text = "Hủy đơn";
-            this.btnCancle.UseVisualStyleBackColor = false;
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.BackColor = System.Drawing.Color.Red;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnCancel.Location = new System.Drawing.Point(1079, 706);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(156, 78);
+            this.btnCancel.TabIndex = 14;
+            this.btnCancel.Text = "Hủy đơn";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Visible = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancle_Click);
             // 
-            // button2
+            // btnDone
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.BackColor = System.Drawing.Color.LimeGreen;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(991, 706);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(244, 78);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "Đã nhận hàng";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Visible = false;
+            this.btnDone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDone.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnDone.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDone.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDone.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnDone.Location = new System.Drawing.Point(969, 706);
+            this.btnDone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnDone.Name = "btnDone";
+            this.btnDone.Size = new System.Drawing.Size(244, 78);
+            this.btnDone.TabIndex = 15;
+            this.btnDone.Text = "Đã nhận hàng";
+            this.btnDone.UseVisualStyleBackColor = false;
+            this.btnDone.Visible = false;
+            this.btnDone.Click += new System.EventHandler(this.btnhoanthanh_Click);
+            // 
+            // lbStatus
+            // 
+            this.lbStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbStatus.AutoSize = true;
+            this.lbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStatus.Location = new System.Drawing.Point(10, 501);
+            this.lbStatus.Name = "lbStatus";
+            this.lbStatus.Size = new System.Drawing.Size(92, 32);
+            this.lbStatus.TabIndex = 15;
+            this.lbStatus.Text = "label2";
             // 
             // UCCusOrderDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.btnCancle);
+            this.Controls.Add(this.btnDone);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnBack);
@@ -271,7 +287,8 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lbInforCus;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnCancle;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnDone;
+        private System.Windows.Forms.Label lbStatus;
     }
 }

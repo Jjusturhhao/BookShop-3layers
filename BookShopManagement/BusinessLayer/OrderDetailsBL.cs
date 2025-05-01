@@ -26,7 +26,6 @@ namespace BusinessLayer
             try
             {
                 orderDetailsDL.SaveOrderDetail(orderID, cartItems);
-
             }
             catch (Exception ex)
             {

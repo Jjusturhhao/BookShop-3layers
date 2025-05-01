@@ -42,7 +42,7 @@ namespace DataLayer
         //                string author = reader["Author"].ToString();
         //                int price = Convert.ToInt32(reader["Price"]);
         //                string bookiamge = reader["BookImage"].ToString();
-        //               // string imagePath = Path.Combine(Application.StartupPath, "BookImage", bookImage);
+        //                // string imagePath = Path.Combine(Application.StartupPath, "BookImage", bookImage);
         //                Book book = new Book(bookid, bookName, categoryID, author, price, bookiamge);
         //                books.Add(book);
         //            }
@@ -91,7 +91,6 @@ namespace DataLayer
                     {
                         imagePath = Path.Combine(System.Windows.Forms.Application.StartupPath, "BookImage", "bookdefault.jpg"); // Sử dụng hình ảnh mặc định từ thư mục
                     }
-
 
                     // Tạo đối tượng Book với đường dẫn hình ảnh
                     Book book = new Book(bookid, bookName, categoryID, author, price, imagePath);
@@ -272,24 +271,24 @@ namespace DataLayer
             if (isBookIdExact)
             {
                 sql = @"
-        SELECT b.BookID, b.CategoryID, c.CategoryName, b.BookName, b.Author, b.Price, b.Bookimage 
-        FROM Book b
-        JOIN BookCategory c ON b.CategoryID = c.CategoryID
-        WHERE b.BookID COLLATE Latin1_General_CI_AI = @ExactID";
+                SELECT b.BookID, b.CategoryID, c.CategoryName, b.BookName, b.Author, b.Price, b.Bookimage 
+                FROM Book b
+                JOIN BookCategory c ON b.CategoryID = c.CategoryID
+                WHERE b.BookID COLLATE Latin1_General_CI_AI = @ExactID";
             }
             else
             {
                 sql = @"
-        SELECT b.BookID, b.CategoryID, c.CategoryName, b.BookName, b.Author, b.Price, b.Bookimage 
-        FROM Book b
-        JOIN BookCategory c ON b.CategoryID = c.CategoryID
-        WHERE 
-        b.BookID COLLATE Latin1_General_CI_AI LIKE @Keyword OR
-        b.CategoryID COLLATE Latin1_General_CI_AI LIKE @Keyword OR 
-        c.CategoryName COLLATE Latin1_General_CI_AI LIKE @Keyword OR 
-        b.BookName COLLATE Latin1_General_CI_AI LIKE @Keyword OR 
-        b.Author COLLATE Latin1_General_CI_AI LIKE @Keyword OR 
-        CONVERT(NVARCHAR, b.Price) COLLATE Latin1_General_CI_AI LIKE @Keyword";
+                SELECT b.BookID, b.CategoryID, c.CategoryName, b.BookName, b.Author, b.Price, b.Bookimage 
+                FROM Book b
+                JOIN BookCategory c ON b.CategoryID = c.CategoryID
+                WHERE 
+                    b.BookID COLLATE Latin1_General_CI_AI LIKE @Keyword OR
+                    b.CategoryID COLLATE Latin1_General_CI_AI LIKE @Keyword OR 
+                    c.CategoryName COLLATE Latin1_General_CI_AI LIKE @Keyword OR 
+                    b.BookName COLLATE Latin1_General_CI_AI LIKE @Keyword OR 
+                    b.Author COLLATE Latin1_General_CI_AI LIKE @Keyword OR 
+                    CONVERT(NVARCHAR, b.Price) COLLATE Latin1_General_CI_AI LIKE @Keyword";
             }
 
             try
@@ -392,6 +391,5 @@ namespace DataLayer
                 DisConnect();
             }
         }
-
     }
 }

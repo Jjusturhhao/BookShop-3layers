@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Caching;
 using System.Windows.Forms;
 using TransferObject;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
@@ -23,8 +24,17 @@ namespace PresentationLayer.UserControls
         private OrderDetailsBL orderDetailsBL;
         private BillBL billBL;
         private PaymentBL paymentBL;
-
+        private OrderBL OrderBL;
         public Action OnBackClick;
+     
+
+        public Action OnStatusChanged;
+        private bool showButtons;
+        private CusOrderBL CusOrderBL;
+        private EmployeeBL EmployeeBL;
+       
+
+
 
         public UCCusOrderDetail(string orderID, string employee = null, string phone = null)
         {
@@ -34,19 +44,88 @@ namespace PresentationLayer.UserControls
             billBL = new BillBL();
             infoBL = new InfoBL();
             paymentBL = new PaymentBL();
+            OrderBL = new OrderBL();
+            customerBL = new CustomerBL();
+            EmployeeBL = new EmployeeBL();
+
+
             this.orderID = orderID;
             this.phone = phone;
             this.employee = employee;
+            
+          
+
+          
         }
+
+        public void HideButtons()
+        {
+            btnCancel.Visible = false;
+            btnDone.Visible = false;
+        }
+
+        // Hiển thị các nút khi quay lại
+        public void ShowButtons()
+        {
+            btnCancel.Visible = true;
+            btnDone.Visible = true;
+        }
+
 
         private void UCCusOrderDetail_Load(object sender, EventArgs e)
         {
+          
+
             LoadOrderDetail(orderID);
+           
+        }
+
+       
+        private void UpdateButtonsBasedOnStatus(string status, bool isEmployee)
+        {
+            // Nếu là nhân viên, ẩn cả hai nút
+            if (isEmployee)
+            {
+                btnCancel.Visible = false;
+                btnDone.Visible = false;
+            }
+            else
+            {
+                // Nếu không phải là nhân viên, kiểm tra trạng thái để quyết định nút nào hiển thị
+                if (status == "Chờ xác nhận")
+                {
+                    btnDone.Visible = false;  // Ẩn nút hoàn thành
+                    btnCancel.Visible = true;      // Hiển thị nút hủy
+                }
+                else if (status == "Đang vận chuyển")
+                {
+                    btnCancel.Visible = false;     // Ẩn nút hủy
+                    btnDone.Visible = true;   // Hiển thị nút hoàn thành
+                }
+                else if (status == "Đã hủy" || status == "Đã hoàn thành")
+                {
+                    btnDone.Visible = false;  // Ẩn nút hoàn thành
+                    btnCancel.Visible = false;     // Ẩn nút hủy
+                }
+            }
         }
         private void LoadOrderDetail(string orderID)
         {
+
+
             lbOrderID.Text = $"Đơn hàng: {orderID}";
-            
+            //==
+            string status = OrderBL.GetOrderStatus(orderID);
+
+
+            // Cập nhật trạng thái lên nhãn
+            lbStatus.Text = $"Trạng thái đơn hàng: {status}";
+            bool isEmployee = (employee != null && (employee == "Online"));
+
+            UpdateButtonsBasedOnStatus(status, isEmployee);
+
+
+            //==
             string billID = billBL.GetBillIDByOrderID(orderID);
             Payment payment = paymentBL.GetPayments(billID);
             lbPayment.Text = $"Phương thức thanh toán: {payment.Payment_Method}";
@@ -62,11 +141,10 @@ namespace PresentationLayer.UserControls
                 {
                     lbInforCus.Text = "Không tìm thấy thông tin khách hàng.";
                 }
-                
             }
             else // Offline
             {
-                
+
                 Customer customer = customerBL.GetCustomerByPhone(phone);
                 if (customer != null)
                 {
@@ -77,8 +155,33 @@ namespace PresentationLayer.UserControls
                     lbInforCus.Text = "Không tìm thấy thông tin khách hàng.";
                 }
             }
+            //if (employee == "Online") // Online
+            //{
+            //    Info info = infoBL.GetUserInfoByPhone(phone);  // Lấy thông tin khách hàng từ số điện thoại
+            //    if (info != null)  // Kiểm tra xem có thông tin khách hàng không
+            //    {
+            //        lbInforCus.Text = $"Khách hàng: {info.Name}  -  SĐT: {phone}\nĐịa chỉ: {info.Address}"; // Hiển thị thông tin khách hàng
+            //    }
+            //    else
+            //    {
+            //        lbInforCus.Text = "Không tìm thấy thông tin khách hàng."; // Nếu không tìm thấy thông tin, hiển thị thông báo lỗi
+            //    }
+            //}
+            //else if (employee == "Offine") // Offline
+            //{
+            //    Customer customer = customerBL.GetCustomerByPhone(phone);  // Lấy thông tin khách hàng từ số điện thoại
+            //    if (customer != null)  // Kiểm tra xem có thông tin khách hàng không
+            //    {
+            //        lbInforCus.Text = $"Khách hàng: {customer.FullName}\nSĐT: {customer.PhoneNumber}"; // Hiển thị thông tin khách hàng
+            //    }
+            //    else
+            //    {
+            //        lbInforCus.Text = "Không tìm thấy thông tin khách hàng."; // Nếu không tìm thấy thông tin, hiển thị thông báo lỗi
+            //    }
+            //}
 
-            flpDetails.Controls.Clear(); 
+
+            flpDetails.Controls.Clear();
 
             List<OrderDetails> details = orderDetailsBL.GetOrderDetails(orderID);
 
@@ -100,7 +203,7 @@ namespace PresentationLayer.UserControls
                 Width = (int)(headerPanel.Width * 0.45) - 50
             };
 
-            
+
             Label lbQuantityHeader = new Label()
             {
                 Text = "Số lượng",
@@ -194,10 +297,81 @@ namespace PresentationLayer.UserControls
             int totalCost = billBL.GetTotalCost(orderID);
             lbTotalCost.Text = $"Tổng cộng: {totalCost:#,##0} đ";
         }
+        
 
         private void btnBack_Click(object sender, EventArgs e)
         {
             OnBackClick?.Invoke();
         }
+        //==
+
+        private void btnCancle_Click(object sender, EventArgs e)
+        {
+            var confirm = MessageBox.Show("Bạn có chắc muốn hủy đơn hàng?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirm == DialogResult.Yes)
+            {
+                bool result = OrderBL.OrderStatus(orderID, "Đã hủy");
+
+                if (result)
+                {
+                    MessageBox.Show("Hủy đơn hàng thành công.", "Thông báo");
+
+                    // Cập nhật lại trạng thái mới
+                    string status = OrderBL.GetOrderStatus(orderID);
+                    lbStatus.Text = $"Trạng thái đơn hàng: {status}";
+
+                    // Ẩn và khóa các nút không cần thiết
+                    btnDone.Visible = false;
+                    btnCancel.Enabled = false;
+
+                    // Gọi về UC trước đó để reload lại dữ liệu
+                    OnBackClick?.Invoke();
+
+                }
+                else
+                {
+                    MessageBox.Show("Hủy đơn hàng thất bại.", "Lỗi");
+                }
+            }
+        }
+
+        private void btnhoanthanh_Click(object sender, EventArgs e)
+        {
+            var confirm = MessageBox.Show("Bạn có chắc muốn hoàn thành đơn hàng?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirm == DialogResult.Yes)
+            {
+                bool result = OrderBL.OrderStatus(orderID, "Đã hoàn thành");
+
+
+
+                if (result)
+                {
+                    MessageBox.Show("Hoàn thành đơn hàng thành công.", "Thông báo");
+
+                    // Cập nhật trạng thái mới
+                    string status = OrderBL.GetOrderStatus(orderID);
+
+
+                    lbStatus.Text = $"Trạng thái đơn hàng: {status}";
+
+                    // Ẩn nút btnhoanthanh và khóa btnCancel
+                    btnDone.Visible = false;
+                    btnCancel.Enabled = false;
+
+                    // Gọi về UC trước đó để reload lại dữ liệu
+                    OnBackClick?.Invoke();
+                }
+                else
+                {
+                    MessageBox.Show("Hoàn thành đơn hàng thất bại.", "Lỗi");
+                }
+
+
+            }
+        }
     }
 }
+
+   
