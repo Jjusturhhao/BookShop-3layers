@@ -16,56 +16,18 @@ using System.IO;
 using static System.Net.Mime.MediaTypeNames;
 using System.Windows.Forms;
 
+
 namespace DataLayer
 {
     public class BookDL : DataProvider
     {
-        public List<Book> GetBooks()
-        {
-            List<Book> books = new List<Book>();
-            string sql = "SELECT b.BookID, b.BookName, c.CategoryName, b.Author, b.Price, b.BookImage " +
-             "FROM Book b " +
-             "JOIN BookCategory c ON b.CategoryID = c.CategoryID " +
-             "ORDER BY CAST(SUBSTRING(b.BookID, 5, LEN(b.BookID)) AS INT)";
-
-            try
-            {
-                Connect();
-                SqlDataReader reader = MyExecuteReader(sql, CommandType.Text);
-                {
-                    while (reader.Read())
-                    {
-                        string bookid = reader["BookID"].ToString();
-                        string bookName = reader["BookName"].ToString();
-                        string categoryID = reader["CategoryName"].ToString();
-                        string author = reader["Author"].ToString();
-                        int price = Convert.ToInt32(reader["Price"]);
-                        string bookiamge = reader["BookImage"].ToString();
-                       // string imagePath = Path.Combine(Application.StartupPath, "BookImage", bookImage);
-                        Book book = new Book(bookid, bookName, categoryID, author, price, bookiamge);
-                        books.Add(book);
-                    }
-                }
-                reader.Close();
-                return books;
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                DisConnect();
-            }
-        }
-
         //public List<Book> GetBooks()
         //{
         //    List<Book> books = new List<Book>();
         //    string sql = "SELECT b.BookID, b.BookName, c.CategoryName, b.Author, b.Price, b.BookImage " +
-        //                 "FROM Book b " +
-        //                 "JOIN BookCategory c ON b.CategoryID = c.CategoryID " +
-        //                 "ORDER BY CAST(SUBSTRING(b.BookID, 5, LEN(b.BookID)) AS INT)";
+        //     "FROM Book b " +
+        //     "JOIN BookCategory c ON b.CategoryID = c.CategoryID " +
+        //     "ORDER BY CAST(SUBSTRING(b.BookID, 5, LEN(b.BookID)) AS INT)";
 
         //    try
         //    {
@@ -79,32 +41,9 @@ namespace DataLayer
         //                string categoryID = reader["CategoryName"].ToString();
         //                string author = reader["Author"].ToString();
         //                int price = Convert.ToInt32(reader["Price"]);
-        //                string bookImage = reader["BookImage"].ToString(); // Tên tệp hình ảnh từ cơ sở dữ liệu
-
-        //                // Tạo đường dẫn đầy đủ đến thư mục lưu trữ hình ảnh
-        //                string imagePath = Path.Combine(Application.StartupPath, "BookImage", bookImage);
-
-        //                // Kiểm tra sự tồn tại của tệp hình ảnh và hiển thị nó
-        //                try
-        //                {
-        //                    // Tạo đối tượng Book và thêm vào danh sách
-        //                    Book book = new Book(bookid, bookName, categoryID, author, price, bookImage);
-
-        //                    // Nếu tệp hình ảnh tồn tại, hiển thị hình ảnh
-        //                    if (File.Exists(imagePath))
-        //                    {
-        //                        pictureBox.Image = Image.FromFile(imagePath);  // Hiển thị hình ảnh
-        //                    }
-        //                    else
-        //                    {
-        //                        pictureBox.Image = Properties.Resources.bookdefault;  // Hình ảnh mặc định nếu không tìm thấy
-        //                    }
-        //                }
-        //                catch
-        //                {
-        //                    pictureBox.Image = Properties.Resources.bookdefault;  // Nếu có lỗi, hiển thị hình ảnh mặc định
-        //                }
-
+        //                string bookiamge = reader["BookImage"].ToString();
+        //               // string imagePath = Path.Combine(Application.StartupPath, "BookImage", bookImage);
+        //                Book book = new Book(bookid, bookName, categoryID, author, price, bookiamge);
         //                books.Add(book);
         //            }
         //        }
@@ -121,6 +60,56 @@ namespace DataLayer
         //    }
         //}
 
+        public List<Book> GetBooks()
+        {
+            List<Book> books = new List<Book>();
+            string sql = "SELECT b.BookID, b.BookName, c.CategoryName, b.Author, b.Price, b.BookImage " +
+                         "FROM Book b " +
+                         "JOIN BookCategory c ON b.CategoryID = c.CategoryID " +
+                         "ORDER BY CAST(SUBSTRING(b.BookID, 5, LEN(b.BookID)) AS INT)";
+
+            try
+            {
+                Connect();
+                SqlDataReader reader = MyExecuteReader(sql, CommandType.Text);
+
+                while (reader.Read())
+                {
+                    string bookid = reader["BookID"].ToString();
+                    string bookName = reader["BookName"].ToString();
+                    string categoryID = reader["CategoryName"].ToString();
+                    string author = reader["Author"].ToString();
+                    int price = Convert.ToInt32(reader["Price"]);
+                    string bookImage = reader["BookImage"].ToString();  // Lấy tên hình ảnh từ cơ sở dữ liệu
+
+                    // Tạo đường dẫn hình ảnh trong thư mục bin/Debug/BookImage
+                    string imagePath = Path.Combine(System.Windows.Forms.Application.StartupPath, "BookImage", bookImage);
+
+
+                    // Kiểm tra nếu hình ảnh tồn tại, nếu không, sử dụng hình ảnh mặc định
+                    if (!File.Exists(imagePath))
+                    {
+                        imagePath = Path.Combine(System.Windows.Forms.Application.StartupPath, "BookImage", "bookdefault.jpg"); // Sử dụng hình ảnh mặc định từ thư mục
+                    }
+
+
+                    // Tạo đối tượng Book với đường dẫn hình ảnh
+                    Book book = new Book(bookid, bookName, categoryID, author, price, imagePath);
+                    books.Add(book);
+                }
+
+                reader.Close();
+                return books;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+        }
         public string GenerateNextBookID()
         {
             List<Book> books = GetBooks();
@@ -143,10 +132,20 @@ namespace DataLayer
             return $"BOOK{nextID:D1}";
         }
 
+        //public Book Reset()
+        //{
+
+        //    return new Book("", "", "", "", 0, defaultImage);
+        //}
         public Book Reset()
         {
-            return new Book("", "", "", "", 0, null);
+            
+            string defaultImagePath = "bookdefault.png"; // Đảm bảo đường dẫn chính xác đến hình ảnh mặc định
+
+          
+            return new Book("", "", "", "", 0, defaultImagePath);
         }
+
         public List<BookCategoryStock> bookCategoryStocks()
         {
             string CategoryID, Categoryname;
@@ -178,11 +177,8 @@ namespace DataLayer
 
         public int Add(Book book)
         {
-            //string sql = "INSERT INTO Book (BookID, CategoryID, BookName, Author, Price, Bookimage) " +
-            // "VALUES(N'" + book.Bookid + "', N'" + book.Categoryid + "', N'" + book.Bookname + "', N'" + book.Author + "', " + book.Price + ", '" + book.Bookimage + "')";
-            string sql = "INSERT INTO Book (BookID, CategoryID, BookName, Author, Price) " +
-              "VALUES (N'" + book.Bookid + "', N'" + book.Categoryid + "', N'" + book.Bookname + "', N'" + book.Author + "', " + book.Price + ")";
-
+            string sql = "INSERT INTO Book (BookID, CategoryID, BookName, Author, Price, Bookimage) " +
+                         "VALUES (N'" + book.Bookid + "', N'" + book.Categoryid + "', N'" + book.Bookname + "', N'" + book.Author + "', " + book.Price + ", N'" + book.Bookimage + "')";
 
             try
             {
@@ -197,6 +193,7 @@ namespace DataLayer
                 DisConnect();
             }
         }
+
 
         public int Delete(Book book)
         {

@@ -30,8 +30,6 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtAuthor = new System.Windows.Forms.TextBox();
             this.lbAuthor = new System.Windows.Forms.Label();
             this.cbxCategory = new System.Windows.Forms.ComboBox();
@@ -54,13 +52,13 @@
             this.picBook = new Guna.UI2.WinForms.Guna2PictureBox();
             this.dgvBook = new System.Windows.Forms.DataGridView();
             this.BookID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Categoryname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BookName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CategoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Author = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BookImage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -313,13 +311,14 @@
             // btnUpload
             // 
             this.btnUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpload.Location = new System.Drawing.Point(374, 221);
+            this.btnUpload.Location = new System.Drawing.Point(375, 234);
             this.btnUpload.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(171, 52);
+            this.btnUpload.Size = new System.Drawing.Size(157, 44);
             this.btnUpload.TabIndex = 43;
             this.btnUpload.Text = "Tải ảnh";
             this.btnUpload.UseVisualStyleBackColor = true;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click_1);
             // 
             // picBook
             // 
@@ -327,13 +326,14 @@
             this.picBook.Location = new System.Drawing.Point(296, 2);
             this.picBook.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.picBook.Name = "picBook";
-            this.picBook.Size = new System.Drawing.Size(322, 271);
+            this.picBook.Size = new System.Drawing.Size(305, 215);
             this.picBook.TabIndex = 42;
             this.picBook.TabStop = false;
             // 
             // dgvBook
             // 
-            this.dgvBook.AllowUserToOrderColumns = true;
+            this.dgvBook.AllowUserToAddRows = false;
+            this.dgvBook.AllowUserToDeleteRows = false;
             this.dgvBook.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -351,14 +351,14 @@
             this.dgvBook.ColumnHeadersHeight = 29;
             this.dgvBook.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.BookID,
-            this.Categoryname,
             this.BookName,
             this.CategoryID,
             this.Author,
+            this.Column1,
+            this.Column2,
             this.Price,
-            this.BookImage,
-            this.Quantity});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.BookImage});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -370,40 +370,22 @@
             this.dgvBook.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvBook.Name = "dgvBook";
             this.dgvBook.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBook.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvBook.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBook.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvBook.RowTemplate.Height = 24;
-            this.dgvBook.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dgvBook.Size = new System.Drawing.Size(1058, 841);
             this.dgvBook.TabIndex = 3;
             this.dgvBook.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBook_CellClick);
             this.dgvBook.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBook_CellContentClick);
+            this.dgvBook.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvBook_CellFormatting);
+            this.dgvBook.SelectionChanged += new System.EventHandler(this.dgvBook_SelectionChanged);
             // 
             // BookID
             // 
-            this.BookID.DataPropertyName = "Bookid";
+            this.BookID.DataPropertyName = "bookid";
             this.BookID.HeaderText = "Mã Sách";
             this.BookID.MinimumWidth = 8;
             this.BookID.Name = "BookID";
             this.BookID.ReadOnly = true;
-            // 
-            // Categoryname
-            // 
-            this.Categoryname.DataPropertyName = "Categoryname";
-            this.Categoryname.HeaderText = "Column1";
-            this.Categoryname.MinimumWidth = 8;
-            this.Categoryname.Name = "Categoryname";
-            this.Categoryname.ReadOnly = true;
-            this.Categoryname.Visible = false;
             // 
             // BookName
             // 
@@ -416,11 +398,10 @@
             // CategoryID
             // 
             this.CategoryID.DataPropertyName = "Categoryid";
-            this.CategoryID.HeaderText = "Thể Loại";
+            this.CategoryID.HeaderText = "Thể loại";
             this.CategoryID.MinimumWidth = 8;
             this.CategoryID.Name = "CategoryID";
             this.CategoryID.ReadOnly = true;
-            this.CategoryID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // Author
             // 
@@ -429,6 +410,24 @@
             this.Author.MinimumWidth = 8;
             this.Author.Name = "Author";
             this.Author.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "Categoryname";
+            this.Column1.HeaderText = "Column1";
+            this.Column1.MinimumWidth = 8;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Visible = false;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "Quantity";
+            this.Column2.HeaderText = "Column2";
+            this.Column2.MinimumWidth = 8;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Visible = false;
             // 
             // Price
             // 
@@ -440,21 +439,12 @@
             // 
             // BookImage
             // 
-            this.BookImage.DataPropertyName = "BookImage";
-            this.BookImage.HeaderText = "Hình Ảnh";
+            this.BookImage.DataPropertyName = "Bookimage";
+            this.BookImage.HeaderText = "Bookimage";
             this.BookImage.MinimumWidth = 8;
             this.BookImage.Name = "BookImage";
             this.BookImage.ReadOnly = true;
-            this.BookImage.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Quantity
-            // 
-            this.Quantity.DataPropertyName = "Quantity";
-            this.Quantity.HeaderText = "Column1";
-            this.Quantity.MinimumWidth = 8;
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
-            this.Quantity.Visible = false;
+            this.BookImage.Visible = false;
             // 
             // panel3
             // 
@@ -601,12 +591,12 @@
         private System.Windows.Forms.Label lbPrice;
         private System.Windows.Forms.Button btnAddCategory;
         private System.Windows.Forms.DataGridViewTextBoxColumn BookID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Categoryname;
         private System.Windows.Forms.DataGridViewTextBoxColumn BookName;
         private System.Windows.Forms.DataGridViewTextBoxColumn CategoryID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Author;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn BookImage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
     }
 }

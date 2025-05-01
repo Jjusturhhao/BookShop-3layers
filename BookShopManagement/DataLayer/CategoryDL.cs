@@ -74,7 +74,6 @@ namespace DataLayer
             return result;
         }
 
-        // Tìm kiếm danh mục theo tên
         public List<BookCategoryStock> Search(string keyword)
         {
             List<BookCategoryStock> list = new List<BookCategoryStock>();
@@ -83,23 +82,32 @@ namespace DataLayer
                 return list;
 
             string sanitizedKeyword = keyword.Trim().ToLower();
+            string keywordForName = "%" + string.Join("%", sanitizedKeyword.Split(' ')) + "%";
 
             string sql;
             SqlCommand cmd;
 
             Connect();
 
-            if (sanitizedKeyword.Length <= 3) // Tức là chỉ nhập "cat" → tìm tất cả bắt đầu bằng cat
+            if (sanitizedKeyword.Length <= 3)
             {
-                sql = "SELECT * FROM BookCategory WHERE LOWER(CategoryID) LIKE @kw";
+                sql = @"
+                SELECT * FROM BookCategory 
+                WHERE LOWER(CategoryID) LIKE @kw 
+                OR CategoryName COLLATE Vietnamese_CI_AI LIKE @kwName";
                 cmd = new SqlCommand(sql, cn);
                 cmd.Parameters.AddWithValue("@kw", sanitizedKeyword + "%");
+                cmd.Parameters.AddWithValue("@kwName", keywordForName);
             }
-            else // Nhập "cat1", "cat10", "cat2", v.v... → chỉ tìm chính xác
+            else
             {
-                sql = "SELECT * FROM BookCategory WHERE LOWER(CategoryID) = @kw";
+                sql = @"
+                SELECT * FROM BookCategory 
+                WHERE LOWER(CategoryID) = @kw 
+                OR CategoryName COLLATE Vietnamese_CI_AI LIKE @kwName";
                 cmd = new SqlCommand(sql, cn);
                 cmd.Parameters.AddWithValue("@kw", sanitizedKeyword);
+                cmd.Parameters.AddWithValue("@kwName", keywordForName);
             }
 
             SqlDataReader reader = cmd.ExecuteReader();
@@ -109,10 +117,12 @@ namespace DataLayer
                 string categoryName = reader["CategoryName"].ToString();
                 list.Add(new BookCategoryStock(categoryID, categoryName));
             }
+
             reader.Close();
             DisConnect();
             return list;
         }
+
         public string GenerateNewCategoryID()
         {
             string sql = "SELECT CategoryID FROM BookCategory";

@@ -14,6 +14,7 @@ using BusinessLayer;
 using TransferObject;
 using PresentationLayer;
 using System.CodeDom.Compiler;
+using System.Drawing.Imaging;
 
 
 namespace PresentationLayer.UserControls
@@ -60,16 +61,22 @@ namespace PresentationLayer.UserControls
             {
                 LoadCategoriesToComboBox(); // Tải lại ComboBox khi form được mở lại
                 dgvBook.DataSource = bookBL.GetBooks(); // Cập nhật DataGridView
+                //LoadBooksToDataGridView();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-         
+
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             Book emptyBook = bookBL.ResetBook();
+
+            
+                picBook.Image = Properties.Resources.bookdefault; // Đặt hình mặc định nếu không có hình
+            
+            picBook.SizeMode = PictureBoxSizeMode.Zoom;
             LoadCategoriesToComboBox();
             txtBookID.Text = bookBL.GenerateNextBookID(); // ID mới
             txtBookID.ReadOnly = true;
@@ -79,24 +86,25 @@ namespace PresentationLayer.UserControls
             txtAuthor.Text = emptyBook.Author;
 
             txtPrice.Text = emptyBook.Price.ToString();
-            picBook.Image = null;
+            
 
             txtBookName.Focus();
-            LoadBooksToDataGridView();
+            dgvBook.DataSource = bookBL.GetBooks(); // load lại danh sách
+
 
         }
-        private void LoadBooksToDataGridView()
-        {
-            dgvBook.DataSource = bookBL.GetBooks(); // lấy danh sách từ DB
-        }
+       
         private void btnEntryBook_Click(object sender, EventArgs e)
         {
+           
             string BookID = txtBookID.Text.Trim();
             string BookName = txtBookName.Text.Trim();
             string CategoryID = cbxCategory.SelectedValue?.ToString();
-
             string Author = txtAuthor.Text.Trim();
-            string Bookimage = picBook.ImageLocation ?? ""; // lấy đường dẫn ảnh
+
+            // Lưu tên file hoặc đường dẫn hình ảnh từ PictureBox
+            string Bookimage = picBook.Tag?.ToString() ?? ""; // Nếu không có hình ảnh, sử dụng hình mặc định
+            
 
             if (string.IsNullOrEmpty(BookID) || string.IsNullOrEmpty(BookName) || string.IsNullOrEmpty(CategoryID) || string.IsNullOrEmpty(Author))
             {
@@ -110,19 +118,30 @@ namespace PresentationLayer.UserControls
                 return;
             }
 
+            // Tạo đối tượng Book mới
             Book book = new Book(BookID, BookName, CategoryID, Author, price, Bookimage);
 
             try
             {
-                bookBL.Add(book); // gọi phương thức thêm từ BusinessLayer
+                // Gọi phương thức Add để thêm sách vào cơ sở dữ liệu
+                bookBL.Add(book);
                 MessageBox.Show("Đã thêm sách thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dgvBook.DataSource = bookBL.GetBooks(); // load lại danh sách
+
+                // Cập nhật lại danh sách sách
+                dgvBook.DataSource = bookBL.GetBooks();
+
                 LoadCategoriesToComboBox(); // Tải lại danh mục
-                btnRefresh.PerformClick(); // reset form
+                
+
+                // Reset form để chuẩn bị thêm sách mới
+                btnRefresh.PerformClick();
+
+
             }
             catch (SqlException ex)
             {
-                if (ex.Number == 2627) // Lỗi trùng khóa chính (BookID)
+                // Xử lý lỗi SQL: Lỗi trùng mã sách
+                if (ex.Number == 2627)
                 {
                     MessageBox.Show("Mã sách đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -132,21 +151,8 @@ namespace PresentationLayer.UserControls
                 }
             }
         }
-        
-        
-        
-       
-        private void btnUpload_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "Chọn Ảnh";
-            openFileDialog.Filter = "Image Files(*.gif;*.jpg;*.jpeg;*.bmp;*.wmf;*.png)|*.gif;*.jpg;*.jpeg;*.bmp;*.wmf;png";
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                picBook.ImageLocation = openFileDialog.FileName;
-            }
-        }
 
+        
         private void btnDeleteBook_Click_1(object sender, EventArgs e)
         {
             string BookID, BookName, CategoryID, Author;
@@ -192,7 +198,9 @@ namespace PresentationLayer.UserControls
             Categoryid = cbxCategory.SelectedValue?.ToString();
             Author = txtAuthor.Text;
             price = Convert.ToInt32(txtPrice.Text);
-            Bookimage = btnUpload.Text;
+            Bookimage = picBook.Tag?.ToString() ?? "";
+
+
             Book book = new Book(Bookid, Bookname, Categoryid, Author, price, Bookimage);
             try
             {
@@ -209,7 +217,7 @@ namespace PresentationLayer.UserControls
 
         private void dgvBook_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
         }
 
         private void btnSearch_Click_1(object sender, EventArgs e)
@@ -228,16 +236,79 @@ namespace PresentationLayer.UserControls
 
         private void dgvBook_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+           
             if (e.RowIndex >= 0) // Đảm bảo không bấm vào tiêu đề cột
             {
-                DataGridViewRow row = dgvBook.Rows[e.RowIndex];
-                txtBookID.Text = row.Cells["BookID"].Value?.ToString();
-                txtBookName.Text = row.Cells["BookName"].Value?.ToString();
-                //cbxCategory.SelectedValue = row.Cells["CategoryID"].Value?.ToString();
-                cbxCategory.Text = row.Cells["CategoryID"].Value?.ToString();
-                txtAuthor.Text = row.Cells["Author"].Value?.ToString();
-                txtPrice.Text = row.Cells["Price"].Value?.ToString();
+                // Kiểm tra nếu dòng có dữ liệu (không phải là dòng trống)
+                if (dgvBook.Rows.Count > e.RowIndex && dgvBook.Rows[e.RowIndex].Cells["BookID"].Value != null)
+                {
+                    DataGridViewRow row = dgvBook.Rows[e.RowIndex];
+                    txtBookID.Text = row.Cells["BookID"].Value?.ToString();
+                    txtBookName.Text = row.Cells["BookName"].Value?.ToString();
+                    cbxCategory.Text = row.Cells["CategoryID"].Value?.ToString();
+                    txtAuthor.Text = row.Cells["Author"].Value?.ToString();
+                    txtPrice.Text = row.Cells["Price"].Value?.ToString();
+                    
+                    if (row.Cells["BookImage"] != null && row.Cells["BookImage"].Value != null)
+                    {
+                        string imagePath = row.Cells["BookImage"].Value.ToString();
+                        if (!string.IsNullOrEmpty(imagePath) && File.Exists(imagePath))
+                        {
+                            picBook.ImageLocation = imagePath;
+                        }
+                        else
+                        {
+                            picBook.Image = Properties.Resources.bookdefault; // hoặc null nếu muốn xóa hình
+                        }
+                        picBook.SizeMode = PictureBoxSizeMode.Zoom;
+
+                    }
+
+                }
+            }
+        }
+
+        
+        private void dgvBook_SelectionChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUpload_Click_1(object sender, EventArgs e)
+        {
+
+            //OpenFileDialog openFileDialog = new OpenFileDialog();
+            //openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;";
+            //if (openFileDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    // Gán đường dẫn hình ảnh vào Tag và hiển thị hình ảnh
+            //    picBook.Tag = openFileDialog.FileName;
+            //    picBook.Image = Image.FromFile(picBook.Tag.ToString());
+            //}
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                picBook.Image = Image.FromFile(openFileDialog.FileName);
+                picBook.Tag = openFileDialog.FileName;  // Lưu đường dẫn hình vào Tag
+            }
+        }
+        private void dgvBook_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvBook.Columns[e.ColumnIndex].Name == "BookImage" && e.Value != null)
+            {
+                string imagePath = e.Value.ToString(); // Đường dẫn hoặc tên file hình ảnh
+                if (File.Exists(imagePath)) // Kiểm tra xem file có tồn tại không
+                {
+                    e.Value = Image.FromFile(imagePath); // Chuyển đổi thành Image
+                }
+                else
+                {
+                    e.Value = Image.FromFile("default_image.jpg"); // Hiển thị hình mặc định nếu không có hình ảnh
+                }
             }
         }
     }
-}
+    }
+
+
