@@ -34,8 +34,9 @@ namespace PresentationLayer.UserControls
         {
             LoadOrders();
             LoadEmployeeNamesToComboBox();
-            LoadStatusToComboBox();
             SetPlaceholder();
+            // Set danh sách trạng thái cố định
+            cbxStatus.DataSource = new List<string> { "Chờ xác nhận", "Đang vận chuyển" };
             cbxStatus.SelectedIndex = -1; // Không chọn gì khi khởi động
         }
 
@@ -56,11 +57,11 @@ namespace PresentationLayer.UserControls
             cbxEmployeeName.DataSource = employeeNames;
         }
 
-        public void LoadStatusToComboBox()
-        {
-            List<string> status = orderBL.GetOrderStatus();  // Sử dụng orderBL đã khởi tạo sẵn
-            cbxStatus.DataSource = status;
-        }
+        //public void LoadStatusToComboBox()
+        //{
+        //    List<string> status = orderBL.GetOrderStatus();  // Sử dụng orderBL đã khởi tạo sẵn
+        //    cbxStatus.DataSource = status;
+        //}
 
         private void ResetFormControls()
         {

@@ -165,39 +165,6 @@ namespace DataLayer
             }
         }
 
-        // Lấy danh sách trạng thái đơn hàng
-        public List<string> GetOrderStatus()
-        {
-            List<string> statuses = new List<string>();
-
-            try
-            {
-                // Kết nối với cơ sở dữ liệu
-                Connect();
-                string query = "SELECT DISTINCT Status FROM Orders WHERE Status IN (N'Chờ xác nhận', N'Đang vận chuyển')";  // Truy vấn trạng thái duy nhất
-
-                using (SqlCommand cmd = new SqlCommand(query, cn))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            statuses.Add(reader.GetString(0));  // Thêm trạng thái vào danh sách
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Lỗi khi lấy danh sách trạng thái đơn hàng: " + ex.Message, ex);
-            }
-            finally
-            {
-                DisConnect();
-            }
-            return statuses;
-        }
-
         //==
         public bool OrderStatus(string orderID, string newStatus)
         {

@@ -72,18 +72,6 @@ namespace BusinessLayer
             }
         }
 
-        public List<string> GetOrderStatus()
-        {
-            try
-            {
-                return OrderDL.GetOrderStatus();
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-        }
-
         //==
         public bool OrderStatus(string orderID, string newStatus)
         {
@@ -95,7 +83,5 @@ namespace BusinessLayer
             return OrderDL.GetOrderStatus(orderID);
         }
         //==
-
-
     }
 }
