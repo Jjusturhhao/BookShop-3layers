@@ -193,7 +193,6 @@ namespace PresentationLayer
             {
                 ShowOrderDetail(orderID, phone);
             };
-
         }
 
         private void SetupAccountDropdown()
@@ -217,7 +216,7 @@ namespace PresentationLayer
                 if (result == DialogResult.Yes)
                 {
                     this.Hide();
-                    new Login().Show(); // hoặc Application.Restart();
+                    Application.Restart() ; 
                 }
             };
 
@@ -309,7 +308,5 @@ namespace PresentationLayer
                 ucCusOrders.BringToFront();
             };
         }
-
-        
     }
 }

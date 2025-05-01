@@ -86,7 +86,7 @@ namespace PresentationLayer
                 if (result == DialogResult.Yes)
                 {
                     this.Hide();
-                    new Login().Show();
+                    Application.Restart();
                 }
             };
 
@@ -116,6 +116,5 @@ namespace PresentationLayer
                 HandleOrderButtonClick();
             };
         }
-
     }
 }

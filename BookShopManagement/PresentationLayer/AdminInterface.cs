@@ -46,8 +46,7 @@ namespace PresentationLayer
             if (result == DialogResult.Yes)
             {
                 this.Hide();
-                Login loginForm = new Login();
-                loginForm.Show();
+                Application.Restart();
             }
         }
 
