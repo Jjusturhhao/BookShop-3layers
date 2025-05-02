@@ -49,7 +49,7 @@ namespace PresentationLayer.UserControls
         private void LoadForm()
         {
             info = infoBL.GetUserInfo(username);
-            txtName.Text = username;
+            txtName.Text = info.Name;
             txtAddress.Text = info.Address;
             txtNumber.Text = info.Phone;
             txtEmail.Text = info.Email;
