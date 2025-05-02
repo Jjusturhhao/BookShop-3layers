@@ -139,13 +139,18 @@ namespace DataLayer
         public int Add(Stock stock)
         {
             string sql = "INSERT INTO Stock (BookID, SupplierID, CategoryID, BookName, ImportDate, Quantity) " +
-             "VALUES ('" + stock.BookID + "', '" + stock.SupplierID + "', '" + stock.CategoryID + "', N'" +
-             stock.BookName.Replace("'", "''") + "', '" + stock.ImportDate.ToString("yyyy-MM-dd") + "', " + stock.Quantity + ")";
-
-
+                         "VALUES (@BookID, @SupplierID, @CategoryID, @BookName, @ImportDate, @Quantity)";
             try
             {
-                return MyExecuteNonQuery(sql, CommandType.Text);
+                SqlCommand cmd = new SqlCommand(sql);
+                cmd.Parameters.AddWithValue("@BookID", stock.BookID);
+                cmd.Parameters.AddWithValue("@SupplierID", stock.SupplierID);
+                cmd.Parameters.AddWithValue("@CategoryID", stock.CategoryID);
+                cmd.Parameters.AddWithValue("@BookName", stock.BookName);
+                cmd.Parameters.AddWithValue("@ImportDate", stock.ImportDate);
+                cmd.Parameters.AddWithValue("@Quantity", stock.Quantity);
+
+                return MyExecuteNonQuery(cmd);
             }
             catch (Exception ex)
             {
@@ -487,4 +492,3 @@ namespace DataLayer
         }
     }
 }
-

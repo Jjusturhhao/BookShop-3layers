@@ -1,75 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TransferObject;
-using System.Data.SqlClient;
-using System.Data;
 using DataLayer;
-using System.Linq.Expressions;
+
 namespace BusinessLayer
 {
     public class BookBL
     {
-        private BookDL bookDL;
-        public BookBL()
-        {
-            bookDL = new BookDL();
-        }
+        BookDL bookDL = new BookDL();
+
         public List<Book> GetBooks()
         {
-            try
-            {
-                return bookDL.GetBooks();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-        }
-        public string GenerateNextBookID()
-        {
-            return bookDL.GenerateNextBookID();
-        }
-
-        public List<BookCategoryStock> GetBookCategories()
-        {
-            try
-            {
-                return bookDL.bookCategoryStocks();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-        }
-        public int Add(Book book)
-        {
-            return bookDL.Add(book);
-        }
-        public int Delete(Book book)
-        {
-            if (bookDL.IsBookInOrder(book.Bookid))
-            {
-                throw new Exception("Không thể xóa sách vì nó đang có trong đơn hàng!");
-            }
-            return bookDL.Delete(book);
-        }
-        public int Update(Book book)
-        {
-            return bookDL.Update(book);
-        }
-        public List<Book> SearchBook(string keyword)
-        {
-            return bookDL.SearchBook(keyword);
-        }
-
-        public Book ResetBook()
-        {
-            return bookDL.Reset();
+            return bookDL.GetBooks();
         }
 
         public Book GetBookByID(string id)
@@ -77,11 +19,46 @@ namespace BusinessLayer
             return bookDL.GetBookByID(id);
         }
 
-        public bool IsBookInOrder(string bookID)
+        public int Add(Book book)
         {
-            return bookDL.IsBookInOrder(bookID);  // Call the method in BookDL
+            return bookDL.Add(book);
+        }
+
+        public int Update(Book book)
+        {
+            return bookDL.Update(book);
+        }
+
+
+        public string GenerateNextBookID()
+        {
+            return bookDL.GenerateNextBookID();
+        }
+
+      
+
+        public List<Book> SearchBook(string keyword)
+        {
+            return bookDL.SearchBook(keyword);
+        }
+
+        public void AddBookFromStock(Stock stock)
+        {
+            BookDL bookDL = new BookDL();
+            if (!bookDL.Exists(stock.BookID))
+            {
+                Book book = new Book()
+                {
+                    Bookid = stock.BookID,
+                    Bookname = stock.BookName,
+                    Categoryid = stock.CategoryID,
+                    Author = null,
+                    Price = 0,
+                    Bookimage = null,
+                    Note = null
+                };
+                bookDL.AddBookFromStock(book);
+            }
         }
     }
 }
-
-  

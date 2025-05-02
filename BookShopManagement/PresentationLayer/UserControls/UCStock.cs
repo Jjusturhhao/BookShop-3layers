@@ -68,7 +68,7 @@ namespace PresentationLayer.UserControls
         {
             txtBookName.ReadOnly = false;
             cbxCategory.Enabled = true;
-            dtpk.Enabled = true;
+            dtpkImportDate.Enabled = true;
             cbxSupplier.Enabled = true;
             txtQuantity.Enabled = true; 
             ResetForm();
@@ -85,7 +85,7 @@ namespace PresentationLayer.UserControls
 
             cbxCategory.SelectedIndex = -1;
             cbxSupplier.SelectedIndex = -1;
-            dtpk.Value = DateTime.Now;
+            dtpkImportDate.Value = DateTime.Now;
 
             txtSL.Visible = false;
             label2.Visible = false;
@@ -111,44 +111,21 @@ namespace PresentationLayer.UserControls
 
         private void btnAddBook_Click(object sender, EventArgs e)
         {
-            string bookID = txtBookID.Text;
-            string bookName = txtBookName.Text;
-            string supplierID = cbxSupplier.SelectedValue?.ToString();
-            string categoryID = cbxCategory.SelectedValue?.ToString();
-            DateTime importDate = dtpk.Value;
-
-            if (string.IsNullOrWhiteSpace(bookID) || string.IsNullOrWhiteSpace(bookName)
-                || string.IsNullOrWhiteSpace(supplierID) || string.IsNullOrWhiteSpace(categoryID))
-            {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin sách.", "Thiếu thông tin");
-                return;
-            }
-
-            if (!int.TryParse(txtQuantity.Text, out int quantity))
-            {
-                MessageBox.Show("Số lượng không hợp lệ.");
-                return;
-            }
-
-            int.TryParse(ruleBL.GetRuleValue("Nhập tối thiểu"), out int minQty);
-            if (quantity < minQty)
-            {
-                MessageBox.Show($"Số lượng nhập tối thiểu là {minQty}.");
-                return;
-            }
+            string bookID = txtBookID.Text.Trim();
+            string bookName = txtBookName.Text.Trim();
+            string categoryID = cbxCategory.SelectedValue.ToString();
+            string supplierID = cbxSupplier.SelectedValue.ToString();
+            int quantity = int.Parse(txtQuantity.Text);
+            DateTime importDate = dtpkImportDate.Value;
 
             Stock stock = new Stock(bookID, supplierID, categoryID, bookName, importDate, quantity);
-            try
-            {
-                stockBL.Add(stock);
-                addedStocks.Add(stock);
-                MessageBox.Show("Thêm sách thành công!");
-                ResetForm();
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Lỗi SQL: " + ex.Message);
-            }
+
+            StockBL stockBL = new StockBL();
+            stockBL.Add(stock);
+            addedStocks.Add(stock); // ← Thêm sách vừa nhập vào danh sách in phiếu
+
+            MessageBox.Show("Đã nhập sách vào kho và cập nhật danh mục sách.");
+            LoadStock();
         }
 
         private void btnUpdateBook_Click(object sender, EventArgs e)
@@ -204,36 +181,6 @@ namespace PresentationLayer.UserControls
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
-            }
-        }
-
-        private void btnDeleteBook_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string bookID = txtBookID.Text;
-                string supplierID = cbxSupplier.SelectedValue?.ToString();
-                string categoryID = cbxCategory.SelectedValue?.ToString();
-                string bookName = txtBookName.Text;
-                DateTime importDate = dtpk.Value;
-
-                int quantity;
-                if (!int.TryParse(txtQuantity.Text, out quantity))
-                {
-                    MessageBox.Show("Số lượng không hợp lệ.");
-                    return;
-                }
-
-                Stock stock = new Stock(bookID, supplierID, categoryID, bookName, importDate, quantity);
-                stockBL.Delete(stock);
-
-                MessageBox.Show("Xóa sách khỏi kho thành công.");
-                btnReset.PerformClick(); // hoặc gọi ResetForm() nếu em có hàm riêng
-                dgvStock.DataSource = stockBL.GetStocks(); // Load lại danh sách
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Lỗi SQL: " + ex.Message);
             }
         }
 

@@ -17,6 +17,9 @@ namespace TransferObject
         public int Price { get; set; }
         public string Bookimage { get; set; }
         public int Quantity { get; set; }
+        public string Note { get; set; }
+        public bool IsVisible { get; set; }
+
 
         public Book(string bookid, string bookname, string categoryid, string author, int price, string bookimage)
         {
@@ -26,6 +29,17 @@ namespace TransferObject
             Author = author;
             Price = price;
             Bookimage = bookimage;
+        }
+
+        public Book(string bookid, string bookname, string categoryid, string author, int price, string bookimage, string note)
+        {
+            Bookid = bookid;
+            Bookname = bookname;
+            Categoryid = categoryid;
+            Author = author;
+            Price = price;
+            Bookimage = bookimage;
+            Note = note;
         }
 
         public Book(string bookID, string bookName, int price, int quantity)
@@ -39,6 +53,9 @@ namespace TransferObject
         {
             Bookid = BookID;
         }
+
+        public Book()
+        { }
         
     }
 }

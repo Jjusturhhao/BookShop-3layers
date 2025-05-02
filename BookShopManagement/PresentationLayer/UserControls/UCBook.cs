@@ -47,14 +47,7 @@ namespace PresentationLayer.UserControls
                 MessageBox.Show("Lỗi khi load ComboBox: " + ex.Message);
             }
         }
-        private void btnAddCategory_Click(object sender, EventArgs e)
-        {
-            AddCategory addCategory = new AddCategory();
-            if (addCategory.ShowDialog() == DialogResult.OK)
-            {
-                LoadCategoriesToComboBox();
-            }
-        }
+     
         private void UCBook_Load(object sender, EventArgs e)
         {
             try
@@ -62,6 +55,10 @@ namespace PresentationLayer.UserControls
                 LoadCategoriesToComboBox(); // Tải lại ComboBox khi form được mở lại
                 dgvBook.DataSource = bookBL.GetBooks(); // Cập nhật DataGridView
                 //LoadBooksToDataGridView();
+                if (dgvBook.Columns.Contains("IsVisible"))
+                {
+                    dgvBook.Columns["IsVisible"].Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -69,146 +66,32 @@ namespace PresentationLayer.UserControls
             }
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            Book emptyBook = bookBL.ResetBook();
-
-
-            picBook.Image = Properties.Resources.bookdefault; // Đặt hình mặc định nếu không có hình
-
-            picBook.SizeMode = PictureBoxSizeMode.Zoom;
-            LoadCategoriesToComboBox();
-            txtBookID.Text = bookBL.GenerateNextBookID(); // ID mới
-            txtBookID.ReadOnly = true;
-
-            txtBookName.Text = emptyBook.Bookname;
-            cbxCategory.SelectedIndex = -1;
-            txtAuthor.Text = emptyBook.Author;
-
-            txtPrice.Text = emptyBook.Price.ToString();
-
-
-            txtBookName.Focus();
-            dgvBook.DataSource = bookBL.GetBooks(); // load lại danh sách
-        }
-
-        private void btnEntryBook_Click(object sender, EventArgs e)
-        {
-
-            string BookID = txtBookID.Text.Trim();
-            string BookName = txtBookName.Text.Trim();
-            string CategoryID = cbxCategory.SelectedValue?.ToString();
-            string Author = txtAuthor.Text.Trim();
-
-            // Lưu tên file hoặc đường dẫn hình ảnh từ PictureBox
-            string Bookimage = picBook.Tag?.ToString() ?? ""; // Nếu không có hình ảnh, sử dụng hình mặc định
-
-
-            if (string.IsNullOrEmpty(BookID) || string.IsNullOrEmpty(BookName) || string.IsNullOrEmpty(CategoryID) || string.IsNullOrEmpty(Author))
-            {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin sách.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (!int.TryParse(txtPrice.Text.Trim(), out int price))
-            {
-                MessageBox.Show("Giá sách không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Tạo đối tượng Book mới
-            Book book = new Book(BookID, BookName, CategoryID, Author, price, Bookimage);
-
-            try
-            {
-                // Gọi phương thức Add để thêm sách vào cơ sở dữ liệu
-                bookBL.Add(book);
-                MessageBox.Show("Đã thêm sách thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Cập nhật lại danh sách sách
-                dgvBook.DataSource = bookBL.GetBooks();
-
-                LoadCategoriesToComboBox(); // Tải lại danh mục
-
-
-                // Reset form để chuẩn bị thêm sách mới
-                btnRefresh.PerformClick();
-
-
-            }
-            catch (SqlException ex)
-            {
-                // Xử lý lỗi SQL: Lỗi trùng mã sách
-                if (ex.Number == 2627)
-                {
-                    MessageBox.Show("Mã sách đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    MessageBox.Show("Lỗi cơ sở dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void btnDeleteBook_Click_1(object sender, EventArgs e)
-        {
-            string BookID, BookName, CategoryID, Author;
-            int Price;
-
-            // Lấy giá trị từ các TextBox và ComboBox
-            BookID = txtBookID.Text;
-            CategoryID = cbxCategory.SelectedValue?.ToString();
-            BookName = txtBookName.Text;
-            Author = txtAuthor.Text;
-            Price = !int.TryParse(txtPrice.Text, out Price) ? 0 : Price;
-
-
-            // Nếu không có trong đơn hàng, tiến hành xóa sách trong kho và danh sách sách
-            Book book = new Book(BookID, BookName, CategoryID, Author, Price, string.Empty);  // Không cần BookImage khi xóa
-            try
-            {
-                // Xóa sách trong Stock
-                bookBL.Delete(book);
-
-                // Cập nhật lại DataGrid
-                LoadCategoriesToComboBox();  // Đảm bảo cập nhật ComboBox
-                dgvBook.DataSource = bookBL.GetBooks();
-                // Thông báo xóa thành công
-                MessageBox.Show("Đã xóa sách thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Reset form hoặc các điều khiển khác nếu cần
-                btnRefresh.PerformClick();
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Lỗi khi xóa sách: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void btnUpdateBook_Click(object sender, EventArgs e)
         {
-            string Bookid, Bookname, Categoryid, Author, Bookimage;
-            int price;
-            Bookid = txtBookID.Text;
-            Bookname = txtBookName.Text;
+            string Bookid = txtBookID.Text;
+            string Bookname = txtBookName.Text;
+            string Categoryid = cbxCategory.SelectedValue?.ToString();
+            string Author = txtAuthor.Text;
+            string Bookimage = picBook.Tag?.ToString() ?? "";
+            int price = Convert.ToInt32(txtPrice.Text);
 
-            Categoryid = cbxCategory.SelectedValue?.ToString();
-            Author = txtAuthor.Text;
-            price = Convert.ToInt32(txtPrice.Text);
-            Bookimage = picBook.Tag?.ToString() ?? "";
+            // ✅ Thêm dòng này để lấy trạng thái hiển thị
+            bool isVisible = ckbShowBook.Checked;
 
+            Book book = new Book(Bookid, Bookname, Categoryid, Author, price, Bookimage)
+            {
+                IsVisible = isVisible
+            };
 
-            Book book = new Book(Bookid, Bookname, Categoryid, Author, price, Bookimage);
             try
             {
                 bookBL.Update(book);
-                LoadCategoriesToComboBox();  // Đảm bảo cập nhật ComboBox
                 dgvBook.DataSource = bookBL.GetBooks();
-                btnRefresh.PerformClick();
+                MessageBox.Show("Cập nhật thành công!");
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Lỗi SQL: " + ex.Message);
             }
         }
 
@@ -240,6 +123,16 @@ namespace PresentationLayer.UserControls
                     cbxCategory.Text = row.Cells["CategoryID"].Value?.ToString();
                     txtAuthor.Text = row.Cells["Author"].Value?.ToString();
                     txtPrice.Text = row.Cells["Price"].Value?.ToString();
+                    // Hiển thị trạng thái checkbox nếu có cột IsVisible
+                    if (row.Cells["IsVisible"].Value != null && row.Cells["IsVisible"].Value != DBNull.Value)
+                    {
+                        bool isVisible = Convert.ToBoolean(row.Cells["IsVisible"].Value);
+                        ckbShowBook.Checked = isVisible;
+                    }
+                    else
+                    {
+                        ckbShowBook.Checked = false;
+                    }
 
                     if (row.Cells["BookImage"] != null && row.Cells["BookImage"].Value != null)
                     {
@@ -262,15 +155,6 @@ namespace PresentationLayer.UserControls
 
         private void btnUpload_Click_1(object sender, EventArgs e)
         {
-
-            //OpenFileDialog openFileDialog = new OpenFileDialog();
-            //openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;";
-            //if (openFileDialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    // Gán đường dẫn hình ảnh vào Tag và hiển thị hình ảnh
-            //    picBook.Tag = openFileDialog.FileName;
-            //    picBook.Image = Image.FromFile(picBook.Tag.ToString());
-            //}
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
             if (openFileDialog.ShowDialog() == DialogResult.OK)

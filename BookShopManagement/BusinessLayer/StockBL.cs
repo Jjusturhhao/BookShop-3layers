@@ -69,13 +69,18 @@ namespace BusinessLayer
         }
         public int Add(Stock stock)
         {
-            return stockDL.Add(stock);
+            // Thêm sách vào Book trước (nếu chưa tồn tại)
+            BookBL bookBL = new BookBL();
+            bookBL.AddBookFromStock(stock);
+
+            // Thêm sách vào bảng Stock
+            int result = stockDL.Add(stock);
+
+            
+
+            return result;
         }
 
-        public int Delete(Stock stock)
-        {
-            return stockDL.Delete(stock);
-        }
         public int Update(Stock stock)
         {
             return stockDL.Update(stock);
@@ -96,4 +101,3 @@ namespace BusinessLayer
         }
     }
 }
-

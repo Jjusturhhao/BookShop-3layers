@@ -2,27 +2,23 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net;
 using TransferObject;
 using System.Windows.Forms;
-using System.Diagnostics;
-using System.Data.SqlTypes;
 
 namespace DataLayer
 {
     public class CheckoutDL : DataProvider
     {
         private OrderDL orderDL;
-        
+
         public List<Book> GetBooks()
         {
             string sql = "SELECT b.BookID, b.BookName, b.Price, s.Quantity " +
-                "FROM Book b " +
-                "LEFT JOIN Stock s ON b.BookID = s.BookID " +
-                "ORDER BY CAST(SUBSTRING(b.BookID, 5, LEN(b.BookID)) AS INT)";
+                         "FROM Book b " +
+                         "LEFT JOIN Stock s ON b.BookID = s.BookID " +
+                         "WHERE b.IsVisible = 1 " +
+                         "ORDER BY CAST(SUBSTRING(b.BookID, 5, LEN(b.BookID)) AS INT)";
 
             List<Book> books = new List<Book>();
 
@@ -34,8 +30,8 @@ namespace DataLayer
                 {
                     string bookID = reader["BookID"].ToString();
                     string bookName = reader["BookName"].ToString();
-                    int price = Convert.ToInt32(reader["Price"]);
-                    int quantity = Convert.ToInt32(reader["Quantity"]);
+                    int price = reader["Price"] != DBNull.Value ? Convert.ToInt32(reader["Price"]) : 0;
+                    int quantity = reader["Quantity"] != DBNull.Value ? Convert.ToInt32(reader["Quantity"]) : 0;
 
                     Book book = new Book(bookID, bookName, price, quantity);
                     books.Add(book);
@@ -51,15 +47,15 @@ namespace DataLayer
             {
                 DisConnect();
             }
-
         }
+
         public List<Book> GetBooksByName(string kw)
         {
-            string sql = "SELECT b.BookID, b.BookName, b.Price, s.quantity " +
-                     "FROM Book b " +
-                     "LEFT JOIN Stock s ON b.BookID = s.BookID " + 
-                     "WHERE b.BookName LIKE @kw " +
-                     "ORDER BY CAST(SUBSTRING(b.BookID, 5, LEN(b.BookID)) AS INT)";
+            string sql = "SELECT b.BookID, b.BookName, b.Price, s.Quantity " +
+                         "FROM Book b " +
+                         "LEFT JOIN Stock s ON b.BookID = s.BookID " +
+                         "WHERE b.BookName LIKE @kw AND b.IsVisible = 1 " +
+                         "ORDER BY CAST(SUBSTRING(b.BookID, 5, LEN(b.BookID)) AS INT)";
 
             List<Book> booksByKw = new List<Book>();
 
@@ -74,8 +70,8 @@ namespace DataLayer
                 {
                     string bookID = reader["BookID"].ToString();
                     string bookName = reader["BookName"].ToString();
-                    int price = Convert.ToInt32(reader["Price"]);
-                    int quantity = Convert.ToInt32(reader["Quantity"]);
+                    int price = reader["Price"] != DBNull.Value ? Convert.ToInt32(reader["Price"]) : 0;
+                    int quantity = reader["Quantity"] != DBNull.Value ? Convert.ToInt32(reader["Quantity"]) : 0;
 
                     Book book = new Book(bookID, bookName, price, quantity);
                     booksByKw.Add(book);
@@ -92,13 +88,14 @@ namespace DataLayer
                 DisConnect();
             }
         }
+
         public List<Book> GetBooksByCategory(string category)
         {
-            string sql = "SELECT b.BookID, b.BookName, b.Price, s.quantity " +
-                     "FROM Book b " +
-                     "LEFT JOIN Stock s ON b.BookID = s.BookID " +
-                     "WHERE b.CategoryID = @category " +
-                     "ORDER BY CAST(SUBSTRING(b.BookID, 5, LEN(b.BookID)) AS INT)";
+            string sql = "SELECT b.BookID, b.BookName, b.Price, s.Quantity " +
+                         "FROM Book b " +
+                         "LEFT JOIN Stock s ON b.BookID = s.BookID " +
+                         "WHERE b.CategoryID = @category AND b.IsVisible = 1 " +
+                         "ORDER BY CAST(SUBSTRING(b.BookID, 5, LEN(b.BookID)) AS INT)";
 
             List<Book> booksByCate = new List<Book>();
 
@@ -113,8 +110,8 @@ namespace DataLayer
                 {
                     string bookID = reader["BookID"].ToString();
                     string bookName = reader["BookName"].ToString();
-                    int price = Convert.ToInt32(reader["Price"]);
-                    int quantity = Convert.ToInt32(reader["Quantity"]);
+                    int price = reader["Price"] != DBNull.Value ? Convert.ToInt32(reader["Price"]) : 0;
+                    int quantity = reader["Quantity"] != DBNull.Value ? Convert.ToInt32(reader["Quantity"]) : 0;
 
                     Book book = new Book(bookID, bookName, price, quantity);
                     booksByCate.Add(book);
@@ -131,13 +128,13 @@ namespace DataLayer
                 DisConnect();
             }
         }
+
         public List<CartItem> GetCartItemsFromDgv(DataGridView dgvDetails)
         {
             List<CartItem> cartItems = new List<CartItem>();
 
             foreach (DataGridViewRow row in dgvDetails.Rows)
             {
-                // Kiểm tra xem row có dữ liệu hợp lệ không
                 if (row.Cells["Tên sách"].Value != null && row.Cells["Số lượng"].Value != null && row.Cells["Đơn giá"].Value != null)
                 {
                     string bookID = row.Cells["Mã sách"].Value.ToString();
@@ -151,13 +148,14 @@ namespace DataLayer
             }
             return cartItems;
         }
+
         public List<BookCategoryStock> LoadCategories()
         {
             List<BookCategoryStock> categories = new List<BookCategoryStock>();
 
             try
             {
-                cn.Open();
+                Connect();
 
                 string sql = "SELECT * FROM BookCategory";
                 SqlDataReader reader = MyExecuteReader(sql, CommandType.Text);
@@ -180,23 +178,28 @@ namespace DataLayer
                 DisConnect();
             }
         }
+
         public int GetQuantity(string bookID)
         {
             try
             {
                 Connect();
 
-                string sql = "GetStockQuantity ";  // Tên của stored procedure
+                string sql = "GetStockQuantity";  // stored procedure
                 SqlCommand cmd = new SqlCommand(sql, cn);
-                cmd.CommandType = CommandType.StoredProcedure;  
-                cmd.Parameters.AddWithValue("@BookID", bookID);  
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@BookID", bookID);
 
                 object result = cmd.ExecuteScalar();
-                return Convert.ToInt32(result);  
+                return result != DBNull.Value ? Convert.ToInt32(result) : 0;
             }
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                DisConnect();
             }
         }
     }
