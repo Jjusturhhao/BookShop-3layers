@@ -62,7 +62,7 @@ go
 
 	INSERT INTO Suppliers VALUES('SUP1',N'AZ Việt Nam',N'Số 50 đường 5, TTF361 An Dương, P. Yên Phụ, Q. Tây Hồ, Tp. Hà Nội','bophanbanle@azbooks.vn','02437172838')
 	INSERT INTO Suppliers VALUES('SUP2',N'Phụ Nữ',N'39 P. Hàng Chuối, Phạm Đình Hổ, Hai Bà Trưng, Hà Nội','truyenthongvaprnxbpn@gmail.com','02439710717')
-	INSERT INTO Suppliers VALUES('SUP3',N'Penguin Boos',N'Colchester Road Frating Colchester, CO7 7DW','SN3@gmail.com','+44 1206 256000')
+	INSERT INTO Suppliers VALUES('SUP3',N'Penguin Books',N'Colchester Road Frating Colchester, CO7 7DW','SN3@gmail.com','+44 1206 256000')
 	INSERT INTO Suppliers VALUES('SUP4',N'Grantham Book Services',N'Trent Rd, Grantham NG31 7XQ, Vương quốc Anh','SN4@gmail.com','+44 1476 541000')
 	INSERT INTO Suppliers VALUES('SUP5',N'Nhã Nam',N'Số 59, Đỗ Quang, Trung Hoà, Cầu Giấy, Hà Nội.','info@nhanam.vn','02435146876')
 	INSERT INTO Suppliers VALUES('SUP6',N'Công ty cổ phần Sbooks',N'124 Đường số 2, KDC Vạn Phúc, P. Hiệp Bình Phước, TP. Thủ Đức, TP. Hồ Chí Minh','nhasachsbooks@gmail.com','0964234085')
