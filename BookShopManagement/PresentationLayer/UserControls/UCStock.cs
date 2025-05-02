@@ -269,7 +269,12 @@ namespace PresentationLayer.UserControls
 
         private void btnAddCategory_Click(object sender, EventArgs e)
         {
-
+            AddCategory addCategory = new AddCategory();
+            addCategory.FormClosed += (s, args) =>
+            {
+                LoadComboBoxes();
+            };
+            addCategory.ShowDialog();
         }
     }
 }

@@ -26,7 +26,6 @@ namespace PresentationLayer
             InitializeComponent();
             this.username = username;
             SetupAccountDropdown();
-            //ShowUserControl(new UCWelcome());
         }
 
         // Hàm dùng để hiển thị UserControl trong panelContainer
