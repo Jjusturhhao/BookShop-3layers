@@ -73,12 +73,13 @@ namespace PresentationLayer.UserControls
             string Categoryid = cbxCategory.SelectedValue?.ToString();
             string Author = txtAuthor.Text;
             string Bookimage = picBook.Tag?.ToString() ?? "";
-            int price = Convert.ToInt32(txtPrice.Text);
+            int Price = Convert.ToInt32(txtPrice.Text);
+            string Note = txtNote.Text;
 
             // ✅ Thêm dòng này để lấy trạng thái hiển thị
             bool isVisible = ckbShowBook.Checked;
 
-            Book book = new Book(Bookid, Bookname, Categoryid, Author, price, Bookimage)
+            Book book = new Book(Bookid, Bookname, Categoryid, Author, Price, Bookimage, Note)
             {
                 IsVisible = isVisible
             };
@@ -123,6 +124,8 @@ namespace PresentationLayer.UserControls
                     cbxCategory.Text = row.Cells["CategoryID"].Value?.ToString();
                     txtAuthor.Text = row.Cells["Author"].Value?.ToString();
                     txtPrice.Text = row.Cells["Price"].Value?.ToString();
+                    txtNote.Text = row.Cells["Note"].Value?.ToString() ?? "";
+
                     // Hiển thị trạng thái checkbox nếu có cột IsVisible
                     if (row.Cells["IsVisible"].Value != null && row.Cells["IsVisible"].Value != DBNull.Value)
                     {

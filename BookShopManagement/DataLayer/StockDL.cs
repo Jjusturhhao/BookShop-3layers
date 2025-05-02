@@ -181,49 +181,7 @@ namespace DataLayer
                 DisConnect();
             }
         }
-        //public int Update(Stock stock)
-        //{
-        //    string sql = "UPDATE Stock SET ";
-
-        //    List<string> updates = new List<string>();
-
-        //    updates.Add("CategoryID = '" + stock.CategoryID + "'");
-        //    if (!string.IsNullOrEmpty(stock.BookName))
-        //        updates.Add("BookName = '" + stock.BookName.Replace("'", "''") + "'");
-        //    if (stock.ImportDate != DateTime.MinValue)
-        //        updates.Add("ImportDate = '" + stock.ImportDate.ToString("yyyy-MM-dd") + "'");
-        //    int currentQuantity = GetCurrentQuantity(stock.BookID);
-
-        //    if (stock.Quantity < 150)
-        //    {
-        //        throw new Exception("Vui lòng nhập ít nhất 150 sách.");
-        //    }
-
-
-        //    int newQuantity = currentQuantity + stock.Quantity;
-
-        //    updates.Add("Quantity = " + newQuantity);
-
-        //    if (updates.Count == 0)
-        //        throw new Exception("Không có thông tin nào để cập nhật.");
-
-        //    sql += string.Join(", ", updates);
-        //    sql += " WHERE BookID = '" + stock.BookID + "'";
-
-        //    try
-        //    {
-        //        return MyExecuteNonQuery(sql, CommandType.Text);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //    finally
-        //    {
-        //        DisConnect();
-        //    }
-        //}
-
+   
         public int Update(Stock stock)
         {
             string sql = "UPDATE Stock SET ";

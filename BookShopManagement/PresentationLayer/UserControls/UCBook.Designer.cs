@@ -50,6 +50,13 @@
             this.btnUpload = new System.Windows.Forms.Button();
             this.picBook = new Guna.UI2.WinForms.Guna2PictureBox();
             this.dgvBook = new System.Windows.Forms.DataGridView();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.BookID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BookName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CategoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,13 +65,7 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BookImage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -332,7 +333,8 @@
             this.Column1,
             this.Column2,
             this.Price,
-            this.BookImage});
+            this.BookImage,
+            this.Note});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -351,73 +353,6 @@
             this.dgvBook.TabIndex = 3;
             this.dgvBook.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBook_CellClick);
             this.dgvBook.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvBook_CellFormatting);
-            // 
-            // BookID
-            // 
-            this.BookID.DataPropertyName = "bookid";
-            this.BookID.HeaderText = "Mã Sách";
-            this.BookID.MinimumWidth = 8;
-            this.BookID.Name = "BookID";
-            this.BookID.ReadOnly = true;
-            // 
-            // BookName
-            // 
-            this.BookName.DataPropertyName = "Bookname";
-            this.BookName.HeaderText = "Tên Sách";
-            this.BookName.MinimumWidth = 8;
-            this.BookName.Name = "BookName";
-            this.BookName.ReadOnly = true;
-            // 
-            // CategoryID
-            // 
-            this.CategoryID.DataPropertyName = "Categoryid";
-            this.CategoryID.HeaderText = "Thể loại";
-            this.CategoryID.MinimumWidth = 8;
-            this.CategoryID.Name = "CategoryID";
-            this.CategoryID.ReadOnly = true;
-            // 
-            // Author
-            // 
-            this.Author.DataPropertyName = "Author";
-            this.Author.HeaderText = "Tác Giả";
-            this.Author.MinimumWidth = 8;
-            this.Author.Name = "Author";
-            this.Author.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "Categoryname";
-            this.Column1.HeaderText = "Column1";
-            this.Column1.MinimumWidth = 8;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Visible = false;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "Quantity";
-            this.Column2.HeaderText = "Column2";
-            this.Column2.MinimumWidth = 8;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Visible = false;
-            // 
-            // Price
-            // 
-            this.Price.DataPropertyName = "Price";
-            this.Price.HeaderText = "Giá";
-            this.Price.MinimumWidth = 8;
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            // 
-            // BookImage
-            // 
-            this.BookImage.DataPropertyName = "Bookimage";
-            this.BookImage.HeaderText = "Bookimage";
-            this.BookImage.MinimumWidth = 8;
-            this.BookImage.Name = "BookImage";
-            this.BookImage.ReadOnly = true;
-            this.BookImage.Visible = false;
             // 
             // panel3
             // 
@@ -509,6 +444,81 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1950, 959);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
+            // BookID
+            // 
+            this.BookID.DataPropertyName = "bookid";
+            this.BookID.HeaderText = "Mã Sách";
+            this.BookID.MinimumWidth = 8;
+            this.BookID.Name = "BookID";
+            this.BookID.ReadOnly = true;
+            // 
+            // BookName
+            // 
+            this.BookName.DataPropertyName = "Bookname";
+            this.BookName.HeaderText = "Tên Sách";
+            this.BookName.MinimumWidth = 8;
+            this.BookName.Name = "BookName";
+            this.BookName.ReadOnly = true;
+            // 
+            // CategoryID
+            // 
+            this.CategoryID.DataPropertyName = "Categoryid";
+            this.CategoryID.HeaderText = "Thể loại";
+            this.CategoryID.MinimumWidth = 8;
+            this.CategoryID.Name = "CategoryID";
+            this.CategoryID.ReadOnly = true;
+            // 
+            // Author
+            // 
+            this.Author.DataPropertyName = "Author";
+            this.Author.HeaderText = "Tác Giả";
+            this.Author.MinimumWidth = 8;
+            this.Author.Name = "Author";
+            this.Author.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "Categoryname";
+            this.Column1.HeaderText = "Tên thể loại";
+            this.Column1.MinimumWidth = 8;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Visible = false;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "Quantity";
+            this.Column2.HeaderText = "Column2";
+            this.Column2.MinimumWidth = 8;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Visible = false;
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            this.Price.HeaderText = "Giá";
+            this.Price.MinimumWidth = 8;
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            // 
+            // BookImage
+            // 
+            this.BookImage.DataPropertyName = "Bookimage";
+            this.BookImage.HeaderText = "Bookimage";
+            this.BookImage.MinimumWidth = 8;
+            this.BookImage.Name = "BookImage";
+            this.BookImage.ReadOnly = true;
+            this.BookImage.Visible = false;
+            // 
+            // Note
+            // 
+            this.Note.DataPropertyName = "Note";
+            this.Note.HeaderText = "Ghi chú";
+            this.Note.MinimumWidth = 8;
+            this.Note.Name = "Note";
+            this.Note.ReadOnly = true;
+            // 
             // UCBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -558,6 +568,9 @@
         private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Label lbPrice;
+        private System.Windows.Forms.CheckBox ckbShowBook;
+        private System.Windows.Forms.TextBox txtNote;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn BookID;
         private System.Windows.Forms.DataGridViewTextBoxColumn BookName;
         private System.Windows.Forms.DataGridViewTextBoxColumn CategoryID;
@@ -566,8 +579,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn BookImage;
-        private System.Windows.Forms.CheckBox ckbShowBook;
-        private System.Windows.Forms.TextBox txtNote;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Note;
     }
 }
