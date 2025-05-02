@@ -34,9 +34,9 @@ namespace PresentationLayer
                 if (userRole == "Admin")
                     mainForm = new AdminInterface(username);
                 else if (userRole == "Staff")
-                    mainForm = new HomepageStaff(username);
+                    mainForm = new StaffInterface(username);
                 else if (userRole == "Customer")
-                    mainForm = new HomepageCus(username);
+                    mainForm = new CusInterface(username);
                 else
                     MessageBox.Show("Đăng nhập thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 

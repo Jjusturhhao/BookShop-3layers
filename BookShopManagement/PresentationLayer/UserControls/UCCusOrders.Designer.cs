@@ -92,7 +92,6 @@
             this.dgvOrders.Size = new System.Drawing.Size(1231, 595);
             this.dgvOrders.TabIndex = 1;
             this.dgvOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrders_CellClick);
-            this.dgvOrders.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrders_CellContentClick);
             this.dgvOrders.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvOrders_CellFormatting);
             // 
             // UCCusOrders

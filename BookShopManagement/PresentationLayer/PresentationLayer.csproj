@@ -109,23 +109,23 @@
     <Compile Include="FormQR.Designer.cs">
       <DependentUpon>FormQR.cs</DependentUpon>
     </Compile>
-    <Compile Include="HomepageCus.cs">
+    <Compile Include="CusInterface.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HomepageCus.Designer.cs">
-      <DependentUpon>HomepageCus.cs</DependentUpon>
+    <Compile Include="CusInterface.Designer.cs">
+      <DependentUpon>CusInterface.cs</DependentUpon>
     </Compile>
-    <Compile Include="HomepageStaff.cs">
+    <Compile Include="StaffInterface.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HomepageStaff.Designer.cs">
-      <DependentUpon>HomepageStaff.cs</DependentUpon>
+    <Compile Include="StaffInterface.Designer.cs">
+      <DependentUpon>StaffInterface.cs</DependentUpon>
     </Compile>
-    <Compile Include="InBill.cs">
+    <Compile Include="UserControls\UCPrintBill.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="InBill.Designer.cs">
-      <DependentUpon>InBill.cs</DependentUpon>
+    <Compile Include="UserControls\UCPrintBill.Designer.cs">
+      <DependentUpon>UCPrintBill.cs</DependentUpon>
     </Compile>
     <Compile Include="Login-Register\Login.cs">
       <SubType>Form</SubType>
@@ -243,12 +243,6 @@
     <Compile Include="UserControls\UCSupplier.Designer.cs">
       <DependentUpon>UCSupplier.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UCWelcome.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\UCWelcome.Designer.cs">
-      <DependentUpon>UCWelcome.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
@@ -267,14 +261,14 @@
     <EmbeddedResource Include="AdminInterface.resx">
       <DependentUpon>AdminInterface.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HomepageCus.resx">
-      <DependentUpon>HomepageCus.cs</DependentUpon>
+    <EmbeddedResource Include="CusInterface.resx">
+      <DependentUpon>CusInterface.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HomepageStaff.resx">
-      <DependentUpon>HomepageStaff.cs</DependentUpon>
+    <EmbeddedResource Include="StaffInterface.resx">
+      <DependentUpon>StaffInterface.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InBill.resx">
-      <DependentUpon>InBill.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\UCPrintBill.resx">
+      <DependentUpon>UCPrintBill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login-Register\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -334,9 +328,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UCSupplier.resx">
       <DependentUpon>UCSupplier.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UCWelcome.resx">
-      <DependentUpon>UCWelcome.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

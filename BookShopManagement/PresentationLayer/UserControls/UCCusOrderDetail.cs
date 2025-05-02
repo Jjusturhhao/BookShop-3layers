@@ -27,14 +27,10 @@ namespace PresentationLayer.UserControls
         private OrderBL OrderBL;
         public Action OnBackClick;
      
-
         public Action OnStatusChanged;
         private bool showButtons;
         private CusOrderBL CusOrderBL;
         private EmployeeBL EmployeeBL;
-       
-
-
 
         public UCCusOrderDetail(string orderID, string employee = null, string phone = null)
         {
@@ -48,14 +44,9 @@ namespace PresentationLayer.UserControls
             customerBL = new CustomerBL();
             EmployeeBL = new EmployeeBL();
 
-
             this.orderID = orderID;
             this.phone = phone;
             this.employee = employee;
-            
-          
-
-          
         }
 
         public void HideButtons()
@@ -71,16 +62,11 @@ namespace PresentationLayer.UserControls
             btnDone.Visible = true;
         }
 
-
         private void UCCusOrderDetail_Load(object sender, EventArgs e)
         {
-          
-
             LoadOrderDetail(orderID);
-           
         }
 
-       
         private void UpdateButtonsBasedOnStatus(string status, bool isEmployee)
         {
             // Nếu là nhân viên, ẩn cả hai nút
@@ -111,8 +97,6 @@ namespace PresentationLayer.UserControls
         }
         private void LoadOrderDetail(string orderID)
         {
-
-
             lbOrderID.Text = $"Đơn hàng: {orderID}";
             //==
             string status = OrderBL.GetOrderStatus(orderID);
@@ -123,7 +107,6 @@ namespace PresentationLayer.UserControls
             bool isEmployee = (employee != null && (employee == "Online"));
 
             UpdateButtonsBasedOnStatus(status, isEmployee);
-
 
             //==
             string billID = billBL.GetBillIDByOrderID(orderID);
@@ -144,7 +127,6 @@ namespace PresentationLayer.UserControls
             }
             else // Offline
             {
-
                 Customer customer = customerBL.GetCustomerByPhone(phone);
                 if (customer != null)
                 {
@@ -202,7 +184,6 @@ namespace PresentationLayer.UserControls
                 Location = new Point(60, 10),
                 Width = (int)(headerPanel.Width * 0.45) - 50
             };
-
 
             Label lbQuantityHeader = new Label()
             {
@@ -285,7 +266,6 @@ namespace PresentationLayer.UserControls
                     Width = (int)(panel.Width * 0.2) - 50
                 };
 
-
                 panel.Controls.Add(lbBookName);
                 panel.Controls.Add(lbQuantity);
                 panel.Controls.Add(lbPrice);
@@ -298,16 +278,15 @@ namespace PresentationLayer.UserControls
             lbTotalCost.Text = $"Tổng cộng: {totalCost:#,##0} đ";
         }
         
-
         private void btnBack_Click(object sender, EventArgs e)
         {
             OnBackClick?.Invoke();
         }
-        //==
 
+        //==
         private void btnCancle_Click(object sender, EventArgs e)
         {
-            var confirm = MessageBox.Show("Bạn có chắc muốn hủy đơn hàng?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var confirm = MessageBox.Show("Bạn chắc chắn muốn hủy đơn sao? 😢", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirm == DialogResult.Yes)
             {
@@ -315,19 +294,17 @@ namespace PresentationLayer.UserControls
 
                 if (result)
                 {
-                    MessageBox.Show("Hủy đơn hàng thành công.", "Thông báo");
+                    MessageBox.Show("Huhu, đơn hàng đã bay màu 🥲 Lần sau cho Tiko cơ hội phục vụ bạn nha!", "Thông báo");
 
-                    // Cập nhật lại trạng thái mới
+                    // Cập nhật lại trạng thái mới trên giao diện
                     string status = OrderBL.GetOrderStatus(orderID);
                     lbStatus.Text = $"Trạng thái đơn hàng: {status}";
 
-                    // Ẩn và khóa các nút không cần thiết
-                    btnDone.Visible = false;
-                    btnCancel.Enabled = false;
+                    // Ẩn và khóa các nút
+                    HideButtons();
 
-                    // Gọi về UC trước đó để reload lại dữ liệu
+                    // Quan trọng: Quay về màn hình danh sách đơn hàng
                     OnBackClick?.Invoke();
-
                 }
                 else
                 {
@@ -336,39 +313,32 @@ namespace PresentationLayer.UserControls
             }
         }
 
-        private void btnhoanthanh_Click(object sender, EventArgs e)
+        private void btnDone_Click(object sender, EventArgs e)
         {
-            var confirm = MessageBox.Show("Bạn có chắc muốn hoàn thành đơn hàng?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var confirm = MessageBox.Show("Bạn đã nhận được hàng chưa?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirm == DialogResult.Yes)
             {
                 bool result = OrderBL.OrderStatus(orderID, "Đã hoàn thành");
 
-
-
                 if (result)
                 {
-                    MessageBox.Show("Hoàn thành đơn hàng thành công.", "Thông báo");
+                    MessageBox.Show("Yayyy! Tiko vui quá bạn đã nhận được đơn hàng. Hi vọng những cuốn sách sẽ mang lại niềm vui cho bạn! 🛍️✨", "Hoàn tất đơn hàng");
 
-                    // Cập nhật trạng thái mới
+                    // Cập nhật trạng thái mới trên giao diện
                     string status = OrderBL.GetOrderStatus(orderID);
-
-
                     lbStatus.Text = $"Trạng thái đơn hàng: {status}";
 
-                    // Ẩn nút btnhoanthanh và khóa btnCancel
-                    btnDone.Visible = false;
-                    btnCancel.Enabled = false;
+                    // Ẩn các nút
+                    HideButtons();
 
-                    // Gọi về UC trước đó để reload lại dữ liệu
+                    // Quan trọng: Quay về màn hình danh sách đơn hàng
                     OnBackClick?.Invoke();
                 }
                 else
                 {
                     MessageBox.Show("Hoàn thành đơn hàng thất bại.", "Lỗi");
                 }
-
-
             }
         }
     }

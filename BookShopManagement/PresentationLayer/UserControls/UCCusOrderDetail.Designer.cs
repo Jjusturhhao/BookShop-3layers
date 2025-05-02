@@ -32,6 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lbTotalCost = new System.Windows.Forms.Label();
+            this.lbStatus = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.flpDetails = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -42,7 +43,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnDone = new System.Windows.Forms.Button();
-            this.lbStatus = new System.Windows.Forms.Label();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -105,6 +105,17 @@
             this.lbTotalCost.Size = new System.Drawing.Size(272, 40);
             this.lbTotalCost.TabIndex = 14;
             this.lbTotalCost.Text = "Tổng đơn hàng";
+            // 
+            // lbStatus
+            // 
+            this.lbStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbStatus.AutoSize = true;
+            this.lbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStatus.Location = new System.Drawing.Point(10, 501);
+            this.lbStatus.Name = "lbStatus";
+            this.lbStatus.Size = new System.Drawing.Size(92, 32);
+            this.lbStatus.TabIndex = 15;
+            this.lbStatus.Text = "label2";
             // 
             // panel1
             // 
@@ -230,7 +241,7 @@
             this.btnDone.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDone.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDone.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnDone.Location = new System.Drawing.Point(969, 706);
+            this.btnDone.Location = new System.Drawing.Point(991, 706);
             this.btnDone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDone.Name = "btnDone";
             this.btnDone.Size = new System.Drawing.Size(244, 78);
@@ -238,18 +249,7 @@
             this.btnDone.Text = "Đã nhận hàng";
             this.btnDone.UseVisualStyleBackColor = false;
             this.btnDone.Visible = false;
-            this.btnDone.Click += new System.EventHandler(this.btnhoanthanh_Click);
-            // 
-            // lbStatus
-            // 
-            this.lbStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbStatus.AutoSize = true;
-            this.lbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStatus.Location = new System.Drawing.Point(10, 501);
-            this.lbStatus.Name = "lbStatus";
-            this.lbStatus.Size = new System.Drawing.Size(92, 32);
-            this.lbStatus.TabIndex = 15;
-            this.lbStatus.Text = "label2";
+            this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
             // 
             // UCCusOrderDetail
             // 

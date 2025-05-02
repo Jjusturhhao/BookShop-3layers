@@ -24,7 +24,7 @@ namespace DataLayer
 
                     cmd.ExecuteNonQuery();
                 }
-                            }
+            }
             catch (Exception ex)
             {
                 throw ex;

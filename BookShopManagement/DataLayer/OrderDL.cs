@@ -67,7 +67,7 @@ namespace DataLayer
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally
             {
@@ -213,7 +213,6 @@ namespace DataLayer
 
             return status;
         }
-
         //==
     }
 }

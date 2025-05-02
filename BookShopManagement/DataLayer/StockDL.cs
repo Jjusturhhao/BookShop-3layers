@@ -16,7 +16,6 @@ namespace DataLayer
 {
     public class StockDL : DataProvider
     {
-
         public List<Stock> GetStocks()
         {
             string supplierID, bookID, categoryID, bookName;
@@ -258,7 +257,7 @@ namespace DataLayer
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally
             {
@@ -358,7 +357,6 @@ namespace DataLayer
         //    }
         //}
 
-
         public List<Stock> SearchStock(string keyword)
         {
             var stocks = new List<Stock>();
@@ -439,8 +437,8 @@ namespace DataLayer
         public void ReduceQuantity(string bookID, int quantity)
         {
             string sql = "UPDATE Stock " +
-                           "SET Quantity = Quantity - @quantity " +
-                           "WHERE BookID = @bookID AND Quantity >= @quantity ";
+                         "SET Quantity = Quantity - @quantity " +
+                         "WHERE BookID = @bookID AND Quantity >= @quantity ";
             try
             {
                 Connect();

@@ -8,7 +8,6 @@ namespace TransferObject
 {
     public class BookCategoryStock
     {
-
         public string CategoryID { get; set; }
         public string CategoryName { get; set; }
 

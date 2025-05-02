@@ -19,9 +19,9 @@ namespace DataLayer
         {
             CartItem item = null;
             string sql = "SELECT s.BookID, s.BookName, b.Price "+
-                "FROM Stock s "+
-                "INNER JOIN Book b ON s.BookID = b.BookID "+
-                "WHERE s.BookID = @BookID";
+                         "FROM Stock s "+
+                         "INNER JOIN Book b ON s.BookID = b.BookID "+
+                         "WHERE s.BookID = @BookID";
             try
             {
                 Connect();

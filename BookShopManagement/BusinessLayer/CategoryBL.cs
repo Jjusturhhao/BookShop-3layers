@@ -29,8 +29,6 @@ namespace BusinessLayer
             {
                 throw ex;
             }
-            
-          
         }
 
         // Thêm danh mục mới

@@ -13,7 +13,5 @@ namespace TransferObject
         public string BookName { get; set; }
         public int QuantitySold { get; set; }
         public int UnitPrice { get; set; }
-
-        
     }
 }

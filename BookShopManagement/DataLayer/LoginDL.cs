@@ -40,5 +40,35 @@ namespace DataLayer
             }
             return role;
         }
+
+        public string GetName(string username)
+        {
+            string name = null;
+            string sql = "SELECT Name FROM Users WHERE Username = @Username";
+
+            try
+            {
+                Connect();
+                using (SqlCommand cmd = new SqlCommand(sql, cn))
+                {
+                    cmd.Parameters.AddWithValue("@Username", username);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        name = result.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+            return name;
+        }
     }
 }

@@ -15,7 +15,6 @@ using System.Windows.Input;
 using TransferObject;
 
 namespace PresentationLayer.UserControls
-
 {
     public partial class UCCheckout : UserControl
     {
@@ -35,7 +34,6 @@ namespace PresentationLayer.UserControls
         private string selectedBookID = string.Empty; 
         private string selectedBookName = string.Empty; 
         private int selectedPrice = 0;
-
 
         public UCCheckout(string username)
         {
@@ -60,10 +58,7 @@ namespace PresentationLayer.UserControls
             LoadDetails();
             dgvBooks.CellClick += dgvBooks_CellClick; // Xử lý sự kiện nhấp chuột vào dòng sách
         }
-        private void btnCustomer_Click(object sender, EventArgs e)
-        {
 
-        }
         private void LoadCategoriesToCBX()
         {
             List<BookCategoryStock> categories = CheckoutBL.GetCategories();
@@ -423,7 +418,7 @@ namespace PresentationLayer.UserControls
                     {
                         // Tính tiền thừa
                         change = CalculateChange(totalBill, totalPaid);
-                        InBill inBill = new InBill(orderID, cusname, cusphone, totalBill, paymentMethod,
+                        UCPrintBill inBill = new UCPrintBill(orderID, cusname, cusphone, totalBill, paymentMethod,
                                                        books, staffName, orderDate, change, totalPaid);
                         ShowUserControl(inBill);
                     }
@@ -440,7 +435,7 @@ namespace PresentationLayer.UserControls
                     change = 0;     // Không cần tính tiền thừa
 
                     // Tạo đối tượng UCInBill mà không cần các giá trị tiền thừa
-                    InBill inBill = new InBill(orderID, cusname, cusphone, totalCost, paymentMethod,
+                    UCPrintBill inBill = new UCPrintBill(orderID, cusname, cusphone, totalCost, paymentMethod,
                                                    books, staffName, orderDate, change, totalPaid);
                     ShowUserControl(inBill);
                 }

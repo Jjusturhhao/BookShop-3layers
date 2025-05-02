@@ -7,8 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DataLayer;
 using TransferObject;
-using System.Data;
-
 
 namespace DataLayer
 {
@@ -142,6 +140,5 @@ namespace DataLayer
                 DisConnect();
             }
         }
-
     }
 }

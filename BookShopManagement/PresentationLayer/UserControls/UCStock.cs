@@ -67,6 +67,10 @@ namespace PresentationLayer.UserControls
         private void btnReset_Click(object sender, EventArgs e)
         {
             txtBookName.ReadOnly = false;
+            cbxCategory.Enabled = true;
+            dtpk.Enabled = true;
+            cbxSupplier.Enabled = true;
+            txtQuantity.Enabled = true; 
             ResetForm();
         }
 
@@ -203,7 +207,6 @@ namespace PresentationLayer.UserControls
             }
         }
 
-
         private void btnDeleteBook_Click(object sender, EventArgs e)
         {
             try
@@ -242,7 +245,7 @@ namespace PresentationLayer.UserControls
                 : stockBL.SearchStock(keyword);
         }
 
-        private void btnGIN_Click_1(object sender, EventArgs e)
+        private void btnGIN_Click(object sender, EventArgs e)
         {
             if (addedStocks.Count == 0)
             {
@@ -262,6 +265,11 @@ namespace PresentationLayer.UserControls
             userControl.Dock = DockStyle.Fill;
             Controls.Add(userControl);
             userControl.BringToFront();
+        }
+
+        private void btnAddCategory_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -16,8 +16,6 @@ namespace PresentationLayer
 {
     public partial class AddCategory : Form
     {
-        
-
         private CategoryBL categoryBL;
         public AddCategory()
         {
@@ -155,19 +153,6 @@ namespace PresentationLayer
         private void AddCategory_Load(object sender, EventArgs e)
         {
             LoadCategories();
-            
-            
-           
-        }
-
-        private void AddCategory_FormClosing(object sender, FormClosingEventArgs e)
-        {
-           
-        }
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

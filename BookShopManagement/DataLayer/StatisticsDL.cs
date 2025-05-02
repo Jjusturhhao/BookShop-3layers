@@ -200,7 +200,6 @@ namespace DataLayer
                         adapter.Fill(dt);
                     }
                 }
-
                 return dt;
             }
             catch (Exception ex)

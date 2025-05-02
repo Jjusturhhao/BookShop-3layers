@@ -17,7 +17,6 @@ namespace DataLayer
             try
             {
                 Connect();
-
                 string sql = "SELECT * FROM Book ORDER BY BookID OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
                 SqlCommand cmd = new SqlCommand(sql, cn);
                 cmd.Parameters.AddWithValue("@Offset", (pageNumber - 1) * pageSize);
@@ -34,7 +33,6 @@ namespace DataLayer
             {
                 DisConnect();
             }
-
             return dt;
         }
 
@@ -66,7 +64,6 @@ namespace DataLayer
             {
                 throw ex;
             }
-
             return dt;
         }
 
@@ -98,7 +95,6 @@ namespace DataLayer
             {
                 DisConnect();
             }
-
             return dt;
         }
         public int GetTotalRecordsByCategory(string categoryID)

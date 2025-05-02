@@ -138,10 +138,7 @@ namespace DataLayer
         //}
         public Book Reset()
         {
-            
             string defaultImagePath = "bookdefault.png"; // Đảm bảo đường dẫn chính xác đến hình ảnh mặc định
-
-          
             return new Book("", "", "", "", 0, defaultImagePath);
         }
 
@@ -193,14 +190,12 @@ namespace DataLayer
             }
         }
 
-
         public int Delete(Book book)
         {
             if (string.IsNullOrEmpty(book.Bookid))
                 throw new Exception("BookID không được để trống.");
 
             string sql = "DELETE FROM Book WHERE BookID = '" + book.Bookid.Replace("'", "''") + "'";
-
 
             try
             {
@@ -249,7 +244,7 @@ namespace DataLayer
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally
             {

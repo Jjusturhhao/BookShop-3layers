@@ -156,8 +156,6 @@ namespace PresentationLayer.UserControls
             LoadPaginationControls(totalRecords, totalPages);
         }
 
-        
-
         private void LoadPaginationControls(int totalRecords, int totalPages)
         {
             btnNext.Enabled = currentPage < totalPages;

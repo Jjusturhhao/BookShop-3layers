@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataLayer;
 using TransferObject;
 using System.Data.SqlClient;
+using System.Security.Principal;
 
 namespace BusinessLayer
 {
@@ -22,6 +23,18 @@ namespace BusinessLayer
             try
             {
                 return loginDL.GetUserRole(account);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public string GetName(string username)
+        {
+            try
+            {
+                return loginDL.GetName(username);
             }
             catch (Exception ex)
             {

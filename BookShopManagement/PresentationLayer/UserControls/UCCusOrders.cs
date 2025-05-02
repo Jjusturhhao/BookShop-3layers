@@ -13,10 +13,6 @@ namespace PresentationLayer.UserControls
         private CusOrderBL cusOrderBL;
         private string currentUsername;
         private string phone;
-       // private UCCusOrderDetail currentDetailForm = null;
-
-        public Action RefreshOrders { get; set; }
-
 
         //Tạo delegate để báo cho Homepage biết khi cần mở chi tiết đơn hàng
         public Action<string, string> OnOrderDetailClick { get; set; } //// orderID, phone
@@ -36,10 +32,26 @@ namespace PresentationLayer.UserControls
             CustomizeGrid();
         }
 
-        // ✅ Public method để Homepage.cs có thể gọi khi cần reload
         public void LoadOrders()
         {
-            LoadCustomerOrders();
+            //LoadCustomerOrders();
+
+            try
+            {
+                // Quan trọng: Lấy dữ liệu mới từ CusOrderBL
+                List<CusOrder> orders = cusOrderBL.GetCusOrdersByUsername(currentUsername);
+
+                // Reset DataSource để đảm bảo cập nhật đầy đủ
+                dgvOrders.DataSource = null;
+                dgvOrders.DataSource = orders;
+
+                // Cập nhật giao diện
+                dgvOrders.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải đơn hàng: " + ex.Message);
+            }
         }
 
         private void LoadCustomerOrders()
@@ -125,23 +137,18 @@ namespace PresentationLayer.UserControls
             {
                 // Lấy orderID từ dòng được chọn
                 string orderId = dgvOrders.Rows[e.RowIndex].Cells["Orderid"].Value.ToString();
-        OnOrderDetailClick?.Invoke(orderId, phone);
+                OnOrderDetailClick?.Invoke(orderId, phone);
                 UCCusOrderDetail detail = new UCCusOrderDetail(orderId,null ,phone);
                 detail.ShowButtons();
 
                // OnOrderDetailClick?.Invoke(orderId, phone);
                 ReloadData();
             }
-}
-
-        private void dgvOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
+
         public void ReloadData()
         {
             LoadOrders();  // Làm mới lại danh sách đơn hàng
         }
-        
     }
 }

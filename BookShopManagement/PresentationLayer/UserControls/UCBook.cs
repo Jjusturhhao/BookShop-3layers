@@ -73,9 +73,9 @@ namespace PresentationLayer.UserControls
         {
             Book emptyBook = bookBL.ResetBook();
 
-            
-                picBook.Image = Properties.Resources.bookdefault; // Đặt hình mặc định nếu không có hình
-            
+
+            picBook.Image = Properties.Resources.bookdefault; // Đặt hình mặc định nếu không có hình
+
             picBook.SizeMode = PictureBoxSizeMode.Zoom;
             LoadCategoriesToComboBox();
             txtBookID.Text = bookBL.GenerateNextBookID(); // ID mới
@@ -86,17 +86,15 @@ namespace PresentationLayer.UserControls
             txtAuthor.Text = emptyBook.Author;
 
             txtPrice.Text = emptyBook.Price.ToString();
-            
+
 
             txtBookName.Focus();
             dgvBook.DataSource = bookBL.GetBooks(); // load lại danh sách
-
-
         }
-       
+
         private void btnEntryBook_Click(object sender, EventArgs e)
         {
-           
+
             string BookID = txtBookID.Text.Trim();
             string BookName = txtBookName.Text.Trim();
             string CategoryID = cbxCategory.SelectedValue?.ToString();
@@ -104,7 +102,7 @@ namespace PresentationLayer.UserControls
 
             // Lưu tên file hoặc đường dẫn hình ảnh từ PictureBox
             string Bookimage = picBook.Tag?.ToString() ?? ""; // Nếu không có hình ảnh, sử dụng hình mặc định
-            
+
 
             if (string.IsNullOrEmpty(BookID) || string.IsNullOrEmpty(BookName) || string.IsNullOrEmpty(CategoryID) || string.IsNullOrEmpty(Author))
             {
@@ -131,7 +129,7 @@ namespace PresentationLayer.UserControls
                 dgvBook.DataSource = bookBL.GetBooks();
 
                 LoadCategoriesToComboBox(); // Tải lại danh mục
-                
+
 
                 // Reset form để chuẩn bị thêm sách mới
                 btnRefresh.PerformClick();
@@ -152,7 +150,6 @@ namespace PresentationLayer.UserControls
             }
         }
 
-        
         private void btnDeleteBook_Click_1(object sender, EventArgs e)
         {
             string BookID, BookName, CategoryID, Author;
@@ -215,11 +212,6 @@ namespace PresentationLayer.UserControls
             }
         }
 
-        private void dgvBook_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void btnSearch_Click_1(object sender, EventArgs e)
         {
             string keyword = txtSearch.Text.Trim();
@@ -236,7 +228,7 @@ namespace PresentationLayer.UserControls
 
         private void dgvBook_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
             if (e.RowIndex >= 0) // Đảm bảo không bấm vào tiêu đề cột
             {
                 // Kiểm tra nếu dòng có dữ liệu (không phải là dòng trống)
@@ -248,7 +240,7 @@ namespace PresentationLayer.UserControls
                     cbxCategory.Text = row.Cells["CategoryID"].Value?.ToString();
                     txtAuthor.Text = row.Cells["Author"].Value?.ToString();
                     txtPrice.Text = row.Cells["Price"].Value?.ToString();
-                    
+
                     if (row.Cells["BookImage"] != null && row.Cells["BookImage"].Value != null)
                     {
                         string imagePath = row.Cells["BookImage"].Value.ToString();
@@ -266,12 +258,6 @@ namespace PresentationLayer.UserControls
 
                 }
             }
-        }
-
-        
-        private void dgvBook_SelectionChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnUpload_Click_1(object sender, EventArgs e)
@@ -309,6 +295,4 @@ namespace PresentationLayer.UserControls
             }
         }
     }
-    }
-
-
+}

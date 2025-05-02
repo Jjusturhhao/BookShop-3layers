@@ -81,7 +81,6 @@ namespace BusinessLayer
         {
             return bookDL.IsBookInOrder(bookID);  // Call the method in BookDL
         }
-
     }
 }
 

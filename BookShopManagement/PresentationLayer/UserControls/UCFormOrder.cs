@@ -143,10 +143,5 @@ namespace PresentationLayer.UserControls
         {
             OnBackToCartClick?.Invoke();
         }
-
-        private void rdByTransfer_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

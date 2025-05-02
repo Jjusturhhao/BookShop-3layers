@@ -72,7 +72,6 @@ namespace BusinessLayer
                 cartItems.Remove(itemToRemove); 
             }
         }
-        
 
         public int GetTotalAmount()
         {
@@ -95,7 +94,6 @@ namespace BusinessLayer
             {
                 totalQuantity += item.Quantity;
             }
-
             return totalQuantity;
         }
         

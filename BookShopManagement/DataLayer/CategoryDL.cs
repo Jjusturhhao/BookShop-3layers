@@ -117,7 +117,6 @@ namespace DataLayer
                 string categoryName = reader["CategoryName"].ToString();
                 list.Add(new BookCategoryStock(categoryID, categoryName));
             }
-
             reader.Close();
             DisConnect();
             return list;
@@ -144,7 +143,6 @@ namespace DataLayer
                     }
                 }
             }
-
             reader.Close();
             DisConnect();
 
@@ -153,7 +151,6 @@ namespace DataLayer
             {
                 nextNumber++;
             }
-
             return "CAT" + nextNumber;
         }
     }

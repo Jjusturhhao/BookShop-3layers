@@ -39,7 +39,6 @@ namespace PresentationLayer
             tabControlMain.TabPages["tabInfo"].Controls.Add(infoUC);
         }
 
-
         private void tsmiLogout_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Bạn có chắc muốn đăng xuất?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

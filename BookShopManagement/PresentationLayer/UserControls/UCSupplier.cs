@@ -94,15 +94,30 @@ namespace PresentationLayer.UserControls
         private void btnDelete_Click(object sender, EventArgs e)
         {
             string id = txtID.Text.Trim();
-            if (supplierBL.DeleteSupplier(id))
+            try
             {
-                MessageBox.Show("Xoá thành công!");
-                LoadSuppliers();
-                ClearForm();
+                if (supplierBL.DeleteSupplier(id))
+                {
+                    MessageBox.Show("Xoá thành công!");
+                    LoadSuppliers();
+                    ClearForm();
+                }
+                else
+                {
+                    MessageBox.Show("Xoá thất bại!");
+                }
             }
-            else
+            catch (System.Data.SqlClient.SqlException ex)
             {
-                MessageBox.Show("Xoá thất bại!");
+                // Kiểm tra mã lỗi liên quan đến ràng buộc khoá ngoại (ví dụ: 547 là lỗi constraint violation)
+                if (ex.Number == 547)
+                {
+                    MessageBox.Show("Không thể xóa NCC có lịch sử nhập sách trong kho", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi khi xoá: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

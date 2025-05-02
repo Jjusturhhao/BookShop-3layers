@@ -56,7 +56,7 @@
             // btnOrder
             // 
             this.btnOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOrder.BackColor = System.Drawing.Color.Red;
+            this.btnOrder.BackColor = System.Drawing.Color.ForestGreen;
             this.btnOrder.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOrder.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -97,6 +97,7 @@
             this.txtAddress.Location = new System.Drawing.Point(443, 325);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtAddress.Name = "txtAddress";
+            this.txtAddress.ReadOnly = true;
             this.txtAddress.Size = new System.Drawing.Size(389, 39);
             this.txtAddress.TabIndex = 13;
             // 
@@ -108,6 +109,7 @@
             this.txtNumber.Location = new System.Drawing.Point(443, 250);
             this.txtNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtNumber.Name = "txtNumber";
+            this.txtNumber.ReadOnly = true;
             this.txtNumber.Size = new System.Drawing.Size(389, 39);
             this.txtNumber.TabIndex = 12;
             // 
@@ -130,6 +132,7 @@
             this.txtName.Location = new System.Drawing.Point(443, 100);
             this.txtName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtName.Name = "txtName";
+            this.txtName.ReadOnly = true;
             this.txtName.Size = new System.Drawing.Size(389, 39);
             this.txtName.TabIndex = 10;
             // 
@@ -210,7 +213,6 @@
             this.rdByTransfer.TabIndex = 9;
             this.rdByTransfer.Text = "Chuyển khoản ngân hàng";
             this.rdByTransfer.UseVisualStyleBackColor = true;
-            this.rdByTransfer.CheckedChanged += new System.EventHandler(this.rdByTransfer_CheckedChanged);
             // 
             // rdByCash
             // 

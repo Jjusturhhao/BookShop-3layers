@@ -297,13 +297,7 @@ namespace PresentationLayer.UserControls
                         searchResult.Rows.Add(order.Order_ID, order.PhoneNumber, order.Employee_Name, order.Order_Date, order.Status, order.Total_Cost);
                     }
                 }
-
                 dgvOrders.DataSource = searchResult;
-
-                if (searchResult.Rows.Count == 0)
-                {
-                    MessageBox.Show("Không tìm thấy đơn hàng với số điện thoại này!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
             }
             catch (Exception ex)
             {

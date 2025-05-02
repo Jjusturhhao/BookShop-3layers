@@ -253,7 +253,6 @@ namespace PresentationLayer.UserControls
             chartOrderQuantity.ChartAreas[0].AxisX.LabelStyle.Format = "#";
             chartOrderQuantity.ChartAreas[0].Position = new ElementPosition(5, 10, 90, 80);
             chartOrderQuantity.ChartAreas[0].InnerPlotPosition = new ElementPosition(10, 10, 80, 80);
-
         }
     }
 }

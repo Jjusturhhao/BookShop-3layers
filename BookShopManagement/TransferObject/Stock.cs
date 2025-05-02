@@ -8,7 +8,6 @@ namespace TransferObject
 {
     public class Stock
     {
-
         public string BookID { get; set; }
         public string SupplierID { get; set; }
         public string CategoryID { get; set; }

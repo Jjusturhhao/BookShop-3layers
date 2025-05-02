@@ -8,7 +8,6 @@ namespace TransferObject
 {
     public class SupplierStock
     {
-
         public string Supplier_ID { get; set; }
         public string Supplier_name { get; set; }
 

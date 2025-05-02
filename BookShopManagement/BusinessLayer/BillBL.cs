@@ -40,7 +40,6 @@ namespace BusinessLayer
         {
             return billDL.GetBillIDByOrderID(orderID);
         }
-        
     }
 }
 
