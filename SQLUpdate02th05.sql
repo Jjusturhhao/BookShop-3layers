@@ -25,27 +25,29 @@ CREATE TABLE Book(
 		BookID VARCHAR(50) PRIMARY KEY,
 		BookName NVARCHAR(100) NOT NULL,
 		CategoryID VARCHAR(10) FOREIGN KEY REFERENCES BookCategory(CategoryID),
-		Author NVARCHAR(100) NOT NULL,
-		Price INT NOT NULL,
-		BookImage NVARCHAR(255)
+		Author NVARCHAR(100) NULL,
+		Price INT NULL,
+		BookImage NVARCHAR(255),
+		IsVisible BIT DEFAULT 0,   --0 là ẩn sách, 1 là hiện sách
+		Note NVARCHAR(255) NULL
 );
 go
 
-INSERT INTO Book VALUES('BOOK1',N'Cây Cam Ngọt Của Tôi','CAT1',N'José Mauro de Vasconcelos', 80400, 'CCNCT.jpg');
-INSERT INTO Book VALUES('BOOK2',N'25 Độ Âm','CAT1',N'Thảo Trang', 210000, '25DA.jpg');
-INSERT INTO Book VALUES('BOOK3',N'Người Đua Diều','CAT1',N'Khaled Hosseini', 96750, 'NDD.jpg');
-INSERT INTO Book VALUES('BOOK4',N'Sapiens : A Brief History of Humankind','CAT2',N'Yuval Noah Harari', 276250, 'Sapiens.jpg');
-INSERT INTO Book VALUES('BOOK5',N'Flipped','CAT2',N'Van Draanen Wendelin', 210000, 'Flipped.jpg');
-INSERT INTO Book VALUES('BOOK6',N'Think and Grow Rich','CAT2',N'Napoleon Hill', 230400, 'TAGR.jpg');
-INSERT INTO Book VALUES('BOOK7',N'Bí Mật Tư Duy Triệu Phú (Tái Bản 2021)','CAT3',N'T Harv Eker', 78840, 'BMTDTP.jpg');
-INSERT INTO Book VALUES('BOOK8',N'Người Giàu Có Nhất Thành Babylon','CAT3',N'Van Draanen Wendelin', 71540, 'NGCNTB.jpg');
-INSERT INTO Book VALUES('BOOK9',N'Ai Toàn Năng: Chinh Phục Thời Đại Số','CAT3',N'Ajay Agrawal, Joshua Gans', 126750, 'AI.jpg');
-INSERT INTO Book VALUES('BOOK10',N'Búp Sen Xanh (Tái Bản 2020)','CAT4',N'Sơn Tùng', 57600, 'BSX.jpg');
-INSERT INTO Book VALUES('BOOK11',N'100 Kỹ Năng Sinh Tồn','CAT4',N'Clint Emerson', 70000, '100KNST.jpg');
-INSERT INTO Book VALUES('BOOK12',N'Hoàng Tử Bé (Tái Bản 2022)','CAT4',N'Antoine De Saint-Exupéry', 22750, 'HTB.jpg');
-INSERT INTO Book VALUES('BOOK13',N'Con Đường Chẳng Mấy Ai Đi','CAT5',N'M. Scott Peck', 99000, 'CDCMAD.jpg');
-INSERT INTO Book VALUES('BOOK14',N'Tư Duy Ngược','CAT5',N'Nguyễn Anh Dũng', 65330, 'TDN.jpg');
-INSERT INTO Book VALUES('BOOK15',N'Manifest - 7 Bước Để Thay Đổi Cuộc Đời Bạn Mãi Mãi','CAT5',N'Roxie Nafousi', 62300, 'MNF.jpg');
+INSERT INTO Book VALUES('BOOK1',N'Cây Cam Ngọt Của Tôi','CAT1',N'José Mauro de Vasconcelos', 80400, 'CCNCT.jpg', 1, NULL);
+INSERT INTO Book VALUES('BOOK2',N'25 Độ Âm','CAT1',N'Thảo Trang', 210000, '25DA.jpg', 1, NULL);
+INSERT INTO Book VALUES('BOOK3',N'Người Đua Diều','CAT1',N'Khaled Hosseini', 96750, 'NDD.jpg', 1, NULL);
+INSERT INTO Book VALUES('BOOK4',N'Sapiens : A Brief History of Humankind','CAT2',N'Yuval Noah Harari', 276250, 'Sapiens.jpg', 1, NULL);
+INSERT INTO Book VALUES('BOOK5',N'Flipped','CAT2',N'Van Draanen Wendelin', 210000, 'Flipped.jpg', 1, NULL);
+INSERT INTO Book VALUES('BOOK6',N'Think and Grow Rich','CAT2',N'Napoleon Hill', 230400, 'TAGR.jpg', 1, NULL);
+INSERT INTO Book VALUES('BOOK7',N'Bí Mật Tư Duy Triệu Phú (Tái Bản 2021)','CAT3',N'T Harv Eker', 78840, 'BMTDTP.jpg', 1, NULL);
+INSERT INTO Book VALUES('BOOK8',N'Người Giàu Có Nhất Thành Babylon','CAT3',N'Van Draanen Wendelin', 71540, 'NGCNTB.jpg', 1, NULL);
+INSERT INTO Book VALUES('BOOK9',N'Ai Toàn Năng: Chinh Phục Thời Đại Số','CAT3',N'Ajay Agrawal, Joshua Gans', 126750, 'AI.jpg', 1, NULL);
+INSERT INTO Book VALUES('BOOK10',N'Búp Sen Xanh (Tái Bản 2020)','CAT4',N'Sơn Tùng', 57600, 'BSX.jpg', 1, NULL);
+INSERT INTO Book VALUES('BOOK11',N'100 Kỹ Năng Sinh Tồn','CAT4',N'Clint Emerson', 70000, '100KNST.jpg', 1, NULL);
+INSERT INTO Book VALUES('BOOK12',N'Hoàng Tử Bé (Tái Bản 2022)','CAT4',N'Antoine De Saint-Exupéry', 22750, 'HTB.jpg', 1, NULL);
+INSERT INTO Book VALUES('BOOK13',N'Con Đường Chẳng Mấy Ai Đi','CAT5',N'M. Scott Peck', 99000, 'CDCMAD.jpg', 1, NULL);
+INSERT INTO Book VALUES('BOOK14',N'Tư Duy Ngược','CAT5',N'Nguyễn Anh Dũng', 65330, 'TDN.jpg', 1, NULL);
+INSERT INTO Book VALUES('BOOK15',N'Manifest - 7 Bước Để Thay Đổi Cuộc Đời Bạn Mãi Mãi','CAT5',N'Roxie Nafousi', 62300, 'MNF.jpg', 1, NULL);
 
 go
 SELECT * FROM Book
@@ -70,8 +72,8 @@ go
 	SELECT * FROM Suppliers
 
 	
-create table Stock(
-		BookID VARCHAR(50) PRIMARY KEY,
+Create table Stock(
+		BookID VARCHAR(50) PRIMARY KEY FOREIGN KEY REFERENCES Book(BookID),
 		SupplierID VARCHAR(55) FOREIGN KEY REFERENCES Suppliers(Supplier_ID),
 		CategoryID VARCHAR(10) FOREIGN KEY REFERENCES BookCategory(CategoryID),
 		BookName NVARCHAR(100) NOT NULL,
