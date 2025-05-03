@@ -66,6 +66,7 @@
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BookImage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsVisible = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -334,7 +335,8 @@
             this.Column2,
             this.Price,
             this.BookImage,
-            this.Note});
+            this.Note,
+            this.IsVisible});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -519,6 +521,16 @@
             this.Note.Name = "Note";
             this.Note.ReadOnly = true;
             // 
+            // IsVisible
+            // 
+            this.IsVisible.DataPropertyName = "IsVisible";
+            this.IsVisible.HeaderText = "Hiển thị";
+            this.IsVisible.MinimumWidth = 8;
+            this.IsVisible.Name = "IsVisible";
+            this.IsVisible.ReadOnly = true;
+            this.IsVisible.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.IsVisible.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // UCBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -580,5 +592,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn BookImage;
         private System.Windows.Forms.DataGridViewTextBoxColumn Note;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsVisible;
     }
 }

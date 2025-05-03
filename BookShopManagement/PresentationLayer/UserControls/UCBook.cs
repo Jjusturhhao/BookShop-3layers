@@ -55,10 +55,10 @@ namespace PresentationLayer.UserControls
                 LoadCategoriesToComboBox(); // Tải lại ComboBox khi form được mở lại
                 dgvBook.DataSource = bookBL.GetBooks(); // Cập nhật DataGridView
                 //LoadBooksToDataGridView();
-                if (dgvBook.Columns.Contains("IsVisible"))
-                {
-                    dgvBook.Columns["IsVisible"].Visible = false;
-                }
+                //if (dgvBook.Columns.Contains("IsVisible"))
+                //{
+                //    dgvBook.Columns["IsVisible"].Visible = false;
+                //}
             }
             catch (Exception ex)
             {
@@ -73,10 +73,29 @@ namespace PresentationLayer.UserControls
             string Categoryid = cbxCategory.SelectedValue?.ToString();
             string Author = txtAuthor.Text;
             string Bookimage = picBook.Tag?.ToString() ?? "";
-            int Price = Convert.ToInt32(txtPrice.Text);
             string Note = txtNote.Text;
 
-            // ✅ Thêm dòng này để lấy trạng thái hiển thị
+
+            // ✅ Kiểm tra thông tin bắt buộc trước khi cho phép hiển thị
+            if (ckbShowBook.Checked)
+            {
+                if (string.IsNullOrWhiteSpace(Bookname) ||
+                    string.IsNullOrWhiteSpace(Author) ||
+                    string.IsNullOrWhiteSpace(Categoryid))
+                {
+                    MessageBox.Show("Vui lòng nhập đầy đủ Tên sách, Thể loại, Tác giả và Giá trước khi hiển thị sách!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ckbShowBook.Checked = false;
+                    return; // ⛔ Không cập nhật nếu thiếu thông tin
+                }
+            }
+            // ✅ Kiểm tra Price trước khi chuyển đổi
+            if (!int.TryParse(txtPrice.Text, out int Price) || Price <= 0)
+            {
+                MessageBox.Show("Giá sách phải là số nguyên dương!", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
             bool isVisible = ckbShowBook.Checked;
 
             Book book = new Book(Bookid, Bookname, Categoryid, Author, Price, Bookimage, Note)

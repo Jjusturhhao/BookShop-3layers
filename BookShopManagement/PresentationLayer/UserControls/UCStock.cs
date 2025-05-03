@@ -30,6 +30,8 @@ namespace PresentationLayer.UserControls
         {
             LoadStock();
             LoadComboBoxes();
+            btnUpdateBook.Enabled = false;
+            btnAddBook.Enabled = false;
         }
 
         private void LoadStock()
@@ -71,6 +73,8 @@ namespace PresentationLayer.UserControls
             dtpkImportDate.Enabled = true;
             cbxSupplier.Enabled = true;
             txtQuantity.Enabled = true; 
+            btnAddBook.Enabled = true;
+            btnUpdateBook.Enabled = false;
             ResetForm();
         }
 
@@ -107,6 +111,8 @@ namespace PresentationLayer.UserControls
             txtSL.Text = "0";
             txtSL.Visible = true;
             label2.Visible = true;
+            btnAddBook.Enabled = false;
+            btnUpdateBook.Enabled = true;
         }
 
         private void btnAddBook_Click(object sender, EventArgs e)

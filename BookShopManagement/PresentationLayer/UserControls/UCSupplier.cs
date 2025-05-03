@@ -27,6 +27,9 @@ namespace PresentationLayer.UserControls
         {
             dgvSupplier.DataSource = new SupplierBL().GetSuppliers();
             CustomizeColumnHeaders();
+            btnAdd.Enabled = false;
+            btnUpdate.Enabled = false;
+            btnDelete.Enabled = false;
         }
 
         private void LoadSuppliers()
@@ -123,6 +126,7 @@ namespace PresentationLayer.UserControls
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            btnAdd.Enabled = true;
             ClearForm();    
         }
 
@@ -133,6 +137,9 @@ namespace PresentationLayer.UserControls
             txtAddress.Clear();
             txtEmail.Clear();
             txtPhone.Clear();
+            //btnAdd.Enabled = false;
+            //btnUpdate.Enabled = false;
+            //btnDelete.Enabled = false;
         }
 
         private Supplier GetSupplierFromForm()
@@ -156,6 +163,9 @@ namespace PresentationLayer.UserControls
                 txtEmail.Text = dgvSupplier.Rows[e.RowIndex].Cells["Email"].Value.ToString();
                 txtPhone.Text = dgvSupplier.Rows[e.RowIndex].Cells["Phone"].Value.ToString();
             }
+            btnAdd.Enabled = false;
+            btnUpdate.Enabled = true;
+            btnDelete.Enabled = true;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

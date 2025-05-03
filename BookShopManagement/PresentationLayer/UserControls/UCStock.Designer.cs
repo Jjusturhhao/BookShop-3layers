@@ -306,7 +306,7 @@
             // 
             this.btnAddCategory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnAddCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddCategory.Location = new System.Drawing.Point(338, 298);
+            this.btnAddCategory.Location = new System.Drawing.Point(258, 318);
             this.btnAddCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAddCategory.Name = "btnAddCategory";
             this.btnAddCategory.Size = new System.Drawing.Size(313, 40);
@@ -497,10 +497,10 @@
             this.btnGIN.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGIN.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGIN.ForeColor = System.Drawing.Color.White;
-            this.btnGIN.Location = new System.Drawing.Point(399, 98);
+            this.btnGIN.Location = new System.Drawing.Point(160, 98);
             this.btnGIN.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnGIN.Name = "btnGIN";
-            this.btnGIN.Size = new System.Drawing.Size(183, 49);
+            this.btnGIN.Size = new System.Drawing.Size(195, 49);
             this.btnGIN.TabIndex = 22;
             this.btnGIN.Text = "Xuất phiếu";
             this.btnGIN.UseVisualStyleBackColor = false;
@@ -513,7 +513,7 @@
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReset.ForeColor = System.Drawing.Color.White;
-            this.btnReset.Location = new System.Drawing.Point(160, 98);
+            this.btnReset.Location = new System.Drawing.Point(399, 98);
             this.btnReset.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(195, 49);
@@ -529,7 +529,7 @@
             this.btnUpdateBook.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnUpdateBook.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateBook.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateBook.Location = new System.Drawing.Point(160, 21);
+            this.btnUpdateBook.Location = new System.Drawing.Point(399, 21);
             this.btnUpdateBook.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdateBook.Name = "btnUpdateBook";
             this.btnUpdateBook.Size = new System.Drawing.Size(195, 49);
@@ -545,10 +545,10 @@
             this.btnAddBook.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAddBook.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddBook.ForeColor = System.Drawing.Color.White;
-            this.btnAddBook.Location = new System.Drawing.Point(393, 21);
+            this.btnAddBook.Location = new System.Drawing.Point(160, 21);
             this.btnAddBook.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddBook.Name = "btnAddBook";
-            this.btnAddBook.Size = new System.Drawing.Size(189, 49);
+            this.btnAddBook.Size = new System.Drawing.Size(195, 49);
             this.btnAddBook.TabIndex = 17;
             this.btnAddBook.Text = "Thêm mới";
             this.btnAddBook.UseVisualStyleBackColor = false;

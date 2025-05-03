@@ -45,7 +45,7 @@ namespace DataLayer
             try
             {
                 string sql = "SELECT COUNT(*) " +
-                    "FROM Book" +
+                    "FROM Book " +
                     "WHERE IsVisible = 1 " +
                     "AND Author IS NOT NULL " +
                     "AND Price IS NOT NULL " +
