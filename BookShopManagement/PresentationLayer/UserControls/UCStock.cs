@@ -115,17 +115,43 @@ namespace PresentationLayer.UserControls
             string bookName = txtBookName.Text.Trim();
             string categoryID = cbxCategory.SelectedValue.ToString();
             string supplierID = cbxSupplier.SelectedValue.ToString();
-            int quantity = int.Parse(txtQuantity.Text);
+
+            // Kiểm tra số lượng nhập vào có hợp lệ không
+            if (!int.TryParse(txtQuantity.Text, out int quantityToAdd))
+            {
+                MessageBox.Show("Vui lòng nhập số lượng hợp lệ để nhập thêm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra số lượng tối thiểu nhập vào
+            int.TryParse(ruleBL.GetRuleValue("Nhập tối thiểu"), out int minQty);
+            if (quantityToAdd < minQty)
+            {
+                MessageBox.Show($"Phải nhập tối thiểu {minQty} cuốn.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             DateTime importDate = dtpkImportDate.Value;
 
-            Stock stock = new Stock(bookID, supplierID, categoryID, bookName, importDate, quantity);
+            try
+            {
+                // Tạo đối tượng Stock để lưu vào kho
+                Stock stock = new Stock(bookID, supplierID, categoryID, bookName, importDate, quantityToAdd);
 
-            StockBL stockBL = new StockBL();
-            stockBL.Add(stock);
-            addedStocks.Add(stock); // ← Thêm sách vừa nhập vào danh sách in phiếu
+                // Thêm vào kho thông qua StockBL
+                StockBL stockBL = new StockBL();
+                stockBL.Add(stock);
 
-            MessageBox.Show("Đã nhập sách vào kho và cập nhật danh mục sách.");
-            LoadStock();
+                // Thêm sách vừa nhập vào danh sách in phiếu
+                addedStocks.Add(stock); 
+
+                MessageBox.Show("Đã nhập sách vào kho và cập nhật danh mục sách.");
+                LoadStock();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi nhập sách vào kho: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnUpdateBook_Click(object sender, EventArgs e)
