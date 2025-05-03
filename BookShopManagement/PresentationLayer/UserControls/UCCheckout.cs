@@ -58,7 +58,6 @@ namespace PresentationLayer.UserControls
             LoadDetails();
             dgvBooks.CellClick += dgvBooks_CellClick; // Xử lý sự kiện nhấp chuột vào dòng sách
         }
-
         private void LoadCategoriesToCBX()
         {
             List<BookCategoryStock> categories = CheckoutBL.GetCategories();
@@ -156,6 +155,14 @@ namespace PresentationLayer.UserControls
             dgvDetails.Columns.Add("Số lượng", "Số lượng");
             dgvDetails.Columns.Add("Đơn giá", "Đơn giá");
             dgvDetails.Columns.Add("Thành tiền", "Thành tiền");
+
+            DataGridViewImageColumn imageColumn = new DataGridViewImageColumn();
+            imageColumn.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            imageColumn.Width = 30;
+            dgvDetails.Columns.Add(imageColumn);
+            dgvDetails.Columns[dgvDetails.Columns.Count - 1].Name = "Xóa";
+
+            dgvDetails.Columns["Số lượng"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvDetails.Columns["Đơn giá"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvDetails.Columns["Thành tiền"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
@@ -256,36 +263,36 @@ namespace PresentationLayer.UserControls
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            cbxCategories.SelectedIndex = -1;
+            //cbxCategories.SelectedIndex = -1;
 
-            dgvBooks.Rows.Clear(); 
+            //dgvBooks.Rows.Clear(); 
 
-            string keyword = txtNameSearch.Text.Trim();
+            //string keyword = txtNameSearch.Text.Trim();
 
-            if (string.IsNullOrEmpty(keyword))
-            {
-                MessageBox.Show("Vui lòng nhập tên sách cần tìm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            //if (string.IsNullOrEmpty(keyword))
+            //{
+            //    MessageBox.Show("Vui lòng nhập tên sách cần tìm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
 
-            try
-            {
-                var books = CheckoutBL.GetBooksByName(keyword);
+            //try
+            //{
+            //    var books = CheckoutBL.GetBooksByName(keyword);
 
-                foreach (var book in books)
-                {
-                    dgvBooks.Rows.Add(book.Bookid, book.Bookname, book.Price, book.Quantity);
-                }
+            //    foreach (var book in books)
+            //    {
+            //        dgvBooks.Rows.Add(book.Bookid, book.Bookname, book.Price, book.Quantity);
+            //    }
 
 
-                dgvBooks.Columns["BookName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                dgvBooks.Columns["Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                dgvBooks.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //    dgvBooks.Columns["BookName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            //    dgvBooks.Columns["Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            //    dgvBooks.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Lỗi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -530,7 +537,31 @@ namespace PresentationLayer.UserControls
 
         private void txtNameSearch_TextChanged(object sender, EventArgs e)
         {
+            cbxCategories.SelectedIndex = -1;
+            dgvBooks.Rows.Clear();
 
+            string keyword = txtNameSearch.Text.Trim();
+
+            if (string.IsNullOrEmpty(keyword))
+                return; // không cần tìm khi chưa nhập gì
+
+            try
+            {
+                var books = CheckoutBL.GetBooksByName(keyword);
+
+                foreach (var book in books)
+                {
+                    dgvBooks.Rows.Add(book.Bookid, book.Bookname, book.Price, book.Quantity);
+                }
+
+                dgvBooks.Columns["BookName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                dgvBooks.Columns["Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dgvBooks.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         public void ShowUserControl(UserControl userControl)
         {
@@ -547,6 +578,22 @@ namespace PresentationLayer.UserControls
                 return 0;  // Nếu tiền khách trả chưa đủ, trả lại 0
             }
             return totalPaid - totalBill;  // Trả về tiền thừa
+        }
+
+        private void dgvDetails_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dgvDetails.Columns["Xóa"].Index && e.RowIndex >= 0)
+            {
+                // Kiểm tra nếu không phải dòng mới
+                if (!dgvDetails.Rows[e.RowIndex].IsNewRow)
+                {
+                    if (MessageBox.Show("Bạn có chắc muốn xóa dòng này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        dgvDetails.Rows.RemoveAt(e.RowIndex);
+                        UpdateTotalBill();
+                    }
+                }
+            }
         }
     }
 }

@@ -117,6 +117,16 @@ namespace PresentationLayer.UserControls
 
         private void btnAddBook_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtBookName.Text) ||
+                string.IsNullOrWhiteSpace(txtBookID.Text) ||
+                cbxCategory.SelectedValue == null ||
+                cbxSupplier.SelectedValue == null ||
+                string.IsNullOrWhiteSpace(txtQuantity.Text))
+            {
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin sách cần nhập!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             string bookID = txtBookID.Text.Trim();
             string bookName = txtBookName.Text.Trim();
             string categoryID = cbxCategory.SelectedValue.ToString();
