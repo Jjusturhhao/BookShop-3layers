@@ -76,25 +76,9 @@ namespace BusinessLayer
         }
 
         // Xóa danh mục
-        public void DeleteCategory(string categoryID)
+        public bool DeleteCategory(string categoryID)
         {
-            try
-            {
-                if (string.IsNullOrEmpty(categoryID))
-                {
-                    throw new Exception("CategoryID không được để trống.");
-                }
-
-                int result = categoryDL.Delete(categoryID);
-                if (result <= 0)
-                {
-                    throw new Exception("Không thể xóa danh mục khỏi cơ sở dữ liệu.");
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Lỗi khi xóa danh mục: " + ex.Message);
-            }
+            return categoryDL.Delete(categoryID);
         }
 
         // Tìm kiếm danh mục theo từ khóa

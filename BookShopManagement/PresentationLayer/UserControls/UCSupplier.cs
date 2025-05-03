@@ -112,7 +112,7 @@ namespace PresentationLayer.UserControls
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
-                // Kiểm tra mã lỗi liên quan đến ràng buộc khoá ngoại (ví dụ: 547 là lỗi constraint violation)
+                // Kiểm tra mã lỗi liên quan đến ràng buộc khoá ngoại
                 if (ex.Number == 547)
                 {
                     MessageBox.Show("Không thể xóa NCC có lịch sử nhập sách trong kho", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -137,9 +137,6 @@ namespace PresentationLayer.UserControls
             txtAddress.Clear();
             txtEmail.Clear();
             txtPhone.Clear();
-            //btnAdd.Enabled = false;
-            //btnUpdate.Enabled = false;
-            //btnDelete.Enabled = false;
         }
 
         private Supplier GetSupplierFromForm()

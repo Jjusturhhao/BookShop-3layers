@@ -42,6 +42,9 @@ namespace PresentationLayer
             txtCatID.Text = categoryBL.GetNewCategoryID();
             txtCatName.Focus();
             LoadCategories();
+            btnInsert.Enabled = true;
+            btnUpate.Enabled = false;
+            btnDelete.Enabled = false;
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
@@ -94,7 +97,7 @@ namespace PresentationLayer
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            string categoryID = txtCatID.Text;
+            string categoryID = txtCatID.Text.Trim();
 
             if (string.IsNullOrEmpty(categoryID))
             {
@@ -107,6 +110,17 @@ namespace PresentationLayer
                 categoryBL.DeleteCategory(categoryID);
                 MessageBox.Show("Đã xóa danh mục thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadCategories();
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                if (ex.Number == 547) // Lỗi khóa ngoại
+                {
+                    MessageBox.Show("Không thể xóa danh mục đang chứa sách trong hệ thống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi SQL: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
@@ -148,11 +162,18 @@ namespace PresentationLayer
                 txtCatID.Text = row.Cells["CategoryID"].Value.ToString();
                 txtCatName.Text = row.Cells["CategoryName"].Value.ToString();
             }
+            btnUpate.Enabled = true;
+            btnInsert.Enabled = false;
+            btnDelete.Enabled = true;
         }
 
         private void AddCategory_Load(object sender, EventArgs e)
         {
             LoadCategories();
+            btnRefresh.Enabled = true;
+            btnInsert.Enabled = false;
+            btnUpate.Enabled = false;
+            btnDelete.Enabled = false;
         }
     }
 }

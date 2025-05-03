@@ -587,7 +587,7 @@ namespace PresentationLayer.UserControls
                 // Kiểm tra nếu không phải dòng mới
                 if (!dgvDetails.Rows[e.RowIndex].IsNewRow)
                 {
-                    if (MessageBox.Show("Bạn có chắc muốn xóa dòng này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         dgvDetails.Rows.RemoveAt(e.RowIndex);
                         UpdateTotalBill();

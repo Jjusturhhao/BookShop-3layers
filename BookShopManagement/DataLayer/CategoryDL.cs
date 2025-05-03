@@ -62,16 +62,12 @@ namespace DataLayer
         }
 
         // Xóa danh mục
-        public int Delete(string id)
+        public bool Delete(string id)
         {
             string sql = "DELETE FROM BookCategory WHERE CategoryID = @id";
             SqlCommand cmd = new SqlCommand(sql, cn);
             cmd.Parameters.AddWithValue("@id", id);
-
-            Connect();
-            int result = cmd.ExecuteNonQuery();
-            DisConnect();
-            return result;
+            return MyExecuteNonQuery(cmd) > 0;
         }
 
         public List<BookCategoryStock> Search(string keyword)
