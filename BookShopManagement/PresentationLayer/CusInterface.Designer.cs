@@ -68,6 +68,7 @@
             // 
             // flowLayoutPanelButtons
             // 
+            this.flowLayoutPanelButtons.AutoScroll = true;
             this.flowLayoutPanelButtons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.flowLayoutPanelButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanelButtons.Location = new System.Drawing.Point(0, 0);
@@ -170,7 +171,7 @@
             this.panel2.Size = new System.Drawing.Size(1486, 68);
             this.panel2.TabIndex = 26;
             // 
-            // HomepageCus
+            // CusInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -178,7 +179,7 @@
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.panel2);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "HomepageCus";
+            this.Name = "CusInterface";
             this.Text = "Giao diện khách hàng";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Homepage_Load);
