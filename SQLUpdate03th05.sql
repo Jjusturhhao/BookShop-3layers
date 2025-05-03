@@ -342,7 +342,7 @@ BEGIN
     INNER JOIN inserted i ON B.Order_ID = i.Order_ID
     WHERE i.Status = N'Đã hoàn thành' AND P.Payment_Date IS NULL;
 END
-
+GO
 
 SELECT 
     MONTH(b.Bill_Date) AS Month,
@@ -362,6 +362,7 @@ GROUP BY
 ORDER BY 
     Month;
 
+GO
 UPDATE b
 SET b.Bill_Date = o.Order_Date
 FROM Bill_Generate b

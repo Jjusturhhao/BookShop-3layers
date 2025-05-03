@@ -138,6 +138,7 @@
             this.txtConfirmNewPass.Location = new System.Drawing.Point(645, 168);
             this.txtConfirmNewPass.Margin = new System.Windows.Forms.Padding(11, 13, 11, 13);
             this.txtConfirmNewPass.Name = "txtConfirmNewPass";
+            this.txtConfirmNewPass.PasswordChar = '*';
             this.txtConfirmNewPass.PlaceholderForeColor = System.Drawing.Color.Black;
             this.txtConfirmNewPass.PlaceholderText = "";
             this.txtConfirmNewPass.SelectedText = "";
@@ -161,6 +162,7 @@
             this.txtNewPass.Location = new System.Drawing.Point(645, 92);
             this.txtNewPass.Margin = new System.Windows.Forms.Padding(11, 13, 11, 13);
             this.txtNewPass.Name = "txtNewPass";
+            this.txtNewPass.PasswordChar = '*';
             this.txtNewPass.PlaceholderForeColor = System.Drawing.Color.Black;
             this.txtNewPass.PlaceholderText = "";
             this.txtNewPass.SelectedText = "";
@@ -184,6 +186,7 @@
             this.txtOldPass.Location = new System.Drawing.Point(645, 13);
             this.txtOldPass.Margin = new System.Windows.Forms.Padding(11, 13, 11, 13);
             this.txtOldPass.Name = "txtOldPass";
+            this.txtOldPass.PasswordChar = '*';
             this.txtOldPass.PlaceholderForeColor = System.Drawing.Color.Black;
             this.txtOldPass.PlaceholderText = "";
             this.txtOldPass.SelectedText = "";

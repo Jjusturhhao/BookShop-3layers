@@ -142,11 +142,24 @@ namespace PresentationLayer.UserControls
             List<CategoryRevenue> caterevenues = statisticsBL.GetCategoryRevenueByMonth(selectedYear, selectedMonth);
 
             chartCategoryRevenue.Series.Clear();
-            chartCategoryRevenue.ChartAreas[0].AxisX.LabelStyle.Angle = 0; // Bỏ nghiêng
-            chartCategoryRevenue.ChartAreas[0].AxisX.Interval = 1;
-            chartCategoryRevenue.ChartAreas[0].AxisX.LabelStyle.Enabled = false; // Ẩn nhãn dưới trục X
+            chartCategoryRevenue.Legends.Clear();
 
-            // Xóa grid line
+            // Nếu không có dữ liệu => để biểu đồ trống
+            if (caterevenues == null || caterevenues.Count == 0)
+            {
+                chartCategoryRevenue.ChartAreas[0].AxisX.Title = "Thể loại sách";
+                chartCategoryRevenue.ChartAreas[0].AxisY.Title = "Doanh thu (VNĐ)";
+                chartCategoryRevenue.ChartAreas[0].AxisX.LabelStyle.Enabled = false;
+                chartCategoryRevenue.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+                chartCategoryRevenue.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+                chartCategoryRevenue.ChartAreas[0].AxisY.Maximum = 0;
+                return;
+            }
+
+            // Cấu hình trục X và Y
+            chartCategoryRevenue.ChartAreas[0].AxisX.LabelStyle.Angle = 0;
+            chartCategoryRevenue.ChartAreas[0].AxisX.Interval = 1;
+            chartCategoryRevenue.ChartAreas[0].AxisX.LabelStyle.Enabled = false;
             chartCategoryRevenue.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
             chartCategoryRevenue.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
 
@@ -157,10 +170,9 @@ namespace PresentationLayer.UserControls
                 IsValueShownAsLabel = true
             };
 
-            // Các màu cho từng thể loại
             Color[] colors = { Color.Salmon, Color.SeaGreen, Color.RoyalBlue, Color.Goldenrod, Color.MediumOrchid };
-
             int colorIndex = 0;
+
             foreach (var item in caterevenues)
             {
                 string categoryName = item.CategoryName;
@@ -175,36 +187,35 @@ namespace PresentationLayer.UserControls
                 colorIndex++;
             }
 
-            // Làm cột rộng ra
-            series["PointWidth"] = "0.6"; // từ 0 -> 1, càng lớn càng rộng
-
+            series["PointWidth"] = "0.6";
             chartCategoryRevenue.Series.Add(series);
 
-            // Cấu hình trục
             chartCategoryRevenue.ChartAreas[0].AxisX.Title = "Thể loại sách";
             chartCategoryRevenue.ChartAreas[0].AxisY.Title = "Doanh thu (VNĐ)";
 
-            // Gắn legend cho từng màu
-            chartCategoryRevenue.Legends.Clear();
-            Legend legend = new Legend();
-            legend.Docking = Docking.Right;
-            legend.Alignment = StringAlignment.Center;
-            legend.Title = "";
+            // Thêm custom legend
+            Legend legend = new Legend
+            {
+                Docking = Docking.Right,
+                Alignment = StringAlignment.Center,
+                Title = ""
+            };
             chartCategoryRevenue.Legends.Add(legend);
-            // Thêm custom legend items
+
             for (int i = 0; i < caterevenues.Count; i++)
             {
-                LegendItem item = new LegendItem();
-                item.Name = caterevenues[i].CategoryName;
-                item.Color = colors[i % colors.Length];
-                item.BorderColor = Color.Black;
+                LegendItem item = new LegendItem
+                {
+                    Name = caterevenues[i].CategoryName,
+                    Color = colors[i % colors.Length],
+                    BorderColor = Color.Black
+                };
                 chartCategoryRevenue.Legends[0].CustomItems.Add(item);
             }
-            series.IsVisibleInLegend = false;
-            // Tính doanh thu cao nhất
-            decimal maxRevenue = caterevenues.Max(c => c.TotalRevenue);
 
-            // Cập nhật lại trục Y
+            series.IsVisibleInLegend = false;
+
+            decimal maxRevenue = caterevenues.Max(c => c.TotalRevenue);
             chartCategoryRevenue.ChartAreas[0].AxisY.Maximum = (double)(Math.Ceiling(maxRevenue / 50000m) * 50000m);
         }
 
