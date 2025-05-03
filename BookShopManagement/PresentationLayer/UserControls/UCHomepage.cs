@@ -33,6 +33,12 @@ namespace PresentationLayer.UserControls
         private void UCHomepage_Load(object sender, EventArgs e)
         {
             LoadBooks(currentPage, currentCategoryID);
+
+            btnPrevious.Click -= btnPrevious_Click;
+            btnPrevious.Click += btnPrevious_Click;
+
+            btnNext.Click -= btnNext_Click;
+            btnNext.Click += btnNext_Click;
         }
 
         public void LoadBooks(int pageNumber, string categoryID)
@@ -160,24 +166,27 @@ namespace PresentationLayer.UserControls
         {
             btnNext.Enabled = currentPage < totalPages;
             btnPrevious.Enabled = currentPage > 1;
+        }
 
-            btnPrevious.Click += (s, e) =>
-            {
-                if (currentPage > 1)
-                {
-                    currentPage--;
-                    LoadBooks(currentPage, currentCategoryID);
-                }
-            };
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            int totalRecords = homepageBL.GetTotalRecords(currentCategoryID);
+            int totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
 
-            btnNext.Click += (s, e) =>
+            if (currentPage < totalPages)
             {
-                if (currentPage < totalPages)
-                {
-                    currentPage++;
-                    LoadBooks(currentPage, currentCategoryID);
-                }
-            };
+                currentPage++;
+                LoadBooks(currentPage, currentCategoryID);
+            }
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            if (currentPage > 1)
+            {
+                currentPage--;
+                LoadBooks(currentPage, currentCategoryID);
+            }
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -318,5 +327,6 @@ namespace PresentationLayer.UserControls
                 MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }

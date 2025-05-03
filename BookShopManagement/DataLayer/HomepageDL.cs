@@ -19,7 +19,7 @@ namespace DataLayer
                 Connect();
                 string sql = "SELECT * " +
                     "FROM Book " +
-                    "WHERE IsVisible = 1 AND Author IS NOT NULL AND Price IS NOT NULL AND BookImage IS NOT NULL " +
+                    "WHERE IsVisible = 1 AND Author IS NOT NULL AND Price IS NOT NULL " +
                     "ORDER BY BookID " +
                     "OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
                 SqlCommand cmd = new SqlCommand(sql, cn);
@@ -48,8 +48,7 @@ namespace DataLayer
                     "FROM Book " +
                     "WHERE IsVisible = 1 " +
                     "AND Author IS NOT NULL " +
-                    "AND Price IS NOT NULL " +
-                    "AND BookImage IS NOT NULL ";
+                    "AND Price IS NOT NULL ";
                 object result = MyExecuteScalar(sql, CommandType.Text);
                 return Convert.ToInt32(result);
             }
@@ -114,7 +113,7 @@ namespace DataLayer
                 string sql = "SELECT COUNT(*) " +
                     "FROM Book " +
                     "WHERE CategoryID = @CategoryID " +
-                    "AND IsVisible = 1 AND Author IS NOT NULL AND Price IS NOT NULL AND BookImage IS NOT NULL ";
+                    "AND IsVisible = 1 AND Author IS NOT NULL AND Price IS NOT NULL ";
                 SqlCommand cmd = new SqlCommand(sql, cn);
                 cmd.Parameters.AddWithValue("@CategoryID", categoryID);
 
