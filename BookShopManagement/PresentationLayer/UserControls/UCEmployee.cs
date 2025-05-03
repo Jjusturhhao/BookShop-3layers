@@ -96,6 +96,9 @@ namespace PresentationLayer.UserControls
                 txtPhone.Text = row.Cells["Phone"].Value.ToString();
                 txtPassword.Enabled = false;
             }
+            btnUpdate.Enabled = true;
+            btnDeactive.Enabled = true;
+            btnAdd.Enabled = false;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -130,23 +133,34 @@ namespace PresentationLayer.UserControls
                 MessageBox.Show("Cập nhật thất bại!");
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnDeactive_Click(object sender, EventArgs e)
         {
             string id = txtID.Text;
-            if (employeeBL.DeleteEmployee(id))
+            DialogResult confirm = MessageBox.Show("Bạn có chắc muốn vô hiệu hóa tài khoản nhân viên này?",
+                "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirm == DialogResult.Yes)
             {
-                MessageBox.Show("Xóa thành công!");
-                LoadEmployees();
-                ClearForm();
+                if (employeeBL.DeactivateEmployee(id))
+                {
+                    MessageBox.Show("Tài khoản đã được vô hiệu hóa.");
+                    LoadEmployees();
+                    ClearForm();
+                }
+                else
+                {
+                    MessageBox.Show("Vô hiệu hóa thất bại.");
+                }
             }
-            else
-                MessageBox.Show("Xóa thất bại!");
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             ClearForm();
             txtPassword.Enabled = true;
+            btnAdd.Enabled = true;
+            btnDeactive.Enabled = false;
+            btnUpdate.Enabled = false;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -205,6 +219,14 @@ namespace PresentationLayer.UserControls
                 txtSearch.ForeColor = Color.Gray;
                 txtSearch.Text = "Nhập Mã/Tên nhân viên cần tra cứu";
             }
+        }
+
+        private void UCEmployee_Load(object sender, EventArgs e)
+        {
+            btnRefresh.Enabled = true;
+            btnAdd.Enabled = false;
+            btnUpdate.Enabled = false;
+            btnDeactive.Enabled = false;
         }
     }
 }

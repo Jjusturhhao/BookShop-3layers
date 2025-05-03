@@ -34,7 +34,7 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnDeactive = new System.Windows.Forms.Button();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -74,7 +74,7 @@
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(464, 90);
+            this.btnRefresh.Location = new System.Drawing.Point(499, 90);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(232, 52);
@@ -90,7 +90,7 @@
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnUpdate.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(197, 18);
+            this.btnUpdate.Location = new System.Drawing.Point(500, 5);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(231, 54);
@@ -106,10 +106,10 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdd.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(464, 18);
+            this.btnAdd.Location = new System.Drawing.Point(132, 5);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(231, 54);
+            this.btnAdd.Size = new System.Drawing.Size(259, 54);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Thêm mới";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -120,7 +120,7 @@
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this.btnRefresh);
             this.panel5.Controls.Add(this.btnUpdate);
-            this.panel5.Controls.Add(this.btnDelete);
+            this.panel5.Controls.Add(this.btnDeactive);
             this.panel5.Controls.Add(this.btnAdd);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel5.Location = new System.Drawing.Point(0, 775);
@@ -129,21 +129,21 @@
             this.panel5.Size = new System.Drawing.Size(886, 153);
             this.panel5.TabIndex = 1;
             // 
-            // btnDelete
+            // btnDeactive
             // 
-            this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnDelete.BackColor = System.Drawing.Color.Red;
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDelete.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(197, 89);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(231, 54);
-            this.btnDelete.TabIndex = 2;
-            this.btnDelete.Text = "Xóa nhân viên";
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnDeactive.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnDeactive.BackColor = System.Drawing.Color.Red;
+            this.btnDeactive.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDeactive.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeactive.ForeColor = System.Drawing.Color.White;
+            this.btnDeactive.Location = new System.Drawing.Point(91, 90);
+            this.btnDeactive.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnDeactive.Name = "btnDeactive";
+            this.btnDeactive.Size = new System.Drawing.Size(337, 53);
+            this.btnDeactive.TabIndex = 2;
+            this.btnDeactive.Text = "Vô hiệu hóa tài khoản";
+            this.btnDeactive.UseVisualStyleBackColor = false;
+            this.btnDeactive.Click += new System.EventHandler(this.btnDeactive_Click);
             // 
             // txtPhone
             // 
@@ -439,6 +439,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "UCEmployee";
             this.Size = new System.Drawing.Size(1883, 1059);
+            this.Load += new System.EventHandler(this.UCEmployee_Load);
             this.panel5.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -458,7 +459,7 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnDeactive;
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Panel panel3;

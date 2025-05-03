@@ -30,6 +30,8 @@ namespace BusinessLayer
             }
         }
 
+        
+
         public string GetName(string username)
         {
             try
@@ -41,5 +43,18 @@ namespace BusinessLayer
                 throw ex;
             }
         }
+
+        public bool IsAccountDeactivated(string username)
+        {
+            try
+            {
+                return loginDL.IsAccountDeactivated(username);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

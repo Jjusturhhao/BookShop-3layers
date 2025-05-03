@@ -10,7 +10,7 @@ namespace DataLayer
     {
         public List<Employee> GetEmployees()
         {
-            string sql = "SELECT * FROM Users WHERE Role = 'Staff'";
+            string sql = "SELECT * FROM Users WHERE Role = 'Staff' AND IsActive = 1";
             List<Employee> employees = new List<Employee>();
             try
             {
@@ -43,7 +43,7 @@ namespace DataLayer
 
         public bool AddEmployee(Employee employee)
         {
-            string sql = "INSERT INTO Users VALUES (@id, @name, @username, @password, @email, @address, @phone, @role)";
+            string sql = "INSERT INTO Users VALUES (@id, @name, @username, @password, @email, @address, @phone, @role, 1)";
             SqlCommand cmd = new SqlCommand(sql);
             cmd.Parameters.AddWithValue("@id", employee.ID);
             cmd.Parameters.AddWithValue("@name", employee.Name);
@@ -72,17 +72,32 @@ namespace DataLayer
             return MyExecuteNonQuery(cmd) > 0;
         }
 
-        public bool DeleteEmployee(string employeeID)
+        public bool DeactivateEmployee(string employeeID)
         {
-            string sql = "DELETE FROM Users WHERE User_ID = @id AND Role = 'Staff'";
-            SqlCommand cmd = new SqlCommand(sql);
-            cmd.Parameters.AddWithValue("@id", employeeID);
-            return MyExecuteNonQuery(cmd) > 0;
+            string sql = "UPDATE Users SET IsActive = 0 WHERE User_ID = @ID AND Role = 'Staff'";
+            try
+            {
+                Connect();
+                using (SqlCommand cmd = new SqlCommand(sql, cn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", employeeID);
+                    int rows = cmd.ExecuteNonQuery();
+                    return rows > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
         }
 
         public List<Employee> SearchEmployees(string keyword)
         {
-            string sql = "SELECT * FROM Users WHERE Role = 'Staff' AND (User_ID LIKE @kw OR Name LIKE @kw)";
+            string sql = "SELECT * FROM Users WHERE Role = 'Staff' AND IsActive = 1 AND (User_ID LIKE @kw OR Name LIKE @kw)";
             List<Employee> employees = new List<Employee>();
             try
             {

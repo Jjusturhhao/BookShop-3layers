@@ -13,7 +13,11 @@ namespace DataLayer
         public string GetUserRole(Account account)
         {
             string role = null;
-            string sql = "SELECT Role FROM Users WHERE Username = @Username AND Password = @Password";
+            string sql = @"SELECT Role 
+                   FROM Users 
+                   WHERE Username = @Username 
+                     AND Password = @Password 
+                     AND IsActive = 1";
 
             try
             {
@@ -25,9 +29,7 @@ namespace DataLayer
 
                     object result = cmd.ExecuteScalar();
                     if (result != null)
-                    {
                         role = result.ToString();
-                    }
                 }
             }
             catch (Exception ex)
@@ -40,6 +42,33 @@ namespace DataLayer
             }
             return role;
         }
+
+        public bool IsAccountDeactivated(string username)
+        {
+            string sql = "SELECT IsActive FROM Users WHERE Username = @username";
+            try
+            {
+                Connect();
+                SqlCommand cmd = new SqlCommand(sql, cn);
+                cmd.Parameters.AddWithValue("@username", username);
+
+                object result = cmd.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
+                {
+                    return Convert.ToInt32(result) == 0; // IsActive = 0 nghĩa là bị vô hiệu hóa
+                }
+                return false; // Nếu không tìm thấy thì coi như không bị vô hiệu hóa
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DisConnect();
+            }
+        }
+
 
         public string GetName(string username)
         {

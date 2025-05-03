@@ -40,9 +40,9 @@ namespace BusinessLayer
             return employeeDL.UpdateEmployee(employee);
         }
 
-        public bool DeleteEmployee(string employeeID)
+        public bool DeactivateEmployee(string employeeID)
         {
-            return employeeDL.DeleteEmployee(employeeID);
+            return employeeDL.DeactivateEmployee(employeeID);
         }
 
         public List<Employee> SearchEmployees(string keyword)

@@ -110,25 +110,26 @@ CREATE TABLE Users (
     Email VARCHAR(50) NOT NULL UNIQUE, -- Email phải duy nhất
     Address NVARCHAR(100) NULL, -- Chỉ khách hàng cần nhập
     PhoneNumber VARCHAR(50) NULL, -- Dùng chung cho Customer & Staff
-    Role VARCHAR(30) CHECK (Role IN ('Customer', 'Staff', 'Admin')) NOT NULL DEFAULT 'Customer'
+    Role VARCHAR(30) CHECK (Role IN ('Customer', 'Staff', 'Admin')) NOT NULL DEFAULT 'Customer',
+	IsActive BIT NOT NULL DEFAULT 1
 );
 go
 
 -- Admin: Không cần nhập Address và PhoneNumber
-	INSERT INTO Users (User_ID, Name, Username, Password, Email, Role) 
+	INSERT INTO Users (User_ID, Name, Username, Password, Email, Role, IsActive) 
 	VALUES 
-	('A1', N'Ngọc Hân', 'Lele', '123', 'lele@gmail.com', 'Admin'),
-	('A2',N'Hoàn Hảo', 'Hao', '123', 'hhao@gmail.com', 'Admin');
+	('A1', N'Ngọc Hân', 'Lele', '123', 'lele@gmail.com', 'Admin', 1),
+	('A2',N'Hoàn Hảo', 'Hao', '123', 'hhao@gmail.com', 'Admin', 1);
 go
 -- Manager, Customer: Cần nhập Address và PhoneNumber
-	INSERT INTO Users (User_ID, Name, Username, Password, Email, Address, PhoneNumber, Role) 
+	INSERT INTO Users (User_ID, Name, Username, Password, Email, Address, PhoneNumber, Role, IsActive) 
 	VALUES 
-	('S1',N'Đan Hạnh', 'Tu', '000', 'tutu@gmail.com', 'Nhà Bè', '0123456789', 'Staff'),
-	('S2',N'Phương Thảo', 'APT', '000', 'apt@gmail.com', 'Nhà Bè', '0223456789', 'Staff'),
-	('S3',N'Gia Hân', 'Bao', '000', 'batman@gmail.com', 'Tân Bình', '0323456789', 'Staff'),
-	('C1',N'Huệ Tin', 'Tin', '456', 'htk@gmail.com', N'Quận 7', '0987654321', 'Customer'),
-	('C2',N'Hân Hân', 'hhan', '456', 'hhan@gmail.com', N'Nhà Bè', '0987654322', 'Customer'),
-	('C3',N'Mỹ Diên', 'Dien', '456', 'mdien@gmail.com', N'Nhà Bè', '0987654323', 'Customer');
+	('S1',N'Đan Hạnh', 'Tu', '000', 'tutu@gmail.com', 'Nhà Bè', '0123456789', 'Staff', 1),
+	('S2',N'Phương Thảo', 'APT', '000', 'apt@gmail.com', 'Nhà Bè', '0223456789', 'Staff', 1),
+	('S3',N'Gia Hân', 'Bao', '000', 'batman@gmail.com', 'Tân Bình', '0323456789', 'Staff', 1),
+	('C1',N'Huệ Tin', 'Tin', '456', 'htk@gmail.com', N'Quận 7', '0987654321', 'Customer', 1),
+	('C2',N'Hân Hân', 'hhan', '456', 'hhan@gmail.com', N'Nhà Bè', '0987654322', 'Customer', 1),
+	('C3',N'Mỹ Diên', 'Dien', '456', 'mdien@gmail.com', N'Nhà Bè', '0987654323', 'Customer', 1);
 go
 	SELECT * FROM Users
 

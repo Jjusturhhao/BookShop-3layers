@@ -38,6 +38,14 @@ namespace PresentationLayer
             string password = GetPassword();
             Account acc = new Account(username, password);
 
+            // 👉 Kiểm tra tài khoản bị vô hiệu hóa TRƯỚC
+            if (loginBL.IsAccountDeactivated(username))
+            {
+                MessageBox.Show("Tài khoản đã bị vô hiệu hóa!", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 👉 Sau khi biết tài khoản còn hoạt động thì mới kiểm tra đúng sai
             string role = loginBL.GetUserRole(acc);
 
             if (role != null)
