@@ -17,7 +17,11 @@ namespace DataLayer
             try
             {
                 Connect();
-                string sql = "SELECT * FROM Book ORDER BY BookID OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
+                string sql = "SELECT * " +
+                    "FROM Book " +
+                    "WHERE IsVisible = 1 AND Author IS NOT NULL AND Price IS NOT NULL AND BookImage IS NOT NULL " +
+                    "ORDER BY BookID " +
+                    "OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
                 SqlCommand cmd = new SqlCommand(sql, cn);
                 cmd.Parameters.AddWithValue("@Offset", (pageNumber - 1) * pageSize);
                 cmd.Parameters.AddWithValue("@PageSize", pageSize);
@@ -40,7 +44,12 @@ namespace DataLayer
         {
             try
             {
-                string sql = "SELECT COUNT(*) FROM Book";
+                string sql = "SELECT COUNT(*) " +
+                    "FROM Book" +
+                    "WHERE IsVisible = 1 " +
+                    "AND Author IS NOT NULL " +
+                    "AND Price IS NOT NULL " +
+                    "AND BookImage IS NOT NULL ";
                 object result = MyExecuteScalar(sql, CommandType.Text);
                 return Convert.ToInt32(result);
             }
@@ -77,6 +86,7 @@ namespace DataLayer
 
                 string sql = "SELECT * FROM Book " +
                     "WHERE CategoryID = @CategoryID " +
+                        "AND IsVisible = 1 AND Author IS NOT NULL AND Price IS NOT NULL AND BookImage IS NOT NULL " +
                     "ORDER BY BookID " +
                     "OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
                 SqlCommand cmd = new SqlCommand(sql, cn);
@@ -101,7 +111,10 @@ namespace DataLayer
         {
             try
             {
-                string sql = "SELECT COUNT(*) FROM Book WHERE CategoryID = @CategoryID";
+                string sql = "SELECT COUNT(*) " +
+                    "FROM Book " +
+                    "WHERE CategoryID = @CategoryID " +
+                    "AND IsVisible = 1 AND Author IS NOT NULL AND Price IS NOT NULL AND BookImage IS NOT NULL ";
                 SqlCommand cmd = new SqlCommand(sql, cn);
                 cmd.Parameters.AddWithValue("@CategoryID", categoryID);
 
