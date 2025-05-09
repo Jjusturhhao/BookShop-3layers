@@ -32,13 +32,14 @@ namespace PresentationLayer.UserControls
 
         private void UCHomepage_Load(object sender, EventArgs e)
         {
-            LoadBooks(currentPage, currentCategoryID);
-
             btnPrevious.Click -= btnPrevious_Click;
             btnPrevious.Click += btnPrevious_Click;
 
             btnNext.Click -= btnNext_Click;
             btnNext.Click += btnNext_Click;
+
+            // Gọi sau cùng để đảm bảo các control đã render xong
+            BeginInvoke(new Action(() => LoadBooks(currentPage, currentCategoryID)));
         }
 
         public void LoadBooks(int pageNumber, string categoryID)
@@ -72,7 +73,7 @@ namespace PresentationLayer.UserControls
                 };
 
                 string imageFileName = row["BookImage"].ToString();
-                string imagePath = Path.Combine(Application.StartupPath, "BookImage", imageFileName);
+                string imagePath = Path.Combine(Application.StartupPath, @"..\..\BookImage", imageFileName);
                 try
                 {
                     pictureBox.Image = Image.FromFile(imagePath);

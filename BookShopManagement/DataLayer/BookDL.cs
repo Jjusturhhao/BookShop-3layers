@@ -21,45 +21,6 @@ namespace DataLayer
 {
     public class BookDL : DataProvider
     {
-        //public List<Book> GetBooks()
-        //{
-        //    List<Book> books = new List<Book>();
-        //    string sql = "SELECT b.BookID, b.BookName, c.CategoryName, b.Author, b.Price, b.BookImage " +
-        //     "FROM Book b " +
-        //     "JOIN BookCategory c ON b.CategoryID = c.CategoryID " +
-        //     "ORDER BY CAST(SUBSTRING(b.BookID, 5, LEN(b.BookID)) AS INT)";
-
-        //    try
-        //    {
-        //        Connect();
-        //        SqlDataReader reader = MyExecuteReader(sql, CommandType.Text);
-        //        {
-        //            while (reader.Read())
-        //            {
-        //                string bookid = reader["BookID"].ToString();
-        //                string bookName = reader["BookName"].ToString();
-        //                string categoryID = reader["CategoryName"].ToString();
-        //                string author = reader["Author"].ToString();
-        //                int price = Convert.ToInt32(reader["Price"]);
-        //                string bookiamge = reader["BookImage"].ToString();
-        //                // string imagePath = Path.Combine(Application.StartupPath, "BookImage", bookImage);
-        //                Book book = new Book(bookid, bookName, categoryID, author, price, bookiamge);
-        //                books.Add(book);
-        //            }
-        //        }
-        //        reader.Close();
-        //        return books;
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        throw ex;
-        //    }
-        //    finally
-        //    {
-        //        DisConnect();
-        //    }
-        //}
-
         public List<Book> GetBooks()
         {
             List<Book> books = new List<Book>();
@@ -83,8 +44,8 @@ namespace DataLayer
                     bool isVisible = reader["IsVisible"] != DBNull.Value && Convert.ToBoolean(reader["IsVisible"]);
                     string note = reader["Note"]?.ToString();
 
-                    // Tạo đường dẫn hình ảnh trong thư mục bin/Debug/BookImage
-                    string imagePath = Path.Combine(System.Windows.Forms.Application.StartupPath, "BookImage", bookImage);
+                    // Tạo đường dẫn hình ảnh 
+                    string imagePath = Path.Combine(System.Windows.Forms.Application.StartupPath, @"..\..\BookImage", bookImage);
 
 
                     // Kiểm tra nếu hình ảnh tồn tại, nếu không, sử dụng hình ảnh mặc định
