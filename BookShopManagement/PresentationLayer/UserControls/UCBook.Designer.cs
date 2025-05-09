@@ -86,7 +86,7 @@
             this.txtAuthor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtAuthor.Name = "txtAuthor";
             this.txtAuthor.Size = new System.Drawing.Size(346, 39);
-            this.txtAuthor.TabIndex = 33;
+            this.txtAuthor.TabIndex = 3;
             // 
             // lbAuthor
             // 
@@ -109,7 +109,7 @@
             this.cbxCategory.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbxCategory.Name = "cbxCategory";
             this.cbxCategory.Size = new System.Drawing.Size(346, 40);
-            this.cbxCategory.TabIndex = 31;
+            this.cbxCategory.TabIndex = 2;
             // 
             // txtBookName
             // 
@@ -119,7 +119,7 @@
             this.txtBookName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBookName.Name = "txtBookName";
             this.txtBookName.Size = new System.Drawing.Size(346, 39);
-            this.txtBookName.TabIndex = 29;
+            this.txtBookName.TabIndex = 1;
             // 
             // txtBookID
             // 
@@ -131,7 +131,7 @@
             this.txtBookID.Name = "txtBookID";
             this.txtBookID.ReadOnly = true;
             this.txtBookID.Size = new System.Drawing.Size(346, 39);
-            this.txtBookID.TabIndex = 28;
+            this.txtBookID.TabIndex = 0;
             // 
             // lbCategory
             // 
@@ -177,7 +177,7 @@
             this.btnUpdateBook.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdateBook.Name = "btnUpdateBook";
             this.btnUpdateBook.Size = new System.Drawing.Size(231, 54);
-            this.btnUpdateBook.TabIndex = 19;
+            this.btnUpdateBook.TabIndex = 1;
             this.btnUpdateBook.Text = "Cập nhật";
             this.btnUpdateBook.UseVisualStyleBackColor = false;
             this.btnUpdateBook.Click += new System.EventHandler(this.btnUpdateBook_Click);
@@ -202,7 +202,7 @@
             this.ckbShowBook.Location = new System.Drawing.Point(132, 25);
             this.ckbShowBook.Name = "ckbShowBook";
             this.ckbShowBook.Size = new System.Drawing.Size(231, 52);
-            this.ckbShowBook.TabIndex = 22;
+            this.ckbShowBook.TabIndex = 0;
             this.ckbShowBook.Text = "Hiện sách";
             this.ckbShowBook.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ckbShowBook.UseVisualStyleBackColor = false;
@@ -249,7 +249,7 @@
             this.txtNote.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtNote.Name = "txtNote";
             this.txtNote.Size = new System.Drawing.Size(346, 39);
-            this.txtNote.TabIndex = 47;
+            this.txtNote.TabIndex = 5;
             // 
             // label2
             // 
@@ -270,7 +270,7 @@
             this.txtPrice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(346, 39);
-            this.txtPrice.TabIndex = 45;
+            this.txtPrice.TabIndex = 4;
             // 
             // lbPrice
             // 
@@ -290,7 +290,7 @@
             this.btnUpload.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(157, 44);
-            this.btnUpload.TabIndex = 43;
+            this.btnUpload.TabIndex = 6;
             this.btnUpload.Text = "Tải ảnh";
             this.btnUpload.UseVisualStyleBackColor = true;
             this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click_1);

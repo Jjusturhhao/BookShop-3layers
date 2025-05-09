@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -176,14 +176,14 @@
             this.dgvStock.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvStock.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvStock.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStock.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.BookID,
@@ -192,14 +192,14 @@
             this.BookName,
             this.ImportDate,
             this.Quantity});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvStock.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStock.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvStock.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvStock.Location = new System.Drawing.Point(0, 0);
             this.dgvStock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -325,7 +325,7 @@
             this.txtSL.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSL.Name = "txtSL";
             this.txtSL.Size = new System.Drawing.Size(307, 39);
-            this.txtSL.TabIndex = 43;
+            this.txtSL.TabIndex = 6;
             this.txtSL.Visible = false;
             // 
             // label2
@@ -351,7 +351,7 @@
             this.cbxSupplier.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbxSupplier.Name = "cbxSupplier";
             this.cbxSupplier.Size = new System.Drawing.Size(307, 40);
-            this.cbxSupplier.TabIndex = 41;
+            this.cbxSupplier.TabIndex = 4;
             // 
             // dtpkImportDate
             // 
@@ -362,7 +362,7 @@
             this.dtpkImportDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpkImportDate.Name = "dtpkImportDate";
             this.dtpkImportDate.Size = new System.Drawing.Size(307, 39);
-            this.dtpkImportDate.TabIndex = 40;
+            this.dtpkImportDate.TabIndex = 3;
             // 
             // lbImportDate
             // 
@@ -397,7 +397,7 @@
             this.cbxCategory.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbxCategory.Name = "cbxCategory";
             this.cbxCategory.Size = new System.Drawing.Size(307, 40);
-            this.cbxCategory.TabIndex = 31;
+            this.cbxCategory.TabIndex = 2;
             // 
             // txtQuantity
             // 
@@ -408,7 +408,7 @@
             this.txtQuantity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(307, 39);
-            this.txtQuantity.TabIndex = 30;
+            this.txtQuantity.TabIndex = 5;
             // 
             // txtBookName
             // 
@@ -419,7 +419,7 @@
             this.txtBookName.Name = "txtBookName";
             this.txtBookName.ReadOnly = true;
             this.txtBookName.Size = new System.Drawing.Size(307, 39);
-            this.txtBookName.TabIndex = 29;
+            this.txtBookName.TabIndex = 1;
             // 
             // txtBookID
             // 
@@ -431,7 +431,7 @@
             this.txtBookID.Name = "txtBookID";
             this.txtBookID.ReadOnly = true;
             this.txtBookID.Size = new System.Drawing.Size(307, 39);
-            this.txtBookID.TabIndex = 28;
+            this.txtBookID.TabIndex = 0;
             // 
             // lbQuantity
             // 
@@ -503,7 +503,7 @@
             this.btnGIN.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnGIN.Name = "btnGIN";
             this.btnGIN.Size = new System.Drawing.Size(195, 49);
-            this.btnGIN.TabIndex = 22;
+            this.btnGIN.TabIndex = 2;
             this.btnGIN.Text = "Xuất phiếu";
             this.btnGIN.UseVisualStyleBackColor = false;
             this.btnGIN.Click += new System.EventHandler(this.btnGIN_Click);
@@ -519,7 +519,7 @@
             this.btnReset.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(195, 49);
-            this.btnReset.TabIndex = 21;
+            this.btnReset.TabIndex = 3;
             this.btnReset.Text = "Làm mới";
             this.btnReset.UseVisualStyleBackColor = false;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
@@ -535,7 +535,7 @@
             this.btnUpdateBook.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdateBook.Name = "btnUpdateBook";
             this.btnUpdateBook.Size = new System.Drawing.Size(195, 49);
-            this.btnUpdateBook.TabIndex = 19;
+            this.btnUpdateBook.TabIndex = 1;
             this.btnUpdateBook.Text = "Cập nhật";
             this.btnUpdateBook.UseVisualStyleBackColor = false;
             this.btnUpdateBook.Click += new System.EventHandler(this.btnUpdateBook_Click);
@@ -551,7 +551,7 @@
             this.btnAddBook.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddBook.Name = "btnAddBook";
             this.btnAddBook.Size = new System.Drawing.Size(195, 49);
-            this.btnAddBook.TabIndex = 17;
+            this.btnAddBook.TabIndex = 0;
             this.btnAddBook.Text = "Thêm mới";
             this.btnAddBook.UseVisualStyleBackColor = false;
             this.btnAddBook.Click += new System.EventHandler(this.btnAddBook_Click);
