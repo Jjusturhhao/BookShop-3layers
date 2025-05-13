@@ -202,7 +202,7 @@ namespace PresentationLayer.UserControls
 
             try
             {
-                DataTable allBooks = homepageBL.GetBooks(currentPage, pageSize);
+                DataTable allBooks = homepageBL.GetBooks(1, int.MaxValue);
 
                 // Tạo bảng chứa sách tìm kiếm được
                 DataTable searchResult = allBooks.Clone(); // Tạo structure y chang allBooks nhưng chưa có dữ liệu
@@ -240,7 +240,7 @@ namespace PresentationLayer.UserControls
                     };
 
                     string imageFileName = row["BookImage"].ToString();
-                    string imagePath = Path.Combine(Application.StartupPath, "BookImage", imageFileName);
+                    string imagePath = Path.Combine(Application.StartupPath, @"..\..\BookImage", imageFileName);
                     try
                     {
                         pictureBox.Image = Image.FromFile(imagePath);

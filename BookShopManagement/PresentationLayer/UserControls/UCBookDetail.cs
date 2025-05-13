@@ -49,7 +49,7 @@ namespace PresentationLayer.UserControls
                 try
                 {
                     string imageFileName = book.Bookimage;
-                    string imagePath = Path.Combine(Application.StartupPath, "BookImage", imageFileName);
+                    string imagePath = Path.Combine(Application.StartupPath, @"..\..\BookImage", imageFileName);
                     try
                     {
                         pictureBoxImage.Image = Image.FromFile(imagePath);
