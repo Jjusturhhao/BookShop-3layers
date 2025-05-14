@@ -143,5 +143,16 @@ namespace PresentationLayer.UserControls
         {
             OnBackToCartClick?.Invoke();
         }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                // Không xử lý gì khi bấm Enter
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
     }
 }

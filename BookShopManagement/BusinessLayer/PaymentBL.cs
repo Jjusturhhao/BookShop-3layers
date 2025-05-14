@@ -31,9 +31,9 @@ namespace BusinessLayer
             string transactionCode = "TXN" + int.Parse(id).ToString("D3");
             return transactionCode;
         }
-        public Payment GetPayments(string billIF)
+        public Payment GetPayments(string billID)
         {
-            return paymentDL.GetPaymentByBillID(billIF);
+            return paymentDL.GetPaymentByBillID(billID);
         }
     }
 }
