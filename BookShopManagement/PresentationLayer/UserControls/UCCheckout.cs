@@ -327,39 +327,37 @@ namespace PresentationLayer.UserControls
         {
             try
             {
+                // Bước 1: Lấy thông tin khách hàng
                 string cusname = txtCusName.Text.Trim();
                 string cusphone = txtCusPhone.Text.Trim();
 
                 if (string.IsNullOrEmpty(cusname) || string.IsNullOrEmpty(cusphone))
                 {
                     MessageBox.Show("Vui lòng nhập đầy đủ tên và số điện thoại khách hàng.", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; // Dừng lại, không tiếp tục thực hiện
+                    return;
                 }
 
-                // Kiểm tra xem khách hàng đã tồn tại trong bảng Customers chưa
+                // Bước 2: Kiểm tra và lưu khách hàng mới nếu chưa có
                 bool customerExists = customerBL.CheckCustomerExist(cusphone);
                 if (!customerExists)
                 {
                     customerBL.SaveCustomer(cusphone, cusname);
                 }
 
-                //Lấy StaffID
+                // Bước 3: Lấy thông tin nhân viên (từ username đang đăng nhập)
                 info = infoBL.GetUserInfo(username);
                 string staffID = info.User_ID;
-
                 string staffName = info.Name;
 
-
-                // Bước 1: Tạo Order_ID mới
+                // Bước 4: Tạo Order_ID mới
                 string orderID = orderBL.GenerateOrderID();
 
-                // Bước 2: Lưu thông tin Order vào bảng Orders
+                // Bước 5: Lưu Order vào bảng Orders
                 DateTime orderDate = DateTime.Now;
                 string status = "Đã hoàn thành";
-
                 orderBL.SaveOrder(orderID, cusphone, staffID, orderDate, status);
 
-                // Bước 3: Lấy danh sách sản phẩm trong giỏ hàng và lưu chi tiết đơn hàng
+                // Bước 6: Lấy giỏ hàng và lưu OrderDetails, trừ kho
                 List<CartItem> cartItems = CheckoutBL.GetCartItemsFromDgv(dgvDetails);
                 orderDetailsBL.SaveOrderDetails(orderID, cartItems);
                 foreach (var item in cartItems)
@@ -367,15 +365,15 @@ namespace PresentationLayer.UserControls
                     stockBL.ReduceStockQuantity(item.BookID, item.Quantity);
                 }
 
-                // Bước 4: Tạo hóa đơn và lưu vào bảng Bill_Generate
+                // Bước 7: Tạo hóa đơn và lưu vào bảng Bill_Generate
                 string billID = billBL.GetBillID(orderID);
                 billBL.CreateBill(billID, orderID);
 
-                // Bước 5: Tạo phương thức thanh toán và lưu vào bảng Payments
+                // Bước 8: Xác định phương thức thanh toán
                 string paymentID = paymentBL.GetPaymentID();
                 string paymentMethod = GetSelectedPaymentMethod();
 
-                // 💥💥💥 THÊM SHOW FORM QR Ở ĐÂY:
+                // Bước 9: Hiển thị Form QR nếu cần (CKNH hoặc ví điện tử)
                 if (paymentMethod == "Chuyển khoản ngân hàng" || paymentMethod == "Ví điện tử")
                 {
                     FormQR qrForm = new FormQR(paymentMethod);
@@ -384,20 +382,18 @@ namespace PresentationLayer.UserControls
                     if (!qrForm.IsConfirmed)
                     {
                         MessageBox.Show("Bạn chưa xác nhận đã chuyển khoản. Đơn hàng chưa được tạo.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return; // Không tiếp tục xử lý nữa
+                        return;
                     }
                 }
 
+                // Bước 10: Tạo Payment và lưu vào bảng Payments
                 string transactionCode = GetTransactionCode(rdByCash.Checked, paymentID);
-                DateTime? paymentDate = GetPaymentDate(rdByCash.Checked, transactionCode); //? kiểu nullable
+                DateTime? paymentDate = GetPaymentDate(rdByCash.Checked, transactionCode);
                 int totalCost = Convert.ToInt32(txtTotalBill.Text);
                 paymentBL.AddPayment(paymentID, billID, cusphone, paymentMethod, transactionCode, paymentDate, totalCost);
 
-                // Bước 6: Thông báo
-                MessageBox.Show("Mua hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                // Bước 11: Chuẩn bị dữ liệu để in hóa đơn
                 List<(string bookName, int quantity, int price, int total)> books = new List<(string, int, int, int)>();
-
                 foreach (DataGridViewRow row in dgvDetails.Rows)
                 {
                     if (row.Cells["Tên sách"].Value != null &&
@@ -412,50 +408,48 @@ namespace PresentationLayer.UserControls
                     }
                 }
 
-                //==
-
+                // Bước 12: Tạo đối tượng UCPrintBill nhưng chưa hiển thị liền
                 int totalBill = 0;
                 int totalPaid = 0;
                 int change = 0;
 
+                UCPrintBill inBill = null;
                 if (paymentMethod == "Tiền mặt")
                 {
-                    // Kiểm tra nếu totalBill và totalPaid là số hợp lệ
                     if (int.TryParse(txtTotalBill.Text, out totalBill) && int.TryParse(txtTotalPaid.Text, out totalPaid))
                     {
-                        // Tính tiền thừa
                         change = CalculateChange(totalBill, totalPaid);
-                        UCPrintBill inBill = new UCPrintBill(orderID, cusname, cusphone, totalBill, paymentMethod,
-                                                       books, staffName, orderDate, change, totalPaid);
-                        ShowUserControl(inBill);
+                        inBill = new UCPrintBill(orderID, cusname, cusphone, totalBill, paymentMethod,
+                                                 books, staffName, orderDate, change, totalPaid);
                     }
                     else
                     {
                         MessageBox.Show("Vui lòng nhập đúng số tiền");
+                        return;
                     }
                 }
                 else
                 {
-                    // Nếu không phải thanh toán bằng tiền mặt, bỏ qua phần nhập liệu
-                    totalBill = 0;  // Giá trị mặc định nếu không cần thiết
-                    totalPaid = 0;  // Giá trị mặc định nếu không cần thiết
-                    change = 0;     // Không cần tính tiền thừa
-
-                    // Tạo đối tượng UCInBill mà không cần các giá trị tiền thừa
-                    UCPrintBill inBill = new UCPrintBill(orderID, cusname, cusphone, totalCost, paymentMethod,
-                                                   books, staffName, orderDate, change, totalPaid);
-                    ShowUserControl(inBill);
+                    inBill = new UCPrintBill(orderID, cusname, cusphone, totalCost, paymentMethod,
+                                             books, staffName, orderDate, change, totalPaid);
                 }
-                // Bước 7: Load lại FORM
+
+                // ✅ Bước 13: Thông báo mua hàng thành công
+                MessageBox.Show("Mua hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // ✅ Bước 14: Hiển thị hóa đơn sau khi người dùng bấm OK
+                ShowUserControl(inBill);
+
+                // ✅ Bước 15: Load lại dữ liệu sau thanh toán
                 LoadAfterCheckout();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                //MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
+
         public void LoadAfterCheckout()
         {
             LoadBooks();
