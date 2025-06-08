@@ -1,5 +1,5 @@
-📙Bookstore Management System - WinForms & SQL Server
-Đồ án môn Lập trình Cơ sở Dữ liệu - Trường ĐH Mở TP.HCM
+📙Bookstore Management System - WinForms & SQL Server  
+Đồ án môn Lập trình Cơ sở Dữ liệu - Trường ĐH Mở TP.HCM  
 Nhóm sinh viên: Hồ Hoàn Hảo, Lê Thị Ngọc Hân, Nguyễn Lê Huệ Tiên
 
 ✨ Giới thiệu
